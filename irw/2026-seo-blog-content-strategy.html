@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inn at Riverwalk — SEO Blog Strategy | RightNow Communications</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brown:     #2d1a0e;
+  --orange:    #e8620a;
+  --orange-lt: #f07830;
+  --orange-bg: rgba(232,98,10,0.08);
+  --orange-bd: rgba(232,98,10,0.25);
+  --white:     #ffffff;
+  --off:       #f7f4f1;
+  --text:      #1a1008;
+  --text2:     #5a4a3a;
+  --text3:     #9a8878;
+  --border:    rgba(45,26,14,0.1);
+  --border-md: rgba(45,26,14,0.18);
+  --green:     #2a9d6f;
+  --green-bg:  rgba(42,157,111,0.08);
+  --red:       #d14040;
+  --red-bg:    rgba(209,64,64,0.08);
+  --blue:      #2a72c8;
+  --blue-bg:   rgba(42,114,200,0.08);
+  --amber:     #c87a10;
+  --amber-bg:  rgba(200,122,16,0.08);
+}
+
+html, body { width:100%; height:100%; background:var(--off); color:var(--text); font-family:'Barlow',sans-serif; overflow:hidden; }
+
+.deck { width:100vw; height:100vh; display:flex; flex-direction:column; }
+
+.slide { display:none; flex:1; overflow:hidden; flex-direction:column; background:var(--off); animation:fadeIn 0.25s ease; }
+.slide.active { display:flex; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+.slide-body { flex:1; padding:2.25rem 3.25rem; overflow:hidden; display:flex; flex-direction:column; }
+
+.deck-header { background:var(--brown); display:flex; align-items:center; justify-content:space-between; padding:0 3.25rem; height:50px; flex-shrink:0; }
+.logo-wrap { display:flex; align-items:center; gap:10px; }
+.logo-bubble { width:30px; height:30px; background:var(--orange); border-radius:50% 50% 50% 10%; display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:10px; color:#fff; }
+.logo-text { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:12px; color:#fff; letter-spacing:0.12em; text-transform:uppercase; }
+.logo-text span { color:var(--orange); }
+.header-client { font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:0.1em; text-transform:uppercase; }
+
+.slide-eyebrow { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange); margin-bottom:6px; }
+.slide-title { font-family:'Barlow Condensed',sans-serif; font-size:38px; font-weight:800; color:var(--brown); line-height:1.05; letter-spacing:-0.01em; margin-bottom:5px; }
+.slide-title em { color:var(--orange); font-style:normal; }
+.slide-sub { font-size:13px; color:var(--text2); margin-bottom:1.5rem; line-height:1.5; }
+
+/* cover */
+.cover-layout { flex:1; display:grid; grid-template-columns:1fr 1fr; overflow:hidden; }
+.cover-left { display:flex; flex-direction:column; justify-content:center; padding:2.75rem 3.25rem; background:var(--brown); }
+.cover-label { font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--orange); margin-bottom:1.25rem; }
+.cover-title { font-family:'Barlow Condensed',sans-serif; font-size:48px; font-weight:800; color:#fff; line-height:1.0; margin-bottom:0.85rem; }
+.cover-title em { color:var(--orange); font-style:normal; }
+.cover-sub { font-size:14px; color:rgba(255,255,255,0.5); line-height:1.6; margin-bottom:1.75rem; max-width:380px; }
+.cover-meta { display:flex; gap:1.75rem; border-top:1px solid rgba(255,255,255,0.1); padding-top:1.1rem; }
+.cover-meta-label { font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:3px; }
+.cover-meta-value { font-size:13px; font-weight:600; color:#fff; }
+.cover-right { background:var(--orange); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1.25rem; padding:2.5rem; position:relative; overflow:hidden; }
+.cover-right::before { content:''; position:absolute; top:-50px; right:-50px; width:240px; height:240px; border-radius:50%; background:rgba(255,255,255,0.08); }
+.cover-right::after { content:''; position:absolute; bottom:-70px; left:-30px; width:200px; height:200px; border-radius:50%; background:rgba(45,26,14,0.12); }
+.cover-stat { text-align:center; position:relative; z-index:1; }
+.cover-stat-num { font-family:'Barlow Condensed',sans-serif; font-size:60px; font-weight:800; color:#fff; line-height:1; letter-spacing:-0.02em; }
+.cover-stat-label { font-size:10px; font-weight:600; color:rgba(255,255,255,0.65); letter-spacing:0.08em; text-transform:uppercase; margin-top:3px; }
+.cover-divider { width:1px; height:50px; background:rgba(255,255,255,0.2); position:relative; z-index:1; }
+
+/* grids */
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:1.1rem; }
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:1.1rem; }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:0.9rem; }
+
+/* metrics */
+.metric { background:var(--white); border:1px solid var(--border); border-radius:10px; padding:14px 16px; border-top:3px solid var(--border-md); }
+.metric.orange { border-top-color:var(--orange); }
+.metric.green  { border-top-color:var(--green); }
+.metric.red    { border-top-color:var(--red); }
+.metric.amber  { border-top-color:var(--amber); }
+.metric.blue   { border-top-color:var(--blue); }
+.metric-label { font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text3); margin-bottom:5px; font-weight:700; }
+.metric-value { font-family:'Barlow Condensed',sans-serif; font-size:30px; font-weight:700; color:var(--brown); letter-spacing:-0.01em; line-height:1; }
+.metric-value.orange { color:var(--orange); }
+.metric-value.green  { color:var(--green); }
+.metric-value.red    { color:var(--red); }
+.metric-value.amber  { color:var(--amber); }
+.metric-sub { font-size:10px; color:var(--text3); margin-top:3px; line-height:1.4; }
+
+/* cards */
+.card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1rem 1.3rem; margin-bottom:0.8rem; }
+.card:last-child { margin-bottom:0; }
+.card-label { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange); margin-bottom:9px; }
+
+/* alert */
+.alert { border:1.5px solid var(--orange-bd); background:var(--orange-bg); border-radius:12px; padding:1rem 1.3rem; margin-bottom:0.9rem; }
+.alert-label { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--orange); margin-bottom:5px; }
+.alert-title { font-size:15px; font-weight:600; color:var(--brown); margin-bottom:9px; line-height:1.3; }
+.alert-stats { display:flex; gap:1.75rem; flex-wrap:wrap; }
+.alert-stat-val { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:700; color:var(--orange); }
+.alert-stat-val.good { color:var(--green); }
+.alert-stat-val.bad  { color:var(--red); }
+.alert-stat-label { font-size:10px; color:var(--text3); margin-top:2px; }
+
+/* table */
+.data-table { width:100%; border-collapse:collapse; }
+.data-table th { font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text3); font-weight:700; padding:0 0 7px; text-align:left; border-bottom:1px solid var(--border); }
+.data-table th:not(:first-child) { text-align:right; }
+.data-table td { font-size:12.5px; color:var(--text); padding:7px 0; border-bottom:1px solid var(--border); vertical-align:middle; }
+.data-table td:not(:first-child) { text-align:right; }
+.data-table tr:last-child td { border-bottom:none; }
+.td-orange { color:var(--orange) !important; font-weight:600; }
+.td-green  { color:var(--green)  !important; font-weight:600; }
+.td-red    { color:var(--red)    !important; font-weight:600; }
+.td-amber  { color:var(--amber)  !important; font-weight:600; }
+.td-muted  { color:var(--text3)  !important; }
+
+/* tags */
+.tag { display:inline-block; font-size:9px; font-weight:700; padding:2px 7px; border-radius:4px; letter-spacing:0.07em; text-transform:uppercase; }
+.tag-orange { background:var(--orange-bg); color:var(--orange); border:1px solid var(--orange-bd); }
+.tag-green  { background:var(--green-bg);  color:var(--green);  border:1px solid rgba(42,157,111,0.25); }
+.tag-red    { background:var(--red-bg);    color:var(--red);    border:1px solid rgba(209,64,64,0.25); }
+.tag-blue   { background:var(--blue-bg);   color:var(--blue);   border:1px solid rgba(42,114,200,0.25); }
+.tag-amber  { background:var(--amber-bg);  color:var(--amber);  border:1px solid rgba(200,122,16,0.25); }
+
+/* list */
+.list-item { display:flex; align-items:flex-start; gap:9px; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px; color:var(--text); line-height:1.5; }
+.list-item:last-child { border-bottom:none; }
+.dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; margin-top:6px; }
+.dot-orange { background:var(--orange); }
+.dot-green  { background:var(--green); }
+.dot-red    { background:var(--red); }
+.dot-blue   { background:var(--blue); }
+.dot-amber  { background:var(--amber); }
+
+/* phases */
+.phases { display:flex; gap:9px; margin-bottom:1.1rem; }
+.phase { flex:1; padding:11px 13px; background:var(--white); border:1px solid var(--border); border-radius:10px; border-left:3px solid var(--orange); }
+.phase-num { font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--orange); margin-bottom:2px; }
+.phase-name { font-family:'Barlow Condensed',sans-serif; font-size:17px; font-weight:700; color:var(--brown); }
+.phase-desc { font-size:11px; color:var(--text3); margin-top:2px; }
+
+/* timeline */
+.tl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.tl-col { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:13px 15px; }
+.tl-month { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:9px; color:var(--orange); }
+.tl-item { display:flex; align-items:flex-start; gap:7px; font-size:11.5px; color:var(--text2); line-height:1.4; padding:4px 0; border-bottom:1px solid var(--border); }
+.tl-item:last-child { border-bottom:none; }
+
+/* versus */
+.versus { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.versus-col { padding:13px 15px; border-radius:12px; }
+.versus-col.bad  { background:var(--red-bg);   border:1px solid rgba(209,64,64,0.2); }
+.versus-col.good { background:var(--green-bg); border:1px solid rgba(42,157,111,0.2); }
+.versus-title { font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:7px; }
+.versus-col.bad  .versus-title { color:var(--red); }
+.versus-col.good .versus-title { color:var(--green); }
+
+/* rule box */
+.rule-box { padding:9px 12px; background:var(--white); border:1px solid var(--border); border-radius:8px; font-size:11px; color:var(--text2); text-align:center; line-height:1.4; }
+.rule-box strong { color:var(--brown); display:block; margin-top:2px; font-weight:600; font-size:12px; }
+
+/* nav */
+.nav { display:flex; align-items:center; justify-content:space-between; padding:0 3.25rem; height:48px; border-top:1px solid var(--border); background:var(--white); flex-shrink:0; }
+.nav-left { display:flex; align-items:center; gap:10px; }
+.slide-counter { font-size:11px; font-weight:700; color:var(--text3); }
+.slide-title-nav { font-size:11px; color:var(--text2); }
+.slide-title-nav::before { content:'—'; margin-right:7px; color:var(--border-md); }
+.nav-dots { display:flex; gap:5px; align-items:center; }
+.nav-dot { width:5px; height:5px; border-radius:50%; background:var(--border-md); cursor:pointer; transition:all 0.2s; border:none; padding:0; }
+.nav-dot.active { background:var(--orange); width:18px; border-radius:3px; }
+.nav-dot:hover:not(.active) { background:var(--text3); }
+.nav-btns { display:flex; gap:6px; }
+.nav-btn { background:var(--off); border:1px solid var(--border-md); color:var(--text2); font-size:12px; font-family:'Barlow',sans-serif; font-weight:500; padding:5px 14px; border-radius:6px; cursor:pointer; transition:all 0.15s; }
+.nav-btn:hover { background:var(--brown); color:#fff; border-color:var(--brown); }
+.nav-btn:disabled { opacity:0.25; cursor:default; }
+.nav-btn:disabled:hover { background:var(--off); color:var(--text2); border-color:var(--border-md); }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<div class="deck-header">
+  <div class="logo-wrap">
+    <div class="logo-bubble">RN</div>
+    <div class="logo-text">RIGHT<span>NOW</span> COMMUNICATIONS</div>
+  </div>
+  <div class="header-client">Inn at Riverwalk · SEO Blog Strategy</div>
+</div>
+
+<!-- SLIDE 0: COVER -->
+<div class="slide active" id="slide-0">
+  <div class="cover-layout">
+    <div class="cover-left">
+      <div class="cover-label">Inn at Riverwalk · RightNow Communications · May 2026</div>
+      <div class="cover-title">157 posts.<br>Almost no bookings.<br><em>Here's why.</em></div>
+      <div class="cover-sub">Full-site Screaming Frog crawl + Google Search Console analysis revealing why the blog isn't driving revenue — and exactly how to fix it.</div>
+      <div class="cover-meta">
+        <div><div class="cover-meta-label">Prepared for</div><div class="cover-meta-value">Inn at Riverwalk</div></div>
+        <div><div class="cover-meta-label">Date</div><div class="cover-meta-value">May 2026</div></div>
+        <div><div class="cover-meta-label">Prepared by</div><div class="cover-meta-value">RightNow</div></div>
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="cover-stat">
+        <div class="cover-stat-num">84</div>
+        <div class="cover-stat-label">Orphaned Posts</div>
+      </div>
+      <div class="cover-divider"></div>
+      <div class="cover-stat">
+        <div class="cover-stat-num">0.06%</div>
+        <div class="cover-stat-label">CTR on Hotel Keywords</div>
+      </div>
+      <div class="cover-divider"></div>
+      <div class="cover-stat">
+        <div class="cover-stat-num">~450</div>
+        <div class="cover-stat-label">Clicks/mo at Position 5</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 1: THE PROBLEM -->
+<div class="slide" id="slide-1">
+  <div class="slide-body">
+    <div class="slide-eyebrow">The Problem</div>
+    <div class="slide-title">The content exists.<br><em>The strategy doesn't.</em></div>
+    <div class="slide-sub">Google sees fragmented signals and orphaned pages — not a topical authority.</div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">Inlink distribution — the authority gap</div>
+        <table class="data-table">
+          <thead><tr><th>Page</th><th>Inlinks</th></tr></thead>
+          <tbody>
+            <tr><td>Rooms / Book Now</td><td class="td-green">1,053</td></tr>
+            <tr><td>Homepage</td><td class="td-green">563</td></tr>
+            <tr><td>Best blog post</td><td class="td-amber">176</td></tr>
+            <tr><td>Average blog post</td><td class="td-red">8–10</td></tr>
+            <tr><td>54% of posts (orphaned)</td><td class="td-red">≤ 2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-label">Why this kills rankings</div>
+          <div class="list-item"><div class="dot dot-red"></div>Google can't flow authority to content with no contextual inlinks — effectively invisible</div>
+          <div class="list-item"><div class="dot dot-red"></div>5 duplicate topic clusters split ranking signals — neither version reaches page 1</div>
+          <div class="list-item"><div class="dot dot-red"></div>Blog posts doing the job site landing pages should do — wrong format, wrong authority</div>
+          <div class="list-item"><div class="dot dot-red"></div>Zero posts linking to Rooms/Book Now — no path from organic traffic to a booking</div>
+        </div>
+        <div class="card">
+          <div class="card-label">AI Overview threat — right now</div>
+          <div style="font-size:13px; color:var(--text2); line-height:1.6;">AI Overviews are consuming top-of-funnel informational content. "Best hikes near Vail" gets answered without a click. Bottom-funnel transactional queries still serve traditional results. <strong style="color:var(--brown);">That's the opportunity.</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: PHASE 1 — CONSOLIDATE -->
+<div class="slide" id="slide-2">
+  <div class="slide-body">
+    <div class="slide-eyebrow">Phase 1 — Consolidate</div>
+    <div class="slide-title">Fix the duplicate damage.<br><em>Redirect. Merge. Kill dead weight.</em></div>
+    <div class="slide-sub">6 topic clusters are diluting authority that should sit on one URL each.</div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">301 redirect map — execute week 1</div>
+        <table class="data-table">
+          <thead><tr><th>Topic cluster</th><th>Posts</th><th>Combined Imp.</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>Fall foliage / leaf peeping</td><td class="td-muted">5</td><td class="td-amber">1,990</td><td><span class="tag tag-red">Consolidate</span></td></tr>
+            <tr><td>Dog / pet friendly</td><td class="td-muted">4</td><td class="td-amber">3,131</td><td><span class="tag tag-red">Consolidate</span></td></tr>
+            <tr><td>Flat Tops day trips</td><td class="td-muted">2</td><td class="td-amber">2,146</td><td><span class="tag tag-red">Consolidate</span></td></tr>
+            <tr><td>Wildflowers Vail Valley</td><td class="td-muted">2</td><td class="td-amber">2,349</td><td><span class="tag tag-red">Consolidate</span></td></tr>
+            <tr><td>Sunny decks Edwards</td><td class="td-muted">2</td><td class="td-muted">360</td><td><span class="tag tag-red">Consolidate</span></td></tr>
+            <tr><td>Denver weekend getaway</td><td class="td-muted">2</td><td class="td-amber">1,660</td><td><span class="tag tag-red">Consolidate</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-label">Noindex / redirect — dead weight</div>
+          <div class="list-item"><div class="dot dot-red"></div>COVID note post — 16 impressions, irrelevant</div>
+          <div class="list-item"><div class="dot dot-red"></div>Thanksgiving post — 363 words, zero data</div>
+          <div class="list-item"><div class="dot dot-red"></div>Fall Midweek Special — promotional, no SEO value</div>
+          <div class="list-item"><div class="dot dot-red"></div>3× mountain dog adoption event posts — zero traffic</div>
+          <div class="list-item"><div class="dot dot-red"></div>Mural / Spring Update posts — brand news, not SEO</div>
+        </div>
+        <div class="card">
+          <div class="card-label">404s burning link equity</div>
+          <div class="list-item"><div class="dot dot-amber"></div><strong style="color:var(--brown);">/activity/</strong> — 14 inlinks, 404ing → redirect to /activities/</div>
+          <div class="list-item"><div class="dot dot-amber"></div><strong style="color:var(--brown);">/pool-hot-tub/</strong> → /amenities/pool-hot-tub/</div>
+          <div class="list-item"><div class="dot dot-amber"></div>17 total 404s site-wide — all need resolution</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: PHASE 2 — OPTIMIZE -->
+<div class="slide" id="slide-3">
+  <div class="slide-body">
+    <div class="slide-eyebrow">Phase 2 — Optimize</div>
+    <div class="slide-title">17 posts stuck between positions 7–20<br><em>with 180,000+ combined impressions.</em></div>
+    <div class="slide-sub">Title + internal link optimization can move these to page 1 without writing new content.</div>
+
+    <div class="card">
+      <div class="card-label">Quick win targets — high impressions, stuck below the fold</div>
+      <table class="data-table">
+        <thead><tr><th>Post</th><th>Impressions</th><th>Position</th><th>CTR</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Vail Ski Season 2025–26</td><td class="td-green">54,968</td><td class="td-muted">7.88</td><td class="td-red">0.27%</td><td><span class="tag tag-amber">Title + hotel section</span></td></tr>
+          <tr><td>History of Edwards CO</td><td class="td-green">51,046</td><td class="td-muted">10.48</td><td class="td-red">0.25%</td><td><span class="tag tag-amber">Build inlinks</span></td></tr>
+          <tr><td>Vail Skiing: Blue Sky Basin</td><td class="td-blue">28,388</td><td class="td-muted">7.74</td><td class="td-muted">0.79%</td><td><span class="tag tag-amber">Add stay section</span></td></tr>
+          <tr><td>Gladed Skiing Beaver Creek</td><td class="td-blue">14,789</td><td class="td-muted">7.39</td><td class="td-muted">1.00%</td><td><span class="tag tag-amber">Hotel proximity angle</span></td></tr>
+          <tr><td>Easy Hiking Trails Vail–Edwards</td><td class="td-blue">13,658</td><td class="td-muted">12.01</td><td class="td-red">1.23%</td><td><span class="tag tag-amber">Build 5 inlinks</span></td></tr>
+          <tr><td>Beaver Creek Ski School</td><td class="td-amber">9,608</td><td class="td-muted">11.02</td><td class="td-red">0.50%</td><td><span class="tag tag-amber">Rewrite title</span></td></tr>
+          <tr><td>Après Ski Guide</td><td class="td-amber">4,017</td><td class="td-muted">9.95</td><td class="td-muted">0.72%</td><td><span class="tag tag-green">One push to top 5</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-label">Optimization template — apply to all 17 posts</div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:9px;">
+        <div class="rule-box">Rewrite title<strong>Power words + primary keyword</strong></div>
+        <div class="rule-box">Update meta desc<strong>Value prop + CTA</strong></div>
+        <div class="rule-box">Add "Where to Stay"<strong>Internal link → /rooms-condos/</strong></div>
+        <div class="rule-box">Build 3–5 inlinks<strong>From related posts</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: PHASE 3 — BOTTOM FUNNEL -->
+<div class="slide" id="slide-4">
+  <div class="slide-body">
+    <div class="slide-eyebrow">Phase 3 — Build</div>
+    <div class="slide-title">Bottom-funnel content is the only<br><em>content that books rooms.</em></div>
+    <div class="slide-sub">AI Overviews eat informational content. Transactional queries still drive clicks.</div>
+
+    <div class="alert">
+      <div class="alert-label">The opportunity hiding in plain sight</div>
+      <div class="alert-title">"Hotels near Beaver Creek" — the most important keyword on the site</div>
+      <div class="alert-stats">
+        <div><div class="alert-stat-val bad">4,913</div><div class="alert-stat-label">impressions</div></div>
+        <div><div class="alert-stat-val bad">1</div><div class="alert-stat-label">click</div></div>
+        <div><div class="alert-stat-val bad">Pos. 24.7</div><div class="alert-stat-label">current position</div></div>
+        <div><div class="alert-stat-val bad">8</div><div class="alert-stat-label">inlinks (nav only)</div></div>
+        <div><div class="alert-stat-val good">~450</div><div class="alert-stat-label">est. clicks/mo at pos. 5</div></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-label">New BoFu posts — priority order</div>
+      <div class="list-item"><span class="tag tag-red" style="flex-shrink:0;margin-top:1px;">P1</span><div><strong style="color:var(--brown);">Hotels near Beaver Creek: Complete Guide</strong> — merge + rebuild both existing hotel posts. Comparison table, Hotel schema, 10+ inlinks. Target: "hotels near beaver creek resort," "where to stay near beaver creek."</div></div>
+      <div class="list-item"><span class="tag tag-red" style="flex-shrink:0;margin-top:1px;">P1</span><div><strong style="color:var(--brown);">Edwards vs. Vail Village: Where to Stay</strong> — intercepts the "still deciding" traveler. Honest comparison making Edwards the smart choice on price, parking, and access.</div></div>
+      <div class="list-item"><span class="tag tag-amber" style="flex-shrink:0;margin-top:1px;">P2</span><div><strong style="color:var(--brown);">Pet-Friendly Hotels in the Vail Valley</strong> — consolidates all dog posts. The Inn's pet policy is the natural conclusion. Target: "pet friendly hotels vail."</div></div>
+      <div class="list-item"><span class="tag tag-amber" style="flex-shrink:0;margin-top:1px;">P2</span><div><strong style="color:var(--brown);">Vail Valley Family Vacation: Best Hotels</strong> — targets "family hotels vail valley." Pulls in all family activity content as supporting links.</div></div>
+      <div class="list-item"><span class="tag tag-blue" style="flex-shrink:0;margin-top:1px;">P3</span><div><strong style="color:var(--brown);">Edwards CO Hotel Review: Why Locals Choose The Inn</strong> — pure conversion. Social proof, TripAdvisor quotes, E-E-A-T signals.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: INTERNAL LINKING -->
+<div class="slide" id="slide-5">
+  <div class="slide-body">
+    <div class="slide-eyebrow">Internal Linking Architecture</div>
+    <div class="slide-title">54% of posts are orphaned.<br><em>That ends now.</em></div>
+    <div class="slide-sub">Build 4 hub posts that distribute authority across the entire blog.</div>
+
+    <div class="grid-2" style="margin-bottom:0.9rem;">
+      <div class="card">
+        <div class="card-label">Hub 1 — Vail Valley Ski Guide</div>
+        <div style="font-size:12.5px; color:var(--text2); line-height:1.8;">Links out to → Gladed skiing · Blue Sky Basin · Ski school · Spring skiing · Après ski · Backcountry · <span style="color:var(--blue); font-weight:600;">Rooms page</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Hub 2 — Vail Valley Summer Guide</div>
+        <div style="font-size:12.5px; color:var(--text2); line-height:1.8;">Links out to → Hiking trails · Fly fishing · Rafting · Biking · GoPro Games · Golf · Wildflowers · <span style="color:var(--blue); font-weight:600;">Rooms page</span></div>
+      </div>
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-label">Hub 3 — Vail Valley Fall Guide</div>
+        <div style="font-size:12px; color:var(--text3); margin-bottom:5px;">Consolidate 6 fall posts → 1 hub</div>
+        <div style="font-size:12.5px; color:var(--text2); line-height:1.8;">Leaf peeping · Fall festivals · Après ski · Fall hiking · <span style="color:var(--blue); font-weight:600;">Rooms page</span></div>
+      </div>
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-label">Hub 4 — Where to Stay (BoFu anchor)</div>
+        <div style="font-size:12px; color:var(--text3); margin-bottom:5px;">The anchor for all booking intent</div>
+        <div style="font-size:12.5px; color:var(--text2); line-height:1.8;">Hotels near BC · Affordable hotels · Pet-friendly · Family guide · <span style="color:var(--green); font-weight:600;">Book Now</span></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-label">3 rules — every post, going forward</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:9px;">
+        <div class="rule-box">Every post links to<strong>/rooms-condos/</strong></div>
+        <div class="rule-box">Every post links to<strong>2–3 related posts</strong></div>
+        <div class="rule-box">Every post gets<strong>FAQ schema added</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: GEO / AI -->
+<div class="slide" id="slide-6">
+  <div class="slide-body">
+    <div class="slide-eyebrow">GEO / AI Visibility</div>
+    <div class="slide-title">How to survive — and win —<br><em>in an AI search world.</em></div>
+    <div class="slide-sub">The rules have changed. Here's what gets cited and clicked vs. what gets swallowed.</div>
+
+    <div class="versus" style="margin-bottom:0.9rem;">
+      <div class="versus-col bad">
+        <div class="versus-title">AI Overviews eat this</div>
+        <div class="list-item"><div class="dot dot-red"></div>"Things to do in Vail" generic guides</div>
+        <div class="list-item"><div class="dot dot-red"></div>"How to ski Vail" educational content</div>
+        <div class="list-item"><div class="dot dot-red"></div>Top-of-funnel awareness posts</div>
+        <div class="list-item"><div class="dot dot-red"></div>Generic listicles with no local specifics</div>
+      </div>
+      <div class="versus-col good">
+        <div class="versus-title">This survives and gets cited</div>
+        <div class="list-item"><div class="dot dot-green"></div>Specific local content with unique data points</div>
+        <div class="list-item"><div class="dot dot-green"></div>Content with Hotel + FAQ schema markup</div>
+        <div class="list-item"><div class="dot dot-green"></div>Transactional "where to stay" queries</div>
+        <div class="list-item"><div class="dot dot-green"></div>Brand-specific content — AI can't replicate "gear garage + free ski shuttle"</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Tess Johnson — untapped E-E-A-T asset</div>
+      <div style="font-size:13px; color:var(--text2); line-height:1.7;">15+ Tess posts scattered across the blog with no hub page. She's a real named expert, a Vail local, and a Team USA Olympian. Google's E-E-A-T framework rewards exactly this. <strong style="color:var(--brown);">Build a Tess Johnson hub page, add author schema to all her posts, and use her as the brand's authority signal across all ski content.</strong> AI cites named experts. Generic posts by "Colvita Creative" get ignored.</div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:0;">
+      <div class="metric orange"><div class="metric-label">Action 1</div><div class="metric-value" style="font-size:15px;color:var(--brown);margin:4px 0;">Hotel Schema</div><div class="metric-sub">Add to all BoFu posts</div></div>
+      <div class="metric orange"><div class="metric-label">Action 2</div><div class="metric-value" style="font-size:15px;color:var(--brown);margin:4px 0;">FAQ Schema</div><div class="metric-sub">Every post, every page</div></div>
+      <div class="metric orange"><div class="metric-label">Action 3</div><div class="metric-value" style="font-size:15px;color:var(--brown);margin:4px 0;">Author Schema</div><div class="metric-sub">All Tess Johnson posts</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: 90-DAY ROADMAP -->
+<div class="slide" id="slide-7">
+  <div class="slide-body">
+    <div class="slide-eyebrow">90-Day Roadmap</div>
+    <div class="slide-title">What gets done, when,<br><em>and who owns it.</em></div>
+
+    <div class="tl-grid" style="margin-bottom:1rem;">
+      <div class="tl-col">
+        <div class="tl-month" style="color:var(--red);">Month 1 — Fix the House</div>
+        <div class="tl-item"><div class="dot dot-red" style="flex-shrink:0;margin-top:4px;"></div>Execute all 301 redirects (6 dupe clusters)</div>
+        <div class="tl-item"><div class="dot dot-red" style="flex-shrink:0;margin-top:4px;"></div>Fix /activity/ 404 → /activities/</div>
+        <div class="tl-item"><div class="dot dot-red" style="flex-shrink:0;margin-top:4px;"></div>Rebuild "Hotels near Beaver Creek"</div>
+        <div class="tl-item"><div class="dot dot-red" style="flex-shrink:0;margin-top:4px;"></div>Optimize top 5 posts by impressions</div>
+        <div class="tl-item"><div class="dot dot-amber" style="flex-shrink:0;margin-top:4px;"></div>Add Rooms link to top 20 posts</div>
+        <div class="tl-item"><div class="dot dot-amber" style="flex-shrink:0;margin-top:4px;"></div>Noindex / redirect dead content</div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-month" style="color:var(--amber);">Month 2 — Build BoFu</div>
+        <div class="tl-item"><div class="dot dot-orange" style="flex-shrink:0;margin-top:4px;"></div>Publish "Edwards vs. Vail: Where to Stay"</div>
+        <div class="tl-item"><div class="dot dot-orange" style="flex-shrink:0;margin-top:4px;"></div>Publish "Pet-Friendly Hotels Vail Valley"</div>
+        <div class="tl-item"><div class="dot dot-amber" style="flex-shrink:0;margin-top:4px;"></div>Build Ski Guide hub + inlink network</div>
+        <div class="tl-item"><div class="dot dot-amber" style="flex-shrink:0;margin-top:4px;"></div>Optimize Beaver Creek Ski School</div>
+        <div class="tl-item"><div class="dot dot-amber" style="flex-shrink:0;margin-top:4px;"></div>Optimize Easy Hiking Trails</div>
+        <div class="tl-item"><div class="dot dot-amber" style="flex-shrink:0;margin-top:4px;"></div>Build Tess Johnson hub + author schema</div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-month" style="color:var(--green);">Month 3 — Authority + Freshness</div>
+        <div class="tl-item"><div class="dot dot-green" style="flex-shrink:0;margin-top:4px;"></div>Publish "Vail Valley Family Hotel Guide"</div>
+        <div class="tl-item"><div class="dot dot-green" style="flex-shrink:0;margin-top:4px;"></div>Publish "Edwards CO Hotel Review"</div>
+        <div class="tl-item"><div class="dot dot-amber" style="flex-shrink:0;margin-top:4px;"></div>Build Summer Activity hub post</div>
+        <div class="tl-item"><div class="dot dot-amber" style="flex-shrink:0;margin-top:4px;"></div>Refresh top seasonal posts — 2026 dates</div>
+        <div class="tl-item"><div class="dot dot-blue" style="flex-shrink:0;margin-top:4px;"></div>Add Hotel schema to all BoFu posts</div>
+        <div class="tl-item"><div class="dot dot-blue" style="flex-shrink:0;margin-top:4px;"></div>Google Business Profile full audit</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:0;">
+      <div class="card-label">Expected outcomes by month</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:9px;">
+        <div class="rule-box">Month 1<strong>Crawl efficiency improves, duplicate signals consolidate, hotel post enters competitive range</strong></div>
+        <div class="rule-box">Month 2<strong>Quick-win posts move toward page 1, BoFu content enters index and starts building impressions</strong></div>
+        <div class="rule-box">Month 3<strong>Hotel keyword posts hit page 1, booking-intent traffic begins converting</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-left">
+    <div class="slide-counter" id="counter">1 / 8</div>
+    <div class="slide-title-nav" id="slide-title-nav">Overview</div>
+  </div>
+  <div class="nav-dots" id="dots"></div>
+  <div class="nav-btns">
+    <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)" disabled>← prev</button>
+    <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">next →</button>
+  </div>
+</div>
+
+</div>
+<script>
+var current=0,total=8;
+var titles=['Cover','The Problem','Phase 1 — Consolidate','Phase 2 — Optimize','Phase 3 — Build BoFu','Internal Linking','GEO / AI Visibility','90-Day Roadmap'];
+var dotsEl=document.getElementById('dots');
+for(var i=0;i<total;i++){var d=document.createElement('button');d.className='nav-dot'+(i===0?' active':'');d.setAttribute('aria-label','Go to slide '+(i+1));d.onclick=(function(idx){return function(){goTo(idx);};})(i);dotsEl.appendChild(d);}
+function goTo(n){document.getElementById('slide-'+current).classList.remove('active');dotsEl.children[current].classList.remove('active');current=n;document.getElementById('slide-'+current).classList.add('active');dotsEl.children[current].classList.add('active');document.getElementById('prev-btn').disabled=current===0;document.getElementById('next-btn').disabled=current===total-1;document.getElementById('counter').textContent=(current+1)+' / '+total;document.getElementById('slide-title-nav').textContent=titles[current];}
+function changeSlide(dir){var next=current+dir;if(next>=0&&next<total)goTo(next);}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowDown')changeSlide(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')changeSlide(-1);});
+</script>
+</body>
+</html>
