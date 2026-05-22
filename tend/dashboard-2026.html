@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tend Life — Channel Performance · CY2026</title>
+<title>Tend — Channel Performance · CY2026</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -19,204 +20,110 @@
     --cream:   #FEFDFB;
     --warn:    #FFF3D6;
     --warn-bdr:#FFBA4A;
-    --text-secondary: #6B7A45;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #F4F0E8; font-family: 'DM Sans', sans-serif; color: var(--olive); min-height: 100vh; padding: 40px 24px 80px; }
+  .page { max-width: 1080px; margin: 0 auto; }
 
-  body {
-    background: #F4F0E8;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--olive);
-    min-height: 100vh;
-    padding: 40px 24px 80px;
-  }
-
-  .page {
-    max-width: 1080px;
-    margin: 0 auto;
-  }
-
-  /* ── HEADER ── */
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 32px;
-    background: var(--cream);
-    border-radius: 16px;
-    border: 1px solid var(--sage);
-    margin-bottom: 24px;
-    animation: fadeUp 0.5s ease both;
-  }
+  /* HEADER */
+  .header { display: flex; align-items: center; justify-content: space-between; padding: 24px 32px; background: var(--cream); border-radius: 16px; border: 1px solid var(--sage); margin-bottom: 24px; animation: fadeUp 0.4s ease both; }
   .logo { font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: var(--olive); }
   .logo em { color: var(--amber); font-style: normal; }
   .header-meta { text-align: right; }
-  .header-meta p { font-size: 12px; color: var(--stone); line-height: 1.6; }
+  .header-meta p { font-size: 12px; color: var(--stone); line-height: 1.7; }
   .header-meta strong { color: var(--olive); font-weight: 600; }
 
-  /* ── SECTION LABEL ── */
-  .sl {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--stone);
-    margin-bottom: 12px;
-  }
+  .sl { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
 
-  /* ── CARDS ── */
-  .card {
-    background: var(--cream);
-    border: 1px solid var(--sage);
-    border-radius: 12px;
-    padding: 20px 22px;
-  }
-  .card.winner { border: 2px solid var(--lime); }
-  .card.amber-insight { background: var(--warn); border-color: var(--warn-bdr); }
-  .card.sage-insight { background: var(--sage); border-color: var(--lime); }
-
-  /* ── METRIC GRID ── */
-  .metric-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 24px;
-    animation: fadeUp 0.5s 0.1s ease both;
-  }
-  .mc {
-    background: var(--sage);
-    border-radius: 10px;
-    padding: 16px 18px;
-  }
-  .mc .label { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; }
+  /* METRIC GRID */
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .mc { background: var(--sage); border-radius: 10px; padding: 16px 18px; }
+  .mc .label { font-size: 11px; color: var(--lime-dk); margin-bottom: 4px; }
   .mc .value { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; color: var(--olive); line-height: 1; }
   .mc .sub { font-size: 10px; color: var(--stone); margin-top: 4px; }
 
-  /* ── DIVIDER ── */
   hr { border: none; border-top: 1.5px solid var(--sage); margin: 28px 0; }
 
-  /* ── PACING SECTION ── */
-  .pacing-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 16px;
-    animation: fadeUp 0.5s 0.2s ease both;
-  }
-  .pacing-card {
-    background: var(--cream);
-    border: 1px solid var(--sage);
-    border-radius: 12px;
-    padding: 20px 22px;
-  }
+  /* PACING */
+  .pacing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .pacing-card { background: var(--cream); border: 1px solid var(--sage); border-radius: 12px; padding: 20px 22px; }
   .pacing-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); margin-bottom: 10px; }
   .pacing-nums { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
   .pacing-current { font-family: 'Lora', serif; font-size: 40px; font-weight: 700; color: var(--olive); line-height: 1; }
   .pacing-goal { font-size: 14px; color: var(--stone); }
-  .track { background: var(--sage-lt); border-radius: 99px; height: 8px; margin-bottom: 8px; position: relative; overflow: visible; }
-  .track-fill { height: 8px; border-radius: 99px; position: absolute; top: 0; left: 0; }
-  .track-pace {
-    position: absolute; top: -4px; width: 2px; height: 16px;
-    background: var(--stone); border-radius: 1px;
-  }
-  .track-pace::after {
-    content: 'pace';
-    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
-    font-size: 8px; color: var(--stone); white-space: nowrap; font-weight: 600; letter-spacing: 0.05em;
-  }
-  .pacing-meta { display: flex; justify-content: space-between; margin-bottom: 14px; }
-  .pm-item { }
-  .pm-item span { display: block; font-size: 10px; color: var(--stone); margin-bottom: 2px; }
-  .pm-item strong { font-size: 13px; color: var(--olive); }
-  .pm-item.behind strong { color: #C8781A; }
-  .pace-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .pace-box { border-radius: 8px; padding: 10px 12px; }
-  .pace-box.current-pace { background: var(--sage-lt); }
-  .pace-box.needed-pace { background: var(--warn); }
-  .pace-box p { font-size: 10px; color: var(--stone); margin-bottom: 3px; }
-  .pace-box strong { font-size: 15px; font-weight: 700; color: var(--olive); }
-  .pace-box.needed-pace strong { color: #C8781A; }
 
-  /* ── CHANNEL CARDS ── */
-  .three-col {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-    animation: fadeUp 0.5s 0.3s ease both;
-  }
+  /* DUAL TRACK */
+  .dual-track { margin-bottom: 16px; }
+  .track-row { margin-bottom: 14px; }
+  .track-row-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .track-name { font-size: 11px; font-weight: 600; color: var(--olive); }
+  .track-tag { font-size: 10px; color: var(--stone); }
+  .track { background: var(--sage-lt); border-radius: 99px; height: 8px; position: relative; overflow: visible; margin-bottom: 4px; }
+  .track-fill { height: 8px; border-radius: 99px; position: absolute; top: 0; left: 0; }
+  .track-pace { position: absolute; top: -5px; width: 2px; height: 18px; background: var(--stone); border-radius: 1px; }
+  .track-pace::after { content: attr(data-label); position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 8px; color: var(--stone); white-space: nowrap; font-weight: 600; font-family: 'DM Sans', sans-serif; }
+  .track-meta { display: flex; justify-content: space-between; font-size: 10px; color: var(--stone); }
+  .track-meta .ahead { color: var(--lime-dk); font-weight: 600; }
+
+  .pace-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .pace-box { border-radius: 8px; padding: 10px 12px; }
+  .pace-box.good { background: var(--sage-lt); }
+  .pace-box.great { background: #EAF3DE; }
+  .pace-box p { font-size: 10px; color: var(--stone); margin-bottom: 3px; }
+  .pace-box strong { font-size: 14px; font-weight: 700; color: var(--olive); }
+  .pace-box.great strong { color: var(--lime-dk); }
+
+  /* CHANNEL CARDS */
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .card { background: var(--cream); border: 1px solid var(--sage); border-radius: 12px; padding: 20px 22px; }
+  .card.winner { border: 2px solid var(--lime); }
+  .card.insight-sage { background: var(--sage); border-color: var(--lime); }
+  .card.insight-amber { background: var(--warn); border-color: var(--amber); }
   .ch-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
   .ch-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
   .ch-name { font-size: 13px; font-weight: 600; color: var(--olive); }
-  .ch-sub { font-size: 10px; color: var(--stone); margin-bottom: 10px; line-height: 1.4; }
-  .badge-winner {
-    font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: 99px;
-    background: var(--lime); color: var(--cream);
-    display: inline-block; margin-bottom: 10px; letter-spacing: 0.05em;
-  }
+  .ch-sub { font-size: 10px; color: var(--stone); margin-bottom: 10px; }
+  .badge-winner { font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--lime); color: var(--cream); display: inline-block; margin-bottom: 10px; letter-spacing: 0.05em; }
   .row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-top: 1px solid var(--sage-lt); }
   .row:first-of-type { border-top: none; padding-top: 0; }
   .rl { font-size: 10px; color: var(--stone); }
   .rv { font-size: 11px; font-weight: 600; color: var(--olive); }
   .rv.green { color: var(--lime-dk); }
-  .conv-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; }
-  .conv-good { background: var(--sage); color: var(--olive); }
-  .conv-mid  { background: var(--warn); color: #A57800; }
+  .conv-good { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--sage); color: var(--olive); }
+  .conv-mid  { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--warn); color: #A57800; }
 
-  /* ── RANK ── */
+  /* RANK */
   .rank-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--sage-lt); }
   .rank-row:first-of-type { border-top: none; padding-top: 0; }
   .rank-num { font-family: 'Lora', serif; font-size: 20px; font-weight: 700; color: var(--sage); width: 22px; flex-shrink: 0; }
   .rank-label { font-size: 13px; color: var(--olive); flex: 1; }
   .rank-bar-wrap { flex: 2; background: var(--sage-lt); border-radius: 4px; height: 6px; overflow: hidden; }
-  .rank-bar { height: 6px; border-radius: 4px; transition: width 1s ease; }
+  .rank-bar { height: 6px; border-radius: 4px; }
   .rank-val { font-size: 13px; font-weight: 600; min-width: 48px; text-align: right; }
 
-  /* ── INSIGHT ── */
-  .insight { border-radius: 10px; padding: 14px 18px; margin-bottom: 20px; }
-  .insight-title { font-size: 12px; font-weight: 600; margin-bottom: 5px; }
-  .insight-body { font-size: 12px; line-height: 1.7; }
-
-  /* ── CHART CARDS ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
   .chart-wrap { position: relative; width: 100%; }
-
-  /* ── LEGEND ── */
   .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
   .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--stone); }
   .legend-sq { width: 10px; height: 10px; border-radius: 2px; }
+  .insight-title { font-size: 12px; font-weight: 600; margin-bottom: 5px; }
+  .insight-body { font-size: 12px; line-height: 1.7; }
 
-  /* ── FOOTER ── */
-  .dash-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid var(--sage);
-    font-size: 11px;
-    color: var(--stone);
-  }
+  .dash-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--sage); font-size: 11px; color: var(--stone); }
   .dash-footer strong { color: var(--olive); }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
   section { animation: fadeUp 0.5s ease both; }
-  section:nth-child(2)  { animation-delay: 0.15s; }
-  section:nth-child(3)  { animation-delay: 0.25s; }
-  section:nth-child(4)  { animation-delay: 0.35s; }
-  section:nth-child(5)  { animation-delay: 0.45s; }
-  section:nth-child(6)  { animation-delay: 0.55s; }
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+  section:nth-child(4) { animation-delay: 0.3s; }
+  section:nth-child(5) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 
   @media (max-width: 768px) {
-    .metric-grid { grid-template-columns: repeat(2, 1fr); }
-    .three-col   { grid-template-columns: 1fr; }
-    .pacing-grid { grid-template-columns: 1fr; }
-    .two-col     { grid-template-columns: 1fr; }
-    .header      { flex-direction: column; gap: 12px; }
+    .metric-grid { grid-template-columns: repeat(2,1fr); }
+    .three-col, .pacing-grid, .two-col { grid-template-columns: 1fr; }
+    .header { flex-direction: column; gap: 12px; }
     .header-meta { text-align: left; }
   }
 </style>
@@ -224,39 +131,22 @@
 <body>
 <div class="page">
 
-  <!-- HEADER -->
   <div class="header">
-    <div class="logo">≡ <em>Tend</em> Life</div>
+    <div class="logo">≡ <em>Tend</em></div>
     <div class="header-meta">
       <p><strong>Channel Performance Dashboard</strong></p>
-      <p>CY2026 · As of May 22, 2026 · 38.7% of year elapsed</p>
+      <p>CY2026 · As of May 22, 2026 · Google live Feb 1 · Meta live Mar 1</p>
     </div>
   </div>
 
-  <!-- OVERALL KPIs -->
+  <!-- KPIs -->
   <section>
     <p class="sl">Year-to-date performance</p>
     <div class="metric-grid">
-      <div class="mc">
-        <p class="label">Total registrations</p>
-        <p class="value">827</p>
-        <p class="sub">33.1% of 2,500 goal</p>
-      </div>
-      <div class="mc">
-        <p class="label">Groups created</p>
-        <p class="value">58</p>
-        <p class="sub">23.2% of 250 goal</p>
-      </div>
-      <div class="mc">
-        <p class="label">Total spend</p>
-        <p class="value">$14,898</p>
-        <p class="sub">Meta + Google + Organic</p>
-      </div>
-      <div class="mc">
-        <p class="label">Blended CAC</p>
-        <p class="value">$256.86</p>
-        <p class="sub">all channels · $18.01 CPL</p>
-      </div>
+      <div class="mc"><p class="label">Total registrations</p><p class="value">827</p><p class="sub">55.1% of 1,500 CY2026 goal</p></div>
+      <div class="mc"><p class="label">Groups created</p><p class="value">58</p><p class="sub">38.7% of 150 CY2026 goal</p></div>
+      <div class="mc"><p class="label">Total spend</p><p class="value">$14,898</p><p class="sub">Meta + Google + Organic</p></div>
+      <div class="mc"><p class="label">Blended CAC</p><p class="value">$256.86</p><p class="sub">all channels · $18.01 CPL</p></div>
     </div>
   </section>
 
@@ -264,48 +154,56 @@
 
   <!-- PACING -->
   <section>
-    <p class="sl">2026 pacing — CY goals</p>
+    <p class="sl">Dual-path pacing — CY2026 (Dec 31) &amp; June 2027</p>
     <div class="pacing-grid">
 
       <div class="pacing-card">
         <p class="pacing-label">Registrations</p>
-        <div class="pacing-nums">
-          <span class="pacing-current">827</span>
-          <span class="pacing-goal">of 2,500 goal</span>
-        </div>
-        <div class="track">
-          <div class="track-fill" style="width:33.1%; background:#90AF37;"></div>
-          <div class="track-pace" style="left:38.7%;"></div>
-        </div>
-        <div class="pacing-meta">
-          <div class="pm-item"><span>Current</span><strong>33.1%</strong></div>
-          <div class="pm-item" style="text-align:center;"><span>On-pace mark</span><strong style="color:var(--stone);">968 regs</strong></div>
-          <div class="pm-item behind" style="text-align:right;"><span>Gap to pace</span><strong>−141 regs</strong></div>
+        <div class="pacing-nums"><span class="pacing-current">827</span><span class="pacing-goal">current</span></div>
+        <div class="dual-track">
+          <div class="track-row">
+            <div class="track-row-label"><span class="track-name">CY2026 goal — 1,500</span><span class="track-tag">Dec 31, 2026</span></div>
+            <div class="track" style="overflow:hidden;">
+              <div class="track-fill" style="width:55.1%; background:#90AF37;"></div>
+            </div>
+            <div class="track-meta"><span class="ahead">+332 ahead of pace</span><span>55.1% complete</span></div>
+          </div>
+          <div class="track-row" style="margin-bottom:0;">
+            <div class="track-row-label"><span class="track-name">June 2027 goal — 2,500</span><span class="track-tag">Jun 30, 2027</span></div>
+            <div class="track" style="overflow:hidden;">
+              <div class="track-fill" style="width:33.1%; background:#FFBA4A;"></div>
+            </div>
+            <div class="track-meta"><span class="ahead">On track · proj. 4,294</span><span>33.1% complete</span></div>
+          </div>
         </div>
         <div class="pace-boxes">
-          <div class="pace-box current-pace"><p>Current monthly pace</p><strong>178 / mo</strong></div>
-          <div class="pace-box needed-pace"><p>Needed to hit goal</p><strong>228 / mo</strong></div>
+          <div class="pace-box good"><p>Current monthly pace</p><strong>261 / mo</strong></div>
+          <div class="pace-box great"><p>Needed for CY2026</p><strong>92 / mo ✓</strong></div>
         </div>
       </div>
 
       <div class="pacing-card">
         <p class="pacing-label">Groups created</p>
-        <div class="pacing-nums">
-          <span class="pacing-current">58</span>
-          <span class="pacing-goal">of 250 goal</span>
-        </div>
-        <div class="track">
-          <div class="track-fill" style="width:23.2%; background:#FFBA4A;"></div>
-          <div class="track-pace" style="left:38.7%;"></div>
-        </div>
-        <div class="pacing-meta">
-          <div class="pm-item"><span>Current</span><strong>23.2%</strong></div>
-          <div class="pm-item" style="text-align:center;"><span>On-pace mark</span><strong style="color:var(--stone);">97 groups</strong></div>
-          <div class="pm-item behind" style="text-align:right;"><span>Gap to pace</span><strong>−39 groups</strong></div>
+        <div class="pacing-nums"><span class="pacing-current">58</span><span class="pacing-goal">current</span></div>
+        <div class="dual-track">
+          <div class="track-row">
+            <div class="track-row-label"><span class="track-name">CY2026 goal — 150</span><span class="track-tag">Dec 31, 2026</span></div>
+            <div class="track" style="overflow:hidden;">
+              <div class="track-fill" style="width:38.7%; background:#90AF37;"></div>
+            </div>
+            <div class="track-meta"><span class="ahead">+8 ahead of pace</span><span>38.7% complete</span></div>
+          </div>
+          <div class="track-row" style="margin-bottom:0;">
+            <div class="track-row-label"><span class="track-name">June 2027 goal — 250</span><span class="track-tag">Jun 30, 2027</span></div>
+            <div class="track" style="overflow:hidden;">
+              <div class="track-fill" style="width:23.2%; background:#FFBA4A;"></div>
+            </div>
+            <div class="track-meta"><span class="ahead">On track · proj. 290</span><span>23.2% complete</span></div>
+          </div>
         </div>
         <div class="pace-boxes">
-          <div class="pace-box current-pace"><p>Current monthly pace</p><strong>12.5 / mo</strong></div>
-          <div class="pace-box needed-pace"><p>Needed to hit goal</p><strong>26.2 / mo</strong></div>
+          <div class="pace-box good"><p>Current monthly pace</p><strong>17.5 / mo</strong></div>
+          <div class="pace-box great"><p>Needed for CY2026</p><strong>12.5 / mo ✓</strong></div>
         </div>
       </div>
 
@@ -316,31 +214,27 @@
         <p class="sl" style="margin-bottom:10px;">Registration pacing</p>
         <div class="legend">
           <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Current</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#D2E1C3;"></div>On-pace</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Projected EOY</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Goal</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>CY2026 goal</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>June 2027 goal</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#D2E1C3;"></div>Projected EOY</div>
         </div>
-        <div class="chart-wrap" style="height:200px;">
-          <canvas id="regPacingChart" role="img" aria-label="Registration pacing: current 827, on-pace 968, projected 2135, goal 2500"></canvas>
-        </div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="regPacingChart" role="img" aria-label="Registration pacing chart"></canvas></div>
       </div>
       <div class="card">
         <p class="sl" style="margin-bottom:10px;">Group pacing</p>
         <div class="legend">
           <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Current</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#D2E1C3;"></div>On-pace</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Projected EOY</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Goal</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>CY2026 goal</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>June 2027 goal</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#D2E1C3;"></div>Projected EOY</div>
         </div>
-        <div class="chart-wrap" style="height:200px;">
-          <canvas id="grpPacingChart" role="img" aria-label="Group pacing: current 58, on-pace 97, projected 150, goal 250"></canvas>
-        </div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="grpPacingChart" role="img" aria-label="Group pacing chart"></canvas></div>
       </div>
     </div>
 
-    <div class="insight amber-insight">
-      <p class="insight-title" style="color:var(--olive);">Behind pace on both metrics — groups most critical</p>
-      <p class="insight-body" style="color:#6B5A2A;">At current run rate, EOY projection is 2,135 registrations (85% of goal) and 150 groups (60% of goal). Registrations need +28% monthly lift. Groups need +110% lift — the conversion gap between registrations and groups is where the work is. Current 7% reg→group rate needs to reach ~11.7% to hit both goals simultaneously at current reg pace.</p>
+    <div class="card insight-sage" style="margin-bottom:0;">
+      <p class="insight-title" style="color:var(--olive);">Ahead of pace on both goals — at current run rates we crush CY2026</p>
+      <p class="insight-body" style="color:var(--olive);">Running 261 registrations/month against a CY2026 need of 92. Running 17.5 groups/month against a CY2026 need of 12.5. EOY projections: 2,741 registrations (183% of goal) and 186 groups (124% of goal). June 2027 projections: 4,294 registrations and 290 groups — both well above target.</p>
     </div>
   </section>
 
@@ -353,26 +247,26 @@
 
       <div class="card">
         <div class="ch-head"><div class="ch-dot" style="background:#354252;"></div><span class="ch-name">Google ads</span></div>
-        <p class="ch-sub">Paid search · Search, PMax, Brand</p>
+        <p class="ch-sub">Paid search · Search, PMax, Brand · Live Feb 1</p>
         <div class="row"><span class="rl">Spend</span><span class="rv">$4,204.73</span></div>
         <div class="row"><span class="rl">Impressions</span><span class="rv">398,621</span></div>
         <div class="row"><span class="rl">Registrations</span><span class="rv">124</span></div>
         <div class="row"><span class="rl">Imp → reg</span><span class="rv">0.03%</span></div>
         <div class="row"><span class="rl">Groups created</span><span class="rv">13</span></div>
-        <div class="row"><span class="rl">Reg → group</span><span class="conv-badge conv-good">10.5%</span></div>
+        <div class="row"><span class="rl">Reg → group</span><span class="conv-good">10.5%</span></div>
         <div class="row"><span class="rl">CPL</span><span class="rv">$33.91</span></div>
         <div class="row"><span class="rl">CAC</span><span class="rv">$323.44</span></div>
       </div>
 
       <div class="card">
         <div class="ch-head"><div class="ch-dot" style="background:#FFBA4A;"></div><span class="ch-name">Meta ads</span></div>
-        <p class="ch-sub">Paid social · Cold traffic</p>
+        <p class="ch-sub">Paid social · Cold traffic · Live Mar 1</p>
         <div class="row"><span class="rl">Spend</span><span class="rv">$8,693.12</span></div>
         <div class="row"><span class="rl">Impressions</span><span class="rv">202,727</span></div>
         <div class="row"><span class="rl">Registrations</span><span class="rv">484</span></div>
         <div class="row"><span class="rl">Imp → reg</span><span class="rv">0.24%</span></div>
         <div class="row"><span class="rl">Groups created</span><span class="rv">27</span></div>
-        <div class="row"><span class="rl">Reg → group</span><span class="conv-badge conv-mid">5.6%</span></div>
+        <div class="row"><span class="rl">Reg → group</span><span class="conv-mid">5.6%</span></div>
         <div class="row"><span class="rl">CPL</span><span class="rv">$17.96</span></div>
         <div class="row"><span class="rl">CAC</span><span class="rv">$321.97</span></div>
       </div>
@@ -386,47 +280,29 @@
         <div class="row"><span class="rl">GA4 sessions</span><span class="rv">1,942</span></div>
         <div class="row"><span class="rl">Registrations</span><span class="rv">219</span></div>
         <div class="row"><span class="rl">Groups created</span><span class="rv">18</span></div>
-        <div class="row"><span class="rl">Reg → group</span><span class="conv-badge conv-good">8.2%</span></div>
+        <div class="row"><span class="rl">Reg → group</span><span class="conv-good">8.2%</span></div>
         <div class="row"><span class="rl">CPL</span><span class="rv">$9.13</span></div>
         <div class="row"><span class="rl">CAC</span><span class="rv green">$111.11</span></div>
       </div>
 
     </div>
 
-    <!-- CAC RANK -->
     <div class="card" style="margin-bottom:20px;">
       <p class="sl" style="margin-bottom:14px;">CAC ranking</p>
-      <div class="rank-row">
-        <span class="rank-num">1</span>
-        <span class="rank-label">Organic / direct</span>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:34%; background:#90AF37;"></div></div>
-        <span class="rank-val" style="color:#90AF37;">$111</span>
-      </div>
-      <div class="rank-row">
-        <span class="rank-num">2</span>
-        <span class="rank-label">Meta ads</span>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:99%; background:#FFBA4A;"></div></div>
-        <span class="rank-val">$322</span>
-      </div>
-      <div class="rank-row">
-        <span class="rank-num">3</span>
-        <span class="rank-label">Google ads</span>
-        <div class="rank-bar-wrap"><div class="rank-bar" style="width:100%; background:#354252;"></div></div>
-        <span class="rank-val">$323</span>
-      </div>
+      <div class="rank-row"><span class="rank-num">1</span><span class="rank-label">Organic / direct</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:34%; background:#90AF37;"></div></div><span class="rank-val" style="color:#90AF37;">$111</span></div>
+      <div class="rank-row"><span class="rank-num">2</span><span class="rank-label">Meta ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:99%; background:#FFBA4A;"></div></div><span class="rank-val">$322</span></div>
+      <div class="rank-row"><span class="rank-num">3</span><span class="rank-label">Google ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:100%; background:#354252;"></div></div><span class="rank-val">$323</span></div>
     </div>
 
-    <div class="insight sage-insight">
-      <p class="insight-title" style="color:var(--olive);">Organic / direct outperforms paid — at 3× lower CAC</p>
-      <p class="insight-body" style="color:var(--olive);">219 registrations and 18 groups from $2,000 in organic spend. 8.2% reg→group conversion — higher than Meta's 5.6%. These are the highest-intent visitors in the funnel. SEO click-through rate of 4.54% is above the 2–3% benchmark — rankings are the gap, not click quality.</p>
+    <div class="card insight-sage" style="margin-bottom:20px;">
+      <p class="insight-title" style="color:var(--olive);">Organic / direct — 3× more efficient than paid</p>
+      <p class="insight-body" style="color:var(--olive);">$111 CAC vs $322–$323 for paid channels. 8.2% reg→group conversion — highest of all three channels. SEO CTR of 4.54% is above the 2–3% benchmark. Content is compounding and will continue to improve over time.</p>
     </div>
 
     <div class="two-col">
       <div class="card">
         <p class="sl" style="margin-bottom:10px;">Registrations by channel</p>
-        <div class="chart-wrap" style="height:200px;">
-          <canvas id="regPie" role="img" aria-label="Registrations: Meta 58.5%, Organic 26.5%, Google 15%"></canvas>
-        </div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="regPie" role="img" aria-label="Registrations by channel"></canvas></div>
         <div class="legend" style="margin-top:12px; margin-bottom:0;">
           <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 58.5%</div>
           <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 26.5%</div>
@@ -435,9 +311,7 @@
       </div>
       <div class="card">
         <p class="sl" style="margin-bottom:10px;">Groups by channel</p>
-        <div class="chart-wrap" style="height:200px;">
-          <canvas id="grpPie" role="img" aria-label="Groups: Meta 46.6%, Organic 31%, Google 22.4%"></canvas>
-        </div>
+        <div class="chart-wrap" style="height:200px;"><canvas id="grpPie" role="img" aria-label="Groups by channel"></canvas></div>
         <div class="legend" style="margin-top:12px; margin-bottom:0;">
           <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 46.6%</div>
           <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 31.0%</div>
@@ -457,100 +331,66 @@
         <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Registrations</div>
         <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Groups created</div>
       </div>
-      <div class="chart-wrap" style="height:200px;">
-        <canvas id="googleChart" role="img" aria-label="Google campaigns: Search 76 regs 10 groups, PMax 43 regs 3 groups, Brand 5 regs 0 groups"></canvas>
-      </div>
+      <div class="chart-wrap" style="height:200px;"><canvas id="googleChart" role="img" aria-label="Google campaign breakdown"></canvas></div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <div class="dash-footer">
-    <p><strong>Tend Life</strong> · An initiative of Plant With Purpose · Channel Performance CY2026</p>
-    <p style="margin-top:4px;">Data as of May 22, 2026 · Prepared by your marketing partner</p>
+    <p><strong>Tend</strong> · An initiative of Plant With Purpose · Channel Performance CY2026</p>
+    <p style="margin-top:4px;">Data as of May 22, 2026 · Prepared by RightNow Inc</p>
   </div>
 
 </div>
-
 <script>
-  const gc  = 'rgba(60,68,32,0.07)';
-  const tc  = '#A59678';
-  const tip = { backgroundColor: '#3C4420', titleColor: '#D2E1C3', bodyColor: '#FEFDFB', padding: 10, cornerRadius: 6 };
+const gc = 'rgba(60,68,32,0.07)', tc = '#A59678';
+const tip = { backgroundColor:'#3C4420', titleColor:'#D2E1C3', bodyColor:'#FEFDFB', padding:10, cornerRadius:6 };
 
-  /* ── PACING CHARTS ── */
-  const pacingOpts = (labels, data, colors) => ({
-    type: 'bar',
-    data: { labels, datasets: [{ data, backgroundColor: colors, borderRadius: 6, borderSkipped: false }] },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { ...tip } },
-      scales: {
-        x: { grid: { color: gc }, ticks: { color: tc, font: { size: 11, family: 'DM Sans' } } },
-        y: { grid: { color: gc }, ticks: { color: tc, font: { size: 11, family: 'DM Sans' } } }
-      }
-    }
-  });
+const barOpts = (labels, data, colors) => ({
+  type:'bar',
+  data:{ labels, datasets:[{ data, backgroundColor:colors, borderRadius:6, borderSkipped:false }] },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{...tip} },
+    scales:{ x:{grid:{color:gc}, ticks:{color:tc,font:{size:11,family:'DM Sans'}}}, y:{grid:{color:gc}, ticks:{color:tc,font:{size:11,family:'DM Sans'}}} } }
+});
 
-  new Chart(document.getElementById('regPacingChart'), pacingOpts(
-    ['Current', 'On-pace', 'Projected EOY', 'Goal'],
-    [827, 968, 2135, 2500],
-    ['#90AF37', '#D2E1C3', '#FFBA4A', '#354252']
-  ));
+new Chart(document.getElementById('regPacingChart'), barOpts(
+  ['Current','CY2026 Goal','June 2027 Goal','Proj. CY2026'],
+  [827, 1500, 2500, 2741],
+  ['#90AF37','#FFBA4A','#354252','#D2E1C3']
+));
 
-  new Chart(document.getElementById('grpPacingChart'), pacingOpts(
-    ['Current', 'On-pace', 'Projected EOY', 'Goal'],
-    [58, 97, 150, 250],
-    ['#90AF37', '#D2E1C3', '#FFBA4A', '#354252']
-  ));
+new Chart(document.getElementById('grpPacingChart'), barOpts(
+  ['Current','CY2026 Goal','June 2027 Goal','Proj. CY2026'],
+  [58, 150, 250, 186],
+  ['#90AF37','#FFBA4A','#354252','#D2E1C3']
+));
 
-  /* ── PIE CHARTS ── */
-  const pieOpts = (labels, data, colors) => ({
-    type: 'doughnut',
-    data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 0 }] },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { ...tip, callbacks: { label: c => {
-          const t = c.dataset.data.reduce((a, b) => a + b, 0);
-          return ` ${c.label}: ${Math.round(c.parsed / t * 1000) / 10}%`;
-        }}}
-      },
-      cutout: '62%'
-    }
-  });
+const pieOpts = (labels, data, colors) => ({
+  type:'doughnut',
+  data:{ labels, datasets:[{ data, backgroundColor:colors, borderWidth:0 }] },
+  options:{ responsive:true, maintainAspectRatio:false, cutout:'62%',
+    plugins:{ legend:{display:false}, tooltip:{...tip, callbacks:{ label: c => {
+      const t = c.dataset.data.reduce((a,b)=>a+b,0);
+      return ` ${c.label}: ${Math.round(c.parsed/t*1000)/10}%`;
+    }}}} }
+});
 
-  new Chart(document.getElementById('regPie'),
-    pieOpts(['Meta', 'Organic / Direct', 'Google'], [484, 219, 124], ['#FFBA4A', '#90AF37', '#354252']));
+new Chart(document.getElementById('regPie'), pieOpts(['Meta','Organic / Direct','Google'],[484,219,124],['#FFBA4A','#90AF37','#354252']));
+new Chart(document.getElementById('grpPie'), pieOpts(['Meta','Organic / Direct','Google'],[27,18,13],['#FFBA4A','#90AF37','#354252']));
 
-  new Chart(document.getElementById('grpPie'),
-    pieOpts(['Meta', 'Organic / Direct', 'Google'], [27, 18, 13], ['#FFBA4A', '#90AF37', '#354252']));
-
-  /* ── GOOGLE BREAKDOWN ── */
-  new Chart(document.getElementById('googleChart'), {
-    type: 'bar',
-    data: {
-      labels: ['Search', 'PMax', 'Brand search'],
-      datasets: [
-        { label: 'Registrations', data: [76, 43, 5], backgroundColor: '#354252', borderRadius: 4 },
-        { label: 'Groups created', data: [10, 3, 0],  backgroundColor: '#90AF37', borderRadius: 4 }
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { ...tip, callbacks: { afterBody: items => {
-          const regs = [76, 43, 5][items[0].dataIndex];
-          const grps = [10, 3, 0][items[0].dataIndex];
-          return grps > 0 ? `Conv. rate: ${Math.round(grps / regs * 1000) / 10}%` : 'Conv. rate: 0%';
-        }}}
-      },
-      scales: {
-        x: { grid: { color: gc }, ticks: { color: tc, font: { size: 11, family: 'DM Sans' } } },
-        y: { grid: { color: gc }, ticks: { color: tc, font: { size: 11, family: 'DM Sans' } } }
-      }
-    }
-  });
+new Chart(document.getElementById('googleChart'), {
+  type:'bar',
+  data:{ labels:['Search','PMax','Brand search'],
+    datasets:[
+      { label:'Registrations', data:[76,43,5], backgroundColor:'#354252', borderRadius:4 },
+      { label:'Groups created', data:[10,3,0], backgroundColor:'#90AF37', borderRadius:4 }
+    ]},
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false}, tooltip:{...tip, callbacks:{ afterBody: items => {
+      const regs=[76,43,5][items[0].dataIndex], grps=[10,3,0][items[0].dataIndex];
+      return grps>0 ? `Conv. rate: ${Math.round(grps/regs*1000)/10}%` : 'Conv. rate: 0%';
+    }}}},
+    scales:{ x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}}, y:{grid:{color:gc},ticks:{color:tc,font:{size:11}}} } }
+});
 </script>
 </body>
 </html>
