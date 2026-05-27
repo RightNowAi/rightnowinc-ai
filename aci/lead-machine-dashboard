@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austin Career Institute — Lead Machine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111214;
+    --surface: #181a1e;
+    --surface2: #1f2126;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0ede8;
+    --muted: #6b6f78;
+    --muted2: #9299a3;
+    --accent: #e8c547;
+    --accent2: #d4b03a;
+    --red: #e05252;
+    --red-dim: rgba(224,82,82,0.15);
+    --green: #4caf82;
+    --green-dim: rgba(76,175,130,0.15);
+    --amber: #e8a247;
+    --amber-dim: rgba(232,162,71,0.15);
+    --blue: #5b9cf6;
+    --blue-dim: rgba(91,156,246,0.15);
+    --purple: #9b7fe8;
+    --teal: #3eb8a0;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--off-black);
+    border-bottom: 1px solid var(--border2);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--black);
+    letter-spacing: 0;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+  .header-sub {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .header-badge {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(232,197,71,0.12);
+    border: 1px solid rgba(232,197,71,0.25);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section { margin-bottom: 2.5rem; }
+
+  /* METRIC CARDS */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--border2);
+  }
+
+  .metric-card.good::before { background: var(--green); }
+  .metric-card.bad::before { background: var(--red); }
+  .metric-card.warn::before { background: var(--amber); }
+  .metric-card.info::before { background: var(--blue); }
+  .metric-card.accent::before { background: var(--accent); }
+
+  .metric-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .metric-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .metric-value.red { color: var(--red); }
+  .metric-value.green { color: var(--green); }
+  .metric-value.amber { color: var(--amber); }
+  .metric-value.accent { color: var(--accent); }
+
+  .metric-sub {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* CHART CARDS */
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+  }
+
+  .chart-header {
+    margin-bottom: 16px;
+  }
+
+  .chart-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .chart-sub {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .chart-note {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--muted2);
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* FLAG GRID */
+  .flag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .flag {
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid transparent;
+  }
+
+  .flag.red { background: var(--red-dim); border-color: rgba(224,82,82,0.25); }
+  .flag.amber { background: var(--amber-dim); border-color: rgba(232,162,71,0.25); }
+  .flag.green { background: var(--green-dim); border-color: rgba(76,175,130,0.25); }
+
+  .flag-title {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .flag.red .flag-title { color: var(--red); }
+  .flag.amber .flag-title { color: var(--amber); }
+  .flag.green .flag-title { color: var(--green); }
+
+  .flag-body {
+    font-size: 11px;
+    color: var(--muted2);
+    line-height: 1.5;
+  }
+
+  /* RECON STRIP */
+  .recon {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+
+  .recon-item {
+    font-size: 12px;
+    color: var(--muted2);
+  }
+
+  .recon-item strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .recon-ok {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid rgba(76,175,130,0.25);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* PROG CARDS */
+  .prog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .prog-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+
+  .prog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .prog-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .prog-badge {
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .prog-badge.good { background: var(--green-dim); color: var(--green); }
+  .prog-badge.warn { background: var(--amber-dim); color: var(--amber); }
+  .prog-badge.bad { background: var(--red-dim); color: var(--red); }
+
+  .prog-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted2);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .prog-row:last-child { border-bottom: none; }
+
+  .prog-val {
+    font-weight: 500;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+  }
+
+  .prog-val.red { color: var(--red); }
+  .prog-val.green { color: var(--green); }
+  .prog-val.amber { color: var(--amber); }
+
+  /* DIVIDER */
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border2);
+    margin: 2.5rem 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--off-black);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-left {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .footer-right {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  canvas { display: block; }
+
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    .container { padding: 1rem; }
+    .header { padding: 0 1rem; }
+    .header-title { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <div class="logo-mark">ACI</div>
+    <div>
+      <div class="header-title">Austin Career Institute — Lead Machine</div>
+      <div class="header-sub">Marketing Performance Dashboard · 2026 YTD</div>
+    </div>
+  </div>
+  <div class="header-badge">Last updated: May 2026</div>
+</header>
+
+<div class="container">
+
+  <!-- ── 2026 YTD OVERVIEW ── -->
+  <div class="section">
+    <div class="section-label">2026 YTD Overview — Jan through May</div>
+    <div class="metric-grid">
+      <div class="metric-card info">
+        <div class="metric-label">Total Leads</div>
+        <div class="metric-value accent">4,670</div>
+        <div class="metric-sub">5 months</div>
+      </div>
+      <div class="metric-card good">
+        <div class="metric-label">Total Enrolled</div>
+        <div class="metric-value green">177</div>
+        <div class="metric-sub">All programs</div>
+      </div>
+      <div class="metric-card bad">
+        <div class="metric-label">Overall CVR</div>
+        <div class="metric-value red">3.8%</div>
+        <div class="metric-sub">Goal: 5%+</div>
+      </div>
+      <div class="metric-card info">
+        <div class="metric-label">Total Spend</div>
+        <div class="metric-value">$233K</div>
+        <div class="metric-sub">$46.6K avg/mo</div>
+      </div>
+      <div class="metric-card warn">
+        <div class="metric-label">Google CPL</div>
+        <div class="metric-value amber">$349</div>
+        <div class="metric-sub">Avg Jan–May</div>
+      </div>
+      <div class="metric-card good">
+        <div class="metric-label">Meta CPL</div>
+        <div class="metric-value green">$56</div>
+        <div class="metric-sub">Avg Jan–May</div>
+      </div>
+      <div class="metric-card warn">
+        <div class="metric-label">Good Lead Rate</div>
+        <div class="metric-value amber">46%</div>
+        <div class="metric-sub">2,152 of 4,670</div>
+      </div>
+      <div class="metric-card bad">
+        <div class="metric-label">Pending Leads</div>
+        <div class="metric-value">1,257</div>
+        <div class="metric-sub">Still in funnel</div>
+      </div>
+    </div>
+
+    <!-- Monthly Leads vs Enrollments -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Monthly leads vs. enrollments</div>
+        <div class="chart-sub">Leads scaled ÷10 for comparison. CVR line on right axis.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(91,156,246,.5);border:1px solid #5b9cf6"></div>Leads ÷10</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#4caf82"></div>Enrolled</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e8a247;border-radius:50%"></div>CVR %</div>
+      </div>
+      <div style="position:relative;width:100%;height:260px">
+        <canvas id="leadEnrollChart" role="img" aria-label="Monthly leads and enrollments with CVR line"></canvas>
+      </div>
+    </div>
+
+    <!-- Google vs Meta CPL -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Google vs. Meta — cost per lead by month</div>
+        <div class="chart-sub">Meta CPL dropped from $156 → $30 across the period.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6"></div>Google CPL</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e05252;border-radius:50%"></div>Meta CPL</div>
+      </div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="cplTrendChart" role="img" aria-label="Google and Meta CPL trend by month"></canvas>
+      </div>
+    </div>
+
+    <!-- Lead Quality -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Lead quality — good vs. bad by month</div>
+        <div class="chart-sub">May saw the best good lead ratio yet (81%) but the lowest CVR.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#4caf82"></div>Good leads</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e05252"></div>Bad leads</div>
+      </div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="qualityChart" role="img" aria-label="Good vs bad lead volume by month stacked"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── PROGRAM PERFORMANCE ── -->
+  <div class="section">
+    <div class="section-label">Program Performance — 2026 YTD</div>
+
+    <div class="prog-grid">
+      <div class="prog-card">
+        <div class="prog-head">
+          <div class="prog-name">HVAC</div>
+          <span class="prog-badge good">Performing</span>
+        </div>
+        <div class="prog-row"><span>Total leads</span><span class="prog-val">1,139</span></div>
+        <div class="prog-row"><span>Good leads</span><span class="prog-val">493 (43%)</span></div>
+        <div class="prog-row"><span>Enrolled YTD</span><span class="prog-val green">83</span></div>
+        <div class="prog-row"><span>CVR (good leads)</span><span class="prog-val green">16.8%</span></div>
+        <div class="prog-row"><span>Google cost/enroll</span><span class="prog-val amber">~$2,455</span></div>
+        <div class="prog-row"><span>Meta cost/enroll</span><span class="prog-val green">~$452</span></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-head">
+          <div class="prog-name">Electrical</div>
+          <span class="prog-badge good">Performing</span>
+        </div>
+        <div class="prog-row"><span>Total leads</span><span class="prog-val">1,346</span></div>
+        <div class="prog-row"><span>Good leads</span><span class="prog-val">623 (46%)</span></div>
+        <div class="prog-row"><span>Enrolled YTD</span><span class="prog-val green">75</span></div>
+        <div class="prog-row"><span>CVR (good leads)</span><span class="prog-val green">12.0%</span></div>
+        <div class="prog-row"><span>Google cost/enroll</span><span class="prog-val amber">~$1,498</span></div>
+        <div class="prog-row"><span>Meta cost/enroll</span><span class="prog-val green">~$559</span></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-head">
+          <div class="prog-name">Welding</div>
+          <span class="prog-badge warn">Building</span>
+        </div>
+        <div class="prog-row"><span>Total leads</span><span class="prog-val">1,381</span></div>
+        <div class="prog-row"><span>Good leads</span><span class="prog-val">703 (51%)</span></div>
+        <div class="prog-row"><span>Enrolled YTD</span><span class="prog-val amber">35</span></div>
+        <div class="prog-row"><span>CVR (good leads)</span><span class="prog-val amber">5.0%</span></div>
+        <div class="prog-row"><span>Google cost/enroll</span><span class="prog-val amber">~$1,280</span></div>
+        <div class="prog-row"><span>Meta cost/enroll</span><span class="prog-val green">~$497</span></div>
+      </div>
+      <div class="prog-card">
+        <div class="prog-head">
+          <div class="prog-name">Medical Assistant</div>
+          <span class="prog-badge bad">Critical</span>
+        </div>
+        <div class="prog-row"><span>Total leads</span><span class="prog-val">800</span></div>
+        <div class="prog-row"><span>Good leads</span><span class="prog-val">333 (42%)</span></div>
+        <div class="prog-row"><span>Enrolled YTD</span><span class="prog-val red">21</span></div>
+        <div class="prog-row"><span>CVR (good leads)</span><span class="prog-val red">6.3%</span></div>
+        <div class="prog-row"><span>Google cost/enroll</span><span class="prog-val red">~$4,580</span></div>
+        <div class="prog-row"><span>Meta cost/enroll</span><span class="prog-val amber">~$738</span></div>
+      </div>
+    </div>
+
+    <!-- Program enrollment trend -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Enrollment by program — monthly trend</div>
+        <div class="chart-sub">Welding shown Apr–May only (launched Mar). HVAC Mar = cohort timing gap.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#9b7fe8"></div>HVAC</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3eb8a0"></div>Electrical</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e8a247"></div>Welding</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e05252"></div>MA</div>
+      </div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="enrollTrendChart" role="img" aria-label="Monthly enrollment line chart by program"></canvas>
+      </div>
+    </div>
+
+    <!-- Lead volume by quality per program -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Lead volume by quality — YTD by program</div>
+        <div class="chart-sub">Welding has the best good lead rate (51%). MA and HVAC highest bad lead share.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(91,156,246,.4);border:1px solid #5b9cf6"></div>Total leads</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#4caf82"></div>Good leads</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e05252"></div>Bad leads</div>
+      </div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="leadQualityChart" role="img" aria-label="Total good and bad leads per program YTD"></canvas>
+      </div>
+    </div>
+
+    <!-- Two col: Google CPL / Meta CPL -->
+    <div class="two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Google — CPL vs. cost per good lead</div>
+          <div class="chart-sub">Gap = wasted spend on bad leads.</div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(91,156,246,.5)"></div>CPL (total)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6"></div>Cost/good lead</div>
+        </div>
+        <div style="position:relative;width:100%;height:200px">
+          <canvas id="googleCPLChart" role="img" aria-label="Google CPL vs cost per good lead by program"></canvas>
+        </div>
+        <div class="chart-note">HVAC $435 · EL $310 · Welding $220 · MA $458 per good lead</div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Meta — CPL vs. cost per good lead</div>
+          <div class="chart-sub">Welding is cleanest — near-zero gap.</div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(224,82,82,.4)"></div>CPL (total)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#e05252"></div>Cost/good lead</div>
+        </div>
+        <div style="position:relative;width:100%;height:200px">
+          <canvas id="metaCPLChart" role="img" aria-label="Meta CPL vs cost per good lead by program"></canvas>
+        </div>
+        <div class="chart-note">HVAC $57 · EL $84 · Welding $42 · MA $114 per good lead</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── MAY 2026 DEEP DIVE ── -->
+  <div class="section">
+    <div class="section-label">May 2026 — Deep Dive</div>
+
+    <div class="metric-grid">
+      <div class="metric-card bad">
+        <div class="metric-label">Overall CVR</div>
+        <div class="metric-value red">1.49%</div>
+        <div class="metric-sub">17 enrolled / 1,142 leads</div>
+      </div>
+      <div class="metric-card bad">
+        <div class="metric-label">MA Enrolled</div>
+        <div class="metric-value red">0</div>
+        <div class="metric-sub">291 leads — 0% CVR</div>
+      </div>
+      <div class="metric-card warn">
+        <div class="metric-label">HVAC Enrolled</div>
+        <div class="metric-value amber">15</div>
+        <div class="metric-sub">205 leads — 9.0% CVR</div>
+      </div>
+      <div class="metric-card warn">
+        <div class="metric-label">Electrical</div>
+        <div class="metric-value amber">6</div>
+        <div class="metric-sub">254 leads — 2.4% CVR</div>
+      </div>
+      <div class="metric-card good">
+        <div class="metric-label">Welding</div>
+        <div class="metric-value green">18</div>
+        <div class="metric-sub">392 leads — 4.6% CVR</div>
+      </div>
+      <div class="metric-card good">
+        <div class="metric-label">Meta CPL (May)</div>
+        <div class="metric-value green">$30</div>
+        <div class="metric-sub">$14,983 spend</div>
+      </div>
+      <div class="metric-card warn">
+        <div class="metric-label">Google CPL (May)</div>
+        <div class="metric-value amber">$206</div>
+        <div class="metric-sub">$29,692 spend</div>
+      </div>
+      <div class="metric-card good">
+        <div class="metric-label">Good Lead Rate</div>
+        <div class="metric-value green">81%</div>
+        <div class="metric-sub">920 good of 1,142 — best month</div>
+      </div>
+    </div>
+
+    <!-- May leads vs enrollments by program -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">May — leads vs. enrollments by program</div>
+        <div class="chart-sub">Lead volume scaled ÷10. MA had 218 good leads and 0 enrollments.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(155,127,232,.3);border:1px solid #9b7fe8"></div>Total leads ÷10</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(62,184,160,.3);border:1px solid #3eb8a0"></div>Good leads ÷10</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e05252"></div>Enrolled</div>
+      </div>
+      <div style="position:relative;width:100%;height:240px">
+        <canvas id="mayLeadChart" role="img" aria-label="May leads and enrollments by program"></canvas>
+      </div>
+    </div>
+
+    <!-- May cost per enrollment -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">May — cost per enrollment by program &amp; channel</div>
+        <div class="chart-sub">MA excluded (0 enrollments). Electrical Meta spiked due to 1 attributed enrollment.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#5b9cf6"></div>Google cost/enrollment</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e05252"></div>Meta cost/enrollment</div>
+      </div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="mayCPEChart" role="img" aria-label="May cost per enrollment by program and channel"></canvas>
+      </div>
+      <div class="chart-note">Welding Meta ($497) = most efficient acquisition in May. HVAC Google ($2,678) most expensive per head.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ── LEAD LOG ANALYSIS ── -->
+  <div class="section">
+    <div class="section-label">May Lead Log Analysis — Admissions Intelligence (1,186 leads)</div>
+
+    <!-- Reconciliation -->
+    <div class="recon">
+      <div class="recon-item">Lead log <strong>1,186</strong></div>
+      <div class="recon-item">GSheet May <strong>1,142</strong></div>
+      <div class="recon-item">Delta <strong>+44</strong> (log cuts off May 27)</div>
+      <div class="recon-item">Sources aligned <span class="recon-ok">✓ Confirmed</span></div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-card bad">
+        <div class="metric-label">Stuck at "New Lead"</div>
+        <div class="metric-value red">79.6%</div>
+        <div class="metric-sub">944 of 1,186 leads</div>
+      </div>
+      <div class="metric-card bad">
+        <div class="metric-label">Median First Contact</div>
+        <div class="metric-value red">12.5h</div>
+        <div class="metric-sub">748 minutes</div>
+      </div>
+      <div class="metric-card bad">
+        <div class="metric-label">Contacted &gt;24 hrs</div>
+        <div class="metric-value red">32%</div>
+        <div class="metric-sub">322 leads</div>
+      </div>
+      <div class="metric-card bad">
+        <div class="metric-label">Never Contacted</div>
+        <div class="metric-value red">122</div>
+        <div class="metric-sub">Zero human touch</div>
+      </div>
+      <div class="metric-card warn">
+        <div class="metric-label">Tour Show Rate</div>
+        <div class="metric-value amber">13.4%</div>
+        <div class="metric-sub">25 of 186 scheduled</div>
+      </div>
+      <div class="metric-card warn">
+        <div class="metric-label">Contacted &lt;5 min</div>
+        <div class="metric-value amber">7.6%</div>
+        <div class="metric-sub">77 of 1,007 leads</div>
+      </div>
+    </div>
+
+    <!-- Funnel stage -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Funnel stage breakdown</div>
+        <div class="chart-sub">Where leads are sitting. The bottleneck is visible at "New Lead."</div>
+      </div>
+      <div style="position:relative;width:100%;height:240px">
+        <canvas id="funnelChart" role="img" aria-label="Horizontal bar chart of lead funnel stages"></canvas>
+      </div>
+    </div>
+
+    <!-- Speed to contact -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Speed to first manual contact — distribution</div>
+        <div class="chart-sub">1,007 leads with valid response time. 122 never contacted excluded.</div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#4caf82"></div>&lt;5 min — 7.6%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8bc34a"></div>5–60 min — 15.8%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e8a247"></div>1–4 hrs — 12.8%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#e05252"></div>4–24 hrs — 31.8%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#8b1c1c"></div>&gt;24 hrs — 32.0%</div>
+      </div>
+      <div style="position:relative;width:100%;height:260px">
+        <canvas id="speedChart" role="img" aria-label="Bar chart of speed to first manual contact distribution"></canvas>
+      </div>
+      <div class="chart-note">Median: 12.5 hrs · Only 23.4% contacted within 1 hour · 63.8% waited 4+ hours</div>
+    </div>
+
+    <!-- Never contacted by source -->
+    <div class="two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Never-contacted leads — by source</div>
+          <div class="chart-sub">122 leads. Zero calls, texts, or manual emails.</div>
+        </div>
+        <div style="position:relative;width:100%;height:220px">
+          <canvas id="ghostChart" role="img" aria-label="Uncontacted leads by source horizontal bar chart"></canvas>
+        </div>
+        <div class="chart-note">85 of 122 came from Meta — already the lowest-intent channel.</div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <div class="chart-title">Campus tour no-shows — by source</div>
+          <div class="chart-sub">Show rate: 13.4% overall. Meta drives 57% of all no-shows.</div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#e05252"></div>No-show</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#4caf82"></div>Show</div>
+        </div>
+        <div style="position:relative;width:100%;height:186px">
+          <canvas id="tourChart" role="img" aria-label="Campus tour shows vs no-shows by source"></canvas>
+        </div>
+        <div class="chart-note">Avg contacts for enrolled (15.5) vs. no-show (15.8) — effort is not the differentiator.</div>
+      </div>
+    </div>
+
+    <!-- Key findings -->
+    <div class="section-label" style="margin-top:1.5rem">Key Findings</div>
+    <div class="flag-grid">
+      <div class="flag red">
+        <div class="flag-title">79.6% stuck at New Lead</div>
+        <div class="flag-body">944 leads never progressed. This is the core failure — not lead volume or quality.</div>
+      </div>
+      <div class="flag red">
+        <div class="flag-title">Median response is 12.5 hours</div>
+        <div class="flag-body">Half of all leads wait more than half a day. Most have moved on by the time anyone calls.</div>
+      </div>
+      <div class="flag red">
+        <div class="flag-title">32% contacted after 24+ hours</div>
+        <div class="flag-body">322 leads waited over a day. At $30–$206 CPL, this is direct ad spend going to waste.</div>
+      </div>
+      <div class="flag red">
+        <div class="flag-title">MA: 218 good leads, 0 enrolled (May)</div>
+        <div class="flag-body">The clearest admissions failure point in the data. Leads existed. No one converted them.</div>
+      </div>
+      <div class="flag amber">
+        <div class="flag-title">Tour show rate is 13.4%</div>
+        <div class="flag-body">186 tours scheduled, 25 showed. This is the second-biggest drop in the funnel after New Lead.</div>
+      </div>
+      <div class="flag amber">
+        <div class="flag-title">Meta volume exceeds team capacity</div>
+        <div class="flag-body">760 Meta leads in May. Team can't work them fast enough. Volume isn't the answer — speed is.</div>
+      </div>
+      <div class="flag green">
+        <div class="flag-title">Welding Meta at $497/enrollment</div>
+        <div class="flag-body">Most efficient acquisition in May. Best good lead rate (51%) and momentum building.</div>
+      </div>
+      <div class="flag green">
+        <div class="flag-title">May good lead quality was best yet</div>
+        <div class="flag-body">81% good leads — highest ratio of the year. The problem in May was admissions, not marketing.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-left">ACI Lead Machine · Data sources: Google Ads, Meta Ads, CRM Lead Log · May 2026</div>
+  <div class="footer-right">Austin Career Institute — Confidential</div>
+</footer>
+
+<script>
+const MONTHS = ['Jan','Feb','Mar','Apr','May'];
+const PROGS  = ['HVAC','Electrical','Welding','MA'];
+
+const COLORS = {
+  blue:   '#5b9cf6',
+  green:  '#4caf82',
+  amber:  '#e8a247',
+  red:    '#e05252',
+  purple: '#9b7fe8',
+  teal:   '#3eb8a0',
+  muted:  '#4a4f58',
+};
+
+const gc  = 'rgba(255,255,255,0.05)';
+const tc  = '#6b6f78';
+const tc2 = '#9299a3';
+
+const baseOpts = (extra = {}) => ({
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: { display: false },
+    tooltip: { mode: 'index', intersect: false, backgroundColor: '#1f2126', titleColor: '#f0ede8', bodyColor: '#9299a3', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1 }
+  },
+  scales: {
+    x: { ticks: { color: tc, font: { size: 11, family: 'DM Sans' }, autoSkip: false }, grid: { color: gc } },
+    y: { ticks: { color: tc, font: { size: 11, family: 'DM Sans' } }, grid: { color: gc } }
+  },
+  ...extra
+});
+
+// 1. Monthly Leads vs Enrollments
+new Chart(document.getElementById('leadEnrollChart'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      { label: 'Leads ÷10', data: [59.2,54.4,115,124.2,114.2], backgroundColor: 'rgba(91,156,246,0.2)', borderColor: COLORS.blue, borderWidth: 1.5, borderRadius: 3 },
+      { label: 'Enrolled',  data: [34,43,35,48,17], backgroundColor: 'rgba(76,175,130,0.75)', borderRadius: 3 },
+      { label: 'CVR %', data: [5.74,7.90,3.04,3.86,1.49], type: 'line', borderColor: COLORS.amber, backgroundColor: 'transparent', borderWidth: 2, pointBackgroundColor: COLORS.amber, pointRadius: 4, tension: 0.3, yAxisID: 'y2' }
+    ]
+  },
+  options: { ...baseOpts(), scales: { ...baseOpts().scales, y2: { position: 'right', ticks: { color: COLORS.amber, font: { size: 11 }, callback: v => v + '%' }, grid: { drawOnChartArea: false } } } }
+});
+
+// 2. CPL Trend
+new Chart(document.getElementById('cplTrendChart'), {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      { label: 'Google CPL', data: [535,513,425,292,206], borderColor: COLORS.blue, backgroundColor: 'rgba(91,156,246,0.08)', borderWidth: 2, pointBackgroundColor: COLORS.blue, pointRadius: 4, fill: true, tension: 0.3 },
+      { label: 'Meta CPL',   data: [156,100,52,43,30],  borderColor: COLORS.red,  backgroundColor: 'rgba(224,82,82,0.06)',  borderWidth: 2, pointBackgroundColor: COLORS.red,  pointRadius: 4, fill: true, tension: 0.3, borderDash: [4,3] }
+    ]
+  },
+  options: { ...baseOpts(), scales: { ...baseOpts().scales, y: { ...baseOpts().scales.y, ticks: { ...baseOpts().scales.y.ticks, callback: v => '$'+v } } } }
+});
+
+// 3. Lead Quality Stacked
+new Chart(document.getElementById('qualityChart'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      { label: 'Good leads', data: [144,161,566,361,920], backgroundColor: 'rgba(76,175,130,0.75)', borderRadius: 3 },
+      { label: 'Bad leads',  data: [419,383,584,727,222], backgroundColor: 'rgba(224,82,82,0.65)',  borderRadius: 3 }
+    ]
+  },
+  options: { ...baseOpts(), scales: { ...baseOpts().scales, x: { ...baseOpts().scales.x, stacked: true }, y: { ...baseOpts().scales.y, stacked: true } } }
+});
+
+// 4. Enrollment Trend by Program
+new Chart(document.getElementById('enrollTrendChart'), {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      { label: 'HVAC',       data: [19,25,0,25,15],  borderColor: COLORS.purple, backgroundColor: 'transparent', borderWidth: 2, pointBackgroundColor: COLORS.purple, pointRadius: 4, tension: 0.3 },
+      { label: 'Electrical', data: [4,20,13,32,6],   borderColor: COLORS.teal,   backgroundColor: 'transparent', borderWidth: 2, pointBackgroundColor: COLORS.teal,   pointRadius: 4, tension: 0.3, borderDash: [4,3] },
+      { label: 'Welding',    data: [null,null,null,17,18], borderColor: COLORS.amber,  backgroundColor: 'transparent', borderWidth: 2, pointBackgroundColor: COLORS.amber,  pointRadius: 4, tension: 0.3, borderDash: [2,2] },
+      { label: 'MA',         data: [0,9,4,5,0],      borderColor: COLORS.red,    backgroundColor: 'transparent', borderWidth: 2, pointBackgroundColor: COLORS.red,    pointRadius: 4, tension: 0.3, borderDash: [6,3] }
+    ]
+  },
+  options: baseOpts()
+});
+
+// 5. Lead Quality by Program
+new Chart(document.getElementById('leadQualityChart'), {
+  type: 'bar',
+  data: {
+    labels: PROGS,
+    datasets: [
+      { label: 'Total leads', data: [1139,1346,1385,800], backgroundColor: 'rgba(91,156,246,0.2)', borderColor: COLORS.blue, borderWidth: 1.5, borderRadius: 3 },
+      { label: 'Good leads',  data: [493,623,703,333],    backgroundColor: 'rgba(76,175,130,0.75)', borderRadius: 3 },
+      { label: 'Bad leads',   data: [597,665,621,453],    backgroundColor: 'rgba(224,82,82,0.65)',  borderRadius: 3 }
+    ]
+  },
+  options: baseOpts()
+});
+
+// 6. Google CPL vs cost per good lead
+new Chart(document.getElementById('googleCPLChart'), {
+  type: 'bar',
+  data: {
+    labels: PROGS,
+    datasets: [
+      { label: 'CPL (total)',     data: [477,369,452,458], backgroundColor: 'rgba(91,156,246,0.3)', borderRadius: 3 },
+      { label: 'Cost/good lead',  data: [435,310,220,458], backgroundColor: 'rgba(91,156,246,0.8)', borderRadius: 3 }
+    ]
+  },
+  options: { ...baseOpts(), scales: { ...baseOpts().scales, y: { ...baseOpts().scales.y, ticks: { ...baseOpts().scales.y.ticks, callback: v => '$'+v } } } }
+});
+
+// 7. Meta CPL vs cost per good lead
+new Chart(document.getElementById('metaCPLChart'), {
+  type: 'bar',
+  data: {
+    labels: PROGS,
+    datasets: [
+      { label: 'CPL (total)',    data: [57,50,42,114], backgroundColor: 'rgba(224,82,82,0.3)', borderRadius: 3 },
+      { label: 'Cost/good lead', data: [57,84,42,114], backgroundColor: 'rgba(224,82,82,0.8)', borderRadius: 3 }
+    ]
+  },
+  options: { ...baseOpts(), scales: { ...baseOpts().scales, y: { ...baseOpts().scales.y, ticks: { ...baseOpts().scales.y.ticks, callback: v => '$'+v } } } }
+});
+
+// 8. May Leads vs Enrollments
+new Chart(document.getElementById('mayLeadChart'), {
+  type: 'bar',
+  data: {
+    labels: PROGS,
+    datasets: [
+      { label: 'Total leads ÷10', data: [20.5,25.4,39.2,29.1], backgroundColor: 'rgba(155,127,232,0.2)', borderColor: COLORS.purple, borderWidth: 1.5, borderRadius: 3 },
+      { label: 'Good leads ÷10',  data: [16.6,21.2,32.4,21.8], backgroundColor: 'rgba(62,184,160,0.2)',  borderColor: COLORS.teal,   borderWidth: 1.5, borderRadius: 3 },
+      { label: 'Enrolled',        data: [15,6,18,0],            backgroundColor: 'rgba(224,82,82,0.8)',  borderRadius: 3 }
+    ]
+  },
+  options: baseOpts()
+});
+
+// 9. May Cost per Enrollment
+new Chart(document.getElementById('mayCPEChart'), {
+  type: 'bar',
+  data: {
+    labels: ['HVAC','Electrical','Welding'],
+    datasets: [
+      { label: 'Google cost/enroll', data: [2678,2368,1281], backgroundColor: 'rgba(91,156,246,0.75)', borderRadius: 3 },
+      { label: 'Meta cost/enroll',   data: [638,3152,497],   backgroundColor: 'rgba(224,82,82,0.75)',  borderRadius: 3 }
+    ]
+  },
+  options: { ...baseOpts(), scales: { ...baseOpts().scales, y: { ...baseOpts().scales.y, ticks: { ...baseOpts().scales.y.ticks, callback: v => '$'+v.toLocaleString() } } } }
+});
+
+// 10. Funnel Stages (horizontal)
+new Chart(document.getElementById('funnelChart'), {
+  type: 'bar',
+  data: {
+    labels: ['New Lead (stuck)','Tour No-Show','Enrolled','Tour Show','FA No-Show','FA Show'],
+    datasets: [{
+      data: [944,161,35,25,17,2],
+      backgroundColor: ['rgba(224,82,82,0.75)','rgba(232,162,71,0.75)','rgba(155,127,232,0.8)','rgba(76,175,130,0.75)','rgba(232,162,71,0.5)','rgba(76,175,130,0.4)'],
+      borderRadius: 3
+    }]
+  },
+  options: { ...baseOpts(), indexAxis: 'y', scales: { x: { ticks: { color: tc, font: { size: 11 } }, grid: { color: gc } }, y: { ticks: { color: tc2, font: { size: 11 } }, grid: { color: gc } } } }
+});
+
+// 11. Speed to contact
+new Chart(document.getElementById('speedChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Under 5 min','5–60 min','1–4 hrs','4–24 hrs','Over 24 hrs'],
+    datasets: [{
+      data: [7.6,15.8,12.8,31.8,32.0],
+      backgroundColor: ['rgba(76,175,130,0.85)','rgba(139,195,74,0.8)','rgba(232,162,71,0.8)','rgba(224,82,82,0.7)','rgba(139,28,28,0.85)'],
+      borderRadius: 4
+    }]
+  },
+  options: {
+    ...baseOpts(),
+    plugins: { ...baseOpts().plugins, tooltip: { ...baseOpts().plugins.tooltip, callbacks: { label: ctx => { const counts=[77,159,129,320,322]; return `${ctx.raw}% — ${counts[ctx.dataIndex]} leads`; } } } },
+    scales: { ...baseOpts().scales, y: { ...baseOpts().scales.y, max: 40, ticks: { ...baseOpts().scales.y.ticks, callback: v => v+'%' } } }
+  }
+});
+
+// 12. Ghost leads by source
+new Chart(document.getElementById('ghostChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Meta','Google','Facebook','Google Ads','Org Referral','TV Commercial','Former Student','Instagram'],
+    datasets: [{ data: [85,11,10,7,4,2,1,1], backgroundColor: 'rgba(224,82,82,0.7)', borderRadius: 3 }]
+  },
+  options: { ...baseOpts(), indexAxis: 'y', scales: { x: { ticks: { color: tc, font: { size: 11 } }, grid: { color: gc } }, y: { ticks: { color: tc2, font: { size: 10 } }, grid: { color: gc } } } }
+});
+
+// 13. Tour shows vs no-shows
+new Chart(document.getElementById('tourChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Meta','Google','Google Ads','Facebook'],
+    datasets: [
+      { label: 'No-show', data: [91,29,15,6], backgroundColor: 'rgba(224,82,82,0.7)', borderRadius: 3 },
+      { label: 'Show',    data: [11,6,1,2],   backgroundColor: 'rgba(76,175,130,0.75)', borderRadius: 3 }
+    ]
+  },
+  options: { ...baseOpts(), plugins: { ...baseOpts().plugins, tooltip: { ...baseOpts().plugins.tooltip, mode: 'index' } } }
+});
+</script>
+</body>
+</html>
