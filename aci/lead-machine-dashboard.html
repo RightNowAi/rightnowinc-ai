@@ -33,8 +33,7 @@ body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;
 .live-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-.alert-banner{background:linear-gradient(90deg,rgba(232,162,71,.12),rgba(232,162,71,.03));border-bottom:1px solid rgba(232,162,71,.25);padding:.6rem 2.5rem;display:flex;align-items:center;gap:.75rem;font-size:.82rem;color:var(--amber)}
-.alert-banner strong{font-weight:600}
+
 
 .main{padding:2rem 2.5rem 4rem;max-width:1600px;margin:0 auto}
 
@@ -193,9 +192,15 @@ td.bv{color:var(--blue);font-family:'DM Mono',monospace}
   </div>
 </header>
 
-<div class="alert-banner">
-  <span>⚡</span>
-  <span><strong>System Status:</strong> Marketing is generating leads at efficient cost. Speed-to-lead gap (13.2hr Google median) is the primary conversion constraint. Fix is in development. May enrollment window closes <strong>June 26</strong> — final numbers not available until then.</span>
+<div style="background:var(--surface);border-bottom:1px solid var(--border2);padding:0 2.5rem;display:flex;align-items:center;gap:2rem;height:40px;font-family:'DM Mono',monospace;font-size:.72rem">
+  <span style="color:var(--green);display:flex;align-items:center;gap:.4rem"><span style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block"></span>Leads: Active</span>
+  <span style="color:var(--border2)">|</span>
+  <span style="color:var(--amber);display:flex;align-items:center;gap:.4rem"><span style="width:6px;height:6px;background:var(--amber);border-radius:50%;display:inline-block"></span>Speed-to-Lead: 13.2 hrs median (Google)</span>
+  <span style="color:var(--border2)">|</span>
+  <span style="color:var(--green);display:flex;align-items:center;gap:.4rem"><span style="width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block"></span>May: Closed · Jun carryover: 34</span>
+  <span style="color:var(--border2)">|</span>
+  <span style="color:var(--blue);display:flex;align-items:center;gap:.4rem"><span style="width:6px;height:6px;background:var(--blue);border-radius:50%;display:inline-block"></span>Fix Stack: In Development</span>
+  <span style="margin-left:auto;color:var(--muted)">Data: May 28, 2026</span>
 </div>
 
 <main class="main">
@@ -216,7 +221,7 @@ td.bv{color:var(--blue);font-family:'DM Mono',monospace}
   </div>
   <div class="anote" style="margin-bottom:2rem">
     <span style="margin-top:1px">ℹ</span>
-    <span><strong>Attribution:</strong> Enrollment attributed to month lead was generated, not start date. 26-day average lag means each month's final number isn't complete until 26 days after month end. Channels: Google Ads + YouTube = Google · Facebook + Instagram = Meta.</span>
+    <span><strong>Attribution model:</strong> Enrollment attributed to the month the lead was generated. Books close at month end. Starts after month end are carried over to the following month as the May Cohort. Channels: Google Ads + YouTube = Google · Facebook + Instagram = Meta.</span>
   </div>
 
   <!-- ══ 02: ENROLLMENT PACING — COHORT VIEW ══ -->
@@ -259,9 +264,9 @@ td.bv{color:var(--blue);font-family:'DM Mono',monospace}
       <div class="kpi-sub"><span class="badge up">+19 vs 223 goal</span></div>
     </div>
     <div class="kpi amber">
-      <div class="kpi-label">May Window Closes</div>
-      <div class="kpi-value" style="color:var(--amber)">Jun 26</div>
-      <div class="kpi-sub"><span style="color:var(--muted2)">26-day enrollment lag</span></div>
+      <div class="kpi-label">Enrollment Window</div>
+      <div class="kpi-value" style="color:var(--amber)">56 Days</div>
+      <div class="kpi-sub"><span style="color:var(--muted2)">books close at month end</span></div>
     </div>
     <div class="kpi">
       <div class="kpi-label">Blended CAC (YTD)</div>
@@ -291,7 +296,7 @@ td.bv{color:var(--blue);font-family:'DM Mono',monospace}
   <div class="legend">
     <div class="li"><div class="ls in"></div>Started in lead month</div>
     <div class="li"><div class="ls out"></div>Started month after (same cohort · same spend)</div>
-    <div class="li"><div class="ls pend"></div>Window open — more starts expected</div>
+    <div class="li"><div class="ls pend"></div>Current month — in progress</div>
   </div>
 
   <table class="ct">
@@ -350,26 +355,26 @@ td.bv{color:var(--blue);font-family:'DM Mono',monospace}
             <div class="bs in" style="width:54%">40 in May</div>
             <div class="bs out" style="width:46%">+34 in Jun</div>
           </div>
-          <div class="bc"><span class="chip in">40 May starts</span><span class="chip out">+34 June starts</span><span class="chip note">same leads · same $44,675 spend · one cohort</span></div>
+          <div class="bc"><span class="chip in">40 May starts</span><span class="chip out">+34 Jun carryover</span><span class="chip note">same leads · same $44,675 spend · books closed May 31</span></div>
         </td>
-        <td class="nb"><div class="nbig" style="color:var(--accent)">74</div><div class="nsub" style="color:var(--amber)">window open</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--accent)">74</div><div class="nsub" style="color:var(--green)">books closed</div></td>
         <td class="nb"><div style="font-size:.82rem">$44,675</div></td>
         <td class="nb"><div class="nbig" style="color:var(--accent)">$604</div></td>
         <td class="nb"><div class="nbig" style="color:var(--green)">242</div><div class="nsub" style="color:var(--green)">+19 vs goal</div></td>
-        <td class="nb"><span class="sc open">⏳ Jun 26</span></td>
+        <td class="nb"><span class="sc closed">✓ Final</span></td>
       </tr>
       <tr class="cr" style="opacity:.65">
         <td><div class="cl" style="color:var(--muted2)">June</div><div class="cm">in progress</div></td>
-        <td><div class="bt"><div class="bs pend" style="width:100%;font-size:.68rem">accumulating — window closes Jul 26</div></div><div class="bc"><span class="chip pend">34 starts logged · not final</span></div></td>
-        <td class="nb"><div class="nbig" style="color:var(--muted2)">34+</div><div class="nsub">tracking</div></td>
+        <td><div class="bt"><div class="bs pend" style="width:100%;font-size:.68rem">in progress — closes Jun 30</div></div><div class="bc"><span class="chip pend">34 May cohort carryover · June leads accumulating</span></div></td>
+        <td class="nb"><div class="nbig" style="color:var(--muted2)">34+</div><div class="nsub">in progress</div></td>
         <td class="nb"><div style="font-size:.82rem;color:var(--muted2)">TBD</div></td>
         <td class="nb"><div class="nbig" style="color:var(--muted2)">—</div></td>
         <td class="nb"><div class="nbig" style="color:var(--muted2)">—</div></td>
-        <td class="nb"><span class="sc open">⏳ Jul 26</span></td>
+        <td class="nb"><span class="sc open">⏳ Jun 30</span></td>
       </tr>
       <tr class="tr-total">
         <td><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:var(--green)">YTD Running Total</div><div style="font-size:.68rem;color:var(--green);opacity:.7;font-family:'DM Mono',monospace;margin-top:.15rem">Jan–May 2026</div></td>
-        <td><div style="font-size:.78rem;color:var(--green);font-family:'DM Mono',monospace;line-height:1.6">✓ Jan–Apr windows closed and final &nbsp;·&nbsp; ⏳ May closes Jun 26 &nbsp;·&nbsp; ⏳ Jun closes Jul 26<br><span style="color:var(--muted2)">Individual months fluctuate due to start date clustering. The running total is the signal.</span></div></td>
+        <td><div style="font-size:.78rem;color:var(--green);font-family:'DM Mono',monospace;line-height:1.6">✓ Jan–May closed · May Cohort: 74 total (40 in-month + 34 Jun carryover)<br><span style="color:var(--muted2)">Start date clustering affects monthly splits — cumulative total is the performance measure.</span></div></td>
         <td class="nb"><div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--green);line-height:1">242</div><div style="font-size:.68rem;color:var(--green);font-family:'DM Mono',monospace">vs 223 goal</div></td>
         <td class="nb"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;line-height:1">$235,826</div></td>
         <td class="nb"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--accent);line-height:1">$974</div></td>
@@ -379,16 +384,15 @@ td.bv{color:var(--blue);font-family:'DM Mono',monospace}
     </tbody>
   </table>
 
-  <!-- MAY REPORTING DATE COMPARISON -->
   <div class="panel" style="margin-bottom:2rem">
-    <div class="ph"><div class="pt">May 2026 — Reporting Date Impact</div><div class="ps">Same cohort · same spend · different measurement date</div></div>
+    <div class="ph"><div class="pt">May 2026 — Books Closed May 31</div><div class="ps">40 in-month starts + 34 June carryover = 74 total cohort</div></div>
     <table class="dt">
       <thead>
-        <tr><th>Measured On</th><th class="r">Starts Counted</th><th class="r">Spend</th><th class="r">CAC</th><th class="r">CVR</th><th class="r">vs Goal</th><th>Window</th></tr>
+        <tr><th>View</th><th class="r">Starts Counted</th><th class="r">Spend</th><th class="r">CAC</th><th class="r">CVR</th><th class="r">vs Goal</th><th>Status</th></tr>
       </thead>
       <tbody>
-        <tr><td class="hl">June 1 (today)</td><td class="r rv">40</td><td class="r mv">$44,675</td><td class="r rv">$1,117</td><td class="r rv">3.39%</td><td class="r rv">−4 vs 44</td><td><span class="badge warn">⏳ 26 days remaining</span></td></tr>
-        <tr><td class="hl">June 26 (window close)</td><td class="r gv">74</td><td class="r mv">$44,675</td><td class="r gv">$604</td><td class="r gv">6.28%</td><td class="r gv">+30 vs 44</td><td><span class="badge up">✓ Final</span></td></tr>
+        <tr><td class="hl">In-month only (May 31)</td><td class="r av">40</td><td class="r mv">$44,675</td><td class="r av">$1,117</td><td class="r av">3.39%</td><td class="r rv">−4 vs 44</td><td><span class="badge warn">Partial — books open</span></td></tr>
+        <tr><td class="hl">+ June carryover (final)</td><td class="r gv">74</td><td class="r mv">$44,675</td><td class="r gv">$604</td><td class="r gv">6.28%</td><td class="r gv">+30 vs 44</td><td><span class="badge up">✓ Final count</span></td></tr>
       </tbody>
     </table>
   </div>
