@@ -26,10 +26,10 @@
 html{font-size:15px;scroll-behavior:smooth}
 body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.5;min-height:100vh}
 
+/* ── HEADER ── */
 .header{background:var(--surface);border-bottom:1px solid var(--border2);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
 .header-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.08em;color:var(--accent)}
 .header-badge{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase}
-.header-meta{display:flex;align-items:center;gap:1.5rem}
 .live-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
@@ -38,19 +38,22 @@ body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;
 
 .main{padding:2rem 2.5rem 4rem;max-width:1600px;margin:0 auto}
 
-.section-label{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;margin-top:2rem;display:flex;align-items:center;gap:.75rem}
-.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
-.section-label:first-child{margin-top:0}
+/* ── SECTION LABELS ── */
+.sl{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;margin-top:2.5rem;display:flex;align-items:center;gap:.75rem}
+.sl::after{content:'';flex:1;height:1px;background:var(--border)}
+.sl:first-child{margin-top:0}
 
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+/* ── GRIDS ── */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
 
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;position:relative;overflow:hidden;transition:border-color .2s}
-.kpi:hover{border-color:var(--border2)}
+/* ── KPI CARDS ── */
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);opacity:0;transition:opacity .2s}
 .kpi:hover::before{opacity:1}
-.kpi.red::before,.kpi.red-top::before{background:var(--red);opacity:1}
+.kpi.red::before{background:var(--red);opacity:1}
 .kpi.green::before{background:var(--green);opacity:1}
 .kpi.amber::before{background:var(--amber);opacity:1}
 .kpi.blue::before{background:var(--blue);opacity:1}
@@ -59,24 +62,26 @@ body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;
 .kpi-value{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;letter-spacing:.02em;line-height:1;color:var(--text)}
 .kpi-sub{font-size:.75rem;color:var(--muted2);margin-top:.4rem;display:flex;align-items:center;gap:.4rem}
 
+/* ── BADGES ── */
 .badge{display:inline-flex;align-items:center;gap:.3rem;padding:.15rem .5rem;border-radius:4px;font-size:.7rem;font-family:'DM Mono',monospace;font-weight:500}
 .badge.up{background:var(--green-dim);color:var(--green)}
 .badge.down{background:var(--red-dim);color:var(--red)}
 .badge.warn{background:var(--amber-dim);color:var(--amber)}
 .badge.info{background:var(--blue-dim);color:var(--blue)}
-.badge.neutral{background:var(--surface3);color:var(--muted2);border:1px solid var(--border2)}
 
+/* ── PANELS ── */
 .panel{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
-.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
-.panel-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.05em;color:var(--text)}
-.panel-sub{font-size:.75rem;color:var(--muted2)}
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.pt{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.05em;color:var(--text)}
+.ps{font-size:.75rem;color:var(--muted2)}
 
-.data-table{width:100%;border-collapse:collapse;font-size:.82rem}
-.data-table th{text-align:left;padding:.5rem .75rem;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
-.data-table td{padding:.65rem .75rem;border-bottom:1px solid var(--border);color:var(--muted2)}
-.data-table tr:last-child td{border-bottom:none}
-.data-table tr:hover td{background:var(--surface2);color:var(--text)}
-.data-table .num{font-family:'DM Mono',monospace;text-align:right}
+/* ── TABLES ── */
+.dt{width:100%;border-collapse:collapse;font-size:.82rem}
+.dt th{text-align:left;padding:.5rem .75rem;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border)}
+.dt td{padding:.65rem .75rem;border-bottom:1px solid var(--border);color:var(--muted2)}
+.dt tr:last-child td{border-bottom:none}
+.dt tr:hover td{background:var(--surface2);color:var(--text)}
+.dt .r{font-family:'DM Mono',monospace;text-align:right}
 td.hl{color:var(--text);font-weight:500}
 td.rv{color:var(--red);font-family:'DM Mono',monospace}
 td.gv{color:var(--green);font-family:'DM Mono',monospace}
@@ -85,85 +90,104 @@ td.xv{color:var(--accent);font-family:'DM Mono',monospace}
 td.mv{font-family:'DM Mono',monospace}
 td.bv{color:var(--blue);font-family:'DM Mono',monospace}
 
-.funnel-row{display:flex;align-items:center;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
-.funnel-row:last-child{border-bottom:none}
-.funnel-label{width:200px;font-size:.8rem;color:var(--muted2);flex-shrink:0}
-.funnel-bar-wrap{flex:1;background:var(--surface3);border-radius:3px;height:18px;overflow:hidden}
-.funnel-bar{height:100%;border-radius:3px}
-.funnel-stat{width:80px;text-align:right;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);flex-shrink:0}
-.funnel-pct{width:55px;text-align:right;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted2);flex-shrink:0}
 
-.speed-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem}
-.speed-bucket{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem .75rem;text-align:center}
-.speed-bucket.danger{border-color:rgba(224,82,82,.3)}
-.speed-bucket.warn{border-color:rgba(232,162,71,.3)}
-.speed-bucket.good{border-color:rgba(76,175,130,.3)}
-.speed-bucket-label{font-size:.63rem;font-family:'DM Mono',monospace;color:var(--muted2);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.04em}
-.speed-bucket-n{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;line-height:1;margin-bottom:.2rem}
-.speed-bucket-pct{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--muted2)}
-.speed-bucket-note{font-size:.62rem;color:var(--muted);margin-top:.4rem}
 
-.insight-card{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:1rem 1.25rem}
-.insight-card.red{border-left-color:var(--red)}
-.insight-card.green{border-left-color:var(--green)}
-.insight-card.amber{border-left-color:var(--amber)}
-.insight-card.blue{border-left-color:var(--blue)}
-.insight-title{font-weight:600;font-size:.85rem;color:var(--text);margin-bottom:.3rem}
-.insight-body{font-size:.78rem;color:var(--muted2);line-height:1.5}
-.insight-number{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;line-height:1;margin-bottom:.2rem}
+/* ── COHORT TABLE ── */
+.ct{width:100%;border-collapse:collapse;margin-bottom:1.5rem}
+.ct th{text-align:left;padding:.55rem 1rem;font-family:'DM Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border2)}
+.ct th.r{text-align:right}
+.cr td{padding:.85rem 1rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.cr:hover td{background:rgba(255,255,255,.02)}
+.cl{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.04em}
+.cm{font-size:.68rem;color:var(--muted2);font-family:'DM Mono',monospace;margin-top:.15rem}
+.bt{display:flex;height:28px;border-radius:4px;overflow:hidden;background:var(--surface3)}
+.bs{height:100%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;white-space:nowrap;overflow:hidden;padding:0 .5rem}
+.bs.in{background:rgba(232,197,71,.75);color:#0a0a0a}
+.bs.out{background:rgba(232,197,71,.22);color:var(--accent);border-left:1px dashed rgba(232,197,71,.5)}
+.bs.pend{background:repeating-linear-gradient(45deg,rgba(232,162,71,.06),rgba(232,162,71,.06) 4px,rgba(232,162,71,.14) 4px,rgba(232,162,71,.14) 8px);color:var(--amber)}
+.bc{display:flex;gap:.4rem;margin-top:.3rem;flex-wrap:wrap;align-items:center}
+.chip{font-size:.65rem;font-family:'DM Mono',monospace;padding:.1rem .4rem;border-radius:3px}
+.chip.in{background:rgba(232,197,71,.15);color:var(--accent)}
+.chip.out{background:rgba(232,197,71,.07);color:rgba(232,197,71,.6);border:1px dashed rgba(232,197,71,.3)}
+.chip.pend{background:rgba(232,162,71,.1);color:var(--amber)}
+.chip.note{color:var(--muted);font-size:.63rem}
+.nb{font-family:'DM Mono',monospace;font-size:.82rem;text-align:right}
+.nbig{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;line-height:1}
+.nsub{font-size:.66rem;color:var(--muted2);font-family:'DM Mono',monospace;margin-top:.1rem}
+.sc{display:inline-flex;align-items:center;gap:.25rem;padding:.18rem .55rem;border-radius:4px;font-size:.66rem;font-family:'DM Mono',monospace}
+.sc.closed{background:rgba(76,175,130,.1);color:var(--green);border:1px solid rgba(76,175,130,.2)}
+.sc.open{background:rgba(232,162,71,.1);color:var(--amber);border:1px solid rgba(232,162,71,.3)}
+.tr-total td{padding:1.1rem 1rem;border-top:2px solid rgba(76,175,130,.4);background:rgba(76,175,130,.06)}
 
-.roadmap-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border)}
-.roadmap-item:last-child{border-bottom:none}
-.roadmap-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;flex-shrink:0;margin-top:2px}
-.roadmap-dot.building{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber)}
-.roadmap-dot.planned{background:var(--surface3);color:var(--muted2);border:1px solid var(--border2)}
-.roadmap-title{font-weight:500;font-size:.88rem;color:var(--text);margin-bottom:.2rem}
-.roadmap-desc{font-size:.75rem;color:var(--muted2);line-height:1.5}
+/* ── FUNNEL ── */
+.fr{display:flex;align-items:center;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
+.fr:last-child{border-bottom:none}
+.fl{width:200px;font-size:.8rem;color:var(--muted2);flex-shrink:0}
+.fbw{flex:1;background:var(--surface3);border-radius:3px;height:18px;overflow:hidden}
+.fb{height:100%;border-radius:3px}
+.fs{width:80px;text-align:right;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);flex-shrink:0}
+.fp{width:55px;text-align:right;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted2);flex-shrink:0}
 
+/* ── SPEED BUCKETS ── */
+.sg{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem}
+.sb{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem .75rem;text-align:center}
+.sb.danger{border-color:rgba(224,82,82,.3)}
+.sb.warn{border-color:rgba(232,162,71,.3)}
+.sb.good{border-color:rgba(76,175,130,.3)}
+.sb-label{font-size:.63rem;font-family:'DM Mono',monospace;color:var(--muted2);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.04em}
+.sb-n{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;line-height:1;margin-bottom:.2rem}
+.sb-pct{font-size:.7rem;font-family:'DM Mono',monospace;color:var(--muted2)}
+.sb-note{font-size:.62rem;color:var(--muted);margin-top:.4rem}
+
+/* ── INSIGHT CARDS ── */
+.ic{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:1rem 1.25rem}
+.ic.red{border-left-color:var(--red)}
+.ic.green{border-left-color:var(--green)}
+.ic.amber{border-left-color:var(--amber)}
+.ic.blue{border-left-color:var(--blue)}
+.it{font-weight:600;font-size:.85rem;color:var(--text);margin-bottom:.3rem}
+.ib{font-size:.78rem;color:var(--muted2);line-height:1.5}
+.in{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;line-height:1;margin-bottom:.2rem}
+
+/* ── ROADMAP ── */
+.ri{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+.ri:last-child{border-bottom:none}
+.rd{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;flex-shrink:0;margin-top:2px}
+.rd.building{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber)}
+.rtitle{font-weight:500;font-size:.88rem;color:var(--text);margin-bottom:.2rem}
+.rdesc{font-size:.75rem;color:var(--muted2);line-height:1.5}
+
+/* ── MISC ── */
 .chart-wrap{position:relative;width:100%}
-
-.opportunity-box{background:linear-gradient(135deg,rgba(232,197,71,.08),rgba(232,197,71,.02));border:1px solid rgba(232,197,71,.2);border-radius:10px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+.opp-box{background:linear-gradient(135deg,rgba(232,197,71,.08),rgba(232,197,71,.02));border:1px solid rgba(232,197,71,.2);border-radius:10px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
 .opp-label{font-family:'DM Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent2);margin-bottom:.3rem}
 .opp-value{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--accent);line-height:1}
-.opp-desc{font-size:.78rem;color:var(--muted2);max-width:380px;line-height:1.6}
-
 .prog-row{display:flex;align-items:center;gap:.75rem;padding:.5rem 0}
 .prog-name{width:100px;font-size:.78rem;color:var(--muted2)}
 .prog-bar-wrap{flex:1;background:var(--surface3);border-radius:3px;height:14px}
 .prog-bar{height:100%;border-radius:3px}
 .prog-val{width:40px;text-align:right;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text)}
-
-.attr-note{background:var(--blue-dim);border:1px solid rgba(91,156,246,.2);border-radius:6px;padding:.6rem 1rem;font-size:.75rem;color:var(--blue);display:flex;align-items:flex-start;gap:.5rem}
-
-/* ── PACING SPECIFIC ── */
-.pacing-rule-box{background:linear-gradient(135deg,rgba(91,156,246,.1),rgba(91,156,246,.03));border:1px solid rgba(91,156,246,.25);border-radius:10px;padding:1.5rem 2rem;display:flex;align-items:center;gap:3rem;margin-bottom:1.5rem}
-.pacing-big{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--blue);line-height:1}
-.pacing-label{font-family:'DM Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);opacity:.7;margin-bottom:.3rem}
-.pacing-desc{font-size:.8rem;color:var(--muted2);line-height:1.6;max-width:500px}
-.pacing-divider{width:1px;height:70px;background:rgba(91,156,246,.2);flex-shrink:0}
-
-.window-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;position:relative;overflow:hidden}
-.window-card.open{border-color:rgba(232,162,71,.3)}
-.window-card.closed{border-color:rgba(76,175,130,.2)}
-.window-card-month{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.05em;margin-bottom:.4rem}
-.window-card-enrolled{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;line-height:1;margin-bottom:.3rem}
-.window-close-date{font-family:'DM Mono',monospace;font-size:.7rem;margin-bottom:.5rem}
-.window-progress-wrap{height:6px;background:var(--surface3);border-radius:3px;overflow:hidden;margin-bottom:.4rem}
-.window-progress-bar{height:100%;border-radius:3px;transition:width 1s ease}
-.window-pct{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted2)}
-.window-status{font-size:.7rem;font-family:'DM Mono',monospace;margin-top:.5rem}
-
+.anote{background:var(--blue-dim);border:1px solid rgba(91,156,246,.2);border-radius:6px;padding:.6rem 1rem;font-size:.75rem;color:var(--blue);display:flex;align-items:flex-start;gap:.5rem}
+.noise-note{background:rgba(91,156,246,.06);border:1px solid rgba(91,156,246,.15);border-radius:8px;padding:.85rem 1.1rem;display:flex;gap:.75rem;align-items:flex-start;font-size:.78rem;color:var(--muted2);line-height:1.5}
+.noise-note strong{color:var(--blue)}
+.legend{display:flex;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.li{display:flex;align-items:center;gap:.4rem;font-size:.73rem;color:var(--muted2)}
+.ls{width:14px;height:10px;border-radius:2px}
+.ls.in{background:rgba(232,197,71,.75)}
+.ls.out{background:rgba(232,197,71,.22);border:1px dashed rgba(232,197,71,.5)}
+.ls.pend{background:repeating-linear-gradient(45deg,rgba(232,162,71,.06),rgba(232,162,71,.06) 4px,rgba(232,162,71,.14) 4px,rgba(232,162,71,.14) 8px)}
 .footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="header">
   <div style="display:flex;align-items:center;gap:1rem">
     <div class="header-logo">Austin Career Institute</div>
     <div class="header-badge">// Lead Machine Dashboard</div>
   </div>
-  <div class="header-meta">
+  <div style="display:flex;align-items:center;gap:1.5rem">
     <div class="live-dot"></div>
     <span style="font-size:.75rem;color:var(--muted2);font-family:'DM Mono',monospace">2026 YTD — Updated May 28</span>
   </div>
@@ -171,680 +195,343 @@ td.bv{color:var(--blue);font-family:'DM Mono',monospace}
 
 <div class="alert-banner">
   <span>⚡</span>
-  <span><strong>Key Finding:</strong> 22.4% of active leads have no call logged. Median call response for Google: <strong>13.2 hrs</strong>, Meta: <strong>10.7 hrs</strong>. A sub-5-minute response system is in development. May enrollment window doesn't close until <strong>June 26</strong>.</span>
+  <span><strong>System Status:</strong> Marketing is generating leads at efficient cost. Speed-to-lead gap (13.2hr Google median) is the primary conversion constraint. Fix is in development. May enrollment window closes <strong>June 26</strong> — final numbers not available until then.</span>
 </div>
 
 <main class="main">
 
-  <!-- 01 YTD OVERVIEW -->
-  <div class="section-label">01 — YTD Performance Overview</div>
-  <div class="grid-4" style="margin-bottom:1rem">
-    <div class="kpi accent">
-      <div class="kpi-label">Total Leads YTD</div>
-      <div class="kpi-value">4,707</div>
-      <div class="kpi-sub"><span class="badge info">Jan–May 2026</span></div>
+  <!-- ══ 01: YTD SNAPSHOT ══ -->
+  <div class="sl">01 — YTD Snapshot</div>
+  <div class="g4" style="margin-bottom:1rem">
+    <div class="kpi accent"><div class="kpi-label">Total Leads YTD</div><div class="kpi-value">4,707</div><div class="kpi-sub"><span class="badge info">Jan–May 2026</span></div></div>
+    <div class="kpi green"><div class="kpi-label">Total Enrolled</div><div class="kpi-value">242</div><div class="kpi-sub"><span class="badge warn">May window open</span></div></div>
+    <div class="kpi blue"><div class="kpi-label">Total Spend YTD</div><div class="kpi-value">$235K</div><div class="kpi-sub"><span style="color:var(--muted2)">vs $229K budget</span></div></div>
+    <div class="kpi amber"><div class="kpi-label">Blended CAC</div><div class="kpi-value">$974</div><div class="kpi-sub"><span class="badge warn">marketing attributed</span></div></div>
+  </div>
+  <div class="g4" style="margin-bottom:1.5rem">
+    <div class="kpi"><div class="kpi-label">Overall CVR</div><div class="kpi-value">5.14%</div><div class="kpi-sub"><span style="color:var(--muted2)">system potential 10–12%</span></div></div>
+    <div class="kpi red"><div class="kpi-label">Bad Lead Rate YTD</div><div class="kpi-value" style="color:var(--red)">39.5%</div><div class="kpi-sub"><span class="badge down">1,860 of 4,707</span></div></div>
+    <div class="kpi"><div class="kpi-label">Google CPL (May)</div><div class="kpi-value">$113</div><div class="kpi-sub"><span style="color:var(--muted2)">263 leads / $29,692</span></div></div>
+    <div class="kpi"><div class="kpi-label">Meta CPL (May)</div><div class="kpi-value">$18</div><div class="kpi-sub"><span style="color:var(--muted2)">852 leads / $14,983</span></div></div>
+  </div>
+  <div class="anote" style="margin-bottom:2rem">
+    <span style="margin-top:1px">ℹ</span>
+    <span><strong>Attribution:</strong> Enrollment attributed to month lead was generated, not start date. 26-day average lag means each month's final number isn't complete until 26 days after month end. Channels: Google Ads + YouTube = Google · Facebook + Instagram = Meta.</span>
+  </div>
+
+  <!-- ══ 02: ENROLLMENT PACING — COHORT VIEW ══ -->
+  <div class="sl">02 — Enrollment Pacing: The Number That Actually Matters</div>
+
+  <!-- CUMULATIVE KPI CARDS -->
+  <div class="g4" style="margin-bottom:1rem">
+    <div class="kpi green">
+      <div class="kpi-label">YTD Enrolled (Cumulative)</div>
+      <div class="kpi-value" style="color:var(--green)">242</div>
+      <div class="kpi-sub"><span class="badge up">vs 223 goal</span></div>
     </div>
     <div class="kpi green">
-      <div class="kpi-label">Total Enrolled (Attributed)</div>
-      <div class="kpi-value">242</div>
-      <div class="kpi-sub"><span class="badge warn">May window still open</span></div>
+      <div class="kpi-label">vs Plan</div>
+      <div class="kpi-value" style="color:var(--green)">+19</div>
+      <div class="kpi-sub"><span style="color:var(--muted2)">ahead of Jan–May target</span></div>
     </div>
-    <div class="kpi blue">
-      <div class="kpi-label">Total Spend YTD</div>
-      <div class="kpi-value">$235K</div>
-      <div class="kpi-sub"><span style="color:var(--muted2)">vs $229K budget</span></div>
+    <div class="kpi accent">
+      <div class="kpi-label">Annual Enrollment Pace</div>
+      <div class="kpi-value">581</div>
+      <div class="kpi-sub"><span style="color:var(--muted2)">students projected 2026</span></div>
+    </div>
+    <div class="kpi accent">
+      <div class="kpi-label">Annual Revenue Pace</div>
+      <div class="kpi-value">$9.9M</div>
+      <div class="kpi-sub"><span style="color:var(--muted2)">at $17K avg tuition</span></div>
+    </div>
+  </div>
+
+  <!-- SECONDARY CARDS -->
+  <div class="g4" style="margin-bottom:1.5rem">
+    <div class="kpi">
+      <div class="kpi-label">Cumulative thru April</div>
+      <div class="kpi-value" style="color:var(--amber)">168</div>
+      <div class="kpi-sub"><span class="badge down">−11 vs 179 goal</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Cumulative thru May</div>
+      <div class="kpi-value" style="color:var(--green)">242</div>
+      <div class="kpi-sub"><span class="badge up">+19 vs 223 goal</span></div>
     </div>
     <div class="kpi amber">
-      <div class="kpi-label">Blended CAC</div>
-      <div class="kpi-value">$975</div>
-      <div class="kpi-sub"><span class="badge warn">Marketing attributed</span></div>
-    </div>
-  </div>
-  <div class="grid-4" style="margin-bottom:1.5rem">
-    <div class="kpi">
-      <div class="kpi-label">Overall CVR (Lead → Student)</div>
-      <div class="kpi-value">5.14%</div>
-      <div class="kpi-sub"><span style="color:var(--muted2)">System potential: 10–12%</span></div>
-    </div>
-    <div class="kpi red">
-      <div class="kpi-label">Bad Lead Rate YTD</div>
-      <div class="kpi-value" style="color:var(--red)">39.5%</div>
-      <div class="kpi-sub"><span class="badge down">1,860 of 4,707</span></div>
+      <div class="kpi-label">May Window Closes</div>
+      <div class="kpi-value" style="color:var(--amber)">Jun 26</div>
+      <div class="kpi-sub"><span style="color:var(--muted2)">26-day enrollment lag</span></div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Google CPL (May)</div>
-      <div class="kpi-value">$113</div>
-      <div class="kpi-sub"><span style="color:var(--muted2)">263 leads / $29,692</span></div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Meta CPL (May)</div>
-      <div class="kpi-value">$18</div>
-      <div class="kpi-sub"><span style="color:var(--muted2)">852 leads / $14,983</span></div>
+      <div class="kpi-label">Blended CAC (YTD)</div>
+      <div class="kpi-value">$974</div>
+      <div class="kpi-sub"><span style="color:var(--muted2)">$235,826 ÷ 242</span></div>
     </div>
   </div>
 
-  <div class="attr-note" style="margin-bottom:2rem">
-    <span style="margin-top:1px">ℹ</span>
-    <span><strong>Attribution model:</strong> Enrollment is attributed to the month the lead was created, not when the student started. The 26-day enrollment window means each month's final number isn't complete until 26 days after month end. Channel consolidation: Google Ads + YouTube = Google · Facebook + Instagram = Meta.</span>
+  <!-- CUMULATIVE CHART -->
+  <div class="panel" style="margin-bottom:1.5rem">
+    <div class="ph">
+      <div>
+        <div class="pt">Cumulative Enrollment vs Goal — 2026</div>
+        <div class="ps">Running total · start date noise disappears · the trend is what matters</div>
+      </div>
+    </div>
+    <div class="chart-wrap" style="height:220px"><canvas id="cumChart"></canvas></div>
   </div>
 
-  <!-- 02 ENROLLMENT PACING -->
-  <div class="section-label">02 — Enrollment Pacing: The 26-Day Rule</div>
-
-  <div class="pacing-rule-box">
-    <div>
-      <div class="pacing-label">Average Lead-to-Start Lag</div>
-      <div class="pacing-big">26</div>
-      <div style="font-family:'DM Mono',monospace;font-size:.8rem;color:var(--blue);margin-top:-.2rem">DAYS</div>
-    </div>
-    <div class="pacing-divider"></div>
-    <div class="pacing-desc">
-      Based on matched lead and enrollment data, the average time from lead creation to program start date is <strong style="color:var(--text)">26 days</strong>. This means a month's enrollment numbers are not complete until 26 days after that month ends.<br><br>
-      Evaluating May performance on June 1 captures less than half the picture. <strong style="color:var(--text)">May's enrollment window doesn't close until June 26.</strong> Every monthly review should respect this window before drawing conclusions.
-    </div>
-    <div class="pacing-divider"></div>
-    <div>
-      <div style="display:flex;flex-direction:column;gap:.6rem">
-        <div style="background:var(--surface2);border-radius:6px;padding:.6rem 1rem;border:1px solid var(--border2)">
-          <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem">25% of students start within</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--text)">13 days</div>
-        </div>
-        <div style="background:var(--surface2);border-radius:6px;padding:.6rem 1rem;border:1px solid var(--border2)">
-          <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem">50% of students start within</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--blue)">19 days</div>
-        </div>
-        <div style="background:var(--surface2);border-radius:6px;padding:.6rem 1rem;border:1px solid var(--border2)">
-          <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem">75% of students start within</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--text)">39 days</div>
-        </div>
-      </div>
-    </div>
+  <!-- START DATE NOTE -->
+  <div class="noise-note" style="margin-bottom:1.5rem">
+    <span style="font-size:1.1rem;flex-shrink:0;margin-top:1px">📅</span>
+    <span><strong>Start date clustering affects monthly counts:</strong> ACI runs fixed start dates (Jan 14–16, Feb 5/9/20/23, Apr 4/6/13/23/27, May 9/11/15/26, Jun 1–2/13/16/19). A lead generated April 28 with a May 9 start date moves one enrollment across the month boundary. The 26-day attribution window and cumulative view account for this.</span>
   </div>
 
-  <!-- WINDOW CARDS -->
-  <div class="grid-3" style="margin-bottom:1.5rem">
-
-    <!-- Jan -->
-    <div class="window-card closed">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div class="window-card-month">January 2026</div>
-        <span class="badge up">Window Closed</span>
-      </div>
-      <div class="window-card-enrolled" style="color:var(--text)">23 <span style="font-size:1rem;color:var(--muted2)">enrolled</span></div>
-      <div class="window-close-date" style="color:var(--muted2)">Window closed Feb 26 · 592 leads · $44,538 spend</div>
-      <div class="window-progress-wrap"><div class="window-progress-bar" style="width:100%;background:var(--green)"></div></div>
-      <div style="display:flex;justify-content:space-between">
-        <div class="window-pct" style="color:var(--green)">100% complete</div>
-        <div class="window-pct">CAC $1,936</div>
-      </div>
-    </div>
-
-    <!-- Feb -->
-    <div class="window-card closed">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div class="window-card-month">February 2026</div>
-        <span class="badge up">Window Closed</span>
-      </div>
-      <div class="window-card-enrolled" style="color:var(--green)">54 <span style="font-size:1rem;color:var(--muted2)">enrolled</span></div>
-      <div class="window-close-date" style="color:var(--muted2)">Window closed Mar 26 · 544 leads · $39,089 spend</div>
-      <div class="window-progress-wrap"><div class="window-progress-bar" style="width:100%;background:var(--green)"></div></div>
-      <div style="display:flex;justify-content:space-between">
-        <div class="window-pct" style="color:var(--green)">100% complete</div>
-        <div class="window-pct">CAC $724</div>
-      </div>
-    </div>
-
-    <!-- Mar -->
-    <div class="window-card closed">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div class="window-card-month">March 2026</div>
-        <span class="badge up">Window Closed</span>
-      </div>
-      <div class="window-card-enrolled" style="color:var(--red)">17 <span style="font-size:1rem;color:var(--muted2)">enrolled</span></div>
-      <div class="window-close-date" style="color:var(--muted2)">Window closed Apr 26 · 1,150 leads · $57,888 spend</div>
-      <div class="window-progress-wrap"><div class="window-progress-bar" style="width:100%;background:var(--green)"></div></div>
-      <div style="display:flex;justify-content:space-between">
-        <div class="window-pct" style="color:var(--green)">100% complete</div>
-        <div class="window-pct">CAC $3,405 ⚠</div>
-      </div>
-    </div>
-
-    <!-- Apr -->
-    <div class="window-card closed">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div class="window-card-month">April 2026</div>
-        <span class="badge up">Window Closed</span>
-      </div>
-      <div class="window-card-enrolled" style="color:var(--accent)">74 <span style="font-size:1rem;color:var(--muted2)">enrolled</span></div>
-      <div class="window-close-date" style="color:var(--muted2)">Window closed May 26 · 1,242 leads · $49,636 spend</div>
-      <div class="window-progress-wrap"><div class="window-progress-bar" style="width:100%;background:var(--green)"></div></div>
-      <div style="display:flex;justify-content:space-between">
-        <div class="window-pct" style="color:var(--green)">100% complete</div>
-        <div class="window-pct">CAC $671</div>
-      </div>
-    </div>
-
-    <!-- May — OPEN -->
-    <div class="window-card open" style="background:rgba(232,162,71,.04)">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div class="window-card-month" style="color:var(--amber)">May 2026 ★</div>
-        <span class="badge warn">Window Open</span>
-      </div>
-      <div class="window-card-enrolled" style="color:var(--amber)">74 <span style="font-size:1rem;color:var(--muted2)">enrolled so far</span></div>
-      <div class="window-close-date" style="color:var(--amber);opacity:.8">Window closes Jun 26 · 1,179 leads · $44,675 spend</div>
-      <div class="window-progress-wrap"><div class="window-progress-bar" style="width:48%;background:var(--amber)"></div></div>
-      <div style="display:flex;justify-content:space-between">
-        <div class="window-pct" style="color:var(--amber)">48% of window elapsed</div>
-        <div class="window-pct">CAC $604 so far</div>
-      </div>
-      <div class="window-status" style="color:var(--amber)">⏳ 29 days remaining — final count Jun 26</div>
-    </div>
-
-    <!-- June — OPEN -->
-    <div class="window-card open">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start">
-        <div class="window-card-month" style="color:var(--muted2)">June 2026</div>
-        <span class="badge warn">Window Open</span>
-      </div>
-      <div class="window-card-enrolled" style="color:var(--muted2)">34 <span style="font-size:1rem;color:var(--muted)">starts logged</span></div>
-      <div class="window-close-date" style="color:var(--muted)">Window closes Jul 26 · Leads in progress</div>
-      <div class="window-progress-wrap"><div class="window-progress-bar" style="width:3%;background:var(--amber)"></div></div>
-      <div style="display:flex;justify-content:space-between">
-        <div class="window-pct" style="color:var(--amber)">~3% of window elapsed</div>
-        <div class="window-pct">Tracking</div>
-      </div>
-      <div class="window-status" style="color:var(--muted2)">📅 Final count Jul 26</div>
-    </div>
-
+  <!-- COHORT TABLE -->
+  <div class="legend">
+    <div class="li"><div class="ls in"></div>Started in lead month</div>
+    <div class="li"><div class="ls out"></div>Started month after (same cohort · same spend)</div>
+    <div class="li"><div class="ls pend"></div>Window open — more starts expected</div>
   </div>
 
-  <!-- PACING TABLE -->
+  <table class="ct">
+    <thead>
+      <tr>
+        <th style="width:150px">Lead Cohort</th>
+        <th>Enrollment Timeline</th>
+        <th class="r" style="width:90px">Enrolled</th>
+        <th class="r" style="width:90px">Spend</th>
+        <th class="r" style="width:80px">CAC</th>
+        <th class="r" style="width:100px">Cumulative</th>
+        <th class="r" style="width:90px">Window</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cr">
+        <td><div class="cl">January</div><div class="cm">592 leads</div></td>
+        <td><div class="bt"><div class="bs in" style="width:100%">23 started in Jan</div></div><div class="bc"><span class="chip in">23 Jan</span><span class="chip note">100% in-month</span></div></td>
+        <td class="nb"><div class="nbig">23</div><div class="nsub">of 41 goal</div></td>
+        <td class="nb"><div style="font-size:.82rem">$44,538</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--amber)">$1,936</div></td>
+        <td class="nb"><div class="nbig">23</div><div class="nsub" style="color:var(--red)">−18 vs goal</div></td>
+        <td class="nb"><span class="sc closed">✓ Final</span></td>
+      </tr>
+      <tr class="cr">
+        <td><div class="cl">February</div><div class="cm">544 leads</div></td>
+        <td><div class="bt"><div class="bs in" style="width:100%">54 started in Feb</div></div><div class="bc"><span class="chip in">54 Feb</span><span class="chip note">100% in-month · best CVR 9.93%</span></div></td>
+        <td class="nb"><div class="nbig" style="color:var(--green)">54</div><div class="nsub">of 55 goal</div></td>
+        <td class="nb"><div style="font-size:.82rem">$39,089</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--green)">$724</div></td>
+        <td class="nb"><div class="nbig">77</div><div class="nsub" style="color:var(--red)">−19 vs goal</div></td>
+        <td class="nb"><span class="sc closed">✓ Final</span></td>
+      </tr>
+      <tr class="cr">
+        <td><div class="cl">March</div><div class="cm">1,150 leads</div></td>
+        <td><div class="bt"><div class="bs in" style="width:100%">17 started in Mar</div></div><div class="bc"><span class="chip in">17 Mar</span><span class="chip note" style="color:var(--red)">funnel breakdown · $3,405 CAC</span></div></td>
+        <td class="nb"><div class="nbig" style="color:var(--red)">17</div><div class="nsub">of 30 goal</div></td>
+        <td class="nb"><div style="font-size:.82rem">$57,888</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--red)">$3,405</div></td>
+        <td class="nb"><div class="nbig">94</div><div class="nsub" style="color:var(--red)">−32 vs goal</div></td>
+        <td class="nb"><span class="sc closed">✓ Final</span></td>
+      </tr>
+      <tr class="cr">
+        <td><div class="cl">April</div><div class="cm">1,242 leads</div></td>
+        <td><div class="bt"><div class="bs in" style="width:100%">74 started in Apr</div></div><div class="bc"><span class="chip in">74 Apr</span><span class="chip note" style="color:var(--green)">best enrollment month</span></div></td>
+        <td class="nb"><div class="nbig" style="color:var(--accent)">74</div><div class="nsub">of 53 goal</div></td>
+        <td class="nb"><div style="font-size:.82rem">$49,636</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--green)">$671</div></td>
+        <td class="nb"><div class="nbig">168</div><div class="nsub" style="color:var(--red)">−11 vs goal</div></td>
+        <td class="nb"><span class="sc closed">✓ Final</span></td>
+      </tr>
+      <tr class="cr" style="background:rgba(232,197,71,.025)">
+        <td><div class="cl" style="color:var(--accent)">May ★</div><div class="cm">1,179 leads</div></td>
+        <td>
+          <div class="bt">
+            <div class="bs in" style="width:54%">40 in May</div>
+            <div class="bs out" style="width:46%">+34 in Jun</div>
+          </div>
+          <div class="bc"><span class="chip in">40 May starts</span><span class="chip out">+34 June starts</span><span class="chip note">same leads · same $44,675 spend · one cohort</span></div>
+        </td>
+        <td class="nb"><div class="nbig" style="color:var(--accent)">74</div><div class="nsub" style="color:var(--amber)">window open</div></td>
+        <td class="nb"><div style="font-size:.82rem">$44,675</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--accent)">$604</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--green)">242</div><div class="nsub" style="color:var(--green)">+19 vs goal</div></td>
+        <td class="nb"><span class="sc open">⏳ Jun 26</span></td>
+      </tr>
+      <tr class="cr" style="opacity:.65">
+        <td><div class="cl" style="color:var(--muted2)">June</div><div class="cm">in progress</div></td>
+        <td><div class="bt"><div class="bs pend" style="width:100%;font-size:.68rem">accumulating — window closes Jul 26</div></div><div class="bc"><span class="chip pend">34 starts logged · not final</span></div></td>
+        <td class="nb"><div class="nbig" style="color:var(--muted2)">34+</div><div class="nsub">tracking</div></td>
+        <td class="nb"><div style="font-size:.82rem;color:var(--muted2)">TBD</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--muted2)">—</div></td>
+        <td class="nb"><div class="nbig" style="color:var(--muted2)">—</div></td>
+        <td class="nb"><span class="sc open">⏳ Jul 26</span></td>
+      </tr>
+      <tr class="tr-total">
+        <td><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.04em;color:var(--green)">YTD Running Total</div><div style="font-size:.68rem;color:var(--green);opacity:.7;font-family:'DM Mono',monospace;margin-top:.15rem">Jan–May 2026</div></td>
+        <td><div style="font-size:.78rem;color:var(--green);font-family:'DM Mono',monospace;line-height:1.6">✓ Jan–Apr windows closed and final &nbsp;·&nbsp; ⏳ May closes Jun 26 &nbsp;·&nbsp; ⏳ Jun closes Jul 26<br><span style="color:var(--muted2)">Individual months fluctuate due to start date clustering. The running total is the signal.</span></div></td>
+        <td class="nb"><div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--green);line-height:1">242</div><div style="font-size:.68rem;color:var(--green);font-family:'DM Mono',monospace">vs 223 goal</div></td>
+        <td class="nb"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;line-height:1">$235,826</div></td>
+        <td class="nb"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--accent);line-height:1">$974</div></td>
+        <td class="nb"><div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--green);line-height:1">+19</div><div style="font-size:.68rem;color:var(--green);font-family:'DM Mono',monospace">ahead of plan</div></td>
+        <td class="nb"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--green)">ON TRACK</div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- MAY REPORTING DATE COMPARISON -->
   <div class="panel" style="margin-bottom:2rem">
-    <div class="panel-header">
-      <div class="panel-title">Enrollment Attribution — 26-Day Window View</div>
-      <span class="badge info">Lead date attributed</span>
-    </div>
-    <table class="data-table">
+    <div class="ph"><div class="pt">May 2026 — Reporting Date Impact</div><div class="ps">Same cohort · same spend · different measurement date</div></div>
+    <table class="dt">
       <thead>
-        <tr>
-          <th>Month</th>
-          <th class="num">Leads</th>
-          <th class="num">Spend</th>
-          <th class="num">Enrolled</th>
-          <th class="num">CVR</th>
-          <th class="num">CAC</th>
-          <th class="num">Window Closes</th>
-          <th class="num">Status</th>
-          <th>Note</th>
-        </tr>
+        <tr><th>Measured On</th><th class="r">Starts Counted</th><th class="r">Spend</th><th class="r">CAC</th><th class="r">CVR</th><th class="r">vs Goal</th><th>Window</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="hl">January</td>
-          <td class="num">592</td>
-          <td class="num mv">$44,538</td>
-          <td class="num">23</td>
-          <td class="num av">3.89%</td>
-          <td class="num mv">$1,936</td>
-          <td class="num mv">Feb 26</td>
-          <td class="num"><span class="badge up">✓ Final</span></td>
-          <td>High bad lead rate</td>
-        </tr>
-        <tr>
-          <td class="hl">February</td>
-          <td class="num">544</td>
-          <td class="num mv">$39,089</td>
-          <td class="num">54</td>
-          <td class="num gv">9.93%</td>
-          <td class="num mv">$724</td>
-          <td class="num mv">Mar 26</td>
-          <td class="num"><span class="badge up">✓ Final</span></td>
-          <td>Best CVR month</td>
-        </tr>
-        <tr>
-          <td class="hl">March</td>
-          <td class="num">1,150</td>
-          <td class="num mv">$57,888</td>
-          <td class="num">17</td>
-          <td class="num rv">1.48%</td>
-          <td class="num mv">$3,405</td>
-          <td class="num mv">Apr 26</td>
-          <td class="num"><span class="badge up">✓ Final</span></td>
-          <td>Funnel breakdown</td>
-        </tr>
-        <tr>
-          <td class="hl">April</td>
-          <td class="num">1,242</td>
-          <td class="num mv">$49,636</td>
-          <td class="num">74</td>
-          <td class="num gv">5.96%</td>
-          <td class="num mv">$671</td>
-          <td class="num mv">May 26</td>
-          <td class="num"><span class="badge up">✓ Final</span></td>
-          <td>Best enrollment month</td>
-        </tr>
-        <tr style="background:rgba(232,162,71,.04)">
-          <td class="hl" style="color:var(--amber)">May ★</td>
-          <td class="num">1,179</td>
-          <td class="num mv">$44,675</td>
-          <td class="num xv">74+</td>
-          <td class="num gv">6.28%+</td>
-          <td class="num" style="color:var(--accent);font-family:'DM Mono',monospace">$604 est.</td>
-          <td class="num av">Jun 26</td>
-          <td class="num"><span class="badge warn">⏳ 48% elapsed</span></td>
-          <td>Window open — not final</td>
-        </tr>
-        <tr>
-          <td class="hl" style="color:var(--muted2)">June</td>
-          <td class="num" style="color:var(--muted)">TBD</td>
-          <td class="num" style="color:var(--muted)">TBD</td>
-          <td class="num bv">34</td>
-          <td class="num" style="color:var(--muted)">—</td>
-          <td class="num" style="color:var(--muted)">—</td>
-          <td class="num" style="color:var(--muted2)">Jul 26</td>
-          <td class="num"><span class="badge warn">⏳ Tracking</span></td>
-          <td>34 starts from May leads</td>
-        </tr>
-        <tr style="border-top:2px solid var(--border2)">
-          <td class="hl" style="font-weight:600">YTD TOTAL</td>
-          <td class="num" style="color:var(--text);font-weight:500">4,707</td>
-          <td class="num mv" style="color:var(--text)">$235,826</td>
-          <td class="num xv" style="font-weight:500">242+</td>
-          <td class="num gv">5.14%+</td>
-          <td class="num mv" style="color:var(--text)">$975 est.</td>
-          <td class="num">—</td>
-          <td class="num">—</td>
-          <td>Final count Jun 26</td>
-        </tr>
+        <tr><td class="hl">June 1 (today)</td><td class="r rv">40</td><td class="r mv">$44,675</td><td class="r rv">$1,117</td><td class="r rv">3.39%</td><td class="r rv">−4 vs 44</td><td><span class="badge warn">⏳ 26 days remaining</span></td></tr>
+        <tr><td class="hl">June 26 (window close)</td><td class="r gv">74</td><td class="r mv">$44,675</td><td class="r gv">$604</td><td class="r gv">6.28%</td><td class="r gv">+30 vs 44</td><td><span class="badge up">✓ Final</span></td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- 03 MONTHLY CHARTS -->
-  <div class="section-label">03 — Monthly Performance</div>
-  <div class="grid-2" style="margin-bottom:1.5rem">
+  <!-- ══ 03: MONTHLY DETAIL ══ -->
+  <div class="sl">03 — Monthly Detail</div>
+  <div class="g2" style="margin-bottom:1.5rem">
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title">Leads & Enrollment by Month</div>
-        <div class="panel-sub">Marketing attribution · 26-day window</div>
-      </div>
-      <div class="chart-wrap" style="height:250px"><canvas id="monthlyChart"></canvas></div>
+      <div class="ph"><div class="pt">Leads & Enrollment by Month</div><div class="ps">Marketing attribution · 26-day window</div></div>
+      <div class="chart-wrap" style="height:240px"><canvas id="monthlyChart"></canvas></div>
     </div>
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title">CAC & CVR Trend</div>
-        <div class="panel-sub">Cost per enrolled student</div>
-      </div>
-      <div class="chart-wrap" style="height:250px"><canvas id="cacChart"></canvas></div>
+      <div class="ph"><div class="pt">CAC & CVR Trend</div><div class="ps">Cost per enrolled student</div></div>
+      <div class="chart-wrap" style="height:240px"><canvas id="cacChart"></canvas></div>
     </div>
   </div>
 
-  <!-- 04 PROGRAM MIX -->
-  <div class="section-label">04 — Program Enrollment Mix</div>
-  <div class="grid-2" style="margin-bottom:2rem">
+  <div class="panel" style="margin-bottom:2rem">
+    <div class="ph"><div class="pt">Full Monthly Breakdown</div><span class="badge info">Marketing Attributed</span></div>
+    <table class="dt">
+      <thead>
+        <tr>
+          <th>Month</th><th class="r">Leads</th><th class="r">Bad Leads</th><th class="r">Spend</th><th class="r">Enrolled</th><th class="r">CVR</th><th class="r">CAC</th><th class="r">vs Goal</th><th>Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="hl">January</td><td class="r">592</td><td class="r rv">419 (71%)</td><td class="r mv">$44,538</td><td class="r">23</td><td class="r av">3.89%</td><td class="r mv">$1,936</td><td class="r rv">−18</td><td><span class="badge down">High bad lead rate</span></td></tr>
+        <tr><td class="hl">February</td><td class="r">544</td><td class="r av">383 (70%)</td><td class="r mv">$39,089</td><td class="r">54</td><td class="r gv">9.93%</td><td class="r mv">$724</td><td class="r av">−1</td><td><span class="badge up">Best CVR month</span></td></tr>
+        <tr><td class="hl">March</td><td class="r">1,150</td><td class="r rv">584 (51%)</td><td class="r mv">$57,888</td><td class="r">17</td><td class="r rv">1.48%</td><td class="r mv">$3,405</td><td class="r rv">−13</td><td><span class="badge down">Funnel breakdown</span></td></tr>
+        <tr><td class="hl">April</td><td class="r">1,242</td><td class="r rv">727 (59%)</td><td class="r mv">$49,636</td><td class="r">74</td><td class="r gv">5.96%</td><td class="r mv">$671</td><td class="r gv">+21</td><td><span class="badge up">Best enrollment month</span></td></tr>
+        <tr style="background:rgba(232,197,71,.04)"><td class="hl" style="color:var(--accent)">May ★</td><td class="r">1,179</td><td class="r av">445 (38%)</td><td class="r mv">$44,675</td><td class="r xv">74</td><td class="r gv">6.28%</td><td class="r" style="color:var(--accent);font-family:'DM Mono',monospace">$604</td><td class="r gv">+30</td><td><span class="badge warn">Incl. 34 June starts</span></td></tr>
+        <tr><td class="hl" style="color:var(--muted2)">June</td><td class="r" style="color:var(--muted)">—</td><td class="r" style="color:var(--muted)">—</td><td class="r" style="color:var(--muted)">$0</td><td class="r bv">34</td><td class="r" style="color:var(--muted)">—</td><td class="r" style="color:var(--muted)">—</td><td class="r" style="color:var(--muted)">—</td><td><span class="badge info">Attributed to May</span></td></tr>
+        <tr style="border-top:2px solid var(--border2)"><td class="hl" style="font-weight:600">YTD TOTAL</td><td class="r" style="color:var(--text);font-weight:500">4,707</td><td class="r rv">1,860 (40%)</td><td class="r mv" style="color:var(--text)">$235,826</td><td class="r xv" style="font-weight:500">242</td><td class="r gv">5.14%</td><td class="r mv" style="color:var(--text)">$974</td><td class="r gv">+19</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══ 04: PROGRAM MIX ══ -->
+  <div class="sl">04 — Program Enrollment Mix</div>
+  <div class="g2" style="margin-bottom:2rem">
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title">Enrollments by Program (YTD)</div>
-        <div class="panel-sub">Jan–May 2026</div>
-      </div>
-      <div class="prog-row">
-        <div class="prog-name">HVAC</div>
-        <div class="prog-bar-wrap"><div class="prog-bar" style="width:41%;background:var(--accent)"></div></div>
-        <div class="prog-val">89</div>
-      </div>
-      <div class="prog-row">
-        <div class="prog-name">Electrical</div>
-        <div class="prog-bar-wrap"><div class="prog-bar" style="width:35%;background:var(--blue)"></div></div>
-        <div class="prog-val">75</div>
-      </div>
-      <div class="prog-row">
-        <div class="prog-name">Welding</div>
-        <div class="prog-bar-wrap"><div class="prog-bar" style="width:17%;background:var(--teal)"></div></div>
-        <div class="prog-val">36</div>
-      </div>
-      <div class="prog-row">
-        <div class="prog-name">Med Assist</div>
-        <div class="prog-bar-wrap"><div class="prog-bar" style="width:8%;background:var(--red)"></div></div>
-        <div class="prog-val">18</div>
-      </div>
+      <div class="ph"><div class="pt">Enrollments by Program (YTD)</div><div class="ps">Jan–May 2026</div></div>
+      <div class="prog-row"><div class="prog-name">HVAC</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:41%;background:var(--accent)"></div></div><div class="prog-val">89</div></div>
+      <div class="prog-row"><div class="prog-name">Electrical</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:35%;background:var(--blue)"></div></div><div class="prog-val">75</div></div>
+      <div class="prog-row"><div class="prog-name">Welding</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:17%;background:var(--teal)"></div></div><div class="prog-val">36</div></div>
+      <div class="prog-row"><div class="prog-name">Med Assist</div><div class="prog-bar-wrap"><div class="prog-bar" style="width:8%;background:var(--red)"></div></div><div class="prog-val">18</div></div>
       <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)">
-        <div class="insight-card red">
-          <div class="insight-title">⚠ Medical Assistant: Needs Attention</div>
-          <div class="insight-body">18 enrollments Jan–May. Zero in January, March, and May. Needs a dedicated lead gen strategy separate from the trades funnel.</div>
-        </div>
+        <div class="ic red"><div class="it">⚠ Medical Assistant: Needs Attention</div><div class="ib">18 enrollments Jan–May. Zero in January, March, and May. Needs dedicated lead gen strategy separate from the trades funnel.</div></div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title">Google vs Meta — Channel Performance</div>
-      </div>
+      <div class="ph"><div class="pt">Google vs Meta — Channel Performance</div></div>
       <div class="chart-wrap" style="height:180px"><canvas id="channelChart"></canvas></div>
-      <table class="data-table" style="margin-top:1rem">
-        <thead>
-          <tr>
-            <th>Channel</th>
-            <th class="num">Leads (May)</th>
-            <th class="num">CPL</th>
-            <th class="num">Enrolled YTD</th>
-            <th class="num">Avg CAC</th>
-          </tr>
-        </thead>
+      <table class="dt" style="margin-top:1rem">
+        <thead><tr><th>Channel</th><th class="r">Leads (May)</th><th class="r">CPL</th><th class="r">Enrolled YTD</th><th class="r">Avg CAC</th></tr></thead>
         <tbody>
-          <tr>
-            <td class="hl">Google</td>
-            <td class="num">263</td>
-            <td class="num av">$113</td>
-            <td class="num">96</td>
-            <td class="num mv">$1,810</td>
-          </tr>
-          <tr>
-            <td class="hl">Meta</td>
-            <td class="num">852</td>
-            <td class="num gv">$18</td>
-            <td class="num">43</td>
-            <td class="num mv">$1,280</td>
-          </tr>
+          <tr><td class="hl">Google</td><td class="r">263</td><td class="r av">$113</td><td class="r">96</td><td class="r mv">$1,810</td></tr>
+          <tr><td class="hl">Meta</td><td class="r">852</td><td class="r gv">$18</td><td class="r">43</td><td class="r mv">$1,280</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- 05 SPEED TO LEAD -->
-  <div class="section-label">05 — Speed to Lead: The Conversion Gap</div>
-
-  <div class="opportunity-box" style="margin-bottom:1.5rem">
-    <div>
-      <div class="opp-label">Pipeline Without a Call</div>
-      <div class="opp-value">275 Leads</div>
-      <div style="font-size:.75rem;color:var(--muted2);margin-top:.2rem">22.4% of active leads — no call logged</div>
-    </div>
+  <!-- ══ 05: SPEED TO LEAD ══ -->
+  <div class="sl">05 — Speed to Lead: The Conversion Gap</div>
+  <div class="opp-box" style="margin-bottom:1.5rem">
+    <div><div class="opp-label">Pipeline Without a Call</div><div class="opp-value">275 Leads</div><div style="font-size:.75rem;color:var(--muted2);margin-top:.2rem">22.4% of active leads — no call logged</div></div>
     <div style="width:1px;height:60px;background:var(--border2)"></div>
-    <div>
-      <div class="opp-label">Revenue Opportunity (10–15% CVR)</div>
-      <div class="opp-value" style="color:var(--green)">$476K–$697K</div>
-      <div style="font-size:.75rem;color:var(--muted2);margin-top:.2rem">28–41 additional students × $17K avg tuition</div>
-    </div>
+    <div><div class="opp-label">Revenue Opportunity (10–15% CVR)</div><div class="opp-value" style="color:var(--green)">$476K–$697K</div><div style="font-size:.75rem;color:var(--muted2);margin-top:.2rem">28–41 additional students × $17K avg tuition</div></div>
     <div style="width:1px;height:60px;background:var(--border2)"></div>
-    <div>
-      <div class="opp-label">Google Median Call Response</div>
-      <div class="opp-value" style="color:var(--red)">13.2 hrs</div>
-      <div style="font-size:.75rem;color:var(--muted2);margin-top:.2rem">Most expensive leads. Slowest response.</div>
-    </div>
+    <div><div class="opp-label">Google Median Call Response</div><div class="opp-value" style="color:var(--red)">13.2 hrs</div><div style="font-size:.75rem;color:var(--muted2);margin-top:.2rem">Most expensive leads. Slowest response.</div></div>
     <div style="width:1px;height:60px;background:var(--border2)"></div>
-    <div class="opp-desc">Marketing is generating leads at efficient cost. The conversion gap lives between lead creation and first human call. Closing this gap is the single highest-leverage move available.</div>
+    <div style="font-size:.78rem;color:var(--muted2);max-width:320px;line-height:1.6">Marketing is generating leads at efficient cost. The conversion gap lives between lead creation and first human call. This is a <strong style="color:var(--text)">capacity problem</strong> — not a motivation problem. The call center fixes it.</div>
   </div>
 
-  <div class="speed-grid" style="margin-bottom:1.5rem">
-    <div class="speed-bucket good">
-      <div class="speed-bucket-label">0–5 min</div>
-      <div class="speed-bucket-n" style="color:var(--green)">78</div>
-      <div class="speed-bucket-pct">6.3%</div>
-      <div class="speed-bucket-note">Target zone</div>
-    </div>
-    <div class="speed-bucket warn">
-      <div class="speed-bucket-label">6–30 min</div>
-      <div class="speed-bucket-n" style="color:var(--amber)">104</div>
-      <div class="speed-bucket-pct">8.5%</div>
-      <div class="speed-bucket-note">Acceptable</div>
-    </div>
-    <div class="speed-bucket warn">
-      <div class="speed-bucket-label">31–60 min</div>
-      <div class="speed-bucket-n" style="color:var(--amber)">51</div>
-      <div class="speed-bucket-pct">4.1%</div>
-      <div class="speed-bucket-note">Borderline</div>
-    </div>
-    <div class="speed-bucket warn">
-      <div class="speed-bucket-label">1–4 hrs</div>
-      <div class="speed-bucket-n" style="color:var(--amber)">124</div>
-      <div class="speed-bucket-pct">10.1%</div>
-      <div class="speed-bucket-note">Too slow</div>
-    </div>
-    <div class="speed-bucket danger">
-      <div class="speed-bucket-label">4–24 hrs</div>
-      <div class="speed-bucket-n" style="color:var(--red)">255</div>
-      <div class="speed-bucket-pct">20.7%</div>
-      <div class="speed-bucket-note" style="color:var(--red)">Critical</div>
-    </div>
-    <div class="speed-bucket danger">
-      <div class="speed-bucket-label">24+ hrs</div>
-      <div class="speed-bucket-n" style="color:var(--red)">301</div>
-      <div class="speed-bucket-pct">24.5%</div>
-      <div class="speed-bucket-note" style="color:var(--red)">Critical</div>
-    </div>
-    <div class="speed-bucket danger">
-      <div class="speed-bucket-label">No Call</div>
-      <div class="speed-bucket-n" style="color:var(--red)">316</div>
-      <div class="speed-bucket-pct">25.7%</div>
-      <div class="speed-bucket-note" style="color:var(--red)">No record</div>
-    </div>
+  <div class="sg" style="margin-bottom:1.5rem">
+    <div class="sb good"><div class="sb-label">0–5 min</div><div class="sb-n" style="color:var(--green)">78</div><div class="sb-pct">6.3%</div><div class="sb-note">Target zone</div></div>
+    <div class="sb warn"><div class="sb-label">6–30 min</div><div class="sb-n" style="color:var(--amber)">104</div><div class="sb-pct">8.5%</div><div class="sb-note">Acceptable</div></div>
+    <div class="sb warn"><div class="sb-label">31–60 min</div><div class="sb-n" style="color:var(--amber)">51</div><div class="sb-pct">4.1%</div><div class="sb-note">Borderline</div></div>
+    <div class="sb warn"><div class="sb-label">1–4 hrs</div><div class="sb-n" style="color:var(--amber)">124</div><div class="sb-pct">10.1%</div><div class="sb-note">Too slow</div></div>
+    <div class="sb danger"><div class="sb-label">4–24 hrs</div><div class="sb-n" style="color:var(--red)">255</div><div class="sb-pct">20.7%</div><div class="sb-note" style="color:var(--red)">Critical</div></div>
+    <div class="sb danger"><div class="sb-label">24+ hrs</div><div class="sb-n" style="color:var(--red)">301</div><div class="sb-pct">24.5%</div><div class="sb-note" style="color:var(--red)">Critical</div></div>
+    <div class="sb danger"><div class="sb-label">No Call</div><div class="sb-n" style="color:var(--red)">316</div><div class="sb-pct">25.7%</div><div class="sb-note" style="color:var(--red)">No record</div></div>
   </div>
 
   <div class="panel" style="margin-bottom:2rem">
-    <div class="panel-header">
-      <div class="panel-title">Call Response Time by Channel</div>
-      <div class="panel-sub">Median minutes from lead creation to first manual call</div>
-    </div>
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Channel</th>
-          <th class="num">Total Leads</th>
-          <th class="num">Calls Logged</th>
-          <th class="num">No Call</th>
-          <th class="num">Median Response</th>
-          <th class="num">In Hours</th>
-          <th>Priority</th>
-        </tr>
-      </thead>
+    <div class="ph"><div class="pt">Call Response Time by Channel</div><div class="ps">Median minutes from lead creation to first manual call</div></div>
+    <table class="dt">
+      <thead><tr><th>Channel</th><th class="r">Total Leads</th><th class="r">Calls Logged</th><th class="r">No Call</th><th class="r">Median Response</th><th class="r">In Hours</th><th>Priority</th></tr></thead>
       <tbody>
-        <tr>
-          <td class="hl">Google</td>
-          <td class="num">269</td>
-          <td class="num">186</td>
-          <td class="num rv">83 (31%)</td>
-          <td class="num rv">793 min</td>
-          <td class="num rv">13.2 hrs</td>
-          <td><span class="badge down">Highest spend — fix first</span></td>
-        </tr>
-        <tr>
-          <td class="hl">Meta</td>
-          <td class="num">886</td>
-          <td class="num">677</td>
-          <td class="num rv">209 (24%)</td>
-          <td class="num rv">640 min</td>
-          <td class="num rv">10.7 hrs</td>
-          <td><span class="badge down">Highest volume</span></td>
-        </tr>
-        <tr>
-          <td class="hl">Org Referral</td>
-          <td class="num">17</td>
-          <td class="num">13</td>
-          <td class="num av">4 (24%)</td>
-          <td class="num rv">1,023 min</td>
-          <td class="num rv">17.1 hrs</td>
-          <td><span class="badge warn">Warm leads — missed opp</span></td>
-        </tr>
-        <tr>
-          <td class="hl">Former Student</td>
-          <td class="num">15</td>
-          <td class="num">11</td>
-          <td class="num av">4 (27%)</td>
-          <td class="num rv">841 min</td>
-          <td class="num rv">14.0 hrs</td>
-          <td><span class="badge warn">Highest intent — slowest logic</span></td>
-        </tr>
-        <tr>
-          <td class="hl">ACI Website</td>
-          <td class="num">15</td>
-          <td class="num">5</td>
-          <td class="num rv">10 (67%)</td>
-          <td class="num rv">3,905 min</td>
-          <td class="num rv">65.1 hrs</td>
-          <td><span class="badge down">Actively seeking — ignored</span></td>
-        </tr>
+        <tr><td class="hl">Google</td><td class="r">269</td><td class="r">186</td><td class="r rv">83 (31%)</td><td class="r rv">793 min</td><td class="r rv">13.2 hrs</td><td><span class="badge down">Highest spend — fix first</span></td></tr>
+        <tr><td class="hl">Meta</td><td class="r">886</td><td class="r">677</td><td class="r rv">209 (24%)</td><td class="r rv">640 min</td><td class="r rv">10.7 hrs</td><td><span class="badge down">Highest volume</span></td></tr>
+        <tr><td class="hl">Org Referral</td><td class="r">17</td><td class="r">13</td><td class="r av">4 (24%)</td><td class="r rv">1,023 min</td><td class="r rv">17.1 hrs</td><td><span class="badge warn">Warm leads — missed opp</span></td></tr>
+        <tr><td class="hl">Former Student</td><td class="r">15</td><td class="r">11</td><td class="r av">4 (27%)</td><td class="r rv">841 min</td><td class="r rv">14.0 hrs</td><td><span class="badge warn">Highest intent — slowest response</span></td></tr>
+        <tr><td class="hl">ACI Website</td><td class="r">15</td><td class="r">5</td><td class="r rv">10 (67%)</td><td class="r rv">3,905 min</td><td class="r rv">65.1 hrs</td><td><span class="badge down">Actively seeking — ignored</span></td></tr>
       </tbody>
     </table>
   </div>
 
-  <!-- 06 FUNNEL -->
-  <div class="section-label">06 — Admissions Funnel Health</div>
-  <div class="grid-2" style="margin-bottom:2rem">
+  <!-- ══ 06: ADMISSIONS FUNNEL ══ -->
+  <div class="sl">06 — Admissions Funnel Health</div>
+  <div class="g2" style="margin-bottom:2rem">
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title">Stage Distribution — Active Leads</div>
-        <div class="panel-sub">1,229 leads · May 2026 log</div>
-      </div>
-      <div class="funnel-row">
-        <div class="funnel-label">New Lead (untouched)</div>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:77.9%;background:var(--muted)"></div></div>
-        <div class="funnel-stat">957</div>
-        <div class="funnel-pct">77.9%</div>
-      </div>
-      <div class="funnel-row">
-        <div class="funnel-label">Tour — No Show</div>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:15.2%;background:var(--red)"></div></div>
-        <div class="funnel-stat">187</div>
-        <div class="funnel-pct">15.2%</div>
-      </div>
-      <div class="funnel-row">
-        <div class="funnel-label">Student ✓</div>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:3.1%;background:var(--green)"></div></div>
-        <div class="funnel-stat">38</div>
-        <div class="funnel-pct">3.1%</div>
-      </div>
-      <div class="funnel-row">
-        <div class="funnel-label">Tour — Show</div>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:2.1%;background:var(--accent)"></div></div>
-        <div class="funnel-stat">26</div>
-        <div class="funnel-pct">2.1%</div>
-      </div>
-      <div class="funnel-row">
-        <div class="funnel-label">FA Appt — No Show</div>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:1.5%;background:var(--amber)"></div></div>
-        <div class="funnel-stat">18</div>
-        <div class="funnel-pct">1.5%</div>
-      </div>
-      <div class="funnel-row">
-        <div class="funnel-label">FA Appt — Show</div>
-        <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:0.2%;background:var(--teal)"></div></div>
-        <div class="funnel-stat">2</div>
-        <div class="funnel-pct">0.2%</div>
-      </div>
+      <div class="ph"><div class="pt">Stage Distribution — Active Leads</div><div class="ps">1,229 leads · May 2026</div></div>
+      <div class="fr"><div class="fl">New Lead (untouched)</div><div class="fbw"><div class="fb" style="width:77.9%;background:var(--muted)"></div></div><div class="fs">957</div><div class="fp">77.9%</div></div>
+      <div class="fr"><div class="fl">Tour — No Show</div><div class="fbw"><div class="fb" style="width:15.2%;background:var(--red)"></div></div><div class="fs">187</div><div class="fp">15.2%</div></div>
+      <div class="fr"><div class="fl">Student ✓</div><div class="fbw"><div class="fb" style="width:3.1%;background:var(--green)"></div></div><div class="fs">38</div><div class="fp">3.1%</div></div>
+      <div class="fr"><div class="fl">Tour — Show</div><div class="fbw"><div class="fb" style="width:2.1%;background:var(--accent)"></div></div><div class="fs">26</div><div class="fp">2.1%</div></div>
+      <div class="fr"><div class="fl">FA Appt — No Show</div><div class="fbw"><div class="fb" style="width:1.5%;background:var(--amber)"></div></div><div class="fs">18</div><div class="fp">1.5%</div></div>
+      <div class="fr"><div class="fl">FA Appt — Show</div><div class="fbw"><div class="fb" style="width:0.2%;background:var(--teal)"></div></div><div class="fs">2</div><div class="fp">0.2%</div></div>
     </div>
     <div class="panel">
-      <div class="panel-header"><div class="panel-title">Funnel Interpretation</div></div>
+      <div class="ph"><div class="pt">Funnel Interpretation</div></div>
       <div style="display:flex;flex-direction:column;gap:.75rem">
-        <div class="insight-card red">
-          <div class="insight-number" style="color:var(--red)">77.9%</div>
-          <div class="insight-title">Stuck at New Lead</div>
-          <div class="insight-body">957 leads never moved past intake. With a 13+ hour call response time, most leads are cold before admissions makes first contact. Process and capacity issue — not lead quality.</div>
-        </div>
-        <div class="insight-card amber">
-          <div class="insight-number" style="color:var(--amber)">187</div>
-          <div class="insight-title">Tour No-Shows = Recoverable Pipeline</div>
-          <div class="insight-body">These leads were engaged enough to schedule. Automated SMS reminders + reschedule flows can recover 20–30%. That's 37–56 additional tours from existing pipeline.</div>
-        </div>
-        <div class="insight-card green">
-          <div class="insight-number" style="color:var(--green)">38</div>
-          <div class="insight-title">Students in CRM</div>
-          <div class="insight-body">CRM-logged students from this lead log. Admissions reps do not consistently log all activity — actual contact and progression rates are higher than data reflects.</div>
-        </div>
+        <div class="ic red"><div class="in" style="color:var(--red)">77.9%</div><div class="it">Stuck at New Lead</div><div class="ib">957 leads never progressed. With a 13+ hour response time, leads go cold before anyone calls. This is a capacity problem — the current team cannot handle the volume. The call center is the fix.</div></div>
+        <div class="ic amber"><div class="in" style="color:var(--amber)">187</div><div class="it">Tour No-Shows = Recoverable Pipeline</div><div class="ib">These leads scheduled. Automated SMS reminders + reschedule flows can recover 20–30% = 37–56 additional tours from existing pipeline.</div></div>
+        <div class="ic green"><div class="in" style="color:var(--green)">38</div><div class="it">Students in CRM</div><div class="ib">CRM-logged students from this lead log. Admissions reps do not consistently log all activity — actual contact and conversion rates are higher than the data reflects.</div></div>
       </div>
     </div>
   </div>
 
-  <!-- 07 THE FIX -->
-  <div class="section-label">07 — The Fix: What's Being Built</div>
-  <div class="grid-2" style="margin-bottom:2rem">
+  <!-- ══ 07: THE FIX ══ -->
+  <div class="sl">07 — The Fix: What's Being Built</div>
+  <div class="g2" style="margin-bottom:2rem">
     <div class="panel">
-      <div class="panel-header"><div class="panel-title">Solution Stack — In Progress</div></div>
-      <div class="roadmap-item">
-        <div class="roadmap-dot building">🔨</div>
-        <div>
-          <div class="roadmap-title">New Website</div>
-          <div class="roadmap-desc">Rebuilt to qualify intent before form submission. Reduces bad lead volume (currently 39.5% YTD), improves CPL efficiency, strengthens SEO-driven traffic quality.</div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-dot building">🔨</div>
-        <div>
-          <div class="roadmap-title">SMS Automation — Sub-5 Minute Response</div>
-          <div class="roadmap-desc">Automated first-touch SMS within 60 seconds of lead creation. Directly targets the 10.7–13.2 hour response gap on Meta and Google leads.</div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-dot building">🔨</div>
-        <div>
-          <div class="roadmap-title">Call Center Integration</div>
-          <div class="roadmap-desc">Dedicated admissions calling workflow with lead routing, structured follow-up cadence, and tour no-show recovery. Removes capacity constraint from current team.</div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-dot building">🔨</div>
-        <div>
-          <div class="roadmap-title">Email Nurture Sequences</div>
-          <div class="roadmap-desc">Program-specific drips for every funnel stage. Tour no-show recovery, FA appointment reminders, re-engagement for leads sitting at New Lead for 7+ days.</div>
-        </div>
-      </div>
-      <div class="roadmap-item">
-        <div class="roadmap-dot building">🔨</div>
-        <div>
-          <div class="roadmap-title">Google Conversion Loop — GCLID + Offline Conversions</div>
-          <div class="roadmap-desc">Implementing GCLID tracking, Tag Assistant verification, and offline conversion imports to feed actual enrollment data back to Google Ads. Google will optimize campaigns against real enrollments — not lead form fills. This closes the loop between ad spend and revenue, and will fundamentally change how Google allocates budget across programs and audiences.</div>
-        </div>
-      </div>
+      <div class="ph"><div class="pt">Solution Stack — In Progress</div></div>
+      <div class="ri"><div class="rd building">🔨</div><div><div class="rtitle">New Website</div><div class="rdesc">Rebuilt to qualify intent before form submission. Reduces bad lead volume (currently 39.5% YTD), improves CPL efficiency, and strengthens SEO-driven traffic quality at the source.</div></div></div>
+      <div class="ri"><div class="rd building">🔨</div><div><div class="rtitle">SMS Automation — Sub-5 Minute Response</div><div class="rdesc">Automated first-touch SMS within 60 seconds of lead creation. Directly targets the 10.7–13.2 hour response gap on Meta and Google leads. Highest leverage single fix available.</div></div></div>
+      <div class="ri"><div class="rd building">🔨</div><div><div class="rtitle">Call Center Integration</div><div class="rdesc">Dedicated admissions calling workflow with lead routing, structured follow-up cadence, and tour no-show recovery. Solves the capacity constraint — team cannot handle current lead volume, this is not a motivation problem.</div></div></div>
+      <div class="ri"><div class="rd building">🔨</div><div><div class="rtitle">Email Nurture Sequences</div><div class="rdesc">Program-specific drips for every funnel stage. Tour no-show recovery, FA appointment reminders, re-engagement for leads sitting at New Lead for 7+ days.</div></div></div>
+      <div class="ri"><div class="rd building">🔨</div><div><div class="rtitle">Google Conversion Loop — GCLID + Offline Conversions</div><div class="rdesc">Implementing GCLID tracking, Tag Assistant verification, and offline conversion imports to feed actual enrollment data back to Google Ads. Google will optimize campaigns against real enrollments — not lead form fills. Closes the loop between ad spend and revenue, and fundamentally changes how Google allocates budget across programs and audiences.</div></div></div>
     </div>
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title">Projected Impact — Fix Scenario</div>
-        <span class="badge info">Conservative</span>
-      </div>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Metric</th>
-            <th class="num">Current</th>
-            <th class="num">Target</th>
-            <th class="num">Impact</th>
-          </tr>
-        </thead>
+      <div class="ph"><div class="pt">Projected Impact — Fix Scenario</div><span class="badge info">Conservative</span></div>
+      <table class="dt">
+        <thead><tr><th>Metric</th><th class="r">Current</th><th class="r">Target</th><th class="r">Impact</th></tr></thead>
         <tbody>
-          <tr>
-            <td class="hl">Call Response Time</td>
-            <td class="num rv">13.2 hrs</td>
-            <td class="num gv">&lt;5 min</td>
-            <td class="num gv">↑ CVR 2–3×</td>
-          </tr>
-          <tr>
-            <td class="hl">Lead CVR</td>
-            <td class="num rv">5.14%</td>
-            <td class="num gv">10–12%</td>
-            <td class="num gv">+2× enrollments</td>
-          </tr>
-          <tr>
-            <td class="hl">Blended CAC</td>
-            <td class="num av">$975</td>
-            <td class="num gv">$450–$550</td>
-            <td class="num gv">−44% cost</td>
-          </tr>
-          <tr>
-            <td class="hl">Bad Lead Rate</td>
-            <td class="num rv">39.5%</td>
-            <td class="num gv">20–25%</td>
-            <td class="num gv">↑ quality</td>
-          </tr>
-          <tr>
-            <td class="hl">Tour Show Rate</td>
-            <td class="num rv">12.2%</td>
-            <td class="num gv">30%+</td>
-            <td class="num gv">+18 pts</td>
-          </tr>
-          <tr>
-            <td class="hl">Leads Without Call</td>
-            <td class="num rv">316 (25.7%)</td>
-            <td class="num gv">&lt;5%</td>
-            <td class="num gv">$476K–$697K</td>
-          </tr>
+          <tr><td class="hl">Call Response Time</td><td class="r rv">13.2 hrs</td><td class="r gv">&lt;5 min</td><td class="r gv">↑ CVR 2–3×</td></tr>
+          <tr><td class="hl">Lead CVR</td><td class="r rv">5.14%</td><td class="r gv">10–12%</td><td class="r gv">+2× enrollments</td></tr>
+          <tr><td class="hl">Blended CAC</td><td class="r av">$974</td><td class="r gv">$450–$550</td><td class="r gv">−44% cost</td></tr>
+          <tr><td class="hl">Bad Lead Rate</td><td class="r rv">39.5%</td><td class="r gv">20–25%</td><td class="r gv">↑ quality</td></tr>
+          <tr><td class="hl">Tour Show Rate</td><td class="r rv">12.2%</td><td class="r gv">30%+</td><td class="r gv">+18 pts</td></tr>
+          <tr><td class="hl">Leads Without Call</td><td class="r rv">316 (25.7%)</td><td class="r gv">&lt;5%</td><td class="r gv">$476K–$697K</td></tr>
         </tbody>
       </table>
       <div style="margin-top:1.25rem;padding:1rem;background:var(--green-dim);border:1px solid rgba(76,175,130,.2);border-radius:8px">
@@ -859,15 +546,29 @@ td.bv{color:var(--blue);font-family:'DM Mono',monospace}
 
 <footer class="footer">
   <span>Austin Career Institute — Lead Machine Dashboard // 2026 YTD</span>
-  <span>Sources: Admissions Overview CSV + Lead Log + Student Enrollment Data // 26-day attribution window // May 28, 2026</span>
+  <span>Sources: Admissions Overview · Lead Log · Student Enrollment Data // 26-day attribution window // May 28, 2026</span>
 </footer>
 
 <script>
-const chartDefaults = {
-  responsive:true, maintainAspectRatio:false,
-  plugins:{ legend:{ labels:{ color:'#8a919e', font:{ family:'DM Sans', size:11 }, boxWidth:12, padding:10 } } }
-};
+const cd = { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ labels:{ color:'#8a919e', font:{ family:'DM Sans',size:11 }, boxWidth:12, padding:10 } } } };
 
+// Cumulative
+new Chart(document.getElementById('cumChart').getContext('2d'), {
+  type:'line',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May*'],
+    datasets:[
+      { label:'Cumulative Enrolled', data:[23,77,94,168,242], borderColor:'#4caf82', backgroundColor:'rgba(76,175,130,0.08)', borderWidth:3, pointBackgroundColor:'#4caf82', pointRadius:5, pointHoverRadius:7, tension:0.3, fill:true },
+      { label:'Cumulative Goal', data:[41,96,126,179,223], borderColor:'rgba(232,197,71,0.5)', backgroundColor:'transparent', borderWidth:2, borderDash:[6,4], pointBackgroundColor:'rgba(232,197,71,0.5)', pointRadius:4, tension:0.3 }
+    ]
+  },
+  options:{ ...cd, scales:{
+    y:{ grid:{ color:'rgba(255,255,255,0.05)' }, ticks:{ color:'#5a5f6b', font:{ family:'DM Mono',size:10 } }, beginAtZero:true },
+    x:{ grid:{ color:'rgba(255,255,255,0.04)' }, ticks:{ color:'#5a5f6b', font:{ family:'DM Mono',size:10 } } }
+  }}
+});
+
+// Monthly bars
 new Chart(document.getElementById('monthlyChart').getContext('2d'), {
   type:'bar',
   data:{
@@ -877,13 +578,14 @@ new Chart(document.getElementById('monthlyChart').getContext('2d'), {
       { label:'Enrolled', data:[23,54,17,74,74], backgroundColor:'rgba(232,197,71,0.75)', borderColor:'#e8c547', borderWidth:1, yAxisID:'y1' }
     ]
   },
-  options:{ ...chartDefaults, scales:{
+  options:{ ...cd, scales:{
     y:{ grid:{ color:'rgba(255,255,255,0.05)' }, ticks:{ color:'#5a5f6b', font:{ family:'DM Mono',size:10 } } },
     y1:{ position:'right', grid:{ drawOnChartArea:false }, ticks:{ color:'#e8c547', font:{ family:'DM Mono',size:10 } } },
     x:{ grid:{ color:'rgba(255,255,255,0.04)' }, ticks:{ color:'#5a5f6b', font:{ family:'DM Mono',size:10 } } }
   }}
 });
 
+// CAC
 new Chart(document.getElementById('cacChart').getContext('2d'), {
   type:'line',
   data:{
@@ -893,20 +595,21 @@ new Chart(document.getElementById('cacChart').getContext('2d'), {
       { label:'CVR (%)', data:[3.89,9.93,1.48,5.96,6.28], borderColor:'#4caf82', backgroundColor:'transparent', borderWidth:2, pointBackgroundColor:'#4caf82', pointRadius:4, tension:0.3, borderDash:[4,3], yAxisID:'y1' }
     ]
   },
-  options:{ ...chartDefaults, scales:{
+  options:{ ...cd, scales:{
     y:{ grid:{ color:'rgba(255,255,255,0.05)' }, ticks:{ color:'#e8c547', font:{ family:'DM Mono',size:10 }, callback:v=>'$'+v.toLocaleString() } },
     y1:{ position:'right', grid:{ drawOnChartArea:false }, ticks:{ color:'#4caf82', font:{ family:'DM Mono',size:10 }, callback:v=>v+'%' } },
     x:{ grid:{ color:'rgba(255,255,255,0.04)' }, ticks:{ color:'#5a5f6b', font:{ family:'DM Mono',size:10 } } }
   }}
 });
 
+// Channel
 new Chart(document.getElementById('channelChart').getContext('2d'), {
   type:'doughnut',
   data:{
     labels:['Meta (886)','Google (269)','Other (74)'],
     datasets:[{ data:[886,269,74], backgroundColor:['rgba(232,197,71,0.8)','rgba(91,156,246,0.8)','rgba(90,95,107,0.5)'], borderColor:'#111316', borderWidth:2 }]
   },
-  options:{ ...chartDefaults, cutout:'65%', plugins:{ legend:{ position:'right', labels:{ color:'#8a919e', font:{ family:'DM Sans',size:11 }, padding:12, boxWidth:12 } } } }
+  options:{ ...cd, cutout:'65%', plugins:{ legend:{ position:'right', labels:{ color:'#8a919e', font:{ family:'DM Sans',size:11 }, padding:12, boxWidth:12 } } } }
 });
 </script>
 </body>
