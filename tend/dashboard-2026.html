@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-  <link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tend — Channel Performance · CY2026</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -25,7 +26,6 @@
   body { background: #F4F0E8; font-family: 'DM Sans', sans-serif; color: var(--olive); min-height: 100vh; padding: 40px 24px 80px; }
   .page { max-width: 1080px; margin: 0 auto; }
 
-  /* HEADER */
   .header { display: flex; align-items: center; justify-content: space-between; padding: 24px 32px; background: var(--cream); border-radius: 16px; border: 1px solid var(--sage); margin-bottom: 24px; animation: fadeUp 0.4s ease both; }
   .logo { font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: var(--olive); }
   .logo em { color: var(--amber); font-style: normal; }
@@ -35,7 +35,6 @@
 
   .sl { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
 
-  /* METRIC GRID */
   .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
   .mc { background: var(--sage); border-radius: 10px; padding: 16px 18px; }
   .mc .label { font-size: 11px; color: var(--lime-dk); margin-bottom: 4px; }
@@ -44,7 +43,6 @@
 
   hr { border: none; border-top: 1.5px solid var(--sage); margin: 28px 0; }
 
-  /* PACING */
   .pacing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
   .pacing-card { background: var(--cream); border: 1px solid var(--sage); border-radius: 12px; padding: 20px 22px; }
   .pacing-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); margin-bottom: 10px; }
@@ -52,16 +50,13 @@
   .pacing-current { font-family: 'Lora', serif; font-size: 40px; font-weight: 700; color: var(--olive); line-height: 1; }
   .pacing-goal { font-size: 14px; color: var(--stone); }
 
-  /* DUAL TRACK */
   .dual-track { margin-bottom: 16px; }
   .track-row { margin-bottom: 14px; }
   .track-row-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
   .track-name { font-size: 11px; font-weight: 600; color: var(--olive); }
   .track-tag { font-size: 10px; color: var(--stone); }
-  .track { background: var(--sage-lt); border-radius: 99px; height: 8px; position: relative; overflow: visible; margin-bottom: 4px; }
+  .track { background: var(--sage-lt); border-radius: 99px; height: 8px; position: relative; overflow: hidden; margin-bottom: 4px; }
   .track-fill { height: 8px; border-radius: 99px; position: absolute; top: 0; left: 0; }
-  .track-pace { position: absolute; top: -5px; width: 2px; height: 18px; background: var(--stone); border-radius: 1px; }
-  .track-pace::after { content: attr(data-label); position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 8px; color: var(--stone); white-space: nowrap; font-weight: 600; font-family: 'DM Sans', sans-serif; }
   .track-meta { display: flex; justify-content: space-between; font-size: 10px; color: var(--stone); }
   .track-meta .ahead { color: var(--lime-dk); font-weight: 600; }
 
@@ -73,7 +68,6 @@
   .pace-box strong { font-size: 14px; font-weight: 700; color: var(--olive); }
   .pace-box.great strong { color: var(--lime-dk); }
 
-  /* CHANNEL CARDS */
   .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
   .card { background: var(--cream); border: 1px solid var(--sage); border-radius: 12px; padding: 20px 22px; }
   .card.winner { border: 2px solid var(--lime); }
@@ -84,15 +78,16 @@
   .ch-name { font-size: 13px; font-weight: 600; color: var(--olive); }
   .ch-sub { font-size: 10px; color: var(--stone); margin-bottom: 10px; }
   .badge-winner { font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--lime); color: var(--cream); display: inline-block; margin-bottom: 10px; letter-spacing: 0.05em; }
+  .badge-watch { font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--warn); color: #A57800; display: inline-block; margin-bottom: 10px; letter-spacing: 0.05em; border: 1px solid var(--amber); }
   .row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-top: 1px solid var(--sage-lt); }
   .row:first-of-type { border-top: none; padding-top: 0; }
   .rl { font-size: 10px; color: var(--stone); }
   .rv { font-size: 11px; font-weight: 600; color: var(--olive); }
   .rv.green { color: var(--lime-dk); }
+  .rv.warn { color: #A57800; }
   .conv-good { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--sage); color: var(--olive); }
   .conv-mid  { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--warn); color: #A57800; }
 
-  /* RANK */
   .rank-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--sage-lt); }
   .rank-row:first-of-type { border-top: none; padding-top: 0; }
   .rank-num { font-family: 'Lora', serif; font-size: 20px; font-weight: 700; color: var(--sage); width: 22px; flex-shrink: 0; }
@@ -109,6 +104,20 @@
   .insight-title { font-size: 12px; font-weight: 600; margin-bottom: 5px; }
   .insight-body { font-size: 12px; line-height: 1.7; }
 
+  /* OBSERVATIONS */
+  .obs-section { margin-top: 8px; }
+  .obs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+  .obs-card { background: var(--cream); border: 1px solid var(--sage); border-radius: 12px; padding: 18px 20px; }
+  .obs-card.flag { border-left: 3px solid var(--amber); }
+  .obs-card.positive { border-left: 3px solid var(--lime); }
+  .obs-card.neutral { border-left: 3px solid var(--stone); }
+  .obs-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+  .obs-tag.tag-flag { color: #A57800; }
+  .obs-tag.tag-positive { color: var(--lime-dk); }
+  .obs-tag.tag-neutral { color: var(--stone); }
+  .obs-title { font-size: 12px; font-weight: 600; color: var(--olive); margin-bottom: 4px; line-height: 1.4; }
+  .obs-body { font-size: 11px; color: var(--stone); line-height: 1.65; }
+
   .dash-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--sage); font-size: 11px; color: var(--stone); }
   .dash-footer strong { color: var(--olive); }
 
@@ -117,12 +126,13 @@
   section:nth-child(3) { animation-delay: 0.2s; }
   section:nth-child(4) { animation-delay: 0.3s; }
   section:nth-child(5) { animation-delay: 0.4s; }
+  section:nth-child(6) { animation-delay: 0.5s; }
 
   @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
 
   @media (max-width: 768px) {
     .metric-grid { grid-template-columns: repeat(2,1fr); }
-    .three-col, .pacing-grid, .two-col { grid-template-columns: 1fr; }
+    .three-col, .pacing-grid, .two-col, .obs-grid { grid-template-columns: 1fr; }
     .header { flex-direction: column; gap: 12px; }
     .header-meta { text-align: left; }
   }
@@ -135,7 +145,7 @@
     <div class="logo">≡ <em>Tend</em></div>
     <div class="header-meta">
       <p><strong>Channel Performance Dashboard</strong></p>
-      <p>CY2026 · As of May 22, 2026 · Google live Feb 1 · Meta live Mar 1</p>
+      <p>CY2026 · As of June 1, 2026 · Google live Feb 1 · Meta live Mar 1</p>
     </div>
   </div>
 
@@ -143,10 +153,10 @@
   <section>
     <p class="sl">Year-to-date performance</p>
     <div class="metric-grid">
-      <div class="mc"><p class="label">Total registrations</p><p class="value">827</p><p class="sub">55.1% of 1,500 CY2026 goal</p></div>
-      <div class="mc"><p class="label">Groups created</p><p class="value">58</p><p class="sub">38.7% of 150 CY2026 goal</p></div>
-      <div class="mc"><p class="label">Total spend</p><p class="value">$14,898</p><p class="sub">Meta + Google + Organic</p></div>
-      <div class="mc"><p class="label">Blended CAC</p><p class="value">$256.86</p><p class="sub">all channels · $18.01 CPL</p></div>
+      <div class="mc"><p class="label">Total registrations</p><p class="value">931</p><p class="sub">62.1% of 1,500 CY2026 goal</p></div>
+      <div class="mc"><p class="label">Groups created</p><p class="value">81</p><p class="sub">54.0% of 150 CY2026 goal</p></div>
+      <div class="mc"><p class="label">Total spend</p><p class="value">$16,889</p><p class="sub">Meta + Google + Organic</p></div>
+      <div class="mc"><p class="label">Blended CAC</p><p class="value">$208.50</p><p class="sub">all channels · $18.14 CPL</p></div>
     </div>
   </section>
 
@@ -159,51 +169,51 @@
 
       <div class="pacing-card">
         <p class="pacing-label">Registrations</p>
-        <div class="pacing-nums"><span class="pacing-current">827</span><span class="pacing-goal">current</span></div>
+        <div class="pacing-nums"><span class="pacing-current">931</span><span class="pacing-goal">current</span></div>
         <div class="dual-track">
           <div class="track-row">
             <div class="track-row-label"><span class="track-name">CY2026 goal — 1,500</span><span class="track-tag">Dec 31, 2026</span></div>
-            <div class="track" style="overflow:hidden;">
-              <div class="track-fill" style="width:55.1%; background:#90AF37;"></div>
+            <div class="track">
+              <div class="track-fill" style="width:62.1%; background:#90AF37;"></div>
             </div>
-            <div class="track-meta"><span class="ahead">+332 ahead of pace</span><span>55.1% complete</span></div>
+            <div class="track-meta"><span class="ahead">+105/mo ahead of pace</span><span>62.1% complete</span></div>
           </div>
           <div class="track-row" style="margin-bottom:0;">
             <div class="track-row-label"><span class="track-name">June 2027 goal — 2,500</span><span class="track-tag">Jun 30, 2027</span></div>
-            <div class="track" style="overflow:hidden;">
-              <div class="track-fill" style="width:33.1%; background:#FFBA4A;"></div>
+            <div class="track">
+              <div class="track-fill" style="width:37.2%; background:#FFBA4A;"></div>
             </div>
-            <div class="track-meta"><span class="ahead">On track · proj. 4,294</span><span>33.1% complete</span></div>
+            <div class="track-meta"><span class="ahead">On track · proj. 3,352</span><span>37.2% complete</span></div>
           </div>
         </div>
         <div class="pace-boxes">
-          <div class="pace-box good"><p>Current monthly pace</p><strong>261 / mo</strong></div>
-          <div class="pace-box great"><p>Needed for CY2026</p><strong>92 / mo ✓</strong></div>
+          <div class="pace-box good"><p>Current monthly pace</p><strong>186 / mo</strong></div>
+          <div class="pace-box great"><p>Needed for CY2026</p><strong>81 / mo ✓</strong></div>
         </div>
       </div>
 
       <div class="pacing-card">
         <p class="pacing-label">Groups created</p>
-        <div class="pacing-nums"><span class="pacing-current">58</span><span class="pacing-goal">current</span></div>
+        <div class="pacing-nums"><span class="pacing-current">81</span><span class="pacing-goal">current</span></div>
         <div class="dual-track">
           <div class="track-row">
             <div class="track-row-label"><span class="track-name">CY2026 goal — 150</span><span class="track-tag">Dec 31, 2026</span></div>
-            <div class="track" style="overflow:hidden;">
-              <div class="track-fill" style="width:38.7%; background:#90AF37;"></div>
+            <div class="track">
+              <div class="track-fill" style="width:54%; background:#90AF37;"></div>
             </div>
-            <div class="track-meta"><span class="ahead">+8 ahead of pace</span><span>38.7% complete</span></div>
+            <div class="track-meta"><span class="ahead">+6.3/mo ahead of pace</span><span>54.0% complete</span></div>
           </div>
           <div class="track-row" style="margin-bottom:0;">
             <div class="track-row-label"><span class="track-name">June 2027 goal — 250</span><span class="track-tag">Jun 30, 2027</span></div>
-            <div class="track" style="overflow:hidden;">
-              <div class="track-fill" style="width:23.2%; background:#FFBA4A;"></div>
+            <div class="track">
+              <div class="track-fill" style="width:32.4%; background:#FFBA4A;"></div>
             </div>
-            <div class="track-meta"><span class="ahead">On track · proj. 290</span><span>23.2% complete</span></div>
+            <div class="track-meta"><span class="ahead">On track · proj. 292</span><span>32.4% complete</span></div>
           </div>
         </div>
         <div class="pace-boxes">
-          <div class="pace-box good"><p>Current monthly pace</p><strong>17.5 / mo</strong></div>
-          <div class="pace-box great"><p>Needed for CY2026</p><strong>12.5 / mo ✓</strong></div>
+          <div class="pace-box good"><p>Current monthly pace</p><strong>16.2 / mo</strong></div>
+          <div class="pace-box great"><p>Needed for CY2026</p><strong>9.9 / mo ✓</strong></div>
         </div>
       </div>
 
@@ -233,8 +243,8 @@
     </div>
 
     <div class="card insight-sage" style="margin-bottom:0;">
-      <p class="insight-title" style="color:var(--olive);">Ahead of pace on both goals — at current run rates we crush CY2026</p>
-      <p class="insight-body" style="color:var(--olive);">Running 261 registrations/month against a CY2026 need of 92. Running 17.5 groups/month against a CY2026 need of 12.5. EOY projections: 2,741 registrations (183% of goal) and 186 groups (124% of goal). June 2027 projections: 4,294 registrations and 290 groups — both well above target.</p>
+      <p class="insight-title" style="color:var(--olive);">Ahead of pace on both goals — 5 months in, CY2026 is within reach</p>
+      <p class="insight-body" style="color:var(--olive);">Running 186 registrations/month against a CY2026 need of 81. Running 16.2 groups/month against a CY2026 need of 9.9. EOY projections: 2,234 registrations (149% of goal) and 194 groups (130% of goal). June 2027 projections: 3,352 registrations and 292 groups — both above target.</p>
     </div>
   </section>
 
@@ -248,27 +258,28 @@
       <div class="card">
         <div class="ch-head"><div class="ch-dot" style="background:#354252;"></div><span class="ch-name">Google ads</span></div>
         <p class="ch-sub">Paid search · Search, PMax, Brand · Live Feb 1</p>
-        <div class="row"><span class="rl">Spend</span><span class="rv">$4,204.73</span></div>
-        <div class="row"><span class="rl">Impressions</span><span class="rv">398,621</span></div>
-        <div class="row"><span class="rl">Registrations</span><span class="rv">124</span></div>
+        <div class="badge-watch">CAC up — watch</div>
+        <div class="row"><span class="rl">Spend</span><span class="rv">$4,923.48</span></div>
+        <div class="row"><span class="rl">Impressions</span><span class="rv">430,827</span></div>
+        <div class="row"><span class="rl">Registrations</span><span class="rv">141</span></div>
         <div class="row"><span class="rl">Imp → reg</span><span class="rv">0.03%</span></div>
         <div class="row"><span class="rl">Groups created</span><span class="rv">13</span></div>
-        <div class="row"><span class="rl">Reg → group</span><span class="conv-good">10.5%</span></div>
-        <div class="row"><span class="rl">CPL</span><span class="rv">$33.91</span></div>
-        <div class="row"><span class="rl">CAC</span><span class="rv">$323.44</span></div>
+        <div class="row"><span class="rl">Reg → group</span><span class="conv-good">9.2%</span></div>
+        <div class="row"><span class="rl">CPL</span><span class="rv">$34.92</span></div>
+        <div class="row"><span class="rl">CAC</span><span class="rv warn">$378.73</span></div>
       </div>
 
       <div class="card">
         <div class="ch-head"><div class="ch-dot" style="background:#FFBA4A;"></div><span class="ch-name">Meta ads</span></div>
         <p class="ch-sub">Paid social · Cold traffic · Live Mar 1</p>
-        <div class="row"><span class="rl">Spend</span><span class="rv">$8,693.12</span></div>
-        <div class="row"><span class="rl">Impressions</span><span class="rv">202,727</span></div>
-        <div class="row"><span class="rl">Registrations</span><span class="rv">484</span></div>
+        <div class="row"><span class="rl">Spend</span><span class="rv">$9,965.35</span></div>
+        <div class="row"><span class="rl">Impressions</span><span class="rv">229,413</span></div>
+        <div class="row"><span class="rl">Registrations</span><span class="rv">557</span></div>
         <div class="row"><span class="rl">Imp → reg</span><span class="rv">0.24%</span></div>
-        <div class="row"><span class="rl">Groups created</span><span class="rv">27</span></div>
-        <div class="row"><span class="rl">Reg → group</span><span class="conv-mid">5.6%</span></div>
-        <div class="row"><span class="rl">CPL</span><span class="rv">$17.96</span></div>
-        <div class="row"><span class="rl">CAC</span><span class="rv">$321.97</span></div>
+        <div class="row"><span class="rl">Groups created</span><span class="rv">34</span></div>
+        <div class="row"><span class="rl">Reg → group</span><span class="conv-mid">6.1%</span></div>
+        <div class="row"><span class="rl">CPL</span><span class="rv">$17.89</span></div>
+        <div class="row"><span class="rl">CAC</span><span class="rv">$293.10</span></div>
       </div>
 
       <div class="card winner">
@@ -276,27 +287,25 @@
         <p class="ch-sub">SEO · email · word of mouth</p>
         <div class="badge-winner">lowest CAC</div>
         <div class="row"><span class="rl">Spend</span><span class="rv">$2,000.00</span></div>
-        <div class="row"><span class="rl">GSC impressions</span><span class="rv">2,690</span></div>
-        <div class="row"><span class="rl">GA4 sessions</span><span class="rv">1,942</span></div>
-        <div class="row"><span class="rl">Registrations</span><span class="rv">219</span></div>
-        <div class="row"><span class="rl">Groups created</span><span class="rv">18</span></div>
+        <div class="row"><span class="rl">Registrations</span><span class="rv">233</span></div>
+        <div class="row"><span class="rl">Groups created</span><span class="rv">19</span></div>
         <div class="row"><span class="rl">Reg → group</span><span class="conv-good">8.2%</span></div>
-        <div class="row"><span class="rl">CPL</span><span class="rv">$9.13</span></div>
-        <div class="row"><span class="rl">CAC</span><span class="rv green">$111.11</span></div>
+        <div class="row"><span class="rl">CPL</span><span class="rv">$8.58</span></div>
+        <div class="row"><span class="rl">CAC</span><span class="rv green">$105.26</span></div>
       </div>
 
     </div>
 
     <div class="card" style="margin-bottom:20px;">
       <p class="sl" style="margin-bottom:14px;">CAC ranking</p>
-      <div class="rank-row"><span class="rank-num">1</span><span class="rank-label">Organic / direct</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:34%; background:#90AF37;"></div></div><span class="rank-val" style="color:#90AF37;">$111</span></div>
-      <div class="rank-row"><span class="rank-num">2</span><span class="rank-label">Meta ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:99%; background:#FFBA4A;"></div></div><span class="rank-val">$322</span></div>
-      <div class="rank-row"><span class="rank-num">3</span><span class="rank-label">Google ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:100%; background:#354252;"></div></div><span class="rank-val">$323</span></div>
+      <div class="rank-row"><span class="rank-num">1</span><span class="rank-label">Organic / direct</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:28%; background:#90AF37;"></div></div><span class="rank-val" style="color:#90AF37;">$105</span></div>
+      <div class="rank-row"><span class="rank-num">2</span><span class="rank-label">Meta ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:77%; background:#FFBA4A;"></div></div><span class="rank-val">$293</span></div>
+      <div class="rank-row"><span class="rank-num">3</span><span class="rank-label">Google ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:100%; background:#354252;"></div></div><span class="rank-val" style="color:#A57800;">$379</span></div>
     </div>
 
     <div class="card insight-sage" style="margin-bottom:20px;">
-      <p class="insight-title" style="color:var(--olive);">Organic / direct — 3× more efficient than paid</p>
-      <p class="insight-body" style="color:var(--olive);">$111 CAC vs $322–$323 for paid channels. 8.2% reg→group conversion — highest of all three channels. SEO CTR of 4.54% is above the 2–3% benchmark. Content is compounding and will continue to improve over time.</p>
+      <p class="insight-title" style="color:var(--olive);">Organic / direct — 2.8× more efficient than Meta, 3.6× more efficient than Google</p>
+      <p class="insight-body" style="color:var(--olive);">$105 CAC vs $293 Meta and $379 Google. Organic reg→group conversion at 8.2% — second only to Google's 9.2%. Blended CAC improved to $208.50 this period vs $256.86 last period, driven by higher group volume outpacing spend growth.</p>
     </div>
 
     <div class="two-col">
@@ -304,18 +313,18 @@
         <p class="sl" style="margin-bottom:10px;">Registrations by channel</p>
         <div class="chart-wrap" style="height:200px;"><canvas id="regPie" role="img" aria-label="Registrations by channel"></canvas></div>
         <div class="legend" style="margin-top:12px; margin-bottom:0;">
-          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 58.5%</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 26.5%</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Google 15.0%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 59.8%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 25.0%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Google 15.1%</div>
         </div>
       </div>
       <div class="card">
         <p class="sl" style="margin-bottom:10px;">Groups by channel</p>
         <div class="chart-wrap" style="height:200px;"><canvas id="grpPie" role="img" aria-label="Groups by channel"></canvas></div>
         <div class="legend" style="margin-top:12px; margin-bottom:0;">
-          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 46.6%</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 31.0%</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Google 22.4%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 42.0%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 23.5%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Google 16.0%</div>
         </div>
       </div>
     </div>
@@ -335,9 +344,55 @@
     </div>
   </section>
 
+  <hr>
+
+  <!-- OBSERVATIONS -->
+  <section class="obs-section">
+    <p class="sl">Observations — June 1, 2026</p>
+    <div class="obs-grid">
+
+      <div class="obs-card positive">
+        <p class="obs-tag tag-positive">✓ Positive</p>
+        <p class="obs-title">Blended CAC improved month-over-month</p>
+        <p class="obs-body">CAC dropped from $256.86 to $208.50 — a 19% improvement. Groups are being created faster than spend is increasing, which is the right direction. This is the metric that matters most to unit economics.</p>
+      </div>
+
+      <div class="obs-card positive">
+        <p class="obs-tag tag-positive">✓ Positive</p>
+        <p class="obs-title">Meta is the volume engine — and holding efficiency</p>
+        <p class="obs-body">557 of 931 registrations (59.8%) came from Meta at $17.89 CPL. Cold traffic converting at this rate is strong. The 6.1% reg→group rate is lower than other channels but expected from cold audiences — the volume more than compensates.</p>
+      </div>
+
+      <div class="obs-card positive">
+        <p class="obs-tag tag-positive">✓ Positive</p>
+        <p class="obs-title">Organic conversion quality remains the best</p>
+        <p class="obs-body">Organic/direct holds a $105 CAC — 3.6× cheaper than Google, 2.8× cheaper than Meta. At 8.2% reg→group, organic visitors are also more likely to follow through. SEO investment continues to compound.</p>
+      </div>
+
+      <div class="obs-card flag">
+        <p class="obs-tag tag-flag">⚑ Watch</p>
+        <p class="obs-title">Google CAC climbed to $379 — highest of all channels</p>
+        <p class="obs-body">Spend increased to $4,923 but groups created held at 13, pushing CAC up from $323 to $379. The 9.2% reg→group rate is the best of any paid channel, meaning intent is there — but CPL at $34.92 is the drag. Worth evaluating bid strategy and campaign mix.</p>
+      </div>
+
+      <div class="obs-card flag">
+        <p class="obs-tag tag-flag">⚑ Watch</p>
+        <p class="obs-title">4 group emails don't match any registration record</p>
+        <p class="obs-body">81 groups total, but 4 group creators have no corresponding registration email. Likely direct/offline sign-ups or data entry variance. Worth auditing the intake flow to ensure attribution is clean — these may be untracked organic conversions.</p>
+      </div>
+
+      <div class="obs-card neutral">
+        <p class="obs-tag tag-neutral">→ Context</p>
+        <p class="obs-title">Pace slowed vs prior period — still well ahead of goal</p>
+        <p class="obs-body">Prior report showed 261 reg/month. Current pace is 186/month. This is partly a math artifact — earlier months had high spikes. At 186/month we still need only 81/month for CY2026 goal. No corrective action needed, but worth watching if pace dips further.</p>
+      </div>
+
+    </div>
+  </section>
+
   <div class="dash-footer">
     <p><strong>Tend</strong> · An initiative of Plant With Purpose · Channel Performance CY2026</p>
-    <p style="margin-top:4px;">Data as of May 22, 2026 · Prepared by RightNow Inc</p>
+    <p style="margin-top:4px;">Data as of June 1, 2026 · Prepared by RightNow Inc</p>
   </div>
 
 </div>
@@ -354,13 +409,13 @@ const barOpts = (labels, data, colors) => ({
 
 new Chart(document.getElementById('regPacingChart'), barOpts(
   ['Current','CY2026 Goal','June 2027 Goal','Proj. CY2026'],
-  [827, 1500, 2500, 2741],
+  [931, 1500, 2500, 2234],
   ['#90AF37','#FFBA4A','#354252','#D2E1C3']
 ));
 
 new Chart(document.getElementById('grpPacingChart'), barOpts(
   ['Current','CY2026 Goal','June 2027 Goal','Proj. CY2026'],
-  [58, 150, 250, 186],
+  [81, 150, 250, 194],
   ['#90AF37','#FFBA4A','#354252','#D2E1C3']
 ));
 
@@ -374,8 +429,8 @@ const pieOpts = (labels, data, colors) => ({
     }}}} }
 });
 
-new Chart(document.getElementById('regPie'), pieOpts(['Meta','Organic / Direct','Google'],[484,219,124],['#FFBA4A','#90AF37','#354252']));
-new Chart(document.getElementById('grpPie'), pieOpts(['Meta','Organic / Direct','Google'],[27,18,13],['#FFBA4A','#90AF37','#354252']));
+new Chart(document.getElementById('regPie'), pieOpts(['Meta','Organic / Direct','Google'],[557,233,141],['#FFBA4A','#90AF37','#354252']));
+new Chart(document.getElementById('grpPie'), pieOpts(['Meta','Organic / Direct','Google'],[34,19,13],['#FFBA4A','#90AF37','#354252']));
 
 new Chart(document.getElementById('googleChart'), {
   type:'bar',
