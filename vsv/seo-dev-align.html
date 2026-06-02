@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+<title>VSV — SEO & Dev Alignment Brief</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a; --white: #fff; --cream: #f8f5f0;
+    --red: #c0392b; --red-lt: #fdf0ee;
+    --amber: #d97706; --amb-lt: #fef3c7;
+    --green: #15803d; --grn-lt: #f0fdf4;
+    --blue: #1d4ed8; --blu-lt: #eff6ff;
+    --teal: #0e7490; --teal-lt: #ecfeff;
+    --purple: #7c3aed; --pur-lt: #f5f3ff;
+    --gray: #6b7280; --border: #e5e7eb; --gray-lt: #f9fafb;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--black); font-size: 14px; line-height: 1.6; }
+  .page { max-width: 960px; margin: 0 auto; padding: 48px 32px; }
+
+  .header { border-bottom: 3px solid var(--black); padding-bottom: 28px; margin-bottom: 36px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+  .tag { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); }
+  .doc-meta { text-align: right; font-size: 11px; color: var(--gray); line-height: 1.8; }
+  .doc-meta .fw { font-weight: 600; color: var(--black); }
+  h1 { font-family: 'DM Serif Display', serif; font-size: 38px; line-height: 1.1; margin-bottom: 8px; }
+  .subtitle { font-size: 14px; color: var(--gray); max-width: 600px; line-height: 1.6; }
+
+  .alert { border-radius: 8px; padding: 16px 20px; margin-bottom: 28px; display: flex; gap: 14px; align-items: flex-start; }
+  .alert-green { background: var(--grn-lt); border-left: 4px solid var(--green); }
+  .alert-amber { background: var(--amb-lt); border-left: 4px solid var(--amber); }
+  .alert-red { background: var(--red-lt); border-left: 4px solid var(--red); }
+  .alert-blue { background: var(--blu-lt); border-left: 4px solid var(--blue); }
+  .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .alert-body h3 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .alert-body p { font-size: 12px; color: #374151; margin: 0; line-height: 1.6; }
+
+  .section { margin-bottom: 44px; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 18px; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px; }
+  .card h3 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .card p { font-size: 12px; color: var(--gray); margin: 0; line-height: 1.5; }
+  .card .url { font-family: monospace; font-size: 10px; color: #9ca3af; margin-top: 5px; display: block; word-break: break-all; }
+
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
+  .b-green { background: var(--grn-lt); color: var(--green); }
+  .b-amber { background: var(--amb-lt); color: var(--amber); }
+  .b-red { background: var(--red-lt); color: var(--red); }
+  .b-blue { background: var(--blu-lt); color: var(--blue); }
+  .b-teal { background: var(--teal-lt); color: var(--teal); }
+  .b-purple { background: var(--pur-lt); color: var(--purple); }
+  .b-gray { background: var(--gray-lt); color: var(--gray); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); padding: 8px 10px; border-bottom: 2px solid var(--black); text-align: left; background: var(--cream); }
+  td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: var(--gray-lt); }
+  .url-cell { font-family: monospace; font-size: 10px; color: #6b7280; word-break: break-all; }
+  .rec { font-size: 11px; font-weight: 600; }
+
+  .arch-box { background: var(--black); border-radius: 8px; padding: 24px 28px; margin-bottom: 20px; }
+  .arch-box h3 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--white); margin-bottom: 16px; }
+  .arch-layers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .arch-layer { border-radius: 6px; padding: 14px; }
+  .layer-site { background: #1d4ed8; }
+  .layer-blog { background: #0e7490; }
+  .layer-action { background: #15803d; }
+  .arch-layer h4 { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.6); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+  .arch-layer ul { list-style: none; }
+  .arch-layer ul li { font-size: 11px; color: var(--white); padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .arch-layer ul li:last-child { border-bottom: none; }
+
+  .q-box { background: var(--gray-lt); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; }
+  .q-box h3 { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+  .q-list { list-style: none; }
+  .q-list li { font-size: 13px; color: var(--black); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
+  .q-list li:last-child { border-bottom: none; }
+  .q-num { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--amber); flex-shrink: 0; line-height: 1; margin-top: -2px; }
+  .q-text strong { display: block; font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .q-text span { font-size: 12px; color: var(--gray); }
+
+  .footer { border-top: 1px solid var(--border); padding-top: 18px; margin-top: 44px; display: flex; justify-content: space-between; }
+  .footer p { font-size: 11px; color: var(--gray); }
+
+  .divider { height: 1px; background: var(--border); margin: 32px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-top">
+      <span class="tag">Visit Sun Valley — Internal Alignment Brief</span>
+      <div class="doc-meta">
+        <div>June 2026</div>
+        <div>From: <span class="fw">SEO / Content Team</span></div>
+        <div>To: <span class="fw">Development Team</span></div>
+      </div>
+    </div>
+    <h1>SEO + Dev<br>Conflict Review</h1>
+    <p class="subtitle">Cross-reference of the Bridge Second-Click Expansion URL list against the active SEO content plan. Three issues to resolve before either team proceeds.</p>
+  </div>
+
+  <!-- Status summary -->
+  <div class="section">
+    <div class="section-label">Summary — what we found</div>
+    <div class="alert alert-green">
+      <div class="alert-icon">✅</div>
+      <div class="alert-body">
+        <h3>No conflicts on prune/delete actions</h3>
+        <p>The 8 pages flagged for hard delete (hotel key cards, gaming post, generic gear posts, COVID resources, etc.) do not appear anywhere in the dev URL list. SEO Team can proceed with those immediately without coordination.</p>
+      </div>
+    </div>
+    <div class="alert alert-amber">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-body">
+        <h3>9 blog posts flagged for merging appear in dev's list as pages to keep</h3>
+        <p>Dev has marked 9 blog posts as Priority 4–5 assets worth preserving. SEO content plan calls for 8 of those to be absorbed into pillar pages via 301 redirect. These cannot be redirected without dev sign-off. Need to align on whether dev is building on those URLs or just referencing them.</p>
+      </div>
+    </div>
+    <div class="alert alert-red">
+      <div class="alert-icon">🚨</div>
+      <div class="alert-body">
+        <h3>Structural conflict — site pages and blog posts targeting identical queries</h3>
+        <p>Dev's Priority 1 site pages (/things-to-do/hiking/, /things-to-do/biking/, /lodging/, /getting-here/, /things-to-do/skiing-snowboarding/) directly overlap with 6 of the 10 new blog posts already written. Without an agreed architecture, both layers will compete for the same keywords. This is the primary issue to resolve.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- The structural conflict -->
+  <div class="section">
+    <div class="section-label">The core architecture question</div>
+    <div class="arch-box">
+      <h3>Proposed two-layer content architecture</h3>
+      <div class="arch-layers">
+        <div class="arch-layer layer-site">
+          <h4>Layer 1 — Site pages (Dev owns)</h4>
+          <ul>
+            <li>/things-to-do/</li>
+            <li>/things-to-do/hiking/</li>
+            <li>/things-to-do/biking/</li>
+            <li>/things-to-do/fly-fishing/</li>
+            <li>/things-to-do/skiing-snowboarding/</li>
+            <li>/lodging/</li>
+            <li>/getting-here/</li>
+          </ul>
+        </div>
+        <div class="arch-layer layer-blog">
+          <h4>Layer 2 — Blog posts (Content owns)</h4>
+          <ul>
+            <li>Best things to do in SV</li>
+            <li>Mountain biking guide</li>
+            <li>Fly fishing guide</li>
+            <li>Skiing guide</li>
+            <li>Where to stay guide</li>
+            <li>How to get here</li>
+          </ul>
+        </div>
+        <div class="arch-layer layer-action">
+          <h4>How they work together</h4>
+          <ul>
+            <li>Site pages = head term targets</li>
+            <li>Blog posts = long-tail support</li>
+            <li>Blog links up to site pages</li>
+            <li>Site pages link to relevant blog</li>
+            <li>No duplicate H1 / title tags</li>
+            <li>Schema stays on site pages</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--gray);margin-top:12px;">This architecture only works if we agree on it before both teams publish. If site pages and blog posts target the same primary keyword with similar content, Google will struggle to determine which to rank — and will likely rank neither well. The blog posts as currently written can be repositioned as supporting long-tail content with minor title/intent adjustments.</p>
+  </div>
+
+  <!-- P1 page overlaps -->
+  <div class="section">
+    <div class="section-label">Dev Priority 1 pages vs. SEO new blog posts — direct overlaps</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Dev P1 Page</th>
+          <th>SEO New Blog Post</th>
+          <th>Conflict Type</th>
+          <th>Recommended Resolution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="url-cell">visitsunvalley.com/things-to-do/</span></td>
+          <td><span class="url-cell">Post #1 — Best things to do in Sun Valley</span></td>
+          <td><span class="badge b-red">Direct</span></td>
+          <td class="rec">Site page = primary. Blog post repositioned as "ultimate guide" with long-tail focus. Blog links to site page.</td>
+        </tr>
+        <tr>
+          <td><span class="url-cell">visitsunvalley.com/things-to-do/hiking/</span></td>
+          <td><span class="url-cell">Hiking pillar rewrite (existing blog)</span></td>
+          <td><span class="badge b-red">Direct</span></td>
+          <td class="rec">Confirm which page targets "hiking in Sun Valley Idaho." One owns the head term. The other supports with long-tail variants.</td>
+        </tr>
+        <tr>
+          <td><span class="url-cell">visitsunvalley.com/things-to-do/biking/</span></td>
+          <td><span class="url-cell">Post #6 — Mountain biking in Sun Valley Idaho</span></td>
+          <td><span class="badge b-red">Direct</span></td>
+          <td class="rec">Dev page owns "mountain biking Sun Valley." Blog post targets "mountain biking trails Sun Valley" + trail-specific long-tail. Different titles, different H1s.</td>
+        </tr>
+        <tr>
+          <td><span class="url-cell">visitsunvalley.com/things-to-do/fly-fishing/</span></td>
+          <td><span class="url-cell">Fly fishing pillar (existing blog)</span></td>
+          <td><span class="badge b-red">Direct</span></td>
+          <td class="rec">Same resolution as biking. Site page = commercial/discovery. Blog = informational depth. Clear differentiation needed in meta titles.</td>
+        </tr>
+        <tr>
+          <td><span class="url-cell">visitsunvalley.com/things-to-do/skiing-snowboarding/</span></td>
+          <td><span class="url-cell">Post #7 — Sun Valley Skiing Guide</span></td>
+          <td><span class="badge b-red">Direct</span></td>
+          <td class="rec">Dev page = activity hub. Blog post = planning guide. "Sun Valley skiing" vs "Sun Valley ski trip planning guide" — distinct enough if titles are differentiated.</td>
+        </tr>
+        <tr>
+          <td><span class="url-cell">visitsunvalley.com/lodging/ + 7 sub-pages</span></td>
+          <td><span class="url-cell">Post #3 — Where to Stay in Sun Valley</span></td>
+          <td><span class="badge b-amber">Partial</span></td>
+          <td class="rec">Dev lodging pages are commercial (partner listings). Blog post is informational (guide). Different intent — can coexist if correctly structured. Blog links to /lodging/ as the booking destination.</td>
+        </tr>
+        <tr>
+          <td><span class="url-cell">visitsunvalley.com/getting-here/</span></td>
+          <td><span class="url-cell">Transport hub rewrite (existing blog)</span></td>
+          <td><span class="badge b-amber">Partial</span></td>
+          <td class="rec">Dev /getting-here/ is a core nav page. Blog transport hub is an article. Both can rank for different variants. Confirm dev's plans for the /getting-here/ page content before rewriting blog.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- The 9 merge conflicts -->
+  <div class="section">
+    <div class="section-label">9 blog posts — SEO plan says merge, dev plan says keep</div>
+    <table>
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Dev Priority</th>
+          <th>SEO Action</th>
+          <th>Issue</th>
+          <th>Resolution needed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="url-cell">/4-ways-to-best-experience-fly-fishing/</td>
+          <td><span class="badge b-gray">P4</span></td>
+          <td><span class="badge b-amber">Merge → fishing pillar</span></td>
+          <td>Dev flagged as long-tail blog to keep</td>
+          <td>If dev is not building on this URL, SEO can proceed with 301 to fishing pillar. Confirm dev intent.</td>
+        </tr>
+        <tr>
+          <td class="url-cell">/5-of-the-best-fall-hikes-in-sun-valley/</td>
+          <td><span class="badge b-gray">P4</span></td>
+          <td><span class="badge b-amber">Merge → fall hub</span></td>
+          <td>Dev flagged as seasonal blog to keep</td>
+          <td>Confirm dev intent. If referencing only, SEO can 301 to new fall hub.</td>
+        </tr>
+        <tr>
+          <td class="url-cell">/an-autumnal-weekend-in-sun-valley/</td>
+          <td><span class="badge b-gray">P4</span></td>
+          <td><span class="badge b-green">Keep — anchor of fall hub</span></td>
+          <td>No conflict — both plans agree this stays</td>
+          <td>✅ Aligned. Content Team will expand this as the fall hub anchor.</td>
+        </tr>
+        <tr>
+          <td class="url-cell">/best-early-season-mountain-bike-rides/</td>
+          <td><span class="badge b-gray">P4</span></td>
+          <td><span class="badge b-amber">Merge → MTB pillar</span></td>
+          <td>Dev flagged as niche blog to keep</td>
+          <td>If dev is not building on this URL, 301 to new MTB pillar. Confirm.</td>
+        </tr>
+        <tr>
+          <td class="url-cell">/best-hikes-to-catch-the-blooming-wildflowers/</td>
+          <td><span class="badge b-gray">P4</span></td>
+          <td><span class="badge b-amber">Merge → hiking pillar</span></td>
+          <td>Dev flagged as seasonal blog to keep</td>
+          <td>Confirm dev intent. 3,570 impressions — has standalone value. May be worth keeping if dev is not touching.</td>
+        </tr>
+        <tr>
+          <td class="url-cell">/fall-in-love-with-fall-in-sun-valley/</td>
+          <td><span class="badge b-gray">P4</span></td>
+          <td><span class="badge b-amber">Merge → fall hub</span></td>
+          <td>Dev flagged as seasonal blog to keep</td>
+          <td>Confirm dev intent. Low traffic (1 click) — safe to 301 unless dev has plans for it.</td>
+        </tr>
+        <tr>
+          <td class="url-cell">/eating-local-tips/</td>
+          <td><span class="badge b-gray">P5</span></td>
+          <td><span class="badge b-amber">Merge → dining section</span></td>
+          <td>Dev flagged as local food blog to keep</td>
+          <td>Low priority conflict. Confirm dev intent before actioning.</td>
+        </tr>
+        <tr>
+          <td class="url-cell">/five-reasons-to-love-fall-in-sun-valley/</td>
+          <td><span class="badge b-gray">P5</span></td>
+          <td><span class="badge b-amber">Merge → fall hub</span></td>
+          <td>Dev flagged as seasonal blog — notes "possibly overlaps with other fall articles"</td>
+          <td>Dev's own notes acknowledge overlap. Safe to 301 after dev confirmation.</td>
+        </tr>
+        <tr>
+          <td class="url-cell">/galena-lodge-where-you-should-take-your-family/</td>
+          <td><span class="badge b-gray">P5</span></td>
+          <td><span class="badge b-amber">Merge → fall hub</span></td>
+          <td>Dev flagged as branded blog to keep</td>
+          <td>Consider keeping standalone given Galena Lodge brand value. Review with client before merging.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- What's clean -->
+  <div class="section">
+    <div class="section-label">What SEO can proceed on immediately — no dev coordination needed</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-top"><span class="badge b-red">Delete now</span></div>
+        <h3>8 pages — hard delete</h3>
+        <p>Hotel key cards, gaming/slot machines post, 3 generic gear posts, 2 Covid/remote work posts, 2015–16 winter recap, El Niño stoke. None appear in dev's URL list.</p>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="badge b-red">Redirect now</span></div>
+        <h3>Noindex + trailing slash fix</h3>
+        <p>3 remote work posts (noindex). Trailing slash redirect on /mountain-collective-road-trip. 301 the COVID 404 to homepage. All safe to execute.</p>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="badge b-green">Publish now</span></div>
+        <h3>10 new blog posts</h3>
+        <p>All 10 posts are written and in Drive. Safe to publish as-is — they function as supporting long-tail content regardless of how the architecture question resolves. Internal links will be updated once architecture is confirmed.</p>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="badge b-teal">Proceed now</span></div>
+        <h3>Meta descriptions + title fixes</h3>
+        <p>308 pages missing meta descriptions, 316 pages with broken title lengths. None of these touch dev's URL list structure. SEO Team can batch-write and deploy in parallel.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Questions for dev -->
+  <div class="section">
+    <div class="section-label">Questions for development team</div>
+    <div class="q-box">
+      <h3>3 decisions needed before either team proceeds on the overlap pages</h3>
+      <ul class="q-list">
+        <li>
+          <div class="q-num">1</div>
+          <div class="q-text">
+            <strong>Are the Priority 1 site pages being rebuilt with new content?</strong>
+            <span>Specifically /things-to-do/hiking/, /things-to-do/biking/, /things-to-do/fly-fishing/, /things-to-do/skiing-snowboarding/, /lodging/, and /getting-here/. If these pages are getting new editorial content targeting head-term keywords, the SEO team needs to know now — it changes the role and content focus of the corresponding blog posts already written.</span>
+          </div>
+        </li>
+        <li>
+          <div class="q-num">2</div>
+          <div class="q-text">
+            <strong>Are the 9 conflict blog posts being used as link targets or content sources?</strong>
+            <span>If dev is building internal links or navigation that points to any of those 9 blog URLs, a 301 redirect from SEO will break those links. We need to know which URLs dev is actively referencing before we move them.</span>
+          </div>
+        </li>
+        <li>
+          <div class="q-num">3</div>
+          <div class="q-text">
+            <strong>Can we agree on a two-layer architecture before publishing?</strong>
+            <span>Proposal: Dev site pages own the head terms (e.g. "mountain biking Sun Valley"). Blog posts own the long-tail and planning queries (e.g. "mountain biking trails Sun Valley Idaho beginner"). Blog links up to site pages. Site pages link to relevant blog posts. This prevents cannibalization and gives both layers a clear ranking role. SEO team can reposition the 10 new posts accordingly — most require only a title and first-paragraph adjustment.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Recommended next step -->
+  <div class="alert alert-blue" style="margin-top:0">
+    <div class="alert-icon">📅</div>
+    <div class="alert-body">
+      <h3>Recommended next step</h3>
+      <p>30-minute sync between SEO lead, dev lead, and content lead. Agenda: (1) Confirm dev's content plans for P1 site pages. (2) Agree on two-layer architecture or an alternative. (3) Sign off on the 9 blog URL merge list. SEO Team proceeds on prunes and meta fixes in parallel — those are clean and ready to execute today.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Visit Sun Valley — SEO & Dev Alignment Brief — June 2026</p>
+    <p>SGE-RAISE™ Framework — David Tucker — All rights reserved</p>
+  </div>
+
+</div>
+</body>
+</html>
