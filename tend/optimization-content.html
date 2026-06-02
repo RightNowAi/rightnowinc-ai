@@ -1,0 +1,1132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.<link rel="icon" type="image/png" href="favicon.png">
+<title>Tend Life — SEO & Content Execution Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --olive: #3C4420;
+    --lime: #90AF37;
+    --amber: #FFBA4A;
+    --sage: #D2E1C3;
+    --navy: #354252;
+    --stone: #A59678;
+    --cream: #FEFDFB;
+    --white: #ffffff;
+    --ink: #1a1f0e;
+    --muted: #6b7280;
+    --border: #e5e9dd;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* SIDEBAR NAV */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0;
+    width: 240px;
+    height: 100vh;
+    background: var(--olive);
+    padding: 40px 0;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  .sidebar-logo {
+    padding: 0 28px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 24px;
+  }
+
+  .sidebar-logo .brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--amber);
+    display: block;
+    line-height: 1.2;
+  }
+
+  .sidebar-logo .sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .nav-section {
+    padding: 0 28px;
+    margin-bottom: 8px;
+  }
+
+  .nav-section-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 8px;
+    margin-top: 20px;
+    display: block;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.2s;
+    margin-bottom: 2px;
+  }
+
+  .nav-link:hover, .nav-link.active {
+    background: rgba(255,255,255,0.1);
+    color: var(--amber);
+  }
+
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--lime);
+    flex-shrink: 0;
+  }
+
+  .nav-dot.done { background: var(--lime); }
+  .nav-dot.todo { background: rgba(255,255,255,0.25); }
+
+  /* MAIN CONTENT */
+  .main {
+    margin-left: 240px;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--olive);
+    padding: 60px 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(144,175,55,0.15) 0%, transparent 70%);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,186,74,0.08) 0%, transparent 70%);
+  }
+
+  .header-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--lime);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header h1 span { color: var(--amber); }
+
+  .header-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 36px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .meta-item { }
+
+  .meta-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 4px;
+  }
+
+  .meta-value {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    background: var(--navy);
+    padding: 20px 64px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .progress-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+  }
+
+  .progress-phases {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+  }
+
+  .phase-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .phase-step:not(:last-child)::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 12px;
+  }
+
+  .phase-bubble {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .phase-bubble.done { background: var(--lime); color: var(--olive); }
+  .phase-bubble.active { background: var(--amber); color: var(--olive); }
+  .phase-bubble.pending { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
+
+  .phase-name {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    white-space: nowrap;
+  }
+
+  /* CONTENT AREA */
+  .content {
+    padding: 48px 64px;
+    max-width: 1000px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 64px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .phase-badge {
+    background: var(--olive);
+    color: var(--amber);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .phase-badge.complete { background: var(--lime); color: var(--olive); }
+  .phase-badge.in-progress { background: var(--amber); color: var(--olive); }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--olive);
+  }
+
+  /* SUBSECTIONS */
+  .subsection {
+    margin-bottom: 40px;
+  }
+
+  .subsection-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .subsection-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .intro-text {
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-size: 14px;
+    max-width: 680px;
+    line-height: 1.8;
+  }
+
+  /* TASK TABLE */
+  .task-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    margin-bottom: 12px;
+  }
+
+  .task-table thead tr {
+    background: var(--sage);
+  }
+
+  .task-table th {
+    padding: 11px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--olive);
+  }
+
+  .task-table td {
+    padding: 11px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .task-table tbody tr:last-child td { border-bottom: none; }
+
+  .task-table tbody tr:nth-child(odd) { background: var(--white); }
+  .task-table tbody tr:nth-child(even) { background: #fafaf8; }
+
+  .task-table tbody tr:hover { background: #f5f8ee; }
+
+  .url-cell {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--navy);
+  }
+
+  /* STATUS BADGES */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+  }
+
+  .status.done { background: #e8f5d0; color: #3a6b0f; }
+  .status.done .status-dot { background: var(--lime); }
+
+  .status.todo { background: #f0f2f7; color: var(--muted); }
+  .status.todo .status-dot { background: #cbd5e1; }
+
+  .status.warn { background: #fff7e6; color: #92600a; }
+  .status.warn .status-dot { background: var(--amber); }
+
+  /* NOTE BOX */
+  .note-box {
+    background: #f5f8ee;
+    border-left: 3px solid var(--lime);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--olive);
+    line-height: 1.6;
+  }
+
+  .note-box strong { font-weight: 600; }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 10px 14px;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .check-letter {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--white);
+    background: var(--olive);
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* TWO-COL GUARDRAILS */
+  .guardrails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .guardrail-card {
+    border-radius: 10px;
+    padding: 24px;
+    border: 1px solid var(--border);
+  }
+
+  .guardrail-card.do { background: #f5f8ee; border-color: #c4d9a0; }
+  .guardrail-card.dont { background: #fdf6f0; border-color: #f0d5c0; }
+
+  .guardrail-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .guardrail-card.do .guardrail-title { color: var(--olive); }
+  .guardrail-card.dont .guardrail-title { color: #8b3a0f; }
+
+  .guardrail-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+  }
+
+  .guardrail-card.do .guardrail-icon { background: var(--lime); color: var(--olive); }
+  .guardrail-card.dont .guardrail-icon { background: #e8876a; color: white; }
+
+  .guardrail-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .guardrail-list li {
+    font-size: 13px;
+    padding-left: 14px;
+    position: relative;
+    color: #374151;
+    line-height: 1.5;
+  }
+
+  .guardrail-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+
+  .guardrail-card.do .guardrail-list li::before { background: var(--lime); }
+  .guardrail-card.dont .guardrail-list li::before { background: #e8876a; }
+
+  /* CONTENT CALENDAR CARDS */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .content-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: box-shadow 0.2s;
+  }
+
+  .content-card:hover { box-shadow: 0 2px 12px rgba(60,68,32,0.08); }
+
+  .card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--stone);
+    font-weight: 500;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .card-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .card-tag {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  /* SIGN OFF TABLE */
+  .signoff-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .signoff-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .signoff-phase {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .signoff-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .signoff-owner {
+    font-size: 11px;
+    color: var(--stone);
+    margin-bottom: 8px;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-left: 240px;
+    background: var(--olive);
+    padding: 24px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* PRINT */
+  @media print {
+    .sidebar { display: none; }
+    .main, .footer { margin-left: 0; }
+    .progress-bar { display: none; }
+    .content { padding: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <span class="brand">Tend Life</span>
+    <span class="sub">SEO & Content Plan</span>
+  </div>
+
+  <div class="nav-section">
+    <span class="nav-section-label">Overview</span>
+    <a href="#purpose" class="nav-link"><span class="nav-dot done"></span>Purpose & Scope</a>
+  </div>
+
+  <div class="nav-section">
+    <span class="nav-section-label">Phase 1 — Technical</span>
+    <a href="#canonicals" class="nav-link"><span class="nav-dot done"></span>Canonical Fixes</a>
+    <a href="#noindex-utility" class="nav-link"><span class="nav-dot todo"></span>Noindex Utility Pages</a>
+    <a href="#noindex-tags" class="nav-link"><span class="nav-dot todo"></span>Noindex Tag Archives</a>
+    <a href="#thin-pages" class="nav-link"><span class="nav-dot todo"></span>Fix Thin Resource Pages</a>
+    <a href="#meta" class="nav-link"><span class="nav-dot todo"></span>Meta Descriptions</a>
+    <a href="#authors" class="nav-link"><span class="nav-dot todo"></span>Author Attribution</a>
+    <a href="#images" class="nav-link"><span class="nav-dot todo"></span>Hotlinked Image Fix</a>
+  </div>
+
+  <div class="nav-section">
+    <span class="nav-section-label">Phase 2 — SGE-RAISE</span>
+    <a href="#checklist" class="nav-link"><span class="nav-dot todo"></span>Optimization Checklist</a>
+    <a href="#queue" class="nav-link"><span class="nav-dot todo"></span>Post Queue</a>
+  </div>
+
+  <div class="nav-section">
+    <span class="nav-section-label">Phase 3 — New Content</span>
+    <a href="#calendar" class="nav-link"><span class="nav-dot todo"></span>Content Calendar</a>
+    <a href="#brief-standard" class="nav-link"><span class="nav-dot todo"></span>Brief Standard</a>
+    <a href="#content-ideas" class="nav-link"><span class="nav-dot todo"></span>Top 9 Article Ideas</a>
+  </div>
+
+  <div class="nav-section">
+    <span class="nav-section-label">Guardrails</span>
+    <a href="#brand" class="nav-link"><span class="nav-dot todo"></span>Brand Rules</a>
+    <a href="#signoff" class="nav-link"><span class="nav-dot todo"></span>Sign-Off</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">RightNow Communications · Confidential · June 2026</div>
+    <h1>Tend Life<br><span>SEO & Content</span><br>Execution Plan</h1>
+    <div class="header-sub">An initiative of Plant With Purpose</div>
+    <div class="header-meta">
+      <div class="meta-item">
+        <div class="meta-label">Client</div>
+        <div class="meta-value">Tend Life / Plant With Purpose</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Phases</div>
+        <div class="meta-value">3 — Technical · SGE-RAISE · Net New</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Prepared by</div>
+        <div class="meta-value">Prepared by RightNow Communications</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar">
+    <span class="progress-label">Progress</span>
+    <div class="progress-phases">
+      <div class="phase-step">
+        <div class="phase-bubble active">1</div>
+        <span class="phase-name">Technical SEO</span>
+      </div>
+      <div class="phase-step">
+        <div class="phase-bubble pending">2</div>
+        <span class="phase-name">SGE-RAISE</span>
+      </div>
+      <div class="phase-step">
+        <div class="phase-bubble pending">3</div>
+        <span class="phase-name">Net New Content</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- PURPOSE -->
+    <div class="section" id="purpose">
+      <div class="section-header">
+        <span class="phase-badge">Overview</span>
+        <h2 class="section-title">Purpose & Scope</h2>
+      </div>
+      <p class="intro-text">This is the operational execution guide for improving Tend Life's organic search visibility and AI search citation footprint. It covers three sequential phases: technical SEO cleanup, SGE-RAISE content optimization of existing posts, and net-new content production.</p>
+      <p class="intro-text">All content work must comply with Tend's brand voice (Park Ranger archetype), missional posture (God is already active — we participate), and theology translation rules as defined in the Tend Life Internal Marketing Intelligence and Missio Dei Theological Framework documents.</p>
+      <div class="note-box"><strong>Rule:</strong> Phase 1 must be fully complete before Phase 2 begins. Run a fresh Screaming Frog crawl after Phase 1 to confirm all technical issues resolved.</div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="section" id="phase1">
+      <div class="section-header">
+        <span class="phase-badge in-progress">Phase 1</span>
+        <h2 class="section-title">Technical SEO</h2>
+      </div>
+
+      <!-- 1.1 Canonicals -->
+      <div class="subsection" id="canonicals">
+        <div class="subsection-title">1.1 &nbsp;Canonical Fixes</div>
+        <p class="intro-text">Four blog posts had canonical tags pointing to legacy URLs (pre-/stories/ migration). All four corrected in Yoast SEO → Advanced → Canonical URL.</p>
+        <table class="task-table">
+          <thead><tr><th>URL</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="url-cell">/stories/encountering-gods-care-for-creation/</td><td>PM</td><td><span class="status done"><span class="status-dot"></span>Fixed</span></td></tr>
+            <tr><td class="url-cell">/stories/shaping-faith-in-preteens/</td><td>PM</td><td><span class="status done"><span class="status-dot"></span>Fixed</span></td></tr>
+            <tr><td class="url-cell">/stories/biblical-discipleship/</td><td>PM</td><td><span class="status done"><span class="status-dot"></span>Fixed</span></td></tr>
+            <tr><td class="url-cell">/stories/tending-together-practicing-faith/</td><td>PM</td><td><span class="status done"><span class="status-dot"></span>Fixed</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 1.2 Noindex Utility -->
+      <div class="subsection" id="noindex-utility">
+        <div class="subsection-title">1.2 &nbsp;Noindex Utility Pages</div>
+        <p class="intro-text">These pages are indexable but must not appear in search results. In Yoast SEO → Advanced, set "Allow search engines to show this page" to No.</p>
+        <table class="task-table">
+          <thead><tr><th>URL</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="url-cell">tendlife.org/login/</td><td>PM</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td class="url-cell">tendlife.org/register/</td><td>PM</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td class="url-cell">tendlife.org/reset-password/</td><td>PM</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td class="url-cell">tendlife.org/new-group/thanks/</td><td>PM</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td class="url-cell">tendlife.org/endline-survey/</td><td>PM</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td class="url-cell">tendlife.org/spring-cohort/</td><td>PM</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+          </tbody>
+        </table>
+        <div class="note-box"><strong>How to:</strong> WP Admin → open page → Yoast SEO panel → Advanced tab → toggle "Allow search engines to show this page in search results" to No → Update.</div>
+      </div>
+
+      <!-- 1.3 Tag Archives -->
+      <div class="subsection" id="noindex-tags">
+        <div class="subsection-title">1.3 &nbsp;Noindex Tag Archives</div>
+        <p class="intro-text">30+ tag archive pages are indexable with fewer than 100 words each. These dilute crawl budget and provide no citation value to AI systems. Noindex all in one step via Yoast settings.</p>
+        <table class="task-table">
+          <thead><tr><th>Task</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Noindex all tag archives (site-wide setting)</td><td>PM</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+          </tbody>
+        </table>
+        <div class="note-box"><strong>How to:</strong> WP Admin → Yoast SEO → Search Appearance → Taxonomies tab → Tags → set "Show tags in search results" to No → Save. One setting, all archives done.</div>
+      </div>
+
+      <!-- 1.4 Thin Pages -->
+      <div class="subsection" id="thin-pages">
+        <div class="subsection-title">1.4 &nbsp;Fix Thin Resource Pages</div>
+        <p class="intro-text">Three resource pages are indexable with only 26 words each. Flesh out to 400–600 words using brand voice guidelines, or noindex. Do not leave as-is.</p>
+        <table class="task-table">
+          <thead><tr><th>URL</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="url-cell">resources/why-care-for-the-earth/</td><td>Content Lead</td><td><span class="status warn"><span class="status-dot"></span>Flesh out or noindex</span></td></tr>
+            <tr><td class="url-cell">resources/who-is-my-neighbor/</td><td>Content Lead</td><td><span class="status warn"><span class="status-dot"></span>Flesh out or noindex</span></td></tr>
+            <tr><td class="url-cell">resources/including-kids-in-tend/</td><td>Content Lead</td><td><span class="status warn"><span class="status-dot"></span>Flesh out or noindex</span></td></tr>
+          </tbody>
+        </table>
+        <div class="note-box"><strong>Recommendation:</strong> All three map to real Tend themes with genuine AI search demand. Flesh them out — don't waste the URLs.</div>
+      </div>
+
+      <!-- 1.5 Meta -->
+      <div class="subsection" id="meta">
+        <div class="subsection-title">1.5 &nbsp;Add Meta Descriptions</div>
+        <p class="intro-text">Key indexable pages have no meta description. Google and AI systems use these for context. Add in Yoast SEO → Edit Snippet. 140–160 characters. Lead with felt need. No urgency language.</p>
+        <table class="task-table">
+          <thead><tr><th>URL</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="url-cell">tendlife.org/for-group-leaders/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td class="url-cell">tendlife.org/stories/ (blog index)</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td class="url-cell">tendlife.org/signup/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td class="url-cell">tendlife.org/for-pastors/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 1.6 Authors -->
+      <div class="subsection" id="authors">
+        <div class="subsection-title">1.6 &nbsp;Author Attribution</div>
+        <p class="intro-text">Multiple posts show "The Tend Team" as author. Named authors are required for E-E-A-T and Article schema. Assign real names to all posts and create author bio pages.</p>
+        <table class="task-table">
+          <thead><tr><th>Task</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Assign named author to all /stories/ posts</td><td>PM</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>Create author bio page for each contributor</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 1.7 Images -->
+      <div class="subsection" id="images">
+        <div class="subsection-title">1.7 &nbsp;Hotlinked External Image</div>
+        <p class="intro-text">The Au Sable post contains an image served from images.squarespace-cdn.com — a third-party domain. It will eventually 404 and creates a page speed dependency.</p>
+        <table class="task-table">
+          <thead><tr><th>Task</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Download Au Sable image and host locally on tendlife.org</td><td>PM / Dev</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="section" id="phase2">
+      <div class="section-header">
+        <span class="phase-badge">Phase 2</span>
+        <h2 class="section-title">SGE-RAISE Content Optimization</h2>
+      </div>
+      <p class="intro-text">Apply the SGE-RAISE framework to all existing /stories/ posts. Goal: turn published content into AI-citable source material. Complete Phase 1 entirely before starting Phase 2.</p>
+
+      <!-- Checklist -->
+      <div class="subsection" id="checklist">
+        <div class="subsection-title">SGE-RAISE Checklist — Apply to Every Post</div>
+        <ul class="checklist">
+          <li><span class="check-letter">R</span> <span><strong>Relevance:</strong> Confirm primary keyword and intent type (informational / exploratory). Map to one clear SGE query the post should own.</span></li>
+          <li><span class="check-letter">A</span> <span><strong>Answer Block:</strong> Add TL;DR or definition block within first 100 words. 2–3 sentences, direct answer format.</span></li>
+          <li><span class="check-letter">A</span> <span><strong>Answer Structure:</strong> Rewrite H2/H3 headers as question format where not already. One answer block per section (~40–80 words).</span></li>
+          <li><span class="check-letter">I</span> <span><strong>Entity Enrichment:</strong> Ensure Tend, Plant With Purpose, and relevant named entities (people, places, Scripture references) appear consistently throughout.</span></li>
+          <li><span class="check-letter">S</span> <span><strong>Schema:</strong> Add Article schema with author (Person), datePublished, dateModified, and description. Add FAQ schema if FAQ block present.</span></li>
+          <li><span class="check-letter">E</span> <span><strong>E-E-A-T:</strong> Named author with bio confirmed. "Last Updated" date visible. Minimum 2 internal links to authoritative Tend pages. External references where relevant.</span></li>
+          <li><span class="check-box"></span> <span><strong>Voice Check:</strong> Run missional energy check — does content assume God is already active? Does it remove pressure? Are neighbors collaborators, not targets?</span></li>
+        </ul>
+      </div>
+
+      <!-- Queue -->
+      <div class="subsection" id="queue">
+        <div class="subsection-title">Post Optimization Queue — Priority Order</div>
+        <p class="intro-text">Start with what-is-a-tend-group and what-is-discipleship — highest AI answer potential. Definitional queries are exactly what AI systems cite directly.</p>
+        <table class="task-table">
+          <thead><tr><th>#</th><th>Post Slug</th><th>Owner</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>01</td><td class="url-cell">what-is-a-tend-group/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>02</td><td class="url-cell">what-is-discipleship/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>03</td><td class="url-cell">why-faith-feels-disconnected/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>04</td><td class="url-cell">biblical-discipleship/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>05</td><td class="url-cell">care-about-creation/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>06</td><td class="url-cell">nature-activity-for-kids/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>07</td><td class="url-cell">walking-with-god/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>08</td><td class="url-cell">ecotherapy-and-jesus/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>09</td><td class="url-cell">why-farms-need-people/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>10</td><td class="url-cell">choose-a-co-leader/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>11</td><td class="url-cell">discovering-jesus/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>12</td><td class="url-cell">creation-care-helps-us-treat-neighbors/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+            <tr><td>13</td><td class="url-cell">what-if-god-is-already-at-work/</td><td>Content Lead</td><td><span class="status todo"><span class="status-dot"></span>To Do</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="section" id="phase3">
+      <div class="section-header">
+        <span class="phase-badge">Phase 3</span>
+        <h2 class="section-title">Net New Content</h2>
+      </div>
+      <p class="intro-text">Ten topic gaps identified from the site audit. These are queries AI systems regularly answer where Tend has no content and could become the cited source. Brief each post against SGE-RAISE from day one.</p>
+
+      <!-- Calendar -->
+      <div class="subsection" id="calendar">
+        <div class="subsection-title">Content Calendar — 10 Priority Posts</div>
+        <div class="content-grid">
+          <div class="content-card"><span class="card-num">01</span><div><div class="card-text">How to start a small group from scratch</div><div class="card-tag">Informational · High AI answer potential</div></div></div>
+          <div class="content-card"><span class="card-num">02</span><div><div class="card-text">Small group vs. Bible study — what's the difference?</div><div class="card-tag">Informational · Definitional query</div></div></div>
+          <div class="content-card"><span class="card-num">03</span><div><div class="card-text">What does creation care mean for Christians?</div><div class="card-tag">Informational · Core topic gap</div></div></div>
+          <div class="content-card"><span class="card-num">04</span><div><div class="card-text">Outreach ideas for small churches with no budget</div><div class="card-tag">Exploratory · Pastor Mark persona</div></div></div>
+          <div class="content-card"><span class="card-num">05</span><div><div class="card-text">How to invite neighbors to a church event without it feeling weird</div><div class="card-tag">Exploratory · Jenn Z persona</div></div></div>
+          <div class="content-card"><span class="card-num">06</span><div><div class="card-text">Intergenerational small group ideas</div><div class="card-tag">Informational · Family audience</div></div></div>
+          <div class="content-card"><span class="card-num">07</span><div><div class="card-text">Christian community garden ideas</div><div class="card-text">Christian community garden ideas</div><div class="card-tag">Informational · Earthcare angle</div></div></div>
+          <div class="content-card"><span class="card-num">08</span><div><div class="card-text">What is a sacred hike?</div><div class="card-tag">Informational · Activity guide SEO</div></div></div>
+          <div class="content-card"><span class="card-num">09</span><div><div class="card-text">How long should a small group run?</div><div class="card-tag">Informational · Tend owns this answer</div></div></div>
+          <div class="content-card"><span class="card-num">10</span><div><div class="card-text">Small group ideas for families with kids</div><div class="card-tag">Exploratory · Family + Jenn Z</div></div></div>
+        </div>
+      </div>
+
+      <!-- Brief Standard -->
+      <div class="subsection" id="brief-standard">
+        <div class="subsection-title">Brief Standard — All New Posts</div>
+        <p class="intro-text">Every brief must include the following before writing begins. No exceptions.</p>
+        <ul class="checklist">
+          <li><span class="check-box"></span>Primary keyword + SGE intent type</li>
+          <li><span class="check-box"></span>TL;DR answer (2–3 sentences written before the post is drafted)</li>
+          <li><span class="check-box"></span>H2 structure in question format</li>
+          <li><span class="check-box"></span>FAQ blocks planned (minimum 3 Q&As)</li>
+          <li><span class="check-box"></span>Schema type identified (Article + FAQ minimum)</li>
+          <li><span class="check-box"></span>Named entities to include (Tend, Plant With Purpose, Scripture, people)</li>
+          <li><span class="check-box"></span>Internal link targets (minimum 2)</li>
+          <li><span class="check-box"></span>Author assigned with bio</li>
+          <li><span class="check-box"></span>Missional energy check passed before publish</li>
+        </ul>
+        <div class="note-box"><strong>Target:</strong> 800–1,400 words. Flesch readability 65–80 (Normal to Fairly Easy). Translate theology — don't explain it. No academic density.</div>
+      </div>
+    </div>
+
+    <!-- CONTENT IDEAS -->
+    <div class="section" id="content-ideas">
+      <div class="section-header">
+        <span class="phase-badge">Phase 3</span>
+        <h2 class="section-title">Top 9 Article Ideas — Researched</h2>
+      </div>
+      <p class="intro-text">These topics are confirmed to have active search demand with weak or generic competing content. Tend's differentiated positioning gives it a genuine edge on every one. Ranked by AI citation potential + competitive gap.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">Why These Work</div>
+        <p class="intro-text">These are not zero-volume niche queries. Research confirmed multiple competing results on each — meaning real search activity exists. The opportunity is that every current result is either generic, programmatic, or misses Tend's angle entirely. With <code style="background:#f0f4e8;padding:2px 6px;border-radius:4px;font-size:12px;">ai-input=yes</code> now live, structured, authoritative posts on these topics will be pulled by ChatGPT, Perplexity, and Google AI Overviews.</p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Article Ideas — Priority Order</div>
+        <table class="task-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Working Title</th>
+              <th>Tend's Differentiated Angle</th>
+              <th>Primary Persona</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td><strong>What Is a Missional Small Group (And How Is It Different From a Bible Study)?</strong></td>
+              <td>Embodied, neighbor-facing, creation-rooted — no current result covers this angle</td>
+              <td>Pastor Mark</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td><strong>How to Start a Small Group When You've Never Done It Before</strong></td>
+              <td>10-week structure + co-leader model is a specific, differentiated answer vs. generic guides</td>
+              <td>Jenn Z</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td><strong>What Does It Mean to Care for Creation as a Christian?</strong></td>
+              <td>Every competitor frames it as stewardship or activism. Tend's angle — original vocation, join what God is doing — is completely unrepresented. Biggest gap play on the list.</td>
+              <td>Curious neighbor / new Christians</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td><strong>How to Invite a Neighbor to Something Church-Related Without It Feeling Weird</strong></td>
+              <td>Every result is about inviting to Sunday service. Tend's Earthcare Activity model — inviting neighbors to a cleanup or sacred hike — is a fundamentally different answer nobody has written.</td>
+              <td>Jenn Z</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+            <tr>
+              <td>05</td>
+              <td><strong>The Difference Between Outreach and Presence (And Why It Matters for Your Church)</strong></td>
+              <td>Maps directly to Tend's missional shift: Projects → Partnerships. Addresses pastor burnout from outreach programs that don't build relationships.</td>
+              <td>Pastor Mark</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+            <tr>
+              <td>06</td>
+              <td><strong>What Is a Sacred Hike? (And How Churches Are Using Them for Discipleship)</strong></td>
+              <td>Zero competition — no one has written this definitively. Tend has the activity guide, theology, and stories. Pure gap play. AI will cite the only authoritative source.</td>
+              <td>Families / outdoor Christians</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+            <tr>
+              <td>07</td>
+              <td><strong>How Long Should a Small Group Run? The Case for Seasons Over Semesters</strong></td>
+              <td>Tend's 10-week structure is a direct, specific answer. Most results are vague. Frames Tend's rhythm vs. open-ended groups that lose momentum.</td>
+              <td>Any leader evaluating models</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+            <tr>
+              <td>08</td>
+              <td><strong>What Gen Z Actually Wants From Church (Hint: It's Not a Program)</strong></td>
+              <td>2026 data shows Gen Z spiritually open but rejecting performance Christianity. Tend's "disciple by doing" angle is the exact antidote. High shareability, strong AI surface.</td>
+              <td>Pastors / youth leaders</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+            <tr>
+              <td>09</td>
+              <td><strong>Christian Community Gardening: How Churches Are Turning Plots Into Places of Formation</strong></td>
+              <td>Combines trending secular search (community gardening) with Christian discipleship. Farmhand Friends activity guide is the exact use case. Cross-audience: secular gardeners find Tend.</td>
+              <td>Jenn Z / curious neighbors</td>
+              <td><span class="status todo"><span class="status-dot"></span>Brief Needed</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note-box"><strong>Start with #3, #2, and #1</strong> — pure definitional queries AI systems cite directly. Then #4 and #6 — lowest competition, Tend uniquely owns the answer. Then #8 and #9 — trend-driven with high social distribution potential.</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">Search Demand Validation</div>
+        <p class="intro-text">Three topics were spot-checked via live search to confirm non-zero demand:</p>
+        <table class="task-table">
+          <thead><tr><th>Query</th><th>Competing Results Found</th><th>Gap</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>"how to start a small group church"</td>
+              <td>8+ results — Lifeway, Logos, Navigators, Outreach, DisciplePair</td>
+              <td>None cover Tend's 10-week + co-leader + neighbor-facing model</td>
+            </tr>
+            <tr>
+              <td>"what does creation care mean for Christians"</td>
+              <td>BioLogos, Lausanne, Life.Church, multiple seminary sites</td>
+              <td>Every result frames as stewardship/activism. Tend's identity-based angle is absent.</td>
+            </tr>
+            <tr>
+              <td>"invite neighbor to church without being awkward"</td>
+              <td>Lifeway (52 ideas), multiple church sites, iBelieve</td>
+              <td>100% focused on inviting to Sunday service. Earthcare Activity model not represented.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BRAND GUARDRAILS -->
+    <div class="section" id="brand">
+      <div class="section-header">
+        <span class="phase-badge">All Phases</span>
+        <h2 class="section-title">Brand Guardrails</h2>
+      </div>
+      <p class="intro-text">Every piece of content produced under this plan must pass these checks before publish.</p>
+      <div class="guardrails">
+        <div class="guardrail-card do">
+          <div class="guardrail-title"><span class="guardrail-icon">✓</span>Always</div>
+          <ul class="guardrail-list">
+            <li>Frame Tend as an initiative of Plant With Purpose</li>
+            <li>Sound: inviting, plainspoken, wonder-filled, calm</li>
+            <li>Assume God is already present and active</li>
+            <li>Remove pressure from leaders</li>
+            <li>Frame neighbors as collaborators, not targets</li>
+            <li>Use approved CTAs: Learn more / Explore Tend / See how it works</li>
+            <li>Publish with a named author and bio</li>
+          </ul>
+        </div>
+        <div class="guardrail-card dont">
+          <div class="guardrail-title"><span class="guardrail-icon">✕</span>Never</div>
+          <ul class="guardrail-list">
+            <li>Position Tend as a standalone nonprofit</li>
+            <li>Sound: preachy, urgent, activist, guilt-based, corporate</li>
+            <li>Use urgency language or pressure-based appeals</li>
+            <li>Use "Easy", "Launch", "Activate", "Save your neighborhood"</li>
+            <li>Reference theology without translating it to plain language</li>
+            <li>Publish without a named author</li>
+            <li>Use "The Tend Team" as author attribution</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGN OFF -->
+    <div class="section" id="signoff">
+      <div class="section-header">
+        <span class="phase-badge">Tracking</span>
+        <h2 class="section-title">Sign-Off & Milestones</h2>
+      </div>
+      <div class="signoff-grid">
+        <div class="signoff-item">
+          <div class="signoff-phase">Milestone 1</div>
+          <div class="signoff-label">Phase 1 complete — re-crawl confirm</div>
+          <div class="signoff-owner">PM</div>
+          <span class="status todo"><span class="status-dot"></span>To Do</span>
+        </div>
+        <div class="signoff-item">
+          <div class="signoff-phase">Milestone 2</div>
+          <div class="signoff-label">Phase 2 optimization underway</div>
+          <div class="signoff-owner">Content Lead</div>
+          <span class="status todo"><span class="status-dot"></span>To Do</span>
+        </div>
+        <div class="signoff-item">
+          <div class="signoff-phase">Milestone 3</div>
+          <div class="signoff-label">Phase 3 briefs drafted</div>
+          <div class="signoff-owner">Strategist</div>
+          <span class="status todo"><span class="status-dot"></span>To Do</span>
+        </div>
+        <div class="signoff-item">
+          <div class="signoff-phase">Milestone 4</div>
+          <div class="signoff-label">Phase 3 content live</div>
+          <div class="signoff-owner">Content Lead</div>
+          <span class="status todo"><span class="status-dot"></span>To Do</span>
+        </div>
+      </div>
+      <div class="note-box" style="margin-top:20px"><strong>Questions:</strong> Route to RightNow Communications strategist before making any changes not covered in this document.</div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<footer class="footer">
+  <span class="footer-text">Tend Life SEO & Content Execution Plan · RightNow Communications · June 2026 · Confidential</span>
+  <span class="footer-brand">Tend</span>
+</footer>
+
+</body>
+</html>
