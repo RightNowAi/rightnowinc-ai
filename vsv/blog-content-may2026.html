@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon.png">
+<title>Visit Sun Valley — Blog Content Strategy Brief 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --cream: #f8f5f0;
+    --gold: #b8972a;
+    --gold-lt: #f5edd8;
+    --red: #c0392b;
+    --red-lt: #fdf0ee;
+    --amber: #d97706;
+    --amb-lt: #fef3c7;
+    --green: #15803d;
+    --grn-lt: #f0fdf4;
+    --blue: #1d4ed8;
+    --blu-lt: #eff6ff;
+    --purple: #6d28d9;
+    --pur-lt: #f5f3ff;
+    --pink: #7e22ce;
+    --pink-lt: #fdf4ff;
+    --gray: #6b7280;
+    --gray-lt: #f9fafb;
+    --border: #e5e7eb;
+    --seo: #0e7490;
+    --seo-lt: #ecfeff;
+    --content: #7c3aed;
+    --content-lt: #f5f3ff;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--black); font-size: 14px; line-height: 1.6; }
+  .page { max-width: 980px; margin: 0 auto; padding: 48px 32px; }
+
+  /* Header */
+  .header { border-bottom: 3px solid var(--black); padding-bottom: 32px; margin-bottom: 40px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .client-tag { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); }
+  .doc-meta { text-align: right; }
+  .doc-meta p { font-size: 11px; color: var(--gray); }
+  .doc-meta .fw { font-weight: 600; color: var(--black); }
+  .header h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.1; color: var(--black); margin-bottom: 8px; }
+  .header .subtitle { font-size: 15px; color: var(--gray); max-width: 620px; line-height: 1.6; }
+
+  /* Summary bar */
+  .summary-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--black); border: 1px solid var(--black); margin-bottom: 48px; }
+  .summary-cell { background: var(--white); padding: 16px 12px; text-align: center; }
+  .summary-cell .n { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--black); }
+  .summary-cell .l { font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--gray); margin-top: 2px; }
+  .summary-cell.inv { background: var(--black); }
+  .summary-cell.inv .n { color: var(--white); }
+  .summary-cell.inv .l { color: #9ca3af; }
+
+  /* Section */
+  .section { margin-bottom: 52px; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gray); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 20px; }
+  p { color: #374151; line-height: 1.7; margin-bottom: 12px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* Team legend */
+  .team-legend { display: flex; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+  .team-pill { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; }
+  .team-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .team-pill span { font-size: 12px; font-weight: 600; }
+  .team-pill small { font-size: 11px; color: var(--gray); }
+
+  /* Findings */
+  .findings { background: var(--black); border-radius: 8px; padding: 28px; margin-bottom: 28px; }
+  .findings h3 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); margin-bottom: 20px; }
+  .findings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .finding { border-left: 2px solid var(--gold); padding-left: 14px; }
+  .finding .fn { font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .finding .fd { font-size: 11px; color: #d1d5db; margin-top: 4px; line-height: 1.5; }
+
+  /* Action cards */
+  .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .action-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; position: relative; }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 8px; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 4px; white-space: nowrap; }
+  .badge-prune { background: var(--red-lt); color: var(--red); }
+  .badge-merge { background: var(--amb-lt); color: var(--amber); }
+  .badge-rewrite { background: var(--blu-lt); color: var(--blue); }
+  .badge-new { background: var(--grn-lt); color: var(--green); }
+  .badge-seo { background: var(--seo-lt); color: var(--seo); }
+  .badge-content { background: var(--content-lt); color: var(--content); }
+  .badge-joint { background: #fdf4ff; color: #7e22ce; }
+  .team-tag { font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+  .t-seo { background: var(--seo-lt); color: var(--seo); border: 1px solid #a5f3fc; }
+  .t-content { background: var(--content-lt); color: var(--content); border: 1px solid #ddd6fe; }
+  .action-card h3 { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .action-card p { font-size: 12px; color: var(--gray); margin: 0; line-height: 1.5; }
+  .action-card .url { font-family: monospace; font-size: 10px; color: #9ca3af; margin-top: 6px; display: block; word-break: break-all; }
+
+  /* New posts table */
+  .posts-table { width: 100%; border-collapse: collapse; }
+  .posts-table th { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); padding: 8px 12px; border-bottom: 2px solid var(--black); text-align: left; background: var(--cream); }
+  .posts-table td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 12px; vertical-align: top; }
+  .posts-table tr:hover td { background: var(--gray-lt); }
+  .posts-table .post-name { font-weight: 600; font-size: 13px; display: block; }
+  .posts-table .post-slug { font-family: monospace; font-size: 10px; color: #9ca3af; display: block; margin-top: 2px; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin: 2px 2px 0 0; }
+  .tag-ev { background: var(--grn-lt); color: var(--green); }
+  .tag-su { background: var(--amb-lt); color: var(--amber); }
+  .tag-wi { background: var(--blu-lt); color: var(--blue); }
+  .tag-24 { background: var(--pink-lt); color: var(--pink); }
+  .priority { display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 4px; }
+  .p1 { background: var(--red-lt); color: var(--red); }
+  .p2 { background: var(--amb-lt); color: var(--amber); }
+
+  /* SGE pillars */
+  .pillars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .pillar { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px 14px; }
+  .pillar-letter { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+  .pillar-name { font-size: 11px; font-weight: 700; margin-bottom: 6px; }
+  .pillar p { font-size: 11px; color: var(--gray); line-height: 1.5; margin: 0; }
+  .attribution { font-size: 10px; color: var(--gray); margin-top: 16px; font-style: italic; }
+
+  /* 24hrs box */
+  .hrs-box { background: var(--pink-lt); border: 1px solid #e9d5ff; border-radius: 8px; padding: 20px 24px; }
+  .hrs-box h3 { font-size: 13px; font-weight: 700; color: var(--pink); margin-bottom: 12px; }
+  .hrs-box ul { list-style: none; }
+  .hrs-box ul li { font-size: 12px; color: #374151; padding: 5px 0; border-bottom: 1px solid #e9d5ff; display: flex; gap: 10px; }
+  .hrs-box ul li:last-child { border-bottom: none; }
+  .hrs-box ul li::before { content: "→"; color: var(--pink); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* Schema note */
+  .schema-note { background: var(--grn-lt); border: 1px solid #bbf7d0; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; font-size: 12px; color: #14532d; }
+  .schema-note strong { display: block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+
+  /* Timeline */
+  .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tl-card { border-radius: 8px; padding: 18px; }
+  .tl-m1 { background: var(--red-lt); border-left: 4px solid var(--red); }
+  .tl-m2 { background: var(--amb-lt); border-left: 4px solid var(--amber); }
+  .tl-m3 { background: var(--grn-lt); border-left: 4px solid var(--green); }
+  .tl-card h3 { font-size: 12px; font-weight: 700; margin-bottom: 12px; }
+  .tl-section { margin-bottom: 10px; }
+  .tl-section-label { font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+  .tl-seo-label { color: var(--seo); }
+  .tl-content-label { color: var(--content); }
+  .tl-card ul { list-style: none; }
+  .tl-card ul li { font-size: 11px; color: #374151; padding: 3px 0; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .tl-card ul li:last-child { border-bottom: none; }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--border); margin: 40px 0; }
+
+  /* Footer */
+  .footer { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+  .footer p { font-size: 11px; color: var(--gray); }
+
+  @media print { body { background: white; } .page { padding: 24px; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <span class="client-tag">Visit Sun Valley — Blog Content Strategy</span>
+      <div class="doc-meta">
+        <p>June 2026</p>
+        <p>Framework: <span class="fw">SGE-RAISE™</span> — David Tucker</p>
+        <p>Prepared by: <span class="fw">David Tucker</span></p>
+      </div>
+    </div>
+    <h1>Blog Content<br>Action Brief</h1>
+    <p class="subtitle">Full audit of the /searching-for-sun-valley/ blog section — 292 live pages reviewed. Decisions on what to prune, merge, keep, rewrite, and build new, with team assignments across SEO and Content Production.</p>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-bar">
+    <div class="summary-cell"><div class="n">292</div><div class="l">Live pages</div></div>
+    <div class="summary-cell inv"><div class="n">~60</div><div class="l">Prune</div></div>
+    <div class="summary-cell"><div class="n">~30</div><div class="l">Merge</div></div>
+    <div class="summary-cell"><div class="n">~80</div><div class="l">Keep</div></div>
+    <div class="summary-cell"><div class="n">12</div><div class="l">Rewrite</div></div>
+    <div class="summary-cell inv"><div class="n">10</div><div class="l">Net new</div></div>
+  </div>
+
+  <!-- Team legend -->
+  <div class="section">
+    <div class="section-label">Team assignments</div>
+    <div class="team-legend">
+      <div class="team-pill">
+        <div class="team-dot" style="background:var(--seo)"></div>
+        <div>
+          <span style="color:var(--seo)">SEO Team</span>
+          <small style="display:block">301 redirects · noindex · meta descriptions · title fixes · schema on existing pages · recrawl</small>
+        </div>
+      </div>
+      <div class="team-pill">
+        <div class="team-dot" style="background:var(--content)"></div>
+        <div>
+          <span style="color:var(--content)">Content Production Team</span>
+          <small style="display:block">New posts · rewrites · merges · SGE layers · 24hrs template · schema baked into new content</small>
+        </div>
+      </div>
+    </div>
+    <div class="schema-note">
+      <strong>Schema ownership rule</strong>
+      New posts and rewrites: schema written into the article at creation — Content Production Team owns end to end. Existing pages not being rewritten: schema added retroactively by SEO Team.
+    </div>
+  </div>
+
+  <!-- Audit findings -->
+  <div class="section">
+    <div class="section-label">Audit findings — what the data says</div>
+    <div class="findings">
+      <h3>292 pages. One clean bill of technical health. Every problem is editorial.</h3>
+      <div class="findings-grid">
+        <div class="finding"><div class="fn">65%</div><div class="fd">of pages missing meta descriptions — direct CTR killer across the section</div></div>
+        <div class="finding"><div class="fn">12,171</div><div class="fd">impressions on the transport page sitting at 0.4% CTR — single biggest missed opportunity</div></div>
+        <div class="finding"><div class="fn">4,137</div><div class="fd">inlinks pointing to the parent page — which has no meta desc and 19% engagement rate</div></div>
+        <div class="finding"><div class="fn">0</div><div class="fd">technical SEO issues — the 182 "non-indexable" pages were crawl artifacts, not real problems</div></div>
+        <div class="finding"><div class="fn">316</div><div class="fd">pages with broken title lengths — too long or too short, getting cut or carrying no keyword weight</div></div>
+        <div class="finding"><div class="fn">48%</div><div class="fd">average engagement rate — decent signal, but CTR is the gap. Content quality is there. Distribution isn't.</div></div>
+      </div>
+    </div>
+    <p>The 182 "non-indexable" pages that flagged in the crawl broke down as: 134 rate-limit artifacts (429s at crawl speed, not actual errors), 19 expected wp-login.php blocks, 12 correct http→https canonicals, and 1 trailing slash redirect to fix. The site is technically sound. All work is content-layer.</p>
+  </div>
+
+  <!-- Prune -->
+  <div class="section">
+    <div class="section-label">Prune — SEO Team executes</div>
+    <div class="action-grid">
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-prune">Delete</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Hotel access key cards</h3>
+        <p>Off-brand, 9,441 impressions diluting topical authority. Google is confused about what this site is. Hard delete.</p>
+        <span class="url">/understanding-hotel-access-key-cards-codes-and-more/</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-prune">301 Redirect</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Coronavirus resources (dead 404)</h3>
+        <p>3 active inlinks pointing to a 404. 301 redirect to homepage. Covid-era content, zero current value.</p>
+        <span class="url">/sun-valley-idaho-coronavirus-resources/ → homepage</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-prune">Delete</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Slot machines / gaming destination</h3>
+        <p>Off-brand speculative piece. Zero clicks, contradicts destination positioning entirely. Hard delete.</p>
+        <span class="url">/from-ski-slopes-to-slot-machines.../</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-prune">Delete (3 posts)</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Generic gear / travel gadgets / mobile apps</h3>
+        <p>No Sun Valley specificity. Cannot rank for any VSV keyword. Delete all 3.</p>
+        <span class="url">/essential-gear-for-your-mountain-town-adventure/ + 2 others</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-prune">Noindex (3 posts)</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Remote work / Zoom town content</h3>
+        <p>Covid-era, stale intent, zero current traffic. Noindex rather than delete to preserve any social equity.</p>
+        <span class="url">/zoom-town-guide/ + /remote-learning/ + /8-places-to-catch-up-on-work/</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-prune">Delete</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>2015–16 winter recap + El Niño stoke</h3>
+        <p>Year-specific, no evergreen value. Cluttering the index and diluting topical authority.</p>
+        <span class="url">/winter-recap-2015-2016-season/ + /el-nino-winter-stoke/</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-prune">301 Redirect</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Trailing slash fix</h3>
+        <p>Non-slash version has 141 impressions and 1 click. Link equity not consolidating. Simple server-side 301.</p>
+        <span class="url">/mountain-collective-road-trip → /mountain-collective-road-trip/</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-prune">Recrawl</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Recrawl 134 rate-limited pages</h3>
+        <p>429 pages are crawl artifacts, not broken. Recrawl at 1 req/sec to confirm actual status. May uncover strong content flying blind.</p>
+        <span class="url">134 pages — re-audit after recrawl</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Merge -->
+  <div class="section">
+    <div class="section-label">Merge — Content Production Team builds, SEO Team executes redirects</div>
+    <div class="action-grid">
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-merge">Hiking pillar</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>5 hiking posts → 1 pillar</h3>
+        <p>Summer hiking guide wins (158 clicks, 5% CTR). Content absorbs wildflowers, fall hikes, 3-best-ways, spring hike into pillar. SEO Team 301s all 4 slugs.</p>
+        <span class="url">/hiking-in-sun-valley-idaho-a-summer-guide/ (keep + expand)</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-merge">Fishing pillar</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>4 fishing posts → 1 pillar</h3>
+        <p>Ultimate guide wins (91 clicks, 3,727 impr). Content folds winter fishing + 4-ways in as seasonal sections. SEO Team 301s both slugs.</p>
+        <span class="url">/fly-fishing-in-sun-valley-id-the-ultimate-guide/ (keep + expand)</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-merge">Fall hub</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>6 fall posts → 1 hub</h3>
+        <p>No single fall post dominant (top: 12 clicks). Content builds new fall hub anchored around the autumnal itinerary piece. SEO Team 301s all 5 weaker slugs.</p>
+        <span class="url">new: /fall-in-sun-valley-idaho/</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-merge">Dining</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>3 eating-local posts → 1 section</h3>
+        <p>Dine Around SV anchor (73 clicks, 68% engagement). Content folds 3 eating-local posts into a "local food" section. SEO Team 301s all 3.</p>
+        <span class="url">/dine-around-sun-valley/ (keep as anchor)</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-merge">MTB pillar</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>11 biking posts → 1 new pillar</h3>
+        <p>No current post dominant (top: 16 clicks). Content builds new SGE-first pillar with named trails, elevation, skill levels, gear rental. SEO Team 301s all 11 existing slugs.</p>
+        <span class="url">new: /mountain-biking-sun-valley-idaho/</span>
+      </div>
+
+      <div class="action-card">
+        <div class="card-top"><span class="badge badge-merge">Getting here</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>Transport hub absorbs SLC post</h3>
+        <p>Content rewrites transport hub and folds in SLC-to-SV post as a sub-section. SEO Team 301s SLC slug to hub. Keep Boise post separate — different intent.</p>
+        <span class="url">/how-to-get-to-sun-valley-idaho/ (keep + rewrite)</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Rewrites -->
+  <div class="section">
+    <div class="section-label">Priority rewrites — Content Production Team + SGE-RAISE™ framework</div>
+    <div class="action-grid">
+
+      <div class="action-card" style="border-left: 3px solid var(--red);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P1</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>How to get to Sun Valley</h3>
+        <p>12,171 impressions at 0.4% CTR. Biggest single opportunity on the blog. Title mismatches intent. Zero meta desc. Full SGE rewrite — new title, meta, TL;DR, FAQ schema baked in.</p>
+        <span class="url">/how-to-get-to-sun-valley-idaho/</span>
+      </div>
+
+      <div class="action-card" style="border-left: 3px solid var(--red);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P1</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>Hiking pillar — SGE layer</h3>
+        <p>158 clicks, 5% CTR. Already ranking. Add TL;DR, convert H2s to questions, FAQ schema. Absorb merged hiking posts into new sections.</p>
+        <span class="url">/hiking-in-sun-valley-idaho-a-summer-guide/</span>
+      </div>
+
+      <div class="action-card" style="border-left: 3px solid var(--red);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P1</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>Fly fishing guide — SGE layer</h3>
+        <p>91 clicks, 3,727 impr. Named rivers (Big Wood, Silver Creek, Salmon) = entity richness for AI. TL;DR, question H2s, FAQ schema, absorb merged posts.</p>
+        <span class="url">/fly-fishing-in-sun-valley-id-the-ultimate-guide/</span>
+      </div>
+
+      <div class="action-card" style="border-left: 3px solid var(--red);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P1</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>Hemingway legacy — SGE layer</h3>
+        <p>89 clicks, 4,227 impr. AI loves named-entity historical content. Add meta, author bio, external citations, FAQ schema, TL;DR answer block.</p>
+        <span class="url">/a-guide-to-ernest-hemingways-sun-valley-legacy/</span>
+      </div>
+
+      <div class="action-card" style="border-left: 3px solid var(--red);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P1</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>Dark skies — SGE layer</h3>
+        <p>4,827 impressions. Named entity (Central Idaho Dark Sky Reserve). AI surfaces for "dark sky Idaho" queries constantly. 1.3% CTR underperforming.</p>
+        <span class="url">/the-dark-skies-of-sun-valley-id/</span>
+      </div>
+
+      <div class="action-card" style="border-left: 3px solid var(--amber);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P2</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>Idaho ski resorts by vertical drop</h3>
+        <p>7,738 impressions at 0.2% CTR. Comparison query = AI snippet magnet. Add table schema, TL;DR, FAQ. Must be ready before October for winter indexing.</p>
+        <span class="url">/idaho-ski-resorts-listed-by-vertical-drop-and-snowfall/</span>
+      </div>
+
+      <div class="action-card" style="border-left: 3px solid var(--amber);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P2</span><span class="team-tag t-content">Content Team</span></div>
+        <h3>Ski gear rental guide</h3>
+        <p>4,518 impressions, 0 clicks. Zero meta desc. Transactional intent — AI answers "where to rent skis Sun Valley" constantly. Full rewrite with HowTo schema baked in.</p>
+        <span class="url">/guide-to-renting-ski-snowboard-nordic.../</span>
+      </div>
+
+      <div class="action-card" style="border-left: 3px solid var(--amber);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P2</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Meta descriptions — bulk fix</h3>
+        <p>308 of 474 pages have zero meta description. SEO Team writes and deploys. Start with top 30 pages by impressions. 50–160 chars, action-oriented, unique per page.</p>
+        <span class="url">All pages with 500+ impressions and 0 meta desc</span>
+      </div>
+
+      <div class="action-card" style="border-left: 3px solid var(--amber);">
+        <div class="card-top"><span class="badge badge-rewrite">Rewrite P2</span><span class="team-tag t-seo">SEO Team</span></div>
+        <h3>Title length fixes</h3>
+        <p>316 pages with titles over 60 or under 30 chars. Getting cut in SERPs or carrying no keyword weight. Fix by impressions priority. Target 50–60 chars, keyword near front.</p>
+        <span class="url">All pages with 1,000+ impressions</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 24hrs -->
+  <div class="section">
+    <div class="section-label">24hrs with a Local — keep all posts, optimise all, continue series</div>
+    <p>The 24hrs series is a strategic asset for internal and newsletter use — all posts stay. New posts publish 1–2 per month. The optimisation template below is applied to all existing posts by the Content Production Team to build E-E-A-T and organic reach without changing the editorial content.</p>
+    <div class="hrs-box">
+      <h3>Optimisation template — Content Production Team applies to all existing 24hrs posts</h3>
+      <ul>
+        <li>Rewrite title to lead with activity or place — not name + month. "A Day Fly Fishing Sun Valley's Big Wood River with Silver Creek Outfitters' Terry Ring" not "24hrs with Terry Ring, October"</li>
+        <li>Write a meta description for every post — 1 sentence: name + their angle + Sun Valley hook, 50–160 chars</li>
+        <li>Add named entity signals in body — specific trails, restaurants, and venues the local mentions by name (min 3 per post)</li>
+        <li>Add 2–3 FAQ questions at the bottom — "Where does [name] recommend eating in Ketchum?" — SGE snippet bait with 40–80 word answers</li>
+        <li>Add minimum 2 internal links per post — to relevant activity guides, dining guide, or seasonal pages</li>
+        <li>Add author bio or byline — E-E-A-T signal, even a one-line attribution works</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 10 new posts -->
+  <div class="section">
+    <div class="section-label">10 new posts — Content Production Team — SGE-RAISE™ framework applied at creation</div>
+    <table class="posts-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Post title &amp; slug</th>
+          <th>Why AI search needs this</th>
+          <th>Schema (baked in)</th>
+          <th>Season</th>
+          <th>Deadline</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1</strong></td>
+          <td><span class="post-name">Best things to do in Sun Valley, Idaho</span><span class="post-slug">/best-things-to-do-in-sun-valley-idaho/</span></td>
+          <td>Top destination query with no VSV page owning it. Anchor pillar — every other post links here. AI pulls this for every Sun Valley discovery query.</td>
+          <td>FAQ + Article + ItemList</td>
+          <td><span class="tag tag-ev">Evergreen</span></td>
+          <td><strong>Jul 7</strong></td>
+          <td><span class="priority p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>2</strong></td>
+          <td><span class="post-name">Best time to visit Sun Valley — month by month</span><span class="post-slug">/best-time-to-visit-sun-valley-idaho/</span></td>
+          <td>Zero coverage. Top 5 AI query for any destination. Covers weather + seasonal events + when ski season opens — one page answers all of it.</td>
+          <td>FAQ + Article</td>
+          <td><span class="tag tag-ev">Evergreen</span></td>
+          <td><strong>Jul 7</strong></td>
+          <td><span class="priority p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>3</strong></td>
+          <td><span class="post-name">Where to stay in Sun Valley, Idaho</span><span class="post-slug">/where-to-stay-in-sun-valley-idaho/</span></td>
+          <td>Zero hotel coverage. AI answers "where to stay Sun Valley" daily and VSV has nothing. Existing post has 1,687 impr at 0.4% CTR — replace it with this.</td>
+          <td>FAQ + LodgingBusiness</td>
+          <td><span class="tag tag-ev">Evergreen</span></td>
+          <td><strong>Aug 4</strong></td>
+          <td><span class="priority p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>4</strong></td>
+          <td><span class="post-name">How much does a Sun Valley trip cost?</span><span class="post-slug">/sun-valley-idaho-trip-cost-budget-guide/</span></td>
+          <td>Zero cost coverage. "Is Sun Valley expensive?" is a high-volume AI query. Builds trust with consideration-stage visitors and positions VSV as a transparent resource.</td>
+          <td>FAQ + Article</td>
+          <td><span class="tag tag-ev">Evergreen</span></td>
+          <td><strong>Sep 1</strong></td>
+          <td><span class="priority p2">P2</span></td>
+        </tr>
+        <tr>
+          <td><strong>5</strong></td>
+          <td><span class="post-name">Sun Valley summer guide — complete trip planner</span><span class="post-slug">/sun-valley-idaho-summer-guide/</span></td>
+          <td>No summer hub exists. The hiking guide is the only summer pillar and covers one activity. This ties all summer content together with event dates and internal links. Peak planning intent is right now.</td>
+          <td>FAQ + Article + Event</td>
+          <td><span class="tag tag-su">Summer — now</span></td>
+          <td><strong>Jul 7</strong></td>
+          <td><span class="priority p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>6</strong></td>
+          <td><span class="post-name">Mountain biking in Sun Valley, Idaho</span><span class="post-slug">/mountain-biking-sun-valley-idaho/</span></td>
+          <td>Consolidates 11 cannibalising posts. No current page dominant (top: 16 clicks). Built SGE-first with Bald Mountain trails, elevation, skill levels, rentals. All 11 existing posts 301 here.</td>
+          <td>FAQ + HowTo + Article</td>
+          <td><span class="tag tag-su">Summer — now</span></td>
+          <td><strong>Jul 14</strong></td>
+          <td><span class="priority p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>7</strong></td>
+          <td><span class="post-name">Sun Valley skiing guide — Bald Mountain &amp; what to know</span><span class="post-slug">/sun-valley-idaho-skiing-guide/</span></td>
+          <td>No authoritative ski planning page exists. AI answers "Sun Valley skiing" daily and pulls competitors. Needs 90 days to index before December peak. Hard deadline: September 1.</td>
+          <td>FAQ + HowTo + Article</td>
+          <td><span class="tag tag-wi">Winter — build now</span></td>
+          <td><strong>Sep 1 ⚠</strong></td>
+          <td><span class="priority p1">P1</span></td>
+        </tr>
+        <tr>
+          <td><strong>8</strong></td>
+          <td><span class="post-name">Sun Valley with kids — family trip planning guide</span><span class="post-slug">/sun-valley-idaho-family-guide/</span></td>
+          <td>7 existing family posts with combined 12 clicks. AI answers "Sun Valley family vacation" and pulls competitors. Consolidates into one guide: ski school, Dollar Mountain, family dining, kid trails.</td>
+          <td>FAQ + Article</td>
+          <td><span class="tag tag-wi">Winter + Summer</span></td>
+          <td><strong>Aug 18</strong></td>
+          <td><span class="priority p2">P2</span></td>
+        </tr>
+        <tr>
+          <td><strong>9</strong></td>
+          <td><span class="post-name">24hrs with a Local — summer 2026</span><span class="post-slug">/24-hours-with-a-local-summer-2026-[name]/</span></td>
+          <td>New 24hrs post built SGE-first from day one — becomes the format template for all future editions. Choose a local whose expertise maps to a high-value activity keyword.</td>
+          <td>FAQ + Article</td>
+          <td><span class="tag tag-24">24hrs series</span><span class="tag tag-su">Summer</span></td>
+          <td><strong>Jul 21</strong></td>
+          <td><span class="priority p2">P2</span></td>
+        </tr>
+        <tr>
+          <td><strong>10</strong></td>
+          <td><span class="post-name">24hrs with a Local — winter 2026</span><span class="post-slug">/24-hours-with-a-local-winter-2026-[name]/</span></td>
+          <td>E-E-A-T building for ski planning queries. Local should be ski-adjacent: ski patrol, Bald Mountain guide, or Nordic instructor at Galena Lodge. Publish by October for indexing.</td>
+          <td>FAQ + Article</td>
+          <td><span class="tag tag-24">24hrs series</span><span class="tag tag-wi">Winter</span></td>
+          <td><strong>Oct 1</strong></td>
+          <td><span class="priority p2">P2</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SGE-RAISE -->
+  <div class="section">
+    <div class="section-label">SGE-RAISE™ framework — applied to all new posts and rewrites</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-letter">R</div>
+        <div class="pillar-name">Relevance Mapping</div>
+        <p>Map keyword to clear user intent: Exploratory, Informational, Transactional, or Navigational. Tone and depth follow intent type.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-letter">A</div>
+        <div class="pillar-name">Answer Blocks</div>
+        <p>TL;DR or direct answer within first 100 words. H2/H3 phrased as questions. 40–80 word answer block per section. FAQ section at bottom of every post.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-letter">I</div>
+        <div class="pillar-name">Entity Enrichment</div>
+        <p>Named places, trails, rivers, and venues throughout. Bald Mountain, Big Wood River, Argyros Center, Ketchum, Sawtooth — specific, never generic.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-letter">S</div>
+        <div class="pillar-name">Structured Data</div>
+        <p>FAQ schema on all posts. HowTo schema on activity guides. Event schema where dates appear. Article schema baseline on all. Written in at creation for new posts.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-letter">E</div>
+        <div class="pillar-name">E-E-A-T Signals</div>
+        <p>Author bio or byline visible. Date of last update shown. Named local knowledge. External references where relevant. First-person or experiential voice throughout.</p>
+      </div>
+    </div>
+    <p class="attribution">SGE-RAISE™ is a proprietary framework developed by David Tucker. All rights reserved.</p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="section">
+    <div class="section-label">Execution sequence — 3 months</div>
+    <div class="timeline">
+      <div class="tl-card tl-m1">
+        <h3>Month 1 — July</h3>
+        <div class="tl-section">
+          <div class="tl-section-label tl-seo-label">SEO Team</div>
+          <ul>
+            <li>Delete hotel key cards, gaming post, gear posts</li>
+            <li>Noindex remote work / Zoom town posts</li>
+            <li>301 redirect coronavirus 404 → homepage</li>
+            <li>301 redirect trailing slash fix</li>
+            <li>Recrawl 429 pages at lower speed</li>
+          </ul>
+        </div>
+        <div class="tl-section">
+          <div class="tl-section-label tl-content-label">Content Team</div>
+          <ul>
+            <li>Publish #1 Best things to do</li>
+            <li>Publish #2 Best time to visit</li>
+            <li>Publish #5 Summer guide hub</li>
+            <li>Publish #6 MTB pillar (+ trigger 11 redirects)</li>
+            <li>Publish #9 24hrs summer local</li>
+            <li>Rewrite transport hub (P1)</li>
+            <li>SGE layer: hiking pillar</li>
+            <li>SGE layer: fly fishing guide</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-card tl-m2">
+        <h3>Month 2 — August</h3>
+        <div class="tl-section">
+          <div class="tl-section-label tl-seo-label">SEO Team</div>
+          <ul>
+            <li>301 redirect all merged post slugs</li>
+            <li>Meta descriptions: top 30 by impressions</li>
+            <li>Title fixes: all pages 1,000+ impressions</li>
+            <li>Schema on existing pages not being rewritten</li>
+          </ul>
+        </div>
+        <div class="tl-section">
+          <div class="tl-section-label tl-content-label">Content Team</div>
+          <ul>
+            <li>Publish #3 Where to stay</li>
+            <li>Publish #7 Skiing guide ⚠ hard deadline</li>
+            <li>Publish #8 Family guide</li>
+            <li>Build fall hub (merge 6 posts)</li>
+            <li>Merge dining posts into Dine Around SV</li>
+            <li>SGE layer: Hemingway + dark skies</li>
+            <li>Rewrite ski resorts comparison + rental guide</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-card tl-m3">
+        <h3>Month 3 — September+</h3>
+        <div class="tl-section">
+          <div class="tl-section-label tl-seo-label">SEO Team</div>
+          <ul>
+            <li>Meta descriptions: remaining pages</li>
+            <li>Title fixes: remaining pages</li>
+            <li>Re-audit post recrawl</li>
+          </ul>
+        </div>
+        <div class="tl-section">
+          <div class="tl-section-label tl-content-label">Content Team</div>
+          <ul>
+            <li>Publish #4 Trip cost / budget guide</li>
+            <li>Publish #10 24hrs winter local</li>
+            <li>Apply 24hrs template to all existing posts</li>
+            <li>Merge fishing posts into pillar</li>
+            <li>Merge hiking posts into pillar</li>
+            <li>Ongoing: 24hrs series 1–2 posts/month</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Visit Sun Valley — Blog Content Strategy Brief — June 2026</p>
+    <p>SGE-RAISE™ Framework — David Tucker — All rights reserved</p>
+  </div>
+
+</div>
+</body>
+</html>
