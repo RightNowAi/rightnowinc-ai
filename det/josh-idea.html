@@ -1,0 +1,1300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
+<title>We Move Forward — Brand Strategy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root {
+    --black: #2A2F1E;
+    --white: #FAFAF6;
+    --clay: #7A9E3B;
+    --slate: #3D5220;
+    --mist: #EEE9DC;
+    --gold: #D4940A;
+    --red: #C4602A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  .hero {
+    background: #2A2F1E;
+    color: var(--white);
+    padding: 60px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--clay), var(--gold));
+  }
+
+  .hero-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 12vw, 96px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .hero h1 span {
+    color: var(--clay);
+  }
+
+  .hero-meta {
+    font-size: 13px;
+    color: rgba(247,244,239,0.5);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-meta strong {
+    color: rgba(247,244,239,0.8);
+    font-weight: 500;
+  }
+
+  /* NORTH STAR */
+  .north-star {
+    background: #3D5220;
+    color: var(--white);
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .north-star p {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: clamp(18px, 4vw, 24px);
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #FAFAF6;
+  }
+
+  /* NAV */
+  .nav {
+    background: #2A2F1E;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-inner {
+    display: inline-flex;
+    gap: 0;
+    min-width: 100%;
+  }
+
+  .nav a {
+    color: rgba(247,244,239,0.6);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 16px 16px;
+    display: inline-block;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav a:hover { color: var(--clay); }
+
+  /* MAIN CONTENT */
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--mist);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 7vw, 52px);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    color: var(--black);
+    margin-bottom: 28px;
+  }
+
+  .section h3 {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--slate);
+    margin: 36px 0 14px;
+    padding-top: 8px;
+  }
+
+  .section h3:first-of-type { margin-top: 8px; }
+
+  p { margin-bottom: 16px; color: #2a2a2a; }
+  p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; color: var(--black); }
+
+  em { font-style: italic; color: var(--slate); }
+
+  /* THE THREE NUMBERS */
+  .three-numbers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 32px 0;
+    background: var(--mist);
+  }
+
+  .number-block {
+    background: #2A2F1E;
+    color: var(--white);
+    padding: 32px 20px;
+    text-align: center;
+  }
+
+  .number-block .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--clay);
+    display: block;
+  }
+
+  .number-block .label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(247,244,239,0.6);
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--mist);
+    border-left: 4px solid var(--clay);
+    padding: 20px 24px;
+    margin: 24px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout p {
+    margin: 0;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--slate);
+  }
+
+  /* TEAM */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+
+  .team-card {
+    background: #3D5220;
+    color: var(--white);
+    padding: 20px;
+    border-radius: 2px;
+  }
+
+  .team-card .name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    color: var(--clay);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .team-card .role {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(247,244,239,0.65);
+    line-height: 1.5;
+  }
+
+  /* BLOCKS */
+  .block {
+    background: var(--mist);
+    padding: 24px;
+    margin: 16px 0;
+    border-radius: 2px;
+    border-top: 3px solid var(--slate);
+  }
+
+  .block.urgent { border-top-color: var(--red); }
+
+  .block-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+
+  .block p { font-size: 14px; margin-bottom: 8px; }
+  .block p:last-child { margin-bottom: 0; }
+
+  .block .action {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--clay);
+    margin-top: 12px;
+  }
+
+  /* UL / OL */
+  ul, ol {
+    padding-left: 20px;
+    margin: 12px 0;
+  }
+
+  li {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #2a2a2a;
+    line-height: 1.6;
+  }
+
+  li strong { color: var(--black); }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; margin: 24px 0; -webkit-overflow-scrolling: touch; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 480px;
+  }
+
+  th {
+    background: #2A2F1E;
+    color: var(--white);
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--mist);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tr:nth-child(even) td { background: #f2ede6; }
+  tr:hover td { background: #ece6de; }
+
+  td strong { color: var(--slate); }
+
+  /* APPROVAL FLOW */
+  .approval-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 20px 0;
+  }
+
+  .approval-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--mist);
+    padding: 16px 20px;
+    position: relative;
+  }
+
+  .approval-step .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--clay);
+    min-width: 32px;
+    line-height: 1;
+  }
+
+  .approval-step .step-info strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+
+  .approval-step .step-info span {
+    font-size: 13px;
+    color: #666;
+  }
+
+  /* RULE */
+  .rule {
+    background: #3D5220;
+    color: var(--white);
+    padding: 20px 24px;
+    margin: 24px 0;
+    border-radius: 2px;
+  }
+
+  .rule p {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  /* HASHTAGS */
+  .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .hashtag {
+    background: #2A2F1E;
+    color: var(--clay);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  .hashtag.secondary {
+    background: var(--mist);
+    color: var(--slate);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  /* LOOP CYCLE */
+  .loop-cycle {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0;
+    justify-content: center;
+  }
+
+  .loop-step {
+    background: #3D5220;
+    color: var(--white);
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 2px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .loop-arrow {
+    color: var(--clay);
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  /* CONTENT MIX */
+  .content-types {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .content-type {
+    background: var(--mist);
+    padding: 14px 16px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--slate);
+    border-left: 3px solid var(--mist);
+  }
+
+  .content-type.internal { border-left-color: var(--gold); }
+
+  /* ARC CARDS */
+  .arc-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .arc-card {
+    background: #2A2F1E;
+    color: var(--white);
+    padding: 24px;
+    border-radius: 2px;
+    border-left: 4px solid var(--clay);
+  }
+
+  .arc-card .arc-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--clay);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .arc-card .arc-what {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(247,244,239,0.8);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .arc-card .arc-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .arc-card .arc-meta-item label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(247,244,239,0.4);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .arc-card .arc-meta-item span {
+    font-size: 13px;
+    color: rgba(247,244,239,0.85);
+    line-height: 1.4;
+  }
+
+  /* BUDGET */
+  .budget-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .budget-item {
+    background: var(--mist);
+    padding: 16px;
+    border-radius: 2px;
+    font-size: 14px;
+  }
+
+  .budget-item strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+
+  .budget-item span {
+    font-size: 12px;
+    color: #666;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #2A2F1E;
+    color: rgba(250,250,246,0.4);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .footer strong { color: var(--clay); }
+
+  /* PROPOSAL BADGE */
+  .proposal-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #2A2F1E;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .content-types { grid-template-columns: 1fr; }
+    .budget-items { grid-template-columns: 1fr; }
+    .arc-card .arc-meta { grid-template-columns: 1fr; }
+    .three-numbers { grid-template-columns: 1fr; gap: 2px; }
+    .loop-cycle { flex-direction: column; }
+    .loop-arrow { transform: rotate(90deg); }
+    .nav a { padding: 16px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="proposal-badge">Proposal — Working Draft — June 2026</div>
+    <div class="hero-label">Josh Coleman</div>
+    <h1>We Move<br><span>Forward</span></h1>
+    <div class="hero-meta">
+      <strong>Wendy Jae + David Tucker</strong> &nbsp;·&nbsp; Confidential
+    </div>
+  </div>
+</div>
+
+<!-- NORTH STAR -->
+<div class="north-star">
+  <p>Josh doesn't need to think about any of this.<br>He runs. He captures. He rests.<br>Everything else is handled.</p>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#what">What It Is</a>
+    <a href="#who">Who</a>
+    <a href="#blocks">Blocks</a>
+    <a href="#doing">What We're Doing</a>
+    <a href="#tools">Tools</a>
+    <a href="#ads">Ads</a>
+    <a href="#email">Email</a>
+    <a href="#grassroots">Grassroots</a>
+    <a href="#pr">PR</a>
+    <a href="#podcasts">Podcasts</a>
+    <a href="#story">Storytelling</a>
+    <a href="#arcs">Arcs</a>
+    <a href="#dates">Dates</a>
+    <a href="#engagement">Engagement</a>
+    <a href="#brand">Brand Kit</a>
+    <a href="#sponsors">Sponsors</a>
+    <a href="#budget">Budget</a>
+    <a href="#build">Build List</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- WHAT IT IS -->
+  <div class="section" id="what">
+    <div class="section-eyebrow">The Mission</div>
+    <h2>What It Is</h2>
+
+    <p>On May 31, 2026 — his 50th birthday — Josh Coleman started running. 50 miles minimum in every US state. 12,000 miles in one year. At 50 years old. Four years after losing his wife Erin. It has never been done.</p>
+
+    <div class="three-numbers">
+      <div class="number-block">
+        <span class="num">50</span>
+        <span class="label">His Age</span>
+      </div>
+      <div class="number-block">
+        <span class="num">50</span>
+        <span class="label">Miles Per State</span>
+      </div>
+      <div class="number-block">
+        <span class="num">50</span>
+        <span class="label">States</span>
+      </div>
+    </div>
+
+    <p><strong>Completes:</strong> May 30, 2027</p>
+
+    <div class="callout">
+      <p>"Not to outrun grief. To run with it."</p>
+    </div>
+
+    <p>Running is the vehicle. Grief is the story. Humanity is the audience.</p>
+    <p><strong>Working tagline:</strong> <em>We Move Forward</em> — "We" is intentional. This is bigger than Josh. Everyone who follows is running with him.</p>
+    <p><strong>Mission name:</strong> The 50/50 Project <em>(internal — operational use only)</em></p>
+  </div>
+
+  <!-- WHO DOES WHAT -->
+  <div class="section" id="who">
+    <div class="section-eyebrow">The People</div>
+    <h2>Who Does What</h2>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <span class="name">Josh</span>
+        <span class="role">Runs. Captures. Lives the mission. Makes zero decisions after he hits stop on the camera.</span>
+      </div>
+      <div class="team-card">
+        <span class="name">Wendy + David</span>
+        <span class="role">Strategy, production, approval, email. The showrunners.</span>
+      </div>
+      <div class="team-card">
+        <span class="name">VA</span>
+        <span class="role">Edits, captions, schedules, posts. Daily production engine.</span>
+      </div>
+      <div class="team-card">
+        <span class="name">Noah Reese</span>
+        <span class="role">Films and cuts select segments — races, key moments, as scheduled.</span>
+      </div>
+    </div>
+
+    <div class="rule">
+      <p>Josh captures. We produce. Content ships.</p>
+    </div>
+  </div>
+
+  <!-- BLOCKING ISSUES -->
+  <div class="section" id="blocks">
+    <div class="section-eyebrow">Urgent</div>
+    <h2>Blocking Issues</h2>
+    <p>Three things that need to be resolved before the full system can run.</p>
+
+    <div class="block urgent">
+      <div class="block-title">Block 1 — The Route</div>
+      <p>Without a rough state order, the following cannot start: state activation ads, nomination mechanic, local press outreach, 30-day pre-arrival cadence, and geo-targeted ad targeting.</p>
+      <div class="action">→ Josh maps a directional state order. Doesn't need to be perfect — just enough to plan 60-90 days ahead.</div>
+    </div>
+
+    <div class="block urgent">
+      <div class="block-title">Block 2 — The Email Platform</div>
+      <p>Every person watching right now has nowhere to land. Audience is leaking every single day.</p>
+      <div class="action">→ Choose platform, build Lovable landing page, write welcome sequence. This week.</div>
+    </div>
+
+    <div class="block urgent">
+      <div class="block-title">Block 3 — The Origin Video</div>
+      <p>Anyone who discovers Josh mid-mission needs one piece of content that tells the full story — Erin, the grief, the running, why now, what this is.</p>
+      <div class="action">→ Review existing footage for a candidate piece. If nothing fits, Josh shoots a raw 10-minute phone video. One take. Pinned everywhere.</div>
+    </div>
+  </div>
+
+  <!-- WHAT WE'RE DOING -->
+  <div class="section" id="doing">
+    <div class="section-eyebrow">Execution</div>
+    <h2>What We're Doing</h2>
+
+    <h3>The Platform</h3>
+    <p><strong>Meta only.</strong> Instagram + Facebook. One ecosystem, one skill set, one ad account.</p>
+    <ul>
+      <li><strong>Instagram</strong> — running community, Reels, Noah footage</li>
+      <li><strong>Facebook</strong> — grief community, groups, nomination mechanic, book sales</li>
+      <li><strong>YouTube</strong> — parking lot for Noah's longer cuts. Not actively managed.</li>
+      <li><strong>Email</strong> — the one asset Meta can't take away. Built from day one.</li>
+    </ul>
+    <p>Reels cross-post automatically — one piece of content, two feeds.</p>
+
+    <h3>How Josh Creates Content</h3>
+    <p>Two deliverables. As often as he wants. Same format every time.</p>
+
+    <div class="block">
+      <div class="block-title">Drop Video — phone, 2-5 min, unedited</div>
+      <p>📍 State | Day X | Mile X of 12,000<br>
+      One thing that happened. One thing it made him feel. Sign off. Drop in folder.</p>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Voice Note — 60 sec, stream of consciousness</div>
+      <p>Raw thoughts. Becomes caption copy, email lines, hooks. Drop in folder.</p>
+    </div>
+
+    <p>Josh also posts directly to Instagram whenever he wants — raw, unfiltered, his voice. More material is never a problem.</p>
+    <p><strong>Folder naming:</strong> <code style="background:var(--mist);padding:2px 8px;border-radius:2px;font-size:13px;">2026-06-08 | Day 8 | FL | Mile 264</code></p>
+
+    <h3>How Content Gets Made</h3>
+    <p>From every Drop Video + Voice Note, VA produces 3 pieces daily:</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Output</th>
+          <th>Platform</th>
+          <th>Tool</th>
+        </tr>
+        <tr>
+          <td>Reel — 60-90 sec, vertical, captions, music</td>
+          <td>Instagram + Facebook</td>
+          <td>CapCut template</td>
+        </tr>
+        <tr>
+          <td>Static post + caption</td>
+          <td>Instagram + Facebook</td>
+          <td>Canva template</td>
+        </tr>
+        <tr>
+          <td>Facebook text post — grief-forward</td>
+          <td>Facebook</td>
+          <td>Caption brief</td>
+        </tr>
+      </table>
+    </div>
+
+    <p>Templates built once. VA executes daily. No creative decisions required. Every Sunday VA also produces a Week in Review carousel and an email dispatch draft.</p>
+
+    <h3>How Content Gets Approved</h3>
+
+    <div class="approval-flow">
+      <div class="approval-step">
+        <span class="step-num">1</span>
+        <div class="step-info">
+          <strong>Josh — right of first approval, always</strong>
+          <span>His story. His voice. His call.</span>
+        </div>
+      </div>
+      <div class="approval-step">
+        <span class="step-num">2</span>
+        <div class="step-info">
+          <strong>Wendy — second approval, always</strong>
+          <span>Sole approver on all email. Anything emotionally sensitive goes here first.</span>
+        </div>
+      </div>
+      <div class="approval-step">
+        <span class="step-num">3</span>
+        <div class="step-info">
+          <strong>David or Noah — backup</strong>
+          <span>First one to see it, clears it.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule">
+      <p>✅ ship &nbsp;·&nbsp; 🔄 one note &nbsp;·&nbsp; ❌ pull &nbsp;&nbsp;|&nbsp;&nbsp; Done > Perfect. Speed is king.</p>
+    </div>
+
+    <h3>How Noah's Footage Works</h3>
+    <p>Noah films and cuts his own segments — races, key states, significant moments as scheduled. When footage arrives, VA posts it. No additional editing required. VA also clips for short Reels, YouTube cuts, quote cards, and press assets. Batched across 2-3 weeks — fills gaps, elevates the feed.</p>
+
+    <h3>The Hashtag Standard</h3>
+    <p>VA applies to every post — no exceptions.</p>
+    <div class="hashtags">
+      <span class="hashtag">#5050Project</span>
+      <span class="hashtag">#RunForward</span>
+      <span class="hashtag">#12Kin50</span>
+      <span class="hashtag">#MovingForward</span>
+      <span class="hashtag secondary">#ultrarunning</span>
+      <span class="hashtag secondary">#grief</span>
+      <span class="hashtag secondary">#griefjourney</span>
+      <span class="hashtag secondary">#running</span>
+    </div>
+  </div>
+
+  <!-- TOOLS -->
+  <div class="section" id="tools">
+    <div class="section-eyebrow">Infrastructure</div>
+    <h2>The Tools + Facebook Page</h2>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>Tool</th><th>Job</th></tr>
+        <tr><td><strong>Frame.io</strong></td><td>Footage home — Josh drops raw, VA pulls, approvals happen in the clip</td></tr>
+        <tr><td><strong>Airtable</strong></td><td>Mission dashboard — daily records, content status, state tracker, race arcs</td></tr>
+        <tr><td><strong>Lovable</strong></td><td>Website — one page, email capture only</td></tr>
+        <tr><td><strong>Meta Business Suite</strong></td><td>Schedule and post across Instagram + Facebook</td></tr>
+        <tr><td><strong>CapCut</strong></td><td>Reel production</td></tr>
+        <tr><td><strong>Canva</strong></td><td>Graphics, quote cards, state completion cards</td></tr>
+      </table>
+    </div>
+
+    <h3>The Facebook Page</h3>
+    <p>Josh currently has a personal profile (facebook.com/joshpcoleman — 1.4K friends). Ads cannot run from a personal profile.</p>
+    <ul>
+      <li>Create a public Facebook Page — Josh Coleman / 50/50 Project</li>
+      <li>Josh invites 1.4K friends to follow</li>
+      <li>Connect Page + Instagram to Meta Business Suite</li>
+      <li>Audit MovingForwardBook Facebook presence — fold in or redirect</li>
+    </ul>
+    <p>This Page is the ad vehicle, the brand home, and the destination for all Facebook content.</p>
+  </div>
+
+  <!-- AD STRATEGY -->
+  <div class="section" id="ads">
+    <div class="section-eyebrow">Paid</div>
+    <h2>The Ad Strategy</h2>
+
+    <div class="callout">
+      <p>Organic first. Always. Ads are accelerant — not the engine. Only boost what's already working.</p>
+    </div>
+
+    <h3>State Activation Ads</h3>
+    <ul>
+      <li>Runs 30 days before Josh arrives in each state</li>
+      <li>Geo-targeted: state-level, city + 50 mile radius</li>
+      <li>Creative: <em>"Who should run with Josh in [State]?"</em></li>
+      <li>Audience: running interests + grief/loss interests + age 35-65</li>
+      <li>Goal: email capture via landing page</li>
+    </ul>
+
+    <h3>Content Amplification Ads</h3>
+    <ul>
+      <li>Triggered when an organic post gets traction</li>
+      <li>Boost the exact post that's working — never recreate it</li>
+      <li>Expands to lookalike audience built from email list</li>
+      <li>Goal: follower growth + email capture</li>
+    </ul>
+
+    <div class="rule">
+      <p>Never boost: anything under 24 hours old, generic posts, or content with no organic engagement first.</p>
+    </div>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="section" id="email">
+    <div class="section-eyebrow">Owned Audience</div>
+    <h2>The Email List</h2>
+
+    <p>The one asset we own. Meta can disappear tomorrow — the list doesn't.</p>
+
+    <h3>How We Build It</h3>
+    <ul>
+      <li>Link in bio → Lovable landing page → email opt-in</li>
+      <li>Weekly free book drawing — one winner gets the paperback, everyone else gets the $.99 audiobook offer</li>
+      <li>$.99 audiobook QR code at every meet and greet — email captured before Amazon redirect</li>
+      <li>52 weeks = 52 reasons to send an email</li>
+    </ul>
+
+    <p><strong>Weekly email = mission dispatch.</strong> VA drafts from best voice note lines + week summary. Wendy + David approves. Sends every week without exception.</p>
+  </div>
+
+  <!-- GRASSROOTS -->
+  <div class="section" id="grassroots">
+    <div class="section-eyebrow">State by State</div>
+    <h2>The Grassroots Engine</h2>
+
+    <p><strong>30 days before Josh arrives in each state:</strong></p>
+    <ul>
+      <li>Post in local running Facebook groups: <em>"Who should run with Josh in [State]?"</em></li>
+      <li>Post in local grief/widow Facebook groups: <em>"Who in [State] needs to hear this story?"</em></li>
+      <li>Run geo-targeted state activation ad to same audience</li>
+      <li>Let the community decide who shows up — organic, not recruited</li>
+    </ul>
+
+    <p>Josh arrives knowing names and stories. The nominated runners become content. Their story + the run itself = local media hook in every single state.</p>
+
+    <div class="loop-cycle">
+      <div class="loop-step">Community Nominates</div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">Josh Runs With Them</div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">QR Code → $.99 Audiobook</div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">Email Captured</div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">In The Community Forever</div>
+    </div>
+  </div>
+
+  <!-- PR -->
+  <div class="section" id="pr">
+    <div class="section-eyebrow">Media</div>
+    <h2>The PR Strategy</h2>
+
+    <div class="callout">
+      <p>Local first. Always. National comes to you — you don't chase it.</p>
+    </div>
+
+    <p>Local TV stations are hungry, fast, and easy. <em>"Local runner joining Josh Coleman on his 12,000 mile mission through [State]"</em> is a segment they will run every time. Human interest + visual + feel-good = their content, not just Josh's.</p>
+    <p>50 states × local news = 50 credibility bricks. AP wire does the rest.</p>
+    <p><strong>The only PR asset needed:</strong> One clean press release template written for a local editor with 4 minutes and a 3pm deadline. Not a PR document. A story they can steal with a local angle already written in.</p>
+  </div>
+
+  <!-- PODCASTS -->
+  <div class="section" id="podcasts">
+    <div class="section-eyebrow">Audio</div>
+    <h2>Podcast Outreach</h2>
+
+    <p>60-90 day scheduling cycle means pitching starts now. Two tracks running simultaneously.</p>
+
+    <div class="block">
+      <div class="block-title">Guest Pitch — "Here's why Josh should be on your show"</div>
+      <p>Targets: grief, resilience, midlife reinvention, widow/widower, mental health, spirituality shows. Led by story + book + mission. Easier yes, shorter lead time.</p>
+    </div>
+
+    <div class="block">
+      <div class="block-title">Story Pitch — "A documentary is unfolding in real time"</div>
+      <p>Targets: mainstream media, running media, documentary-adjacent shows. Led by mission stakes. Noah's footage is the proof when available. Bigger rooms, longer cycle.</p>
+    </div>
+
+    <p><strong>The audience beyond running:</strong> Grief. Widows/widowers. Resilience. Midlife reinvention. Spirituality. Purpose. Morning shows. GMA. Today. This story was made for that format.</p>
+  </div>
+
+  <!-- STORYTELLING -->
+  <div class="section" id="story">
+    <div class="section-eyebrow">Content</div>
+    <h2>The Storytelling System</h2>
+
+    <div class="callout">
+      <p>The feed is a serialized TV show. Not a content calendar.</p>
+    </div>
+
+    <p>Josh is the talent. Wendy + VA are the producers. Producers watch every drop video looking for the unresolved moment, the thing he almost said, the emotion he didn't finish. That becomes tomorrow's open loop.</p>
+
+    <div class="loop-cycle">
+      <div class="loop-step">Open Loop</div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">2-3 Days of Tension</div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">Mini Payoff</div>
+      <div class="loop-arrow">→</div>
+      <div class="loop-step">Next Loop Opens</div>
+    </div>
+
+    <p><strong>Moments are never manufactured. They are spotted and surfaced.</strong></p>
+
+    <h3>Feed Content Mix</h3>
+    <p>No two consecutive posts the same type.</p>
+
+    <div class="content-types">
+      <div class="content-type">📍 Daily mission progress</div>
+      <div class="content-type">🖤 Grief + Erin moments</div>
+      <div class="content-type">💥 Raw emotion — dark days</div>
+      <div class="content-type">🏔 Running as medicine</div>
+      <div class="content-type">🚐 Van life + logistics</div>
+      <div class="content-type">🤝 People he meets</div>
+      <div class="content-type">🗺 State observations</div>
+      <div class="content-type">💬 Hard truths + grief reframes</div>
+      <div class="content-type">😄 Memes — earned not forced</div>
+      <div class="content-type">📄 The obituary card — 1x/month max</div>
+    </div>
+
+    <h3>Generated Internally — Josh Not Required</h3>
+    <div class="content-types">
+      <div class="content-type internal">Memes</div>
+      <div class="content-type internal">Book quote cards</div>
+      <div class="content-type internal">State + trail facts</div>
+      <div class="content-type internal">Grief awareness posts</div>
+      <div class="content-type internal">Nominated runner reshares</div>
+      <div class="content-type internal">Hard truth / reframe posts</div>
+      <div class="content-type internal">Milestone graphics</div>
+    </div>
+
+    <h3>Mini Payoffs</h3>
+    <p>Dopamine hits every few days — state completions, milestone miles (500 / 1K / 2.5K / 5K / 7.5K / 10K), nominated runner stories, unexpected human connections, dark day → breakthrough, race starts and finishes, Noah arriving to film.</p>
+
+    <h3>The Race Arc Template</h3>
+    <p><em>Used for all 4 races: Tahoe 200 (Jun 12), Bigfoot 200 (Aug 14), Old Ephraim 200 (Aug 24), Moab 240 (Oct 9)</em></p>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>When</th><th>What</th><th>Type</th></tr>
+        <tr><td>3 days before</td><td>"I'm about to run 200 miles. Here's why this one matters."</td><td>Open loop</td></tr>
+        <tr><td>Race day</td><td>Drop video at start line</td><td>Raw</td></tr>
+        <tr><td>During</td><td>One check-in from aid station</td><td>Raw</td></tr>
+        <tr><td>Finish</td><td>Raw finish line video — ship immediately, no editing</td><td>Raw</td></tr>
+        <tr><td>3 days after</td><td>Reflection — grief content lives here</td><td>Produced</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- STORY ARCS -->
+  <div class="section" id="arcs">
+    <div class="section-eyebrow">Narrative Framework</div>
+    <h2>The Story Arcs</h2>
+
+    <p>Six arcs run simultaneously all year. VA tags content to its arc. The audience gets hooked without knowing why.</p>
+
+    <div class="arc-cards">
+      <div class="arc-card">
+        <span class="arc-name">The Odyssey</span>
+        <div class="arc-what">The whole mission. The hero trying to find his way home. Every mile is a step toward something he can't name yet.</div>
+        <div class="arc-meta">
+          <div class="arc-meta-item"><label>Shows Up As</label><span>Daily progress. State by state. Mile by mile. The spine everything hangs on.</span></div>
+          <div class="arc-meta-item"><label>The Payoff</label><span>May 30, 2027. He finishes. The hero comes home.</span></div>
+        </div>
+      </div>
+
+      <div class="arc-card">
+        <span class="arc-name">The Phoenix</span>
+        <div class="arc-what">Death and rebirth. June 16, 2022 is the ash. The mission is the rising.</div>
+        <div class="arc-meta">
+          <div class="arc-meta-item"><label>Shows Up As</label><span>Every grief post. Every Erin moment. June 16 is the annual centerpiece.</span></div>
+          <div class="arc-meta-item"><label>The Payoff</label><span>Book 2 + documentary. The full transformation on record.</span></div>
+        </div>
+      </div>
+
+      <div class="arc-card">
+        <span class="arc-name">David + Goliath</span>
+        <div class="arc-what">A 50 year old widower vs. a record nobody has ever attempted. No sponsor. No team. Just him.</div>
+        <div class="arc-meta">
+          <div class="arc-meta-item"><label>Shows Up As</label><span>Athletic milestones, race finishes, the "how is this even possible" moments.</span></div>
+          <div class="arc-meta-item"><label>The Payoff</label><span>Mission completion. The record confirmed. David wins.</span></div>
+        </div>
+      </div>
+
+      <div class="arc-card">
+        <span class="arc-name">Hercules</span>
+        <div class="arc-what">50 labors. Each state is one. Some easy. Some will try to break him.</div>
+        <div class="arc-meta">
+          <div class="arc-meta-item"><label>Shows Up As</label><span>Every state completion. Every nominated runner. Every local story. 50 chapters.</span></div>
+          <div class="arc-meta-item"><label>The Payoff</label><span>State 50. The last labor done.</span></div>
+        </div>
+      </div>
+
+      <div class="arc-card">
+        <span class="arc-name">Tortoise + Hare</span>
+        <div class="arc-what">Everyone else is chasing viral moments. Josh runs 33 miles every single day and doesn't stop.</div>
+        <div class="arc-meta">
+          <div class="arc-meta-item"><label>Shows Up As</label><span>Day 100. Day 200. Day 300. The "he's still going" moments.</span></div>
+          <div class="arc-meta-item"><label>The Payoff</label><span>Day 365. He never stopped.</span></div>
+        </div>
+      </div>
+
+      <div class="arc-card">
+        <span class="arc-name">Orpheus</span>
+        <div class="arc-what">He keeps moving because stopping means losing her again. Erin is in every mile.</div>
+        <div class="arc-meta">
+          <div class="arc-meta-item"><label>Shows Up As</label><span>Specific Erin moments on the road. The obituary card. June 16. Moments that arrive without warning.</span></div>
+          <div class="arc-meta-item"><label>The Payoff</label><span>The obituary card reveal — when the audience finally sees what he's been carrying.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEY DATES -->
+  <div class="section" id="dates">
+    <div class="section-eyebrow">Calendar</div>
+    <h2>Key Dates</h2>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>Date</th><th>Event</th><th>Priority</th></tr>
+        <tr><td><strong>Jun 12, 2026</strong></td><td>Tahoe 200</td><td>🔴 Full race arc</td></tr>
+        <tr><td><strong>Jun 16, 2026</strong></td><td>Erin's anniversary — 4 years</td><td>🔴 Highest. Phoenix arc. Grief media push.</td></tr>
+        <tr><td><strong>Aug 14, 2026</strong></td><td>Bigfoot 200</td><td>🔴 Full race arc</td></tr>
+        <tr><td><strong>Aug 24, 2026</strong></td><td>Old Ephraim 200</td><td>🔴 Full race arc</td></tr>
+        <tr><td><strong>Aug 30, 2026</strong></td><td>National Grief Awareness Day</td><td>🟡 Annual content moment</td></tr>
+        <tr><td><strong>Oct 9, 2026</strong></td><td>Moab 240</td><td>🔴 Full race arc</td></tr>
+        <tr><td><strong>State completions</strong></td><td>As they happen</td><td>🟡 Local media + nomination mechanic</td></tr>
+        <tr><td><strong>May 30, 2027</strong></td><td>Mission completion</td><td>🔴 The Odyssey payoff — "He did it"</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ENGAGEMENT -->
+  <div class="section" id="engagement">
+    <div class="section-eyebrow">Community</div>
+    <h2>Engagement Strategy</h2>
+
+    <p>This is a team sport. Josh quarterbacks. The team executes.</p>
+
+    <h3>Josh Handles</h3>
+    <ul>
+      <li>All grief and Erin comments — no one else touches these, ever</li>
+      <li>Close friends and family — he knows who they are</li>
+      <li>Anything emotionally significant that requires his voice</li>
+    </ul>
+
+    <h3>The Team Handles</h3>
+    <ul>
+      <li>Mission content — miles, states, running, logistics</li>
+      <li>Nominated runners and local community</li>
+      <li>New followers finding the story for the first time</li>
+      <li>Inbound podcast and press inquiries</li>
+    </ul>
+
+    <div class="rule">
+      <p>No generic thank yous. Ever. If you can't say something real, say nothing. Never respond as Josh unless you are Josh.</p>
+    </div>
+
+    <h3>The Hater Strategy — Turn Haters Into Humor</h3>
+    <p>Don't defend. Don't delete. Don't engage directly. Let the community vet it first. They will. The ultra running and grief communities have zero tolerance for people doing neither telling someone doing both that they're doing it wrong.</p>
+    <ul>
+      <li>When the community delivers a perfect response — screenshot it</li>
+      <li>Post it</li>
+      <li>Josh adds one line</li>
+    </ul>
+    <p>The hater becomes the content. The community becomes the hero. Josh stays above it. This is not a hater strategy. It's a community loyalty engine.</p>
+
+    <h3>Crisis Response</h3>
+    <p>This mission will attract people in genuine grief and crisis. That's not an edge case — it's inevitable.</p>
+    <p>Wendy and David are both certified Amen Clinics brain health coaches. The team can intervene with qualified, warm direction without creating liability.</p>
+    <ul>
+      <li>Team monitors comments and DMs for genuine distress signals</li>
+      <li>Wendy or David respond directly — human, warm, qualified, not clinical</li>
+      <li>Josh gets involved only when his personal voice is the right tool</li>
+    </ul>
+    <p><strong>Still needed:</strong> A pinned response template that feels like the mission, not a disclaimer. A VA signal guide for what gets flagged immediately.</p>
+  </div>
+
+  <!-- BRAND KIT -->
+  <div class="section" id="brand">
+    <div class="section-eyebrow">Identity</div>
+    <h2>Brand + Media Kit</h2>
+
+    <h3>Brand Kit — Internal</h3>
+    <p>Keeps everything consistent across VA, Noah, and all content.</p>
+    <ul>
+      <li>Logo / wordmark — We Move Forward</li>
+      <li>Color palette</li>
+      <li>Typography</li>
+      <li>Photography style guide — what Josh's feed looks and feels like</li>
+      <li>Voice guide — one page, sounds like Josh, not a social media manager</li>
+    </ul>
+
+    <h3>Media Kit — External</h3>
+    <p>Built for press, podcasts, and future sponsors.</p>
+    <ul>
+      <li>Josh's story in 3 sentences</li>
+      <li>Mission overview — the three numbers, the stakes, the why</li>
+      <li>Athletic credentials — race history, Triple Crown, Cocodona 250</li>
+      <li>Book — Moving Forward: Running With Grief</li>
+      <li>Audience demographics — who follows, why they care</li>
+      <li>Noah's footage as visual proof</li>
+      <li>Contact and booking info</li>
+    </ul>
+  </div>
+
+  <!-- SPONSORS -->
+  <div class="section" id="sponsors">
+    <div class="section-eyebrow">Revenue</div>
+    <h2>How to Think About Sponsors</h2>
+
+    <div class="callout">
+      <p>The mission is more valuable unsponsored than sponsored with the wrong partner.</p>
+    </div>
+
+    <p>Sponsorship is a slippery slope. Handle it wrong and the audience starts asking who's paying for Josh's grief. That's a question we never want them asking.</p>
+    <p>If a sponsor ever makes sense, they have to <strong>earn</strong> their place in the story. Not buy it. That means showing up in a state, supporting a nominated runner, or being something Josh already uses and would talk about anyway.</p>
+
+    <h3>Could Fit — If Earned</h3>
+    <ul>
+      <li>Gear Josh already uses — shoes, apparel, nutrition, hydration</li>
+      <li>Mental health and wellness — therapy apps, grief support platforms</li>
+      <li>Van life and overlanding — he's living this for a year</li>
+      <li>Outdoor and adventure brands with authentic values</li>
+    </ul>
+
+    <h3>Never</h3>
+    <ul>
+      <li>Anything that trivializes grief or loss</li>
+      <li>Brands with no authentic connection to the story</li>
+      <li>Anyone who wants the logo more than the mission</li>
+    </ul>
+
+    <p><strong>The honest revenue sequence:</strong> Mission builds audience → audience buys books → books build platform → platform sells keynotes → keynotes fund the foundation. Sponsorship is not in that sequence right now.</p>
+    <p><strong>Revisit in 2027</strong> — after the mission completes and the documentary tells the full story.</p>
+  </div>
+
+  <!-- BUDGET -->
+  <div class="section" id="budget">
+    <div class="section-eyebrow">Investment</div>
+    <h2>Budget Considerations</h2>
+
+    <p>No numbers defined yet. The following areas require budget allocation.</p>
+
+    <div class="budget-items">
+      <div class="budget-item">
+        <strong>Tools</strong>
+        <span>Frame.io, Airtable, Lovable, Meta Business Suite, CapCut, Canva</span>
+      </div>
+      <div class="budget-item">
+        <strong>VA</strong>
+        <span>Ongoing production, daily workflow, weekly sweep</span>
+      </div>
+      <div class="budget-item">
+        <strong>Ad Spend</strong>
+        <span>State activation ads, content amplification, retargeting</span>
+      </div>
+      <div class="budget-item">
+        <strong>Podcast Outreach</strong>
+        <span>Pitch tools, booking support, PR distribution</span>
+      </div>
+      <div class="budget-item">
+        <strong>Wendy + David</strong>
+        <span>Strategy and production oversight</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUILD LIST -->
+  <div class="section" id="build">
+    <div class="section-eyebrow">Next Steps</div>
+    <h2>One-Time Build List</h2>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>Asset</th><th>Owner</th><th>When</th></tr>
+        <tr><td>Facebook Public Page — Josh Coleman / 50/50 Project</td><td>Josh</td><td>Now</td></tr>
+        <tr><td>Meta Business Suite — connect Page + Instagram</td><td>Wendy + David</td><td>Now</td></tr>
+        <tr><td>Frame.io account + folder structure</td><td>Wendy + David</td><td>This week</td></tr>
+        <tr><td>Airtable base — records, state tracker, race arcs, podcast pipeline</td><td>Wendy + David</td><td>This week</td></tr>
+        <tr><td>Lovable website — one page, email capture</td><td>Wendy + David</td><td>ASAP</td></tr>
+        <tr><td>CapCut master template</td><td>VA</td><td>This week</td></tr>
+        <tr><td>Canva template set (3 variants)</td><td>VA</td><td>This week</td></tr>
+        <tr><td>VA daily SOP — one page</td><td>Wendy + David</td><td>This week</td></tr>
+        <tr><td>State activation calendar — 30 days ahead per state</td><td>VA</td><td>Once route is known</td></tr>
+        <tr><td>Podcast target list — both tracks</td><td>Wendy + David</td><td>This week</td></tr>
+        <tr><td>Local press release template</td><td>Wendy + David</td><td>Next session</td></tr>
+        <tr><td>$.99 audiobook QR card</td><td>VA</td><td>Before first meet and greet</td></tr>
+        <tr><td>Email welcome sequence (3 emails)</td><td>Wendy + David</td><td>Next session</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>We Move Forward</strong> &nbsp;·&nbsp; Josh Coleman &nbsp;·&nbsp; Wendy Jae + David Tucker &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; June 2026</p>
+</div>
+
+</body>
+</html>
