@@ -1,1 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerTime Boating — SEO Strategy Dashboard</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0d2145;
+    --navy-light:#1a3460;
+    --gold:#e8a020;
+    --gold-light:#f5c14a;
+    --surface:#f7f8fa;
+    --card:#ffffff;
+    --text:#0d2145;
+    --text-sec:#4a5568;
+    --text-muted:#8a96a8;
+    --border:#e2e8f0;
+    --red:#d03b3b;
+    --green:#0a7c45;
+    --amber:#d97706;
+    --radius:12px;
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--surface);color:var(--text);font-size:15px;line-height:1.6}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+  /* HEADER */
+  .dash-header{background:var(--navy);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;position:sticky;top:0;z-index:100}
+  .dash-header .brand{display:flex;align-items:center;gap:.75rem}
+  .dash-header .logo-mark{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--navy);letter-spacing:-.5px}
+  .dash-header h1{color:#fff;font-size:16px;font-weight:500;line-height:1.2}
+  .dash-header .subtitle{color:#94a3c0;font-size:12px}
+  .dash-header .badge{background:rgba(232,160,32,.15);border:1px solid rgba(232,160,32,.3);color:var(--gold-light);font-size:11px;padding:3px 10px;border-radius:20px}
+
+  /* NAV TABS */
+  .tab-nav{background:var(--navy-light);display:flex;overflow-x:auto;scrollbar-width:none;border-bottom:2px solid rgba(255,255,255,.08)}
+  .tab-nav::-webkit-scrollbar{display:none}
+  .tab-btn{background:none;border:none;color:#94a3c0;font-size:13px;font-weight:500;padding:.875rem 1.25rem;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:.4rem}
+  .tab-btn.active{color:#fff;border-bottom-color:var(--gold)}
+  .tab-btn:hover:not(.active){color:#cbd5e8}
+  .tab-btn i{font-size:15px}
+
+  /* SECTIONS */
+  .section{display:none;padding:1.25rem 1rem;max-width:900px;margin:0 auto}
+  .section.active{display:block}
+
+  /* CARDS */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem}
+  .card-title{font-size:13px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+  .card-title i{font-size:16px;color:var(--navy)}
+
+  /* METRIC GRID */
+  .metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem;margin-bottom:1rem}
+  .metric{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center}
+  .metric-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+  .metric-value{font-size:26px;font-weight:600;color:var(--navy);line-height:1}
+  .metric-sub{font-size:11px;color:var(--text-muted);margin-top:.25rem}
+  .metric.danger .metric-value{color:var(--red)}
+  .metric.warn .metric-value{color:var(--amber)}
+  .metric.good .metric-value{color:var(--green)}
+
+  /* ALERT BANNERS */
+  .alert{border-radius:var(--radius);padding:.875rem 1rem;margin-bottom:.75rem;display:flex;align-items:flex-start;gap:.75rem;font-size:13.5px}
+  .alert i{font-size:18px;flex-shrink:0;margin-top:1px}
+  .alert-red{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+  .alert-red i{color:var(--red)}
+  .alert-amber{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+  .alert-amber i{color:var(--amber)}
+  .alert-green{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d}
+  .alert-green i{color:var(--green)}
+  .alert-blue{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+  .alert-blue i{color:#2563eb}
+  .alert strong{font-weight:600}
+
+  /* PRIORITY TABLE */
+  .p-table{width:100%;border-collapse:collapse;font-size:13px}
+  .p-table th{text-align:left;padding:.625rem .75rem;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted);border-bottom:2px solid var(--border);background:var(--surface)}
+  .p-table td{padding:.75rem;border-bottom:1px solid var(--border);vertical-align:top}
+  .p-table tr:last-child td{border-bottom:none}
+  .p-table tr:hover td{background:var(--surface)}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius)}
+
+  /* BADGES */
+  .badge-pill{display:inline-flex;align-items:center;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;white-space:nowrap}
+  .badge-red{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+  .badge-amber{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+  .badge-green{background:#f0fdf4;color:#14532d;border:1px solid #bbf7d0}
+  .badge-blue{background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe}
+  .badge-navy{background:#eff3fc;color:var(--navy);border:1px solid #c3d0ef}
+  .badge-gold{background:#fffbeb;color:#92400e;border:1px solid var(--gold)}
+
+  /* URL CHIP */
+  .url-chip{font-family:monospace;font-size:11px;background:var(--surface);border:1px solid var(--border);padding:2px 6px;border-radius:4px;color:var(--text-sec);word-break:break-all}
+
+  /* SECTION TITLE */
+  .section-title{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:.25rem}
+  .section-desc{font-size:13px;color:var(--text-muted);margin-bottom:1.25rem}
+
+  /* PRIORITY LEGEND */
+  .priority-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+
+  /* BLOG MIGRATION TABLE SPECIAL */
+  .migrate-row td:first-child{font-family:monospace;font-size:11px;color:var(--navy);word-break:break-all}
+  .migrate-row td:nth-child(2){font-family:monospace;font-size:11px;color:var(--green);word-break:break-all}
+
+  /* HOMEPAGE SECTION */
+  .hp-before-after{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:600px){.hp-before-after{grid-template-columns:1fr}}
+  .ba-box{border-radius:var(--radius);padding:1rem;font-size:13px}
+  .ba-box.before{background:#fef2f2;border:1px solid #fecaca}
+  .ba-box.after{background:#f0fdf4;border:1px solid #bbf7d0}
+  .ba-box h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.625rem}
+  .ba-box.before h4{color:var(--red)}
+  .ba-box.after h4{color:var(--green)}
+  .ba-box ul{padding-left:1rem}
+  .ba-box li{margin-bottom:.25rem;line-height:1.5}
+
+  /* COPY BLOCK */
+  .copy-block{background:#f8fafd;border:1px solid #c3d0ef;border-left:3px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;padding:.875rem 1rem;font-size:13px;margin-bottom:.75rem}
+  .copy-block .copy-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-bottom:.4rem}
+  .copy-block p{color:var(--text);line-height:1.6;margin-bottom:.25rem}
+  .copy-block p:last-child{margin-bottom:0}
+
+  /* KW OPPORTUNITY ROWS */
+  .kw-row{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--border)}
+  .kw-row:last-child{border-bottom:none}
+  .kw-vol{font-size:13px;font-weight:700;color:var(--navy);min-width:50px;text-align:right}
+  .kw-info{flex:1}
+  .kw-name{font-size:14px;font-weight:500;color:var(--text)}
+  .kw-meta{font-size:11px;color:var(--text-muted);margin-top:2px}
+  .kw-action{font-size:12px;color:var(--text-sec);margin-top:4px;font-style:italic}
+
+  /* CHART WRAPPER */
+  .chart-wrap{position:relative;width:100%;height:220px;margin:1rem 0}
+
+  /* BLOG SECTION FILTER */
+  .filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+  .filter-btn{background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:12px;padding:4px 12px;cursor:pointer;color:var(--text-sec);font-weight:500;transition:all .15s}
+  .filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  /* ACCORDION */
+  .accordion{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:.75rem}
+  .accordion-header{background:var(--card);padding:.875rem 1rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:.75rem}
+  .accordion-header:hover{background:var(--surface)}
+  .accordion-title{font-size:14px;font-weight:500;color:var(--text);display:flex;align-items:center;gap:.5rem;flex:1}
+  .accordion-body{padding:1rem;border-top:1px solid var(--border);background:var(--surface);display:none;font-size:13.5px}
+  .accordion-body.open{display:block}
+  .chevron{transition:transform .2s;color:var(--text-muted)}
+  .chevron.open{transform:rotate(180deg)}
+
+  /* STICKY CTA */
+  .sticky-cta{position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-top:2px solid var(--gold);padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;z-index:200}
+  .sticky-cta p{color:#94a3c0;font-size:12px;margin:0}
+  .sticky-cta strong{color:#fff}
+  .cta-btn{background:var(--gold);color:var(--navy);font-size:12px;font-weight:700;padding:.5rem 1rem;border-radius:8px;border:none;cursor:pointer;white-space:nowrap}
+
+  @media(max-width:480px){
+    .metric-value{font-size:22px}
+    .section-title{font-size:16px}
+    .p-table th,.p-table td{padding:.5rem .625rem}
+  }
+</style>
+</head>
+<body>
+
+<h2 class="sr-only">PowerTime Boating SEO Strategy Dashboard — July 2026</h2>
+
+<header class="dash-header">
+  <div class="brand">
+    <div class="logo-mark">PT</div>
+    <div>
+      <h1>PowerTime Boating</h1>
+      <div class="subtitle">SEO Strategy Dashboard</div>
+    </div>
+  </div>
+  <div class="badge">July 2026</div>
+</header>
+
+<nav class="tab-nav" role="tablist">
+  <button class="tab-btn active" onclick="showTab('overview',this)" role="tab" aria-selected="true">
+    <i class="ti ti-dashboard" aria-hidden="true"></i> Overview
+  </button>
+  <button class="tab-btn" onclick="showTab('homepage',this)" role="tab">
+    <i class="ti ti-home" aria-hidden="true"></i> Homepage
+  </button>
+  <button class="tab-btn" onclick="showTab('keywords',this)" role="tab">
+    <i class="ti ti-search" aria-hidden="true"></i> Keywords
+  </button>
+  <button class="tab-btn" onclick="showTab('blog',this)" role="tab">
+    <i class="ti ti-article" aria-hidden="true"></i> Blog Structure
+  </button>
+  <button class="tab-btn" onclick="showTab('sge',this)" role="tab">
+    <i class="ti ti-cpu" aria-hidden="true"></i> SGE / AI
+  </button>
+  <button class="tab-btn" onclick="showTab('technical',this)" role="tab">
+    <i class="ti ti-tool" aria-hidden="true"></i> Technical
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════ OVERVIEW ═══ -->
+<section id="tab-overview" class="section active">
+  <div class="section-title">Site health snapshot</div>
+  <div class="section-desc">Crawl data + GSC + Semrush · powertimeboating.com · July 2, 2026</div>
+
+  <div class="metric-grid">
+    <div class="metric danger">
+      <div class="metric-label">Homepage CTR</div>
+      <div class="metric-value">1.2%</div>
+      <div class="metric-sub">117K impressions wasted</div>
+    </div>
+    <div class="metric warn">
+      <div class="metric-label">Avg. org. position</div>
+      <div class="metric-value">45.3</div>
+      <div class="metric-sub">1,087 tracked keywords</div>
+    </div>
+    <div class="metric warn">
+      <div class="metric-label">Thin pages</div>
+      <div class="metric-value">85</div>
+      <div class="metric-sub">indexable, &lt;300 words</div>
+    </div>
+    <div class="metric danger">
+      <div class="metric-label">404 errors</div>
+      <div class="metric-value">6</div>
+      <div class="metric-sub">all location param URLs</div>
+    </div>
+    <div class="metric warn">
+      <div class="metric-label">Blog posts at root</div>
+      <div class="metric-value">42</div>
+      <div class="metric-sub">should be /blog/</div>
+    </div>
+    <div class="metric good">
+      <div class="metric-label">AI overview keywords</div>
+      <div class="metric-value">429</div>
+      <div class="metric-sub">SGE citation potential</div>
+    </div>
+  </div>
+
+  <div class="alert alert-red">
+    <i class="ti ti-alert-circle" aria-hidden="true"></i>
+    <div><strong>Biggest revenue leak:</strong> Homepage pulls 117,365 impressions/month and converts them at 1.2% CTR. At position 14, every impression is a near-miss. Title + meta rewrite alone could 2–3× clicks without a single ranking change.</div>
+  </div>
+  <div class="alert alert-amber">
+    <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+    <div><strong>Keyword cannibalization:</strong> "boat share club" (880/mo) has 3+ URLs competing at positions 42–87. "boat sharing club" (720/mo) has 4 URLs scattered across 31–69. Splitting authority = owning none of it.</div>
+  </div>
+  <div class="alert alert-blue">
+    <i class="ti ti-cpu" aria-hidden="true"></i>
+    <div><strong>SGE opportunity:</strong> 429 of 1,087 tracked keywords trigger AI Overviews. You're appearing but not being cited. Structured answer blocks + FAQ schema on key pages = SGE citation source.</div>
+  </div>
+  <div class="alert alert-green">
+    <i class="ti ti-trophy" aria-hidden="true"></i>
+    <div><strong>Protect #1 for "boating" (9,900/mo):</strong> /cost-to-own-a-boat/ owns this. Expand it, add SGE answer blocks, keep it updated. Losing this ranking = losing 49% of organic traffic.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-list-check" aria-hidden="true"></i> Priority action stack</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead>
+          <tr><th>#</th><th>Action</th><th>Impact</th><th>Effort</th><th>Tab</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>1</strong></td><td>Rewrite homepage title + meta — target "luxury powerboat club"</td><td><span class="badge-pill badge-red">Critical</span></td><td>Low</td><td><a href="#" onclick="showTabById('homepage')">Homepage</a></td></tr>
+          <tr><td><strong>2</strong></td><td>Add answer blocks + FAQ schema to /cost-to-own-a-boat/</td><td><span class="badge-pill badge-red">Critical</span></td><td>Low</td><td><a href="#" onclick="showTabById('sge')">SGE/AI</a></td></tr>
+          <tr><td><strong>3</strong></td><td>Fix 6 × 404s (location param URLs → 301 to /locations/)</td><td><span class="badge-pill badge-red">Critical</span></td><td>Low</td><td><a href="#" onclick="showTabById('technical')">Technical</a></td></tr>
+          <tr><td><strong>4</strong></td><td>Migrate 42 blog posts from root to /blog/ + 301 redirects</td><td><span class="badge-pill badge-amber">High</span></td><td>Medium</td><td><a href="#" onclick="showTabById('blog')">Blog</a></td></tr>
+          <tr><td><strong>5</strong></td><td>Build "boat club membership" dedicated page (1,300/mo, KD 19)</td><td><span class="badge-pill badge-amber">High</span></td><td>Medium</td><td><a href="#" onclick="showTabById('keywords')">Keywords</a></td></tr>
+          <tr><td><strong>6</strong></td><td>Noindex all thank-you + event stub pages</td><td><span class="badge-pill badge-amber">High</span></td><td>Low</td><td><a href="#" onclick="showTabById('technical')">Technical</a></td></tr>
+          <tr><td><strong>7</strong></td><td>Consolidate cannibalized "boat share club" URLs → one page</td><td><span class="badge-pill badge-amber">High</span></td><td>Medium</td><td><a href="#" onclick="showTabById('keywords')">Keywords</a></td></tr>
+          <tr><td><strong>8</strong></td><td>Publish "do you need a license to drive a boat" article (2,400/mo)</td><td><span class="badge-pill badge-navy">Medium</span></td><td>Medium</td><td><a href="#" onclick="showTabById('keywords')">Keywords</a></td></tr>
+          <tr><td><strong>9</strong></td><td>Expand /drive-a-boat/ page — currently 1,349 words, pos not yet ranked</td><td><span class="badge-pill badge-navy">Medium</span></td><td>Low</td><td><a href="#" onclick="showTabById('keywords')">Keywords</a></td></tr>
+          <tr><td><strong>10</strong></td><td>Add SGE schema + answer blocks to all location pages</td><td><span class="badge-pill badge-navy">Medium</span></td><td>High</td><td><a href="#" onclick="showTabById('sge')">SGE/AI</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ HOMEPAGE ═══ -->
+<section id="tab-homepage" class="section">
+  <div class="section-title">Homepage optimization</div>
+  <div class="section-desc">117,365 impressions · 1,461 clicks · 1.2% CTR · avg. position 13.97</div>
+
+  <div class="metric-grid">
+    <div class="metric danger">
+      <div class="metric-label">Current CTR</div>
+      <div class="metric-value">1.2%</div>
+      <div class="metric-sub">industry avg ~3–5% at pos 14</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Avg. position</div>
+      <div class="metric-value">13.97</div>
+      <div class="metric-sub">bottom of page 1</div>
+    </div>
+    <div class="metric good">
+      <div class="metric-label">Click upside (3% CTR)</div>
+      <div class="metric-value">+2,060</div>
+      <div class="metric-sub">additional clicks/month</div>
+    </div>
+  </div>
+
+  <div class="alert alert-red">
+    <i class="ti ti-alert-circle" aria-hidden="true"></i>
+    <div><strong>Root problem:</strong> Current title "PowerTime Boat Club | Luxury Power Boat Sharing" (47 chars) is brand-first, not intent-first. At position 14, the title tag is the only conversion tool you have. The meta description at 160 chars buries the value prop behind passive language.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-pencil" aria-hidden="true"></i> Title tag rewrites — test these</div>
+    <div class="copy-block">
+      <div class="copy-label">Option A — benefit-first, anchors membership</div>
+      <p>Luxury Powerboat Club Membership | No Ownership Headaches | PowerTime</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">Option B — price anchor + curiosity</div>
+      <p>Boat Club Starting at $395/mo — New Boats, No Ownership | PowerTime</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">Option C — identity + aspiration (PCM: Rebel + Harmonizer)</div>
+      <p>The Powerboat Club for People Who Actually Want to Boat | PowerTime</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">Option D — SGE-optimized, entity-rich</div>
+      <p>Fractional Luxury Powerboat Club | 13 US Locations | PowerTime Boating</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-file-description" aria-hidden="true"></i> Meta description rewrites — test these</div>
+    <div class="copy-block">
+      <div class="copy-label">Option A — pain point + price anchor</div>
+      <p>Skip the slip fees, insurance, and maintenance. PowerTime members get access to a fleet of luxury powerboats from $395/month across 13 US locations. Book online, show up, boat.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">Option B — social proof + CTA</div>
+      <p>The world's first fractional luxury powerboat club. 4–8 bookings/month. New boats only. Locations in CA, CT, MA, NY, SC and more. Join thousands of members who traded ownership for freedom.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">Option C — fear of loss (PCM: Thinker + Promoter)</div>
+      <p>Boat ownership costs $15,000–$35,000/year before you leave the dock. PowerTime membership starts at $395/month. Same boats. Zero hassle. 13 locations nationwide.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-layout" aria-hidden="true"></i> Homepage content structure fix</div>
+    <div class="hp-before-after">
+      <div class="ba-box before">
+        <h4>Current issues</h4>
+        <ul>
+          <li>574 words — thin for a homepage competing at pos 14</li>
+          <li>No TL;DR / answer block in first 100 words</li>
+          <li>No FAQ schema on page</li>
+          <li>H1 is "Fractional Membership Boat Club" — 31 chars, weak</li>
+          <li>CTA "Call Now to Get Special Pricing" — friction, no digital path</li>
+          <li>No price anchor above the fold</li>
+          <li>No trust signals / member count / location count in headline area</li>
+        </ul>
+      </div>
+      <div class="ba-box after">
+        <h4>Recommended structure</h4>
+        <ul>
+          <li>H1: "The Luxury Powerboat Club Built for People Who Want to Boat, Not Maintain"</li>
+          <li>Sub: "Membership from $395/month · 13 US locations · New boats only"</li>
+          <li>TL;DR block (40–60 words) immediately below hero</li>
+          <li>Add primary CTA: "Check availability at [your location] →" (digital-first)</li>
+          <li>Tier comparison card (Silver $395 / Gold $495 / Embark)</li>
+          <li>FAQ section (6–8 questions) with FAQ schema</li>
+          <li>Minimum 900 words total with named entities</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-message-2" aria-hidden="true"></i> Recommended H1 options</div>
+    <div class="copy-block">
+      <div class="copy-label">Primary recommendation (SGE + PCM: Rebel + Harmonizer)</div>
+      <p>The Luxury Powerboat Club Built for People Who Want to Boat — Not Maintain One</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">Alt A — fact-forward (PCM: Thinker)</div>
+      <p>Fractional Luxury Powerboat Club Memberships Starting at $395/Month Across 13 US Locations</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-label">Alt B — lifestyle hook (PCM: Harmonizer)</div>
+      <p>More Time on the Water. None of the Boat Ownership Stress. That's PowerTime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ KEYWORDS ═══ -->
+<section id="tab-keywords" class="section">
+  <div class="section-title">Keyword strategy</div>
+  <div class="section-desc">1,087 tracked keywords · 27 in positions 1–3 · 456 in positions 51–100</div>
+
+  <div class="alert alert-amber">
+    <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+    <div><strong>Key pattern:</strong> You rank #1 for "boating" (9,900/mo, informational) but sit at 22–66 for "boat club membership" (1,300/mo, informational, KD 19). You're winning the awareness game and losing the consideration game.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-bolt" aria-hidden="true"></i> Quick wins — high volume, low difficulty, misaligned position</div>
+    
+    <div class="kw-row">
+      <div class="kw-vol">1,300<div style="font-size:10px;color:var(--text-muted);font-weight:400">searches/mo</div></div>
+      <div class="kw-info">
+        <div class="kw-name">boat club membership <span class="badge-pill badge-green" style="margin-left:4px">KD 19</span></div>
+        <div class="kw-meta">Current position: 22–66 across multiple URLs · Informational intent · AI Overview present</div>
+        <div class="kw-action">Build a dedicated /boat-club-membership/ pillar page. Consolidate competing URLs. FAQ schema. TL;DR answer block. Internal link from homepage.</div>
+      </div>
+    </div>
+
+    <div class="kw-row">
+      <div class="kw-vol">2,400<div style="font-size:10px;color:var(--text-muted);font-weight:400">searches/mo</div></div>
+      <div class="kw-info">
+        <div class="kw-name">do you need a license to drive a boat <span class="badge-pill badge-green" style="margin-left:4px">KD 21</span></div>
+        <div class="kw-meta">Current position: 45 · Informational · AI Overview present · /drive-a-boat/ exists but underperforming</div>
+        <div class="kw-action">Expand /drive-a-boat/ from 1,349 words to 2,000+. Add TL;DR answer in first 50 words. HowTo schema. FAQ schema. Link to boating school pages.</div>
+      </div>
+    </div>
+
+    <div class="kw-row">
+      <div class="kw-vol">1,900<div style="font-size:10px;color:var(--text-muted);font-weight:400">searches/mo</div></div>
+      <div class="kw-info">
+        <div class="kw-name">boat clubs near me <span class="badge-pill badge-amber" style="margin-left:4px">KD 45</span></div>
+        <div class="kw-meta">Current position: 28–47 · Transactional · Local pack present</div>
+        <div class="kw-action">GMB optimization per location. Each location page needs "[City] boat club" optimization + local schema. /locations/ page needs structured data markup.</div>
+      </div>
+    </div>
+
+    <div class="kw-row">
+      <div class="kw-vol">1,900<div style="font-size:10px;color:var(--text-muted);font-weight:400">searches/mo</div></div>
+      <div class="kw-info">
+        <div class="kw-name">life jackets approved coast guard <span class="badge-pill badge-amber" style="margin-left:4px">KD 30</span></div>
+        <div class="kw-meta">Current position: 27 · /coast-guard-approved-life-jackets/ gets 355 clicks but 56K impressions at 0.6% CTR</div>
+        <div class="kw-action">This page is your biggest non-homepage CTR problem. Rewrite title tag. Add structured answer. Funnel visitors → boating school pages with internal CTA.</div>
+      </div>
+    </div>
+
+    <div class="kw-row">
+      <div class="kw-vol">880<div style="font-size:10px;color:var(--text-muted);font-weight:400">searches/mo</div></div>
+      <div class="kw-info">
+        <div class="kw-name">boat share club <span class="badge-pill badge-red" style="margin-left:4px">CANNIBALIZED</span></div>
+        <div class="kw-meta">3 URLs competing at positions 42, 55, 87. Split authority = none ranks.</div>
+        <div class="kw-action">Designate one primary URL (homepage or /membership/). 301 redirect or noindex the weaker competing pages. Consolidate link equity.</div>
+      </div>
+    </div>
+
+    <div class="kw-row">
+      <div class="kw-vol">720<div style="font-size:10px;color:var(--text-muted);font-weight:400">searches/mo</div></div>
+      <div class="kw-info">
+        <div class="kw-name">boat sharing club <span class="badge-pill badge-red" style="margin-left:4px">CANNIBALIZED</span></div>
+        <div class="kw-meta">4 URLs competing at positions 31, 43, 56, 69. Same issue as above.</div>
+        <div class="kw-action">Same fix as above — consolidate to one URL, ideally the same page targeting both "boat share club" and "boat sharing club."</div>
+      </div>
+    </div>
+
+    <div class="kw-row">
+      <div class="kw-vol">1,000<div style="font-size:10px;color:var(--text-muted);font-weight:400">searches/mo</div></div>
+      <div class="kw-info">
+        <div class="kw-name">boating school <span class="badge-pill badge-amber" style="margin-left:4px">KD 46</span></div>
+        <div class="kw-meta">Current position: 23 · AI Overview present · 6 boating school sub-pages exist but no hub</div>
+        <div class="kw-action">Build /boating-school/ hub page consolidating all location boating schools. Rank the hub, let locations be spokes. Internal link from homepage nav.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-trophy" aria-hidden="true"></i> Protect + expand — current top performers</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>Keyword</th><th>Position</th><th>Vol.</th><th>Traffic</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><strong>boating</strong></td><td>#1</td><td>9,900</td><td>217/mo</td><td>Protect. Add SGE blocks to /cost-to-own-a-boat/. Keep updated.</td></tr>
+          <tr><td>fractional boat ownership</td><td>#2</td><td>210</td><td>13/mo</td><td>Push to #1. Add TL;DR definition. FAQ schema. More internal links.</td></tr>
+          <tr><td>boat club prices near me</td><td>#1</td><td>170</td><td>6/mo</td><td>Add pricing table schema. Ensure Silver/Gold pricing visible on-page.</td></tr>
+          <tr><td>boat club boston</td><td>#2</td><td>90</td><td>7/mo</td><td>Local schema. GMB. Push to #1 with location page expansion.</td></tr>
+          <tr><td>powertime boat club</td><td>#1</td><td>50</td><td>40/mo</td><td>Brand term — keep homepage clean. Knowledge panel claimed?</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-file-plus" aria-hidden="true"></i> New content recommended — blog / pillar</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>Topic</th><th>Vol.</th><th>KD</th><th>Intent</th><th>Why now</th></tr></thead>
+        <tbody>
+          <tr><td>Boat club membership guide (what it costs, how it works)</td><td>1,300</td><td>19</td><td>Informational</td><td>Low KD, AI Overview, you're at pos 22–66</td></tr>
+          <tr><td>Do you need a license to drive a boat (2026 guide)</td><td>2,400</td><td>21</td><td>Informational</td><td>Low KD, AI Overview, boating school upsell</td></tr>
+          <tr><td>Boat club vs boat rental — which makes more sense?</td><td>—</td><td>—</td><td>Commercial</td><td>/rent-a-boat-vs-joining-a-boat-club/ exists — expand it</td></tr>
+          <tr><td>How much does it cost to join a boat club?</td><td>390</td><td>25</td><td>Commercial</td><td>Price transparency = trust builder + AI answer target</td></tr>
+          <tr><td>Boating school near me — what to expect</td><td>1,000</td><td>46</td><td>Informational</td><td>Hub page for 6 existing school sub-pages</td></tr>
+          <tr><td>Best powerboats for beginners 2026</td><td>—</td><td>—</td><td>Informational</td><td>Fleet showcase + brand awareness play</td></tr>
+          <tr><td>Is a boat club worth it? (honest breakdown)</td><td>—</td><td>—</td><td>Commercial</td><td>Consideration stage — answers the objection directly</td></tr>
+          <tr><td>Boat timeshare vs boat club — what's the difference?</td><td>260</td><td>—</td><td>Informational</td><td>You're at pos 6 for "boat timeshare" — own the comparison</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ BLOG ═══ -->
+<section id="tab-blog" class="section">
+  <div class="section-title">Blog structure migration</div>
+  <div class="section-desc">42 content posts live at root level. One /blog/ directory exists (464 words, no posts). Every post needs to move.</div>
+
+  <div class="alert alert-amber">
+    <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+    <div><strong>The problem:</strong> Google sees powertimeboating.com as a site with no blog — just a homepage with lots of random pages attached to root. No topical clustering signal. No /blog/ authority. URL structure is incoherent. Fix: migrate all editorial content to /blog/ with 301 redirects from old URLs.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-folder" aria-hidden="true"></i> Recommended URL taxonomy</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>Category</th><th>URL pattern</th><th>Posts</th></tr></thead>
+        <tbody>
+          <tr><td>Ownership / finance</td><td><span class="url-chip">/blog/boat-ownership/</span></td><td>cost-to-own, tax deduction, investment, financing, tariffs, fractional membership</td></tr>
+          <tr><td>Membership / club life</td><td><span class="url-chip">/blog/boat-club/</span></td><td>membership how it works, benefits, membership vs ownership, boat club experience, smarter boating</td></tr>
+          <tr><td>Boating guides</td><td><span class="url-chip">/blog/boating-guides/</span></td><td>drive a boat, things to do on a boat, license, life jackets, rent vs own, boat share comparison</td></tr>
+          <tr><td>Local / destination</td><td><span class="url-chip">/blog/destinations/</span></td><td>charleston boat show guides, safe to swim charleston, Long Island Sound guides</td></tr>
+          <tr><td>News / press</td><td><span class="url-chip">/blog/news/</span></td><td>launch announcements, partner press, media coverage, SailTime milestones</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-arrows-right-left" aria-hidden="true"></i> Full migration map — 301 redirect every URL</div>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filterMigrate('all',this)">All (42)</button>
+      <button class="filter-btn" onclick="filterMigrate('keep',this)">High traffic</button>
+      <button class="filter-btn" onclick="filterMigrate('news',this)">News/press</button>
+      <button class="filter-btn" onclick="filterMigrate('guide',this)">Guides</button>
+    </div>
+    <div class="tbl-wrap">
+      <table class="p-table" id="migrate-table">
+        <thead><tr><th>Current URL</th><th>New URL</th><th>Impressions</th><th>Category</th></tr></thead>
+        <tbody id="migrate-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-x" aria-hidden="true"></i> Do NOT migrate — handle separately</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>URL</th><th>Action</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td><span class="url-chip">/contact/</span></td><td><span class="badge-pill badge-green">Keep at root</span></td><td>Utility page — 89 clicks/month</td></tr>
+          <tr><td><span class="url-chip">/join/</span></td><td><span class="badge-pill badge-green">Keep at root</span></td><td>Conversion page</td></tr>
+          <tr><td><span class="url-chip">/locations/</span></td><td><span class="badge-pill badge-green">Keep at root</span></td><td>Core navigation — 120 clicks</td></tr>
+          <tr><td><span class="url-chip">/franchise-opportunities/</span></td><td><span class="badge-pill badge-green">Keep at root</span></td><td>Core revenue page</td></tr>
+          <tr><td><span class="url-chip">/aquador-boats/</span></td><td><span class="badge-pill badge-green">Keep at root</span></td><td>Product page — 94 clicks, 23K impressions</td></tr>
+          <tr><td><span class="url-chip">/our-powerboat-fleet/</span></td><td><span class="badge-pill badge-green">Keep at root</span></td><td>Product page</td></tr>
+          <tr><td><span class="url-chip">/boat-us/</span></td><td><span class="badge-pill badge-green">Keep at root</span></td><td>Partner page — 6.5K impressions</td></tr>
+          <tr><td><span class="url-chip">/membership-thank-you/</span> etc.</td><td><span class="badge-pill badge-red">Noindex</span></td><td>Thank-you pages — no SEO value, dilute crawl budget</td></tr>
+          <tr><td><span class="url-chip">/chicago-2024/</span> <span class="url-chip">/st-pete-2024/</span> etc.</td><td><span class="badge-pill badge-amber">Evaluate</span></td><td>Event stubs — thin, consider noindex or expand</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ SGE / AI ═══ -->
+<section id="tab-sge" class="section">
+  <div class="section-title">SGE &amp; AI search optimization</div>
+  <div class="section-desc">429 keywords trigger AI Overviews. You appear — but aren't being cited. Fix the structure, earn the citation.</div>
+
+  <div class="alert alert-blue">
+    <i class="ti ti-cpu" aria-hidden="true"></i>
+    <div><strong>The SGE-RAISE play:</strong> Google's AI Overview pulls from pages with clear answer structure, defined entities, and FAQ schema. You have the rankings. You don't have the formatting. Same pages, restructured = citation source.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-list-check" aria-hidden="true"></i> SGE-RAISE checklist — per priority page</div>
+    
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-title"><i class="ti ti-file-text" aria-hidden="true"></i> /cost-to-own-a-boat/ — #1 for "boating" (9,900/mo)</div>
+        <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
+      </div>
+      <div class="accordion-body">
+        <p style="margin-bottom:.75rem"><strong>Current state:</strong> 1,654 words · 11 clicks · 13K impressions · 0.08% CTR</p>
+        <p style="margin-bottom:.5rem"><strong>SGE-RAISE actions:</strong></p>
+        <ul style="padding-left:1.25rem;line-height:2">
+          <li>Add TL;DR in first 100 words: "The average boat costs $15,000–$35,000/year to own when you include maintenance, insurance, storage, and depreciation. Here's the full breakdown."</li>
+          <li>Restructure H2s as questions: "How much does boat insurance cost?" / "What are annual boat maintenance costs?" etc.</li>
+          <li>Add FAQ schema (8–10 Q&amp;As) targeting "boat ownership cost" cluster</li>
+          <li>Add comparison table: Ownership vs. PowerTime membership ($ side by side)</li>
+          <li>Internal CTA mid-article → /membership/ (bridge informational → commercial)</li>
+          <li>Author bio with boating credentials</li>
+          <li>Date of last update visible</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-title"><i class="ti ti-file-text" aria-hidden="true"></i> /coast-guard-approved-life-jackets/ — 56K impressions, 0.6% CTR</div>
+        <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
+      </div>
+      <div class="accordion-body">
+        <p style="margin-bottom:.75rem"><strong>Current state:</strong> 908 words · 355 clicks · 56,650 impressions · pos 11.83</p>
+        <p style="margin-bottom:.5rem"><strong>SGE-RAISE actions:</strong></p>
+        <ul style="padding-left:1.25rem;line-height:2">
+          <li>Title rewrite: "USCG Life Jacket Requirements 2026: Which Types Are Coast Guard Approved?"</li>
+          <li>TL;DR answer block at top (40–60 words): define which types are approved</li>
+          <li>HowTo schema for choosing/wearing a life jacket</li>
+          <li>FAQ schema: "Are inflatable life jackets Coast Guard approved?" / "What life jacket types does the USCG require?" etc.</li>
+          <li>Add table: Life jacket type → USCG approval status → Use case</li>
+          <li>Internal funnel: boating safety → /boating-school/ pages</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-title"><i class="ti ti-file-text" aria-hidden="true"></i> /drive-a-boat/ — "license to drive a boat" (2,400/mo, KD 21)</div>
+        <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
+      </div>
+      <div class="accordion-body">
+        <p style="margin-bottom:.75rem"><strong>Current state:</strong> 1,349 words · 0 clicks · 371 impressions · not yet meaningfully ranked</p>
+        <p style="margin-bottom:.5rem"><strong>SGE-RAISE actions:</strong></p>
+        <ul style="padding-left:1.25rem;line-height:2">
+          <li>TL;DR answer in first 50 words: "In most US states, you do not need a license to drive a boat — but you do need a boating safety certificate if you're under a certain age. Rules vary by state."</li>
+          <li>H2 structure: "Do I need a boating license?" / "What states require a boating certificate?" / "How do I get a boating safety certificate?"</li>
+          <li>FAQ schema (10+ Q&amp;As) — this is a high-FAQ-density query</li>
+          <li>State-by-state table (even a simplified version)</li>
+          <li>HowTo schema: how to get certified</li>
+          <li>Hard CTA → PowerTime Boating School (location-specific)</li>
+          <li>Expand to 2,000+ words</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion" onclick="toggleAccordion(this)">
+      <div class="accordion-header">
+        <div class="accordion-title"><i class="ti ti-map-pin" aria-hidden="true"></i> All location pages — membership conversion + local SGE</div>
+        <i class="ti ti-chevron-down chevron" aria-hidden="true"></i>
+      </div>
+      <div class="accordion-body">
+        <p style="margin-bottom:.75rem"><strong>Pattern:</strong> Charleston (39K impressions, 0.9% CTR) · Annapolis (18.8K, 1.5%) · Boston (16.7K, 1.5%) · San Diego (16.3K, 2.1%) — all underperforming on CTR</p>
+        <p style="margin-bottom:.5rem"><strong>SGE-RAISE actions for each location page:</strong></p>
+        <ul style="padding-left:1.25rem;line-height:2">
+          <li>LocalBusiness schema + GeoCoordinates</li>
+          <li>FAQ schema: "[City] boat club pricing?" / "What boats does PowerTime [City] have?" / "How do I join PowerTime [City]?"</li>
+          <li>TL;DR answer block: "PowerTime [City] is a fractional powerboat club offering Silver ($395/mo) and Gold ($495/mo) memberships on [waterway]. Members get [X] bookings/month on new [boat types]."</li>
+          <li>Title tag formula: "PowerTime [City] — Luxury Powerboat Club | $395/mo | [Key Waterway]"</li>
+          <li>Expand all location pages to minimum 800 words (several are at 550–630)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-code" aria-hidden="true"></i> Schema priority queue</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>Schema type</th><th>Apply to</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>FAQPage</td><td>Homepage, /membership/, all blog guides, /drive-a-boat/, /coast-guard-approved-life-jackets/</td><td><span class="badge-pill badge-red">Immediate</span></td></tr>
+          <tr><td>LocalBusiness</td><td>All 13+ location pages</td><td><span class="badge-pill badge-red">Immediate</span></td></tr>
+          <tr><td>Organization</td><td>Homepage (PowerTime + SailTime parent)</td><td><span class="badge-pill badge-red">Immediate</span></td></tr>
+          <tr><td>HowTo</td><td>/drive-a-boat/, /coast-guard-approved-life-jackets/, boating school pages</td><td><span class="badge-pill badge-amber">High</span></td></tr>
+          <tr><td>Article</td><td>All /blog/ posts post-migration</td><td><span class="badge-pill badge-amber">High</span></td></tr>
+          <tr><td>Product / Offer</td><td>/membership/ (Silver + Gold pricing)</td><td><span class="badge-pill badge-amber">High</span></td></tr>
+          <tr><td>BreadcrumbList</td><td>All location sub-pages, blog posts</td><td><span class="badge-pill badge-navy">Medium</span></td></tr>
+          <tr><td>VideoObject</td><td>Any page with embedded video</td><td><span class="badge-pill badge-navy">Medium</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ TECHNICAL ═══ -->
+<section id="tab-technical" class="section">
+  <div class="section-title">Technical fixes</div>
+  <div class="section-desc">Crawl issues blocking rankings and wasting crawl budget. Fix these before anything else.</div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-alert-circle" aria-hidden="true"></i> 404 errors — fix immediately</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>URL</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td><span class="url-chip">/?post_type=location&p=22626</span></td><td>301 → <span class="url-chip">/locations/</span></td></tr>
+          <tr><td><span class="url-chip">/?post_type=location&p=888</span></td><td>301 → <span class="url-chip">/locations/</span></td></tr>
+          <tr><td><span class="url-chip">/?post_type=location&p=14469</span></td><td>301 → <span class="url-chip">/locations/</span></td></tr>
+          <tr><td><span class="url-chip">/?post_type=location&p=781</span></td><td>301 → <span class="url-chip">/locations/</span></td></tr>
+          <tr><td><span class="url-chip">/?post_type=location&p=782</span></td><td>301 → <span class="url-chip">/locations/</span></td></tr>
+          <tr><td><span class="url-chip">/?post_type=location&p=783</span></td><td>301 → <span class="url-chip">/locations/</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:.5rem">All are WordPress location CPT parameter URLs — add redirect rules in .htaccess or via Redirection plugin.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-eye-off" aria-hidden="true"></i> Noindex — add immediately</div>
+    <div class="alert alert-amber" style="margin-bottom:1rem">
+      <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+      <div>These pages are indexable, have near-zero content value, and are diluting topical authority + crawl budget. Adding noindex does not hurt rankings — it helps by concentrating Google's attention on pages that matter.</div>
+    </div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>URL pattern</th><th>Count</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td><span class="url-chip">/membership-thank-you/</span>, <span class="url-chip">/ownership-thank-you/</span>, all /location/*/thank-you/</td><td>~20</td><td>Thank-you pages — no informational value, thin content</td></tr>
+          <tr><td><span class="url-chip">/chicago-2024/</span> <span class="url-chip">/st-pete-2024/</span> <span class="url-chip">/annapolis2023/</span></td><td>3</td><td>Past event stubs — 94–182 words, no ongoing value</td></tr>
+          <tr><td><span class="url-chip">/boat-sharing-wbal/</span> <span class="url-chip">/boating-safety-with-john-kileen-of-sailtime/</span></td><td>2</td><td>Media embed stubs — 31–32 words</td></tr>
+          <tr><td><span class="url-chip">/?jet_download=...</span> (3 URLs)</td><td>3</td><td>PDF download param URLs — indexable but 0 words</td></tr>
+          <tr><td><span class="url-chip">/summer-sailing/</span> <span class="url-chip">/boat-sharing-now-available.../</span></td><td>2</td><td>48–63 word stubs — no ranking potential</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-arrows-right" aria-hidden="true"></i> 301 redirects needed</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>From</th><th>To</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><span class="url-chip">/location/charleston</span> (no trailing slash)</td><td><span class="url-chip">/location/charleston/</span></td><td><span class="badge-pill badge-amber">Duplicate impressions (39K)</span></td></tr>
+          <tr><td><span class="url-chip">/location/annapolis</span> (no trailing slash)</td><td><span class="url-chip">/location/annapolis/</span></td><td><span class="badge-pill badge-amber">Duplicate impressions (18.8K)</span></td></tr>
+          <tr><td><span class="url-chip">/door-county</span></td><td><span class="url-chip">/location/door-county/</span></td><td><span class="badge-pill badge-red">Already 301 but verify</span></td></tr>
+          <tr><td><span class="url-chip">/start-your-own-business/</span></td><td><span class="url-chip">/franchise-opportunities/</span></td><td><span class="badge-pill badge-green">301 in place — confirm</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-link" aria-hidden="true"></i> Internal linking gaps</div>
+    <div class="tbl-wrap">
+      <table class="p-table">
+        <thead><tr><th>Page</th><th>Missing internal link</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>Homepage</td><td>→ /blog/ (no blog linked from homepage)</td><td><span class="badge-pill badge-red">Critical</span></td></tr>
+          <tr><td>Homepage</td><td>→ /membership/ (direct membership hub)</td><td><span class="badge-pill badge-red">Critical</span></td></tr>
+          <tr><td>/cost-to-own-a-boat/</td><td>→ /membership/ (mid-article CTA)</td><td><span class="badge-pill badge-red">Critical</span></td></tr>
+          <tr><td>/drive-a-boat/</td><td>→ Location boating school pages</td><td><span class="badge-pill badge-amber">High</span></td></tr>
+          <tr><td>/coast-guard-approved-life-jackets/</td><td>→ /location/*/boating-school/</td><td><span class="badge-pill badge-amber">High</span></td></tr>
+          <tr><td>/boat-club-membership-how-it-works/</td><td>→ /membership/ and pricing</td><td><span class="badge-pill badge-amber">High</span></td></tr>
+          <tr><td>All blog posts (post-migration)</td><td>→ Nearest location page CTA</td><td><span class="badge-pill badge-navy">Medium</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="sticky-cta">
+  <p><strong>Next action:</strong> Homepage title tag rewrite + 6 × 404 fixes</p>
+  <button class="cta-btn" onclick="showTab('overview', document.querySelector('.tab-btn'))">View priority stack</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const migrateData = [
+  {old:'/cost-to-own-a-boat/',newUrl:'/blog/boat-ownership/how-much-does-it-cost-to-own-a-boat/',impressions:13007,cat:'guide',traffic:'high'},
+  {old:'/coast-guard-approved-life-jackets/',newUrl:'/blog/boating-guides/coast-guard-approved-life-jackets/',impressions:56650,cat:'guide',traffic:'high'},
+  {old:'/boating-vs-yachting-navigating-the-nuances-of-language-on-the-water/',newUrl:'/blog/boating-guides/boating-vs-yachting/',impressions:15401,cat:'guide',traffic:'high'},
+  {old:'/what-to-expect-at-the-charleston-boat-show/',newUrl:'/blog/destinations/what-to-expect-at-the-charleston-boat-show/',impressions:13048,cat:'guide',traffic:'high'},
+  {old:'/boat-tax-deduction/',newUrl:'/blog/boat-ownership/can-a-boat-be-a-tax-deduction/',impressions:6552,cat:'guide',traffic:'high'},
+  {old:'/is-a-power-boat-really-a-solid-investment/',newUrl:'/blog/boat-ownership/is-a-powerboat-a-solid-investment/',impressions:5228,cat:'guide',traffic:'high'},
+  {old:'/boat-tariffs/',newUrl:'/blog/boat-ownership/new-boat-tariffs-2026/',impressions:5199,cat:'guide',traffic:'high'},
+  {old:'/boat-club-membership-how-it-works/',newUrl:'/blog/boat-club/how-boat-club-membership-works/',impressions:4482,cat:'guide',traffic:'high'},
+  {old:'/boat-club-benefits/',newUrl:'/blog/boat-club/10-boat-club-benefits/',impressions:4308,cat:'guide',traffic:'high'},
+  {old:'/boat-club-membership-vs-ownership/',newUrl:'/blog/boat-club/boat-club-membership-vs-ownership/',impressions:4197,cat:'guide',traffic:'high'},
+  {old:'/renting-vs-owning-a-boat/',newUrl:'/blog/boat-ownership/renting-vs-owning-a-boat/',impressions:2285,cat:'guide',traffic:'high'},
+  {old:'/charleston-boat-show-2026-guide/',newUrl:'/blog/destinations/charleston-boat-show-2026-guide/',impressions:2207,cat:'guide',traffic:'high'},
+  {old:'/things-to-do-on-a-boat/',newUrl:'/blog/boating-guides/things-to-do-on-a-boat/',impressions:444,cat:'guide',traffic:'high'},
+  {old:'/drive-a-boat/',newUrl:'/blog/boating-guides/do-you-need-a-license-to-drive-a-boat/',impressions:371,cat:'guide',traffic:'high'},
+  {old:'/boat-club-experience/',newUrl:'/blog/boat-club/what-makes-a-great-boat-club-experience/',impressions:636,cat:'guide',traffic:'high'},
+  {old:'/boat-ownership-fractional-membership/',newUrl:'/blog/boat-ownership/boat-ownership-with-fractional-membership/',impressions:1856,cat:'guide',traffic:'high'},
+  {old:'/safe-to-swim-charleston/',newUrl:'/blog/destinations/is-it-safe-to-swim-in-charleston/',impressions:421,cat:'guide',traffic:'high'},
+  {old:'/smarter-boating-starts-here/',newUrl:'/blog/boating-guides/smarter-boating-starts-here/',impressions:847,cat:'guide',traffic:'high'},
+  {old:'/rent-a-boat-vs-joining-a-boat-club/',newUrl:'/blog/boat-club/rent-a-boat-vs-boat-club/',impressions:0,cat:'guide',traffic:'high'},
+  {old:'/how-often-do-boat-owners-use-their-boats/',newUrl:'/blog/boat-ownership/how-often-do-boat-owners-use-their-boats/',impressions:0,cat:'guide',traffic:'high'},
+  {old:'/new-owner-members-share-their-journey/',newUrl:'/blog/boat-club/new-owner-members-share-their-journey/',impressions:880,cat:'guide',traffic:'high'},
+  {old:'/powertime-offers-option-for-fun-seeking-boaters/',newUrl:'/blog/boat-club/powertime-offers-option-for-fun-seeking-boaters/',impressions:36,cat:'guide',traffic:'high'},
+  {old:'/national-safe-boating-week-2025-at-powertime/',newUrl:'/blog/news/national-safe-boating-week-2025/',impressions:1510,cat:'news',traffic:'low'},
+  {old:'/north-carolina-franchise-launch/',newUrl:'/blog/news/north-carolina-franchise-launch/',impressions:488,cat:'news',traffic:'low'},
+  {old:'/powertime-launches-new-base-in-charleston/',newUrl:'/blog/news/powertime-launches-charleston-base/',impressions:505,cat:'news',traffic:'low'},
+  {old:'/sailtime-door-county-expands-with-powertime/',newUrl:'/blog/news/powertime-coming-to-door-county/',impressions:214,cat:'news',traffic:'low'},
+  {old:'/announcing-the-launch-of-powertime/',newUrl:'/blog/news/announcing-the-launch-of-powertime/',impressions:179,cat:'news',traffic:'low'},
+  {old:'/powertime-launches-fleet-of-powerboats-in-san-diego/',newUrl:'/blog/news/powertime-launches-san-diego-fleet/',impressions:100,cat:'news',traffic:'low'},
+  {old:'/powertime-boat-club-expands-fleet-with-aquador-luxury-powerboats-from-nimbus-group/',newUrl:'/blog/news/powertime-expands-fleet-with-aquador/',impressions:1231,cat:'news',traffic:'low'},
+  {old:'/powertime-boat-club-partners-with-american-boating-to-expand-powerboating-education/',newUrl:'/blog/news/powertime-partners-american-boating/',impressions:943,cat:'news',traffic:'low'},
+  {old:'/sailtime-opens-new-base-on-the-gulf-coast-of-alabama/',newUrl:'/blog/news/sailtime-opens-gulf-coast-base/',impressions:657,cat:'news',traffic:'low'},
+  {old:'/sailtime-boston-celebrates-two-decades-of-sailing-in-boston/',newUrl:'/blog/news/sailtime-boston-20-years/',impressions:134,cat:'news',traffic:'low'},
+  {old:'/sailtime-annapolis-celebrates-20-years-of-excellence-in-sailing-adventures/',newUrl:'/blog/news/sailtime-annapolis-20-years/',impressions:126,cat:'news',traffic:'low'},
+  {old:'/sailtime-group-llc-named-to-inc-5000-list-of-fastest-growing-private-companies-in-america/',newUrl:'/blog/news/sailtime-inc-5000/',impressions:294,cat:'news',traffic:'low'},
+  {old:'/powertime-charleston-moultrie-news-best-of-the-best-2024/',newUrl:'/blog/news/powertime-charleston-best-of-2024/',impressions:353,cat:'news',traffic:'low'},
+  {old:'/powertime-charleston-featured-in-moultrie-news-making-luxury-boating-more-accessible-than-ever/',newUrl:'/blog/news/powertime-charleston-moultrie-news/',impressions:168,cat:'news',traffic:'low'},
+  {old:'/boat-sharing-with-captain-gary-on-wmar2-baltimore/',newUrl:'/blog/news/boat-sharing-captain-gary-wmar2/',impressions:11,cat:'news',traffic:'low'},
+  {old:'/yearning-to-yacht-chicago-sailing-company-puts-boat-life-in-reach/',newUrl:'/blog/news/yearning-to-yacht-chicago/',impressions:334,cat:'news',traffic:'low'},
+  {old:'/its-national-safe-boating-week/',newUrl:'/blog/news/national-safe-boating-week/',impressions:0,cat:'news',traffic:'low'},
+  {old:'/boat-sharing-now-available-for-high-end-powerboats-and-yachts/',newUrl:'/blog/news/boat-sharing-now-available-powerboats/',impressions:1,cat:'news',traffic:'low'},
+  {old:'/boating-safety-with-john-kileen-of-sailtime/',newUrl:'/blog/news/boating-safety-john-kileen-sailtime/',impressions:2,cat:'news',traffic:'low'},
+  {old:'/boat-sharing-wbal/',newUrl:'/blog/news/boat-sharing-wbal-feature/',impressions:3,cat:'news',traffic:'low'},
+];
+
+let currentFilter = 'all';
+
+function renderMigrate(filter) {
+  const tbody = document.getElementById('migrate-body');
+  const rows = migrateData.filter(d => {
+    if(filter === 'all') return true;
+    if(filter === 'keep') return d.impressions > 1000;
+    if(filter === 'news') return d.cat === 'news';
+    if(filter === 'guide') return d.cat === 'guide';
+    return true;
+  });
+  tbody.innerHTML = rows.map(d => `
+    <tr class="migrate-row">
+      <td>${d.old}</td>
+      <td>${d.newUrl}</td>
+      <td>${d.impressions > 0 ? d.impressions.toLocaleString() : '—'}</td>
+      <td><span class="badge-pill ${d.cat === 'news' ? 'badge-navy' : 'badge-gold'}">${d.cat}</span></td>
+    </tr>
+  `).join('');
+}
+
+function filterMigrate(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMigrate(filter);
+}
+
+renderMigrate('all');
+
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  if(btn) { btn.classList.add('active'); btn.setAttribute('aria-selected','true'); }
+}
+
+function showTabById(id) {
+  const btn = [...document.querySelectorAll('.tab-btn')].find(b => b.getAttribute('onclick')?.includes("'"+id+"'"));
+  showTab(id, btn);
+  return false;
+}
+
+function toggleAccordion(el) {
+  const body = el.querySelector('.accordion-body');
+  const chevron = el.querySelector('.chevron');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+}
+</script>
+</body>
+</html>
 
