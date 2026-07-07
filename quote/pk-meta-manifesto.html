@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="https://rightnowinc.ai/favicon.png">
+<title>Pure Kauai — The Attention Economy Is Broken. Here's How We Win.</title>
+<style>
+  :root {
+    --teal-deep: #0d2f38;
+    --teal-mid: #1a4050;
+    --teal-soft: #234d5e;
+    --gold: #c9a97a;
+    --gold-light: #e0c9a6;
+    --gold-mute: #9a7a56;
+    --white: #f5f0e8;
+    --white-soft: rgba(245,240,232,0.7);
+    --white-mute: rgba(245,240,232,0.35);
+    --rule: rgba(201,169,122,0.2);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--teal-deep);
+    color: var(--white);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .masthead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+
+  .masthead-brand {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .masthead-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    background: var(--gold);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .hero {
+    margin-bottom: 3.5rem;
+  }
+
+  .hero-eyebrow {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-deck {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--white-soft);
+    border-left: 2px solid var(--gold);
+    padding-left: 1.25rem;
+  }
+
+  .rule {
+    height: 1px;
+    background: var(--rule);
+    margin: 2.5rem 0;
+  }
+
+  .section-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-mute);
+    margin-bottom: 1.25rem;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    color: var(--gold-light);
+  }
+
+  p {
+    margin-bottom: 1.25rem;
+    color: var(--white-soft);
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  p strong {
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  .truth {
+    background: var(--teal-mid);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border: 1px solid var(--rule);
+  }
+
+  .truth-text {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--white);
+    margin-bottom: 0;
+  }
+
+  .truth-text strong {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .moves {
+    margin: 2rem 0;
+  }
+
+  .move {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .move:last-child { border-bottom: none; }
+
+  .move-number {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    min-width: 24px;
+    padding-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  .move-title {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .move-desc {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--white-soft);
+    margin-bottom: 0;
+  }
+
+  .advisor-note {
+    border: 1px solid var(--rule);
+    border-left: 2px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--teal-mid);
+  }
+
+  .advisor-note-label {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .advisor-note-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--white-soft);
+    margin-bottom: 0;
+  }
+
+  .closing {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .closing-quote {
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .closing-attr {
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+    color: var(--gold-mute);
+    letter-spacing: 0.08em;
+  }
+
+  .footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    color: var(--white-mute);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 480px) {
+    .page { padding: 2rem 1.25rem 4rem; }
+    .masthead { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .footer { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="masthead">
+    <span class="masthead-brand">Pure Kauai</span>
+    <span class="masthead-label">Paid Social Strategy</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-eyebrow">A note from RightTao</div>
+    <h1 class="hero-title">The attention<br>economy is broken.<br><em>Here's how we win.</em></h1>
+    <p class="hero-deck">Most luxury brands are burning money chasing strangers on Meta. We're doing the opposite — building a system that finds the people already halfway to yes, and closes them.</p>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="section-label">The premise</div>
+
+  <h2>Nobody books a $25,000 week from a cold Meta ad.</h2>
+
+  <p>That's the entire lesson from every failed luxury campaign on Meta. Cold audiences don't convert at this price point. They never did. The people who tried it learned the hard way.</p>
+
+  <p><strong>Meta knows more about your next guest's spending behavior than the IRS does.</strong> Where they vacation. What they spend. When they start dreaming about their next trip. We're not buying ads. We're borrowing the most sophisticated behavioral database ever built — and pointing it at exactly the right people, with exactly the right property, at exactly the right moment.</p>
+
+  <p>What Meta actually does — when used correctly — is something far more valuable. It finds your warmest prospects and stays in front of them until they're ready to book. It's not a fishing pole. It's a net you've already cast.</p>
+
+  <div class="truth">
+    <p class="truth-text">Every guest who visits purekauai.com and leaves without booking is a warm lead walking out the door. <strong>Meta is how we bring them back.</strong></p>
+  </div>
+
+  <div class="rule"></div>
+
+  <img src="https://storage.googleapis.com/rightnow-report-images/rnc-embeds/pk-meta-ads.png" alt="The Meta System — How Pure Kauai turns attention into bookings" style="width:100%;border-radius:12px;display:block;margin:0 0 0.5rem;">
+
+  <div class="rule"></div>
+
+  <div class="section-label">The plays</div>
+
+  <div class="moves">
+
+    <div class="move">
+      <span class="move-number">01</span>
+      <div class="move-body">
+        <div class="move-title">Start with people who already love us</div>
+        <div class="move-desc">Upload the guest list. The highest-intent, lowest-cost audience on the platform. Past guests rebook. Past guests refer. This is the fastest proof of concept — and the foundation for growing our following and view counts with an audience that already has a reason to care.</div>
+      </div>
+    </div>
+
+    <div class="move">
+      <span class="move-number">02</span>
+      <div class="move-body">
+        <div class="move-title">Clone our best guests</div>
+        <div class="move-desc">Meta's algorithm finds people who look exactly like the guests on our list — same wealth signals, same travel behavior, same zip codes. One percent lookalike. Tight, qualified, ready.</div>
+      </div>
+    </div>
+
+    <div class="move">
+      <span class="move-number">03</span>
+      <div class="move-body">
+        <div class="move-title">Follow the serious ones home</div>
+        <div class="move-desc">Anyone who viewed a property listing, watched the brand film past the halfway mark, or landed on the booking page without completing — they see Pure Kauai again. Dynamically. On the exact villa they were considering. Every day until they book.</div>
+      </div>
+    </div>
+
+    <div class="move">
+      <span class="move-number">04</span>
+      <div class="move-body">
+        <div class="move-title">Open the advisor channel</div>
+        <div class="move-desc">Luxury travel advisors book $50,000+ trips for clients they trust completely. We identify them, reach them personally, and invite them to experience Pure Kauai firsthand. One hosted trip converts into years of referrals — and a direct email relationship we own forever.</div>
+      </div>
+    </div>
+
+    <div class="move">
+      <span class="move-number">05</span>
+      <div class="move-body">
+        <div class="move-title">Surgical cold, not scatter</div>
+        <div class="move-desc">HNW zip codes with direct flights to Kauai. Known private aviation FBO locations. The narrowest possible cold audience — people with the means and the access to book tomorrow if they want to.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="advisor-note">
+    <div class="advisor-note-label">On the advisor play</div>
+    <div class="advisor-note-text">The fam trip is not an event. It's a list-building bridge. Every advisor who interacts with Pure Kauai becomes a direct email contact — a relationship we own and compound over time, independent of any platform.</div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="section-label">The creative</div>
+
+  <h2>The content already exists. We're just putting it to work.</h2>
+
+  <p>Pure Kauai invests in two dedicated content shoots every year. Meta is how that investment earns a return — the same assets that live on the website and social channels become precision fuel for every campaign, every audience, every retargeting sequence.</p>
+
+  <p>No new production budget. No new creative spend. Just existing content, finally reaching the people it was made for.</p>
+
+  <div class="closing">
+    <div class="closing-quote">"The algorithm doesn't reward spend. It rewards signal. We're building the signal."</div>
+    <div class="closing-attr">— RightTao</div>
+  </div>
+
+  <div class="footer">
+    <span>Pure Kauai · Confidential</span>
+    <span>2026</span>
+  </div>
+
+</div>
+</body>
+</html>
