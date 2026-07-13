@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plant With Purpose — FY26 Marketing Performance Report</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --dark:#3c4a1e; --green:#55692b; --lime:#8cb63c; --lime-soft:#c3d98a;
+    --earth:#bd5b28; --earth-soft:#e0a878; --cream:#f7f5ee; --ink:#2b2f22;
+    --gray:#6b7166; --line:#e3e0d4; --white:#ffffff; --good:#4f8a2f; --bad:#c0563a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--cream);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.15;font-weight:800;letter-spacing:-.01em}
+  .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:var(--lime)}
+  .muted{color:var(--gray)}
+  .up{color:var(--good);font-weight:700}
+  .down{color:var(--bad);font-weight:700}
+
+  header.hero{background:linear-gradient(160deg,var(--dark) 0%,#4a5a26 60%,var(--green) 100%);color:#fff;padding:54px 0 60px;position:relative;overflow:hidden}
+  header.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:360px;height:360px;border-radius:50%;background:rgba(140,182,60,.16)}
+  .brandrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:38px}
+  .brand{font-weight:800;letter-spacing:.18em;font-size:15px}
+  .brand span{color:var(--lime)}
+  .tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#d8e4bd;border:1px solid rgba(255,255,255,.28);padding:6px 12px;border-radius:20px}
+  .hero h1{font-size:38px;max-width:780px;margin:6px 0 10px}
+  .hero .sub{color:#dbe6c4;font-size:17px;max-width:660px}
+  .herostats{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px}
+  .herostats .hs .big{font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1}
+  .herostats .hs .big small{font-size:22px;font-weight:700;color:var(--lime-soft)}
+  .herostats .hs .k{font-size:13px;color:#dbe6c4;margin-top:6px;text-transform:uppercase;letter-spacing:.08em}
+  .herostats .div{width:1px;background:rgba(255,255,255,.2)}
+  .pill{display:inline-block;background:var(--lime);color:var(--dark);font-weight:800;font-size:13px;padding:5px 12px;border-radius:20px}
+
+  section{padding:46px 0}
+  section.alt{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sec-head{margin-bottom:22px}
+  .sec-head h2{font-size:26px;color:var(--dark)}
+  .sec-head p{color:var(--gray);margin-top:6px;max-width:760px}
+  .kicker{display:inline-block;background:var(--lime-soft);color:var(--dark);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:10px}
+
+  .grid{display:grid;gap:16px}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .kpi .label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);font-weight:700}
+  .kpi .val{font-size:30px;font-weight:800;color:var(--dark);margin:6px 0 2px;letter-spacing:-.01em}
+  .kpi .delta{font-size:13px;font-weight:700}
+  .kpi .vs{font-size:12px;color:var(--gray);font-weight:500}
+
+  .summary{background:var(--white);border-left:5px solid var(--lime);border-radius:0 14px 14px 0;padding:24px 26px}
+  .summary ul{list-style:none;display:grid;gap:14px}
+  .summary li{padding-left:26px;position:relative;font-size:15.5px}
+  .summary li:before{content:"";position:absolute;left:0;top:8px;width:11px;height:11px;border-radius:3px;background:var(--lime)}
+  .summary b{color:var(--dark)}
+
+  .engine{border-radius:16px;padding:26px;color:#fff;position:relative;overflow:hidden}
+  .engine.paid{background:linear-gradient(150deg,var(--green),var(--dark))}
+  .engine.grant{background:linear-gradient(150deg,var(--earth),#8f3d1a)}
+  .engine .role{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.85;font-weight:700}
+  .engine h3{font-size:22px;margin:4px 0 14px}
+  .engine .metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 18px;margin-top:6px}
+  .engine .m .n{font-size:26px;font-weight:800;line-height:1}
+  .engine .m .k{font-size:12px;opacity:.85;margin-top:3px}
+  .engine .foot{margin-top:18px;font-size:14px;line-height:1.5;background:rgba(255,255,255,.12);padding:12px 14px;border-radius:10px}
+
+  .chartbox{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .chartbox h3{font-size:16px;color:var(--dark);margin-bottom:4px}
+  .chartbox p{font-size:13px;color:var(--gray);margin-bottom:14px}
+  .canvas-h{position:relative;height:340px}
+  .canvas-s{position:relative;height:270px}
+  .callout{background:linear-gradient(135deg,var(--lime-soft),#e7efd0);border-radius:14px;padding:22px 24px;border:1px solid var(--lime-soft)}
+  .callout .big{font-size:34px;font-weight:800;color:var(--dark)}
+
+  /* NET ROI */
+  .roi-hero{background:linear-gradient(150deg,var(--dark),var(--green));color:#fff;border-radius:18px;padding:30px;display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
+  .roi-ladder{display:grid;gap:12px}
+  .roi-row{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.08);border-radius:10px;padding:12px 16px}
+  .roi-row .num{font-size:26px;font-weight:800;min-width:76px}
+  .roi-row .lbl{font-size:13px;color:#dbe6c4}
+  .roi-row.hi{background:var(--lime);color:var(--dark)}
+  .roi-row.hi .lbl{color:var(--dark);font-weight:600}
+  .ledger{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .ledger .r{display:flex;justify-content:space-between;padding:12px 18px;border-top:1px solid var(--line);font-size:14.5px}
+  .ledger .r:first-child{border-top:none}
+  .ledger .r.head{background:var(--dark);color:#fff;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+  .ledger .r.tot{background:#f2f7e6;font-weight:800;color:var(--dark);font-size:16px}
+  .ledger .r .neg{color:var(--bad)}
+  .ledger .r .pos{color:var(--good)}
+
+  table{width:100%;border-collapse:collapse;background:var(--white);border-radius:14px;overflow:hidden;border:1px solid var(--line);font-size:14px}
+  th,td{padding:13px 14px;text-align:right}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:var(--dark);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+  tbody tr{border-top:1px solid var(--line)}
+  tbody tr:nth-child(even){background:#faf9f4}
+  .star td{background:#f2f7e6}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:12px}
+  .badge.win{background:#e4f0d4;color:var(--good)}
+  .badge.test{background:#f5e6d8;color:var(--earth)}
+  .badge.hold{background:#eee;color:var(--gray)}
+
+  .wf h3{font-size:17px;margin-bottom:12px;color:var(--dark)}
+  .wf ul{list-style:none;display:grid;gap:11px}
+  .wf li{padding-left:24px;position:relative;font-size:14.5px}
+  .wf.win li:before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:800}
+  .wf.fix li:before{content:"→";position:absolute;left:0;color:var(--earth);font-weight:800}
+
+  .rec .item{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .rec h4{font-size:16px;color:var(--dark);margin-bottom:4px}
+
+  .method{background:#f2f0e7;border:1px dashed var(--line);border-radius:14px;padding:22px 24px}
+  .method h3{font-size:15px;color:var(--dark);margin-bottom:10px}
+  .method ul{margin:0;padding-left:18px}
+  .method li{font-size:13.5px;color:var(--gray);margin-bottom:7px}
+  .method b{color:var(--ink)}
+
+  footer{background:var(--dark);color:#cdd8b8;padding:34px 0;font-size:13px}
+  footer b{color:#fff}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+
+  @media(max-width:820px){
+    .g4{grid-template-columns:repeat(2,1fr)} .g3,.g2{grid-template-columns:1fr}
+    .roi-hero{grid-template-columns:1fr} .hero h1{font-size:28px} .herostats .hs .big{font-size:40px}
+    .engine .metrics{grid-template-columns:repeat(2,1fr)} table{font-size:12.5px} th,td{padding:9px}
+  }
+  @media print{
+    body{background:#fff} .engine,.hero,.roi-hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:22px 0} header.hero{padding:30px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="brandrow">
+      <div class="brand">PLANT<span> WITH </span>PURPOSE</div>
+      <div class="tag">FY26 · Jul 2025 – Jun 2026</div>
+    </div>
+    <div class="eyebrow" style="color:var(--lime-soft)">Fiscal Year-End Report · Search, Paid Media &amp; Organic</div>
+    <h1>More raised, less spent — and a net return we're willing to show you after our own fees.</h1>
+    <p class="sub">A full-year look at how paid search, the Google Ad Grant, and organic search drove giving, traffic, and reach for Plant With Purpose — with an honest, fee-loaded ROI.</p>
+    <div class="herostats">
+      <div class="hs"><div class="big">$73,140<small> raised</small></div><div class="k">Paid + Grant · <span style="color:#fff">+8.5% YoY</span></div></div>
+      <div class="div"></div>
+      <div class="hs"><div class="big">3.92<small>:1</small></div><div class="k">Gross ROAS · <span style="color:#fff">+28% YoY</span></div></div>
+      <div class="div"></div>
+      <div class="hs"><div class="big">2.25<small>:1</small></div><div class="k">Net after fees</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- EXEC SUMMARY -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">The one-minute version</div><h2>Executive summary</h2></div>
+    <div class="summary">
+      <ul>
+        <li><b>More money, less budget.</b> Paid + Grant search generated <b>$73,140</b> in tracked donations — up <b>8.5%</b> YoY — while real cash ad spend <span class="down">fell 15%</span> to $18,656. Efficiency, not spend, drove the gain.</li>
+        <li><b>A net return, fees included.</b> After ad spend <i>and</i> our $13,800 in annual fees, the paid program returned <b>2.25:1</b> — and roughly <b>3:1</b> once organic is counted. Most agencies never show this. We do.</li>
+        <li><b>One paid campaign is the engine.</b> Plant-a-Tree Performance Max delivered <b>$62,480 (85% of paid revenue)</b> at a 4.57:1 return. December alone returned <b>$28,678 — 39% of the year.</b></li>
+        <li><b>Organic is bigger than the dashboard admits.</b> Analytics reported ~17,700 organic visits; Search Console (which can't be suppressed) shows <b>~52,300</b>. We were seeing barely a third of our own organic — and it's <b>growing.</b></li>
+        <li><b>The organic threat is AI Overviews, not rankings.</b> We rank <i>better</i> and are seen 23% more, yet clicks fell 25% — because AI answers now resolve searches without a click. This is the story to get ahead of.</li>
+        <li><b>The Grant is reach, not revenue.</b> $77,115 of <i>free</i> Google media drove reach and $7,010 in gifts — under-monetized, and the single biggest efficiency opportunity ahead.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SCOREBOARD -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">The scoreboard</div><h2>Paid + Grant: FY26 vs FY25</h2>
+      <p>Blended paid + grant search. ROAS and cost figures are on <b>real cash spend only</b> — grant media is free, so counting it would distort efficiency. Donation dollars are Salesforce-tracked (first-party, consent-proof).</p></div>
+    <div class="grid g4">
+      <div class="card kpi"><div class="label">Donations Raised</div><div class="val">$73,140</div><div class="delta up">▲ 8.5%</div> <span class="vs">vs $67,436</span></div>
+      <div class="card kpi"><div class="label">Gross ROAS</div><div class="val">3.92:1</div><div class="delta up">▲ 27.7%</div> <span class="vs">vs 3.07:1</span></div>
+      <div class="card kpi"><div class="label">Real Ad Spend</div><div class="val">$18,656</div><div class="delta down">▼ 15.0%</div> <span class="vs">vs $21,940</span></div>
+      <div class="card kpi"><div class="label">Donations (count)</div><div class="val">1,048</div><div class="delta down">▼ 3.6%</div> <span class="vs">vs 1,087</span></div>
+      <div class="card kpi"><div class="label">Avg Gift</div><div class="val">$69.79</div><div class="delta up">▲ 12.5%</div> <span class="vs">vs $62.04</span></div>
+      <div class="card kpi"><div class="label">Cost / Donation (ad only)</div><div class="val">$17.80</div><div class="delta up">▼ 11.8%</div> <span class="vs">vs $20.18</span></div>
+      <div class="card kpi"><div class="label">Total Media Value</div><div class="val">$95,116</div><div class="delta up">81% donated</div> <span class="vs">grant + paid</span></div>
+      <div class="card kpi"><div class="label">Total Clicks</div><div class="val">29,990</div><div class="delta down">▼ 6.8%</div> <span class="vs">vs 32,172</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUE NET ROI -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">The number no agency shows you</span><h2>True net ROI — after ad spend and our fees</h2>
+      <p>Gross ROAS looks great, but it ignores what it costs to run the program. Here's the whole picture: ad dollars, agency fees, and what actually came back.</p></div>
+    <div class="roi-hero">
+      <div class="roi-ladder">
+        <div class="roi-row"><div class="num">3.92:1</div><div class="lbl"><b>Gross ROAS</b> — revenue ÷ ad spend. What most reports stop at.</div></div>
+        <div class="roi-row"><div class="num">2.25:1</div><div class="lbl"><b>Net after fees</b> — paid revenue ÷ (ad spend + $13,800 fees). The honest number.</div></div>
+        <div class="roi-row hi"><div class="num">~3.0:1</div><div class="lbl"><b>Net, full scope</b> — add organic giving (our fee covers SEO too). ~$100K returned on ~$32K in.</div></div>
+      </div>
+      <div class="ledger">
+        <div class="r head"><span>FY26 Ledger</span><span></span></div>
+        <div class="r"><span>Paid + Grant revenue (Salesforce)</span><span class="pos">+$73,140</span></div>
+        <div class="r"><span>Organic revenue (est., attributed)</span><span class="pos">+$23,078</span></div>
+        <div class="r"><span>Real ad spend</span><span class="neg">−$18,656</span></div>
+        <div class="r"><span>Agency fees ($1,150 × 12)</span><span class="neg">−$13,800</span></div>
+        <div class="r tot"><span>Net contribution</span><span>+$63,762</span></div>
+      </div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card kpi"><div class="label">Total invested (cash)</div><div class="val">$32,456</div><span class="vs">$18,656 ads + $13,800 fees</span></div>
+      <div class="card kpi"><div class="label">Net ROI (ads-tracked)</div><div class="val">125%</div><span class="vs">$40,685 net on paid alone</span></div>
+      <div class="card kpi"><div class="label">Cost / donation, fully loaded</div><div class="val">$26.01</div><span class="vs">incl. all fees, full scope</span></div>
+    </div>
+    <p class="muted" style="font-size:12.5px;margin-top:10px">Grant media ($77,115) is excluded from cost — it's donated, $0 cash. Organic revenue is a directional estimate (see methodology); the ads-tracked 2.25:1 is the conservative, fully-defensible net figure.</p>
+  </div>
+</section>
+
+<!-- TWO ENGINES -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Two accounts, two jobs</div><h2>Paid vs. Grant: different engines, different scoreboards</h2>
+      <p>Paid is a <b>revenue engine</b>. Grant is a <b>reach engine</b> — and should be measured that way.</p></div>
+    <div class="grid g2">
+      <div class="engine paid">
+        <div class="role">Real budget · Revenue engine</div><h3>Paid Account</h3>
+        <div class="metrics">
+          <div class="m"><div class="n">$65,940</div><div class="k">Raised (+7.6% YoY)</div></div>
+          <div class="m"><div class="n">3.66:1</div><div class="k">ROAS on real spend</div></div>
+          <div class="m"><div class="n">996</div><div class="k">Donations</div></div>
+          <div class="m"><div class="n">$0.82</div><div class="k">Cost per click</div></div>
+        </div>
+        <div class="foot"><b>Verdict:</b> Healthy and efficient. $18,001 in spend returned 90% of all search revenue. Plant-a-Tree PMax carries it.</div>
+      </div>
+      <div class="engine grant">
+        <div class="role">Donated media · Reach engine</div><h3>Google Ad Grant</h3>
+        <div class="metrics">
+          <div class="m"><div class="n">$77,115</div><div class="k">Donated media ($0 cash)</div></div>
+          <div class="m"><div class="n">8,086</div><div class="k">Clicks / site visits</div></div>
+          <div class="m"><div class="n">$7,010</div><div class="k">Raised (+13.5%)</div></div>
+          <div class="m"><div class="n">0.09:1</div><div class="k">ROAS (free media)</div></div>
+        </div>
+        <div class="foot"><b>Verdict:</b> Reach scaled +108% YoY, but monetization is weak. 8,086 free visits should yield far more than 52 gifts. The upside is here.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONTHLY -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">The shape of the year</div><h2>Monthly performance</h2>
+      <p>Blended donations vs. ROAS by month. Giving spikes hard at year-end, and efficiency follows.</p></div>
+    <div class="chartbox" style="margin-bottom:16px">
+      <h3>Donations raised &amp; ROAS by month</h3><p>Bars = donations ($) · Line = ROAS (return per $1 spent)</p>
+      <div class="canvas-h"><canvas id="monthChart"></canvas></div>
+    </div>
+    <div class="grid g3">
+      <div class="callout"><div class="eyebrow" style="color:var(--green)">December</div><div class="big">$28,678</div>
+        <p class="muted"><b>39% of the entire year</b> in one month at 14:1 ROAS. Year-end giving is the franchise.</p></div>
+      <div class="card kpi"><div class="label">Best efficiency</div><div class="val">Dec · 14:1</div><span class="vs">then Jun 8:1, Sep 5:1</span></div>
+      <div class="card kpi"><div class="label">July reset</div><div class="val">0.44:1</div><span class="vs">high clicks, low return — the annual soft spot</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGNS -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Where the results came from</div><h2>Campaign-level breakdown (FY26)</h2>
+      <p>Every active campaign, ranked by revenue. One campaign drives the program; the rest support or experiment.</p></div>
+    <table>
+      <thead><tr><th>Campaign</th><th>Account</th><th>Spend</th><th>Revenue</th><th>ROAS</th><th>Donations</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr class="star"><td><b>Plant a Tree</b> (Perf. Max)</td><td>Paid</td><td>$13,681</td><td><b>$62,480</b></td><td><b>4.57:1</b></td><td>794</td><td><span class="badge win">Scale</span></td></tr>
+        <tr><td>Plant a Tree (Perf. Max)</td><td>Grant</td><td>$77,073*</td><td>$7,010</td><td>0.09:1</td><td>52</td><td><span class="badge test">Rework</span></td></tr>
+        <tr><td>Giving Search</td><td>Paid</td><td>$4,320</td><td>$3,461</td><td>0.80:1</td><td>202</td><td><span class="badge test">Optimize</span></td></tr>
+        <tr><td>Search AI <span class="muted">(new, Feb '26)</span></td><td>Grant</td><td>~$253</td><td>~$1.4k</td><td>testing</td><td>~5</td><td><span class="badge test">Test</span></td></tr>
+        <tr><td>Website Homepage</td><td>Both</td><td>$243</td><td>—</td><td>traffic</td><td>0</td><td><span class="badge hold">Feeder</span></td></tr>
+        <tr><td>YouTube Shorts</td><td>Paid</td><td>$0</td><td>—</td><td>—</td><td>0</td><td><span class="badge hold">Paused</span></td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:12.5px;margin-top:10px">*Grant spend is donated Google media at $0 real cash cost. ROAS shown for context only. Search AI figures are directional from campaign notes.</p>
+  </div>
+</section>
+
+<!-- ORGANIC STORY -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="kicker">New this year · Organic search</span><h2>Organic: bigger than it looks, and shifting under our feet</h2>
+      <p>Three independent sources tell one story — our analytics is undercounting organic, real organic is larger and rising, and the way people find us is changing fast.</p></div>
+
+    <div class="grid g2">
+      <div class="chartbox">
+        <h3>What we saw vs. what actually happened</h3>
+        <p>GA4 (consent-suppressed) vs. Search Console clicks (Google's own data — can't be suppressed)</p>
+        <div class="canvas-s"><canvas id="orgReconcile"></canvas></div>
+        <p class="muted" style="font-size:13px;margin-top:12px">Analytics captured just <b>34%</b> of real organic — <b>66% under-reported</b>, almost exactly matching our independent estimate. The hidden two-thirds is largely <b>international reach</b> (we're a global brand) — real authority, though not primarily U.S. donor traffic.</p>
+      </div>
+      <div class="chartbox">
+        <h3>The AI Overview effect — the real organic story</h3>
+        <p>Year-over-half change: we rank better and are seen more, but get clicked less</p>
+        <div class="canvas-s"><canvas id="orgTrend"></canvas></div>
+        <p class="muted" style="font-size:13px;margin-top:12px">Impressions <b>+23%</b>, average position <b>improved</b>, yet clicks <b>−25%</b> and CTR halved. With <b>88% of our keywords</b> now triggering AI Overviews, Google answers the query without a click. <b>We're feeding the AI and getting fewer visits back.</b></p>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card kpi"><div class="label">Real organic clicks (GSC)</div><div class="val">52,285</div><span class="vs">vs 17,704 reported in GA</span></div>
+      <div class="card kpi"><div class="label">Concentration risk</div><div class="val">54%</div><span class="vs">of organic clicks from ONE page (environmental degradation)</span></div>
+      <div class="card kpi"><div class="label">Non-branded discovery</div><div class="val">81%</div><span class="vs">real discovery, not brand searches</span></div>
+    </div>
+
+    <div class="callout" style="margin-top:16px">
+      <div class="eyebrow" style="color:var(--green)">What organic is really worth</div>
+      <p style="font-size:15px;color:var(--ink);margin-top:6px">Directly attributed organic giving: <b>$23,078</b> → <b>~$27,400</b> reclaiming its share of unattributed revenue → <b>provably more</b>, because organic carries no UTM and its influence gets last-click credited to other channels. Organic also grew from <b>13% → 24%</b> of tracked revenue year over year.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WINS / OPPORTUNITIES -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">The findings</div><h2>What worked &amp; where the upside sits</h2>
+      <p>An honest read of the year — strengths to bank, gaps that point to opportunity. (The "how" is Phase 2.)</p></div>
+    <div class="grid g2">
+      <div class="card wf win"><h3>What worked</h3><ul>
+        <li><b>Efficiency over spend</b> — more raised on 15% less budget; ROAS up 28%.</li>
+        <li><b>Net-positive after fees</b> — 2.25:1 even with our costs counted.</li>
+        <li><b>Plant-a-Tree PMax</b> — proven, scalable engine at 4.57:1.</li>
+        <li><b>Organic rankings improving</b> — position up, non-branded discovery strong.</li>
+        <li><b>Higher-value donors</b> — average gift up 12.5% to $69.79.</li>
+      </ul></div>
+      <div class="card wf fix"><h3>Opportunities identified</h3><ul>
+        <li><b>AI Overview click loss</b> — ranking up, clicks down; the organic shift to protect against.</li>
+        <li><b>Grant monetization gap</b> — $77k free media → $7k in gifts (0.09:1).</li>
+        <li><b>Organic measurement blind spot</b> — 66% under-reported; no UTM path to credit it.</li>
+        <li><b>Revenue concentration</b> — 85% of paid on one campaign; 54% of organic on one page.</li>
+        <li><b>Giving Search</b> — 202 gifts but only $3.5k (0.80:1).</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 2 TEASER -->
+<section>
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Phase 2 · Coming next</div><h2>What these numbers unlock</h2>
+      <p>FY26 is the scoreboard. The next phase turns the gaps into gains. Upside figures are directional, based on FY26 performance.</p></div>
+    <div class="grid g2">
+      <div class="card" style="border-left:5px solid var(--lime)"><div class="eyebrow" style="color:var(--green)">Opportunity 01</div>
+        <h3 style="font-size:18px;color:var(--dark);margin:4px 0 6px">Win the AI-answer era</h3>
+        <p class="muted" style="font-size:14px">Shift organic from ranking-for-clicks to being cited in AI answers, and capture branded/mid-funnel intent before the click disappears.</p>
+        <p style="margin-top:8px"><span class="pill">Protects the #1 traffic source</span></p></div>
+      <div class="card" style="border-left:5px solid var(--lime)"><div class="eyebrow" style="color:var(--green)">Opportunity 02</div>
+        <h3 style="font-size:18px;color:var(--dark);margin:4px 0 6px">Fix attribution</h3>
+        <p class="muted" style="font-size:14px">Unify tracking so organic's real dollars stop hiding in "direct." Prove the channel we already rank well in.</p>
+        <p style="margin-top:8px"><span class="pill">Unlocks organic's true ROI</span></p></div>
+      <div class="card" style="border-left:5px solid var(--earth)"><div class="eyebrow" style="color:var(--earth)">Opportunity 03</div>
+        <h3 style="font-size:18px;color:var(--dark);margin:4px 0 6px">Unlock the Grant</h3>
+        <p class="muted" style="font-size:14px">Convert 8,086 free visits like the paid funnel does — at $0 added media cost.</p>
+        <p style="margin-top:8px"><span class="pill" style="background:var(--earth-soft)">+$7k–$14k / yr</span></p></div>
+      <div class="card" style="border-left:5px solid var(--earth)"><div class="eyebrow" style="color:var(--earth)">Opportunity 04</div>
+        <h3 style="font-size:18px;color:var(--dark);margin:4px 0 6px">Own December &amp; de-risk</h3>
+        <p class="muted" style="font-size:14px">Protect the year-end window and add a second revenue line so 85% of income isn't on one campaign.</p>
+        <p style="margin-top:8px"><span class="pill" style="background:var(--earth-soft)">+10% Dec ≈ +$2,900</span></p></div>
+    </div>
+    <div class="callout" style="margin-top:18px;text-align:center;background:linear-gradient(135deg,var(--dark),var(--green));border:none;color:#fff">
+      <div class="eyebrow" style="color:var(--lime-soft)">The bottom line</div>
+      <div class="big" style="color:#fff;margin:6px 0">Rankings are healthy. Attribution and AI are the frontier.</div>
+      <p style="color:#dbe6c4;max-width:640px;margin:0 auto">A Phase 2 roadmap scopes each play above with targets, timeline, and investment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">For the record</div><h2>Methodology &amp; data confidence</h2></div>
+    <div class="method">
+      <ul>
+        <li><b>Paid/Grant dollars — high confidence.</b> Donation revenue is Salesforce first-party data, matched by UTM. Consent-independent and reconciled to the ad platforms.</li>
+        <li><b>Attribution is last-touch UTM.</b> Accurate for paid (ads always carry UTMs); structurally blind to organic (organic clicks carry no UTM), so organic revenue is understated and some is credited to "direct."</li>
+        <li><b>GA4 is consent-suppressed.</b> A Consent Mode v2 setup is dropping non-consented sessions — GA under-reports organic traffic ~66% and total revenue ~50% vs. first-party sources. GA is used here for channel <i>mix</i>, not absolute dollars.</li>
+        <li><b>Organic traffic verified via Search Console</b> (Google's own click data) and cross-checked against Semrush estimates. GSC is treated as truth.</li>
+        <li><b>Organic revenue is directional</b> — a defensible floor ($23k–$27k), not an audited figure. Pinning it exactly requires the donor-platform total as an anchor.</li>
+        <li><b>Data hygiene note:</b> a referral-spam/injection entry was found in the GA source list — recommend adding bot/referral filtering to the property.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><b>Plant With Purpose — FY26 Marketing Performance Report</b><br>
+      Scope: Paid Search, Google Ad Grant &amp; Organic Search. Fiscal year Jul 2025 – Jun 2026.</div>
+    <div style="text-align:right">Dollars: Salesforce (first-party). Traffic: Search Console + GA4.<br>
+      Net ROI includes ad spend + agency fees.<br>Next: Phase 2 optimization roadmap.</div>
+  </div>
+</footer>
+
+<script>
+const brand={dark:'#3c4a1e',green:'#55692b',lime:'#8cb63c',earth:'#bd5b28',gray:'#6b7166',good:'#4f8a2f',bad:'#c0563a'};
+const months=['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'];
+const revenue=[1301,2971,8053,2584,5826,28678,2376,2997,3504,3766,3546,7540];
+const roas=[0.44,1.49,5.40,1.73,3.95,14.29,1.85,3.06,3.53,2.51,2.35,7.52];
+
+new Chart(document.getElementById('monthChart'),{
+  data:{labels:months,datasets:[
+    {type:'bar',label:'Donations ($)',data:revenue,backgroundColor:brand.lime,borderRadius:6,yAxisID:'y',order:2},
+    {type:'line',label:'ROAS (x)',data:roas,borderColor:brand.earth,backgroundColor:brand.earth,borderWidth:3,tension:.35,pointRadius:4,yAxisID:'y1',order:1}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{color:brand.dark,font:{weight:'600'},usePointStyle:true,boxWidth:8}},
+      tooltip:{callbacks:{label:c=>c.dataset.yAxisID==='y'?' $'+c.parsed.y.toLocaleString():' '+c.parsed.y.toFixed(2)+':1 ROAS'}}},
+    scales:{y:{position:'left',ticks:{color:brand.gray,callback:v=>'$'+(v/1000)+'k'},grid:{color:'#eee'}},
+      y1:{position:'right',ticks:{color:brand.earth,callback:v=>v+':1'},grid:{drawOnChartArea:false}},
+      x:{ticks:{color:brand.gray},grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('orgReconcile'),{
+  type:'bar',
+  data:{labels:['Reported (GA4)','Actual (Search Console)'],datasets:[{data:[17704,52285],
+    backgroundColor:[brand.gray,brand.lime],borderRadius:8}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    tooltip:{callbacks:{label:c=>' '+c.parsed.y.toLocaleString()+' organic visits/clicks'}}},
+    scales:{y:{ticks:{color:brand.gray,callback:v=>(v/1000)+'k'},grid:{color:'#eee'}},x:{ticks:{color:brand.dark,font:{weight:'700'}},grid:{display:false}}}}
+});
+
+new Chart(document.getElementById('orgTrend'),{
+  type:'bar',
+  data:{labels:['Impressions','Avg. rank','Clicks','CTR'],datasets:[{
+    data:[23,25,-25,-39],
+    backgroundColor:c=>c.raw>=0?brand.good:brand.bad,borderRadius:6}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    tooltip:{callbacks:{label:c=>(c.parsed.y>=0?'+':'')+c.parsed.y+'% (H1→H2)'+(c.label==='Avg. rank'?' — ranking improved':'')}}},
+    scales:{y:{ticks:{color:brand.gray,callback:v=>v+'%'},grid:{color:'#eee'}},x:{ticks:{color:brand.dark,font:{weight:'700'}},grid:{display:false}}}}
+});
+</script>
+</body>
+</html>
