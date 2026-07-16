@@ -1,0 +1,1197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Pure Hawaii — Partner Playbook</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --teal:       #0D2B35;
+  --teal-mid:   #143544;
+  --teal-light: #1C4357;
+  --gold:       #B8956A;
+  --gold-light: #D4B48A;
+  --cream:      #F0EDE6;
+  --linen:      #F5F3EE;
+  --mist:       #8BAAB8;
+  --slate:      #5A7A8A;
+  --white:      #FFFFFF;
+  --coral:      #C4614A;
+  --sage:       #3D6B5A;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--linen);
+  color: var(--teal);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--linen);
+  border-bottom: 1px solid rgba(13,43,53,0.12);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wordmark .circle-badge {
+  width: 28px; height: 28px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 7px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  line-height: 1;
+  text-align: center;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--teal);
+  padding: 36px 24px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle at bottom right, rgba(184,149,106,0.1), transparent 70%);
+}
+
+.confidential-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* Advisor row */
+.advisor-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(184,149,106,0.2);
+}
+
+.avatar-wrap {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--teal-mid);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.avatar-wrap svg {
+  width: 34px; height: 34px;
+}
+
+.advisor-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.advisor-text p {
+  font-size: 11px;
+  color: var(--mist);
+  margin-top: 3px;
+  letter-spacing: 0.04em;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.15;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-sub {
+  font-size: 12px;
+  color: var(--mist);
+  line-height: 1.7;
+  max-width: 340px;
+  letter-spacing: 0.02em;
+}
+
+/* ── ALERT ── */
+.alert {
+  background: rgba(196,97,74,0.08);
+  border-top: 2px solid var(--coral);
+  padding: 14px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.alert-dot {
+  width: 7px; height: 7px;
+  background: var(--coral);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+.alert-text {
+  font-size: 12px;
+  color: var(--teal);
+  line-height: 1.6;
+}
+
+.alert-text strong { color: var(--coral); }
+
+/* ── PROGRESS ── */
+.progress-wrap {
+  background: var(--teal);
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(184,149,106,0.15);
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--mist);
+}
+
+.progress-meta span:last-child {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.progress-track {
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sage), var(--gold));
+  transition: width 0.4s ease;
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 0;
+}
+
+.section-label {
+  background: var(--teal);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(184,149,106,0.15);
+  border-top: 1px solid rgba(184,149,106,0.08);
+}
+
+.section-label h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+  letter-spacing: 0.03em;
+}
+
+.section-label .section-meta {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+/* ── CHECKLIST ITEM ── */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(13,43,53,0.08);
+  background: var(--white);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.check-item:active { background: var(--linen); }
+
+.check-item.done { background: var(--linen); }
+
+.checkbox {
+  width: 20px; height: 20px;
+  border: 1.5px solid rgba(13,43,53,0.25);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+
+.checkbox.checked {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+
+.checkbox.checked::after {
+  content: '';
+  width: 5px; height: 9px;
+  border: 1.5px solid white;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translate(-1px,-1px);
+}
+
+.check-content { flex: 1; min-width: 0; }
+
+.check-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--teal);
+  line-height: 1.45;
+  transition: color 0.2s;
+}
+
+.check-item.done .check-title {
+  color: var(--slate);
+  text-decoration: line-through;
+  text-decoration-color: var(--sage);
+}
+
+.check-desc {
+  font-size: 11px;
+  color: var(--slate);
+  margin-top: 4px;
+  line-height: 1.55;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+}
+
+.tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+.tag-now    { background: rgba(196,97,74,0.1);  color: var(--coral); }
+.tag-cost   { background: rgba(184,149,106,0.12); color: #8B6940; }
+.tag-legal  { background: rgba(13,43,53,0.08);  color: var(--teal); }
+.tag-seo    { background: rgba(61,107,90,0.1);  color: var(--sage); }
+.tag-social { background: rgba(90,122,138,0.1); color: var(--slate); }
+.tag-key    { background: rgba(184,149,106,0.15); color: #7A5A30; border: 1px solid rgba(184,149,106,0.3); }
+
+/* ── NOTE ── */
+.note-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 24px;
+  background: rgba(90,122,138,0.06);
+  border-bottom: 1px solid rgba(13,43,53,0.08);
+  border-left: 3px solid var(--mist);
+}
+
+.note-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+
+.note-text {
+  font-size: 11px;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+.note-text strong { color: var(--teal); font-weight: 600; }
+
+/* ── DAN CARD ── */
+.dan-section {
+  background: var(--teal);
+  padding: 20px 24px;
+}
+
+.dan-section .sub-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.dan-profile {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.dan-initial {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--teal-light);
+  border: 1.5px solid rgba(184,149,106,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  color: var(--gold-light);
+  flex-shrink: 0;
+}
+
+.dan-info h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+}
+
+.dan-info p {
+  font-size: 10px;
+  color: var(--mist);
+  margin-top: 2px;
+  line-height: 1.5;
+}
+
+.trait-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.trait {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 11px;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.trait .icon { font-size: 13px; }
+
+.intel-table { width: 100%; border-collapse: collapse; }
+
+.intel-table tr {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.intel-table tr:last-child { border-bottom: none; }
+
+.intel-table td {
+  padding: 8px 0;
+  font-size: 11px;
+  vertical-align: top;
+}
+
+.intel-table td:first-child {
+  color: var(--mist);
+  width: 46%;
+  padding-right: 10px;
+}
+
+.intel-table td:last-child { color: var(--cream); font-weight: 500; }
+
+.intel-table .danger { color: var(--coral); }
+.intel-table .warn   { color: var(--gold-light); }
+.intel-table .ok     { color: #6DC49A; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--teal);
+  border-top: 1px solid rgba(184,149,106,0.2);
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.footer .logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footer .logo .dot {
+  width: 24px; height: 24px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.footer p {
+  font-size: 10px;
+  color: var(--mist);
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+  line-height: 1.8;
+}
+
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="site-header">
+  <div class="wordmark">
+    Pure
+    <div class="circle-badge">25<br>YRS</div>
+    Kauai
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="confidential-tag">Confidential · Partners Only</div>
+
+  <div class="advisor-row">
+    <div class="avatar-wrap">
+      <img src="https://storage.googleapis.com/rightnow-report-images/rnc-embeds/david-social-profile.jpg" alt="David Tucker" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+    </div>
+    <div class="advisor-text">
+      <h3>David Tucker</h3>
+      <p>Lead Strategist · RightNow Communications</p>
+    </div>
+  </div>
+
+  <h1>Pure <em>Hawaii</em><br>Acquisition<br>Playbook</h1>
+  <p class="hero-sub">Brand lock, domain leverage, and trademark strategy for the statewide expansion — prepared for partners.</p>
+</div>
+
+<!-- ALERT -->
+<div class="alert">
+  <div class="alert-dot"></div>
+  <div class="alert-text">
+    <strong>Time-sensitive:</strong> "Pure Hawaii Villas" and "Pure Big Island" trade names expired Aug 2024. Unprotected. Anyone can register them today for $50 each.
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span>Playbook Progress</span>
+    <span id="pct">0 of 22 complete</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="fill" style="width:0%"></div>
+  </div>
+</div>
+
+
+<!-- ══ SECTION 1: TODAY ══ -->
+<div class="section">
+  <div class="section-label">
+    <h2>Do Today</h2>
+    <span class="section-meta">Under $200 · Immediate</span>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Register "Pure Hawaii" trade name — Hawaii DCCA</div>
+      <div class="check-desc">hbe.dcca.hawaii.gov · Form T-1 · Locks the brand name statewide</div>
+      <div class="tags"><span class="tag tag-now">Urgent</span><span class="tag tag-cost">$50</span></div>
+    </div>
+  </div>
+
+  <div class="note-item">
+    <div class="note-icon">📋</div>
+    <div class="note-text">
+      <strong>FYI — Not critical to this project:</strong> "Pure Hawaii Villas" and "Pure Big Island" trade names both expired Aug 2024. Available to re-register at $50 each if the statewide expansion reaches those islands. Low priority for now.
+    </div>
+  </div>
+
+  <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 24px;background:rgba(90,122,138,0.06);border-bottom:1px solid rgba(13,43,53,0.08);border-left:3px solid var(--mist);">
+    <div style="font-size:13px;flex-shrink:0;margin-top:1px;">💡</div>
+    <div style="font-size:11px;color:var(--slate);line-height:1.6;"><strong style="color:var(--teal);font-weight:600;">Angle to consider:</strong> Search DCCA for "Pure Hawaii LLC" — if it's dissolved, registering it as the statewide parent entity is a clean structural and negotiation move. Not urgent, but worth exploring.</div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Claim @purehawaii on TikTok, YouTube, Pinterest, X</div>
+      <div class="check-desc">Status unknown — secure all handles before the brand launch creates demand for them.</div>
+      <div class="tags"><span class="tag tag-social">Social</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">DM @pure_hawaii Instagram — offer handle swap</div>
+      <div class="check-desc">Japanese fan event account with ~2,900 followers. Non-competitive. Offer $200–500 for a clean handle transfer.</div>
+      <div class="tags"><span class="tag tag-social">Social</span><span class="tag tag-cost">$200–500</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ DAN BURKHART ══ -->
+<div class="dan-section">
+  <div class="sub-label">The Target — purehawaii.com</div>
+
+  <div class="dan-profile">
+    <div class="dan-initial">DB</div>
+    <div class="dan-info">
+      <h4>Dan Burkhart</h4>
+      <p>Ex-CEO, Recurly · $12B transaction volume<br>Board Member &amp; Advisor · SF / Big Island</p>
+    </div>
+  </div>
+
+  <div class="trait-grid">
+    <div class="trait"><span class="icon">🏄</span>Surfer — owns noserider.net</div>
+    <div class="trait"><span class="icon">📸</span>Serious photographer</div>
+    <div class="trait"><span class="icon">🥃</span>Whiskey — purewhiskey.com</div>
+    <div class="trait"><span class="icon">🏝️</span>Big Island property owner</div>
+    <div class="trait"><span class="icon">🚗</span>Cars &amp; speed enthusiast</div>
+    <div class="trait"><span class="icon">👨‍👧</span>"Ego in check" — dad first</div>
+  </div>
+
+  <table class="intel-table">
+    <tr><td>purehawaii.com status</td><td class="warn">Blank / parked · Zero traffic</td></tr>
+    <tr><td>Monetized?</td><td class="ok">No — dead overhead for him</td></tr>
+    <tr><td>"Pure" domains owned</td><td>29+ across portfolio</td></tr>
+    <tr><td>Direct cash offer</td><td class="danger">Rejected — not motivated by money</td></tr>
+    <tr><td>Federal TM on "Pure Hawaii"</td><td class="ok">None — space is open</td></tr>
+    <tr><td>Best approach</td><td class="warn">Legacy story + experience trade</td></tr>
+  </table>
+</div>
+
+
+<!-- ══ SECTION 2: THIS WEEK ══ -->
+<div class="section">
+  <div class="section-label">
+    <h2>This Week — Legal &amp; TM</h2>
+    <span class="section-meta">Days 2–7 · Under $1,000</span>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Run TM clearance search — confirm no conflicts in Class 43</div>
+      <div class="check-desc">"Pure Hawaiian" clothing TM cancelled 2010. Space clear. Attorney 2hr job.</div>
+      <div class="tags"><span class="tag tag-legal">Legal</span><span class="tag tag-cost">$300–500</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">File USPTO federal trademark — "Pure Hawaii" Class 43</div>
+      <div class="check-desc">Hotel &amp; travel services. Intent-to-use application locks priority date immediately. 8–12 months to register.</div>
+      <div class="tags"><span class="tag tag-legal">Legal</span><span class="tag tag-cost">$350–700</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Update purehawaii.co — "Pure Hawaii" as primary brand in H1 + meta</div>
+      <div class="check-desc">First entity signal to Google. "Pure Kauai" becomes the island sub-brand.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Create / update Google Business Profile under "Pure Hawaii"</div>
+      <div class="check-desc">Entity signal to Google Knowledge Graph. Feeds AI search citations.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Create Wikidata + Crunchbase + LinkedIn entries for Pure Hawaii</div>
+      <div class="check-desc">Feeds ChatGPT, Perplexity, Google AI Overviews. Brand entity recognition in AI search.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ SECTION 3: MONTH 1-3 ══ -->
+<div class="section">
+  <div class="section-label">
+    <h2>Month 1–3 — Brand Authority</h2>
+    <span class="section-meta">SEO · Content · Press</span>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Build 4 cornerstone island pages on purehawaii.co</div>
+      <div class="check-desc">Pure Hawaii Kauai · Pure Hawaii Maui · Pure Hawaii Big Island · Pure Hawaii Oahu. Plant statewide flags even before properties exist.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Press release — "Pure Kauai expands statewide as Pure Hawaii"</div>
+      <div class="check-desc">PR Newswire distribution. Targets travel press pickup. Creates brand mention backlinks.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-cost">$300–500</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Pitch Condé Nast Traveler · Travel + Leisure · Robb Report</div>
+      <div class="check-desc">25-year story + statewide expansion = legitimate editorial angle. Brand mentions = AI citation fuel.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Schema markup across purehawaii.co</div>
+      <div class="check-desc">LodgingBusiness, TravelAgency, Organization schema. Structured data tells Google exactly what Pure Hawaii is.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Launch @purehawaii social — 3x/week content cadence</div>
+      <div class="check-desc">North Shore luxury editorial. Statewide brand narrative. Tap Hawaii photographer community for UGC.</div>
+      <div class="tags"><span class="tag tag-social">Social</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ SECTION 3B: SEO & AIO BUILD ══ -->
+<div class="section">
+  <div class="section-label">
+    <h2>SEO &amp; AIO — Build List</h2>
+    <span class="section-meta">Month 1–6 · All Surfaces</span>
+  </div>
+
+  <!-- WEBSITE -->
+  <div class="section-label" style="background:rgba(13,43,53,0.04); border-top:none;">
+    <h2 style="font-size:13px; color:var(--teal); font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">🌐 Website</h2>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Make purehawaii.co the parent brand hub — all islands</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Cross-link purekauai.com ↔ puremaui.com ↔ purehawaii.co</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Build 4 island landing pages on purehawaii.co — Kauai, Maui, Big Island, Oahu</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Build neighborhood / destination pages for each island</div>
+      <div class="check-desc">Kauai already has Hanalei, Princeville, Anini etc. Replicate on puremaui.com — Wailea, Kapalua, Lahaina, Hana.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Add FAQ section to every page and blog post</div>
+      <div class="check-desc">This is what Google surfaces in answer boxes and what AI engines pull from.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-now">AIO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Publish 4 blog posts per month across the network</div>
+      <div class="check-desc">Mix of destination guides, travel tips, and property showcases.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Build a detailed About page — 25-year story, team, awards</div>
+      <div class="check-desc">AI engines use this to verify credibility before citing a brand.</div>
+      <div class="tags"><span class="tag tag-now">AIO</span></div>
+    </div>
+  </div>
+
+  <!-- AI SEARCH -->
+  <div class="section-label" style="background:rgba(13,43,53,0.04); border-top: 1px solid rgba(13,43,53,0.08);">
+    <h2 style="font-size:13px; color:var(--teal); font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">🤖 AI Search (AIO)</h2>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Create Wikidata, Crunchbase, and LinkedIn entries for Pure Hawaii</div>
+      <div class="check-desc">Tells ChatGPT, Perplexity, and Google AI that Pure Hawaii is a real, citable brand.</div>
+      <div class="tags"><span class="tag tag-now">AIO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Get press coverage in Condé Nast Traveler, Travel + Leisure, or Robb Report</div>
+      <div class="check-desc">AI engines cite these publications. One article = hundreds of AI citations.</div>
+      <div class="tags"><span class="tag tag-now">AIO</span><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Seed Pure Hawaii on Reddit (r/HawaiiVisitors) and Quora</div>
+      <div class="check-desc">Natural answers to luxury Hawaii travel questions. AI engines pull heavily from both platforms.</div>
+      <div class="tags"><span class="tag tag-now">AIO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Collect and display guest reviews on Google, TripAdvisor, and site</div>
+      <div class="check-desc">Review volume and sentiment are key trust signals for AI citations.</div>
+      <div class="tags"><span class="tag tag-now">AIO</span><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Monthly AI test — search "best luxury vacation rental Kauai" in ChatGPT, Perplexity, Google AI</div>
+      <div class="check-desc">Track when Pure Hawaii starts appearing. Benchmark against Hawaii Hideaways.</div>
+      <div class="tags"><span class="tag tag-now">AIO</span></div>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="section-label" style="background:rgba(13,43,53,0.04); border-top: 1px solid rgba(13,43,53,0.08);">
+    <h2 style="font-size:13px; color:var(--teal); font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">▶️ Video</h2>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Launch Pure Hawaii YouTube channel</div>
+      <div class="tags"><span class="tag tag-social">Video</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Film cinematic property tour for each villa — drone, interior, pool, beach</div>
+      <div class="tags"><span class="tag tag-social">Video</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Film destination guide videos — "North Shore Kauai — what to know"</div>
+      <div class="tags"><span class="tag tag-social">Video</span><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Post 2 YouTube videos per month · embed each on its corresponding web page</div>
+      <div class="tags"><span class="tag tag-social">Video</span><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Cut each video into 3–5 short clips for Instagram Reels and TikTok</div>
+      <div class="tags"><span class="tag tag-social">Video</span></div>
+    </div>
+  </div>
+
+  <!-- IMAGES -->
+  <div class="section-label" style="background:rgba(13,43,53,0.04); border-top: 1px solid rgba(13,43,53,0.08);">
+    <h2 style="font-size:13px; color:var(--teal); font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">📸 Images</h2>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Hire local Kauai and Maui photographers — editorial-quality property shoots</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Name every photo file descriptively — "pure-hawaii-kauai-north-shore-villa.jpg"</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Launch @purehawaii Pinterest — luxury travel boards for each island</div>
+      <div class="tags"><span class="tag tag-social">Social</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Pin every blog post and property to Pinterest with a branded vertical image</div>
+      <div class="tags"><span class="tag tag-social">Social</span><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <!-- SOCIAL -->
+  <div class="section-label" style="background:rgba(13,43,53,0.04); border-top: 1px solid rgba(13,43,53,0.08);">
+    <h2 style="font-size:13px; color:var(--teal); font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">📱 Social Media</h2>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">@purehawaii Instagram — statewide brand account · 3x/week Reels + daily Stories</div>
+      <div class="tags"><span class="tag tag-social">Social</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">@purekauai and @puremaui Instagram — keep active, island-specific content</div>
+      <div class="tags"><span class="tag tag-social">Social</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">@purehawaii TikTok — launch and post 3x/week</div>
+      <div class="tags"><span class="tag tag-social">Social</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Pure Hawaii Facebook Page — run Meta retargeting ads to website visitors</div>
+      <div class="tags"><span class="tag tag-social">Social</span></div>
+    </div>
+  </div>
+
+
+
+  <!-- PRESS -->
+  <div class="section-label" style="background:rgba(13,43,53,0.04); border-top: 1px solid rgba(13,43,53,0.08);">
+    <h2 style="font-size:13px; color:var(--teal); font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">🔗 Press &amp; Partnerships</h2>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Issue press release — "Pure Kauai expands statewide as Pure Hawaii"</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-cost">$300–500</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Pitch 25-year anniversary story to Condé Nast Traveler, Afar, Sunset Magazine</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-now">AIO</span></div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <!-- LISTINGS & DIRECTORIES -->
+  <div class="section-label" style="background:rgba(13,43,53,0.04); border-top: 1px solid rgba(13,43,53,0.08);">
+    <h2 style="font-size:13px; color:var(--teal); font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">📍 Listings &amp; Directories</h2>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">LinkedIn — Pure Hawaii company page</div>
+      <div class="check-desc">Brand entity signal. Also reaches travel planners and corporate retreat buyers.</div>
+      <div class="tags"><span class="tag tag-now">AIO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Facebook — Pure Hawaii business page</div>
+      <div class="check-desc">Separate from Pure Kauai page. Statewide brand. Needed for Meta ad campaigns.</div>
+      <div class="tags"><span class="tag tag-social">Social</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Yelp — Pure Hawaii business listing</div>
+      <div class="check-desc">Yelp ranks well for local service queries. Review aggregation feeds AI search citations.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-now">AIO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Airbnb — Pure Hawaii property listings</div>
+      <div class="check-desc">Distribution channel + brand visibility. Airbnb listings rank in Google. Link back to purehawaii.co in profile.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">TripAdvisor — Pure Hawaii profile and property listings</div>
+      <div class="check-desc">High-authority domain. Reviews here feed AI citations directly. One of the first places luxury travelers research.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-now">AIO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">MapQuest / Apple Maps / Bing Places — Pure Hawaii brand listing</div>
+      <div class="check-desc">Citation consistency across all map platforms strengthens local SEO and entity recognition.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-cost">Free</span></div>
+    </div>
+  </div>
+
+  <!-- PAID PLACEMENTS -->
+  <div class="section-label" style="background:rgba(13,43,53,0.04); border-top: 1px solid rgba(13,43,53,0.08);">
+    <h2 style="font-size:13px; color:var(--teal); font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">💰 Paid Placements</h2>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Sponsored posts in luxury Hawaii travel blogs</div>
+      <div class="check-desc">Target blogs already ranking for "best Kauai vacation rental" and "luxury Maui villa." Paid placement = backlink + brand mention.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span><span class="tag tag-cost">$500–2K/post</span></div>
+    </div>
+  </div>
+
+
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Sponsored placement on luxury travel aggregator sites</div>
+      <div class="check-desc">Hawaii Hideaways, Exotic Estates-style sites often sell featured listing slots. Get in front of their existing buyer audience.</div>
+      <div class="tags"><span class="tag tag-social">Paid</span><span class="tag tag-cost">Varies</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Google Ads — target competitor brand keywords and high-intent search queries</div>
+      <div class="check-desc">"Luxury Kauai vacation rental," "Kauai private villa rental." Capture buyers while organic rankings are building.</div>
+      <div class="tags"><span class="tag tag-social">Paid</span><span class="tag tag-cost">Budget TBD</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ SECTION 4: DAN ENDGAME ══ -->
+<div class="section">
+  <div class="section-label">
+    <h2>Dan Burkhart — Endgame</h2>
+    <span class="section-meta">Month 4–6 · After Brand Built</span>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Map warm intro path into Dan's network</div>
+      <div class="check-desc">Wharton alumni · eBay diaspora · Headline VC · Anthony Trucks / Brendan Kane connections. One warm intro &gt; 50 cold emails.</div>
+      <div class="tags"><span class="tag tag-key">Priority</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Go back to Dan — show him what we built</div>
+      <div class="check-desc">"We built the brand anyway. purehawaii.co is ranking. The .com would be a clean redirect. Standing offer of $X." Leverage shifts when brand exists.</div>
+      <div class="tags"><span class="tag tag-key">Priority</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Build offer package — invitation not transaction</div>
+      <div class="check-desc">North Shore hosted stay + excellent whiskey + photography invite + modest cash ($3–5K). Total value $12–20K. Zero of it feels like a domain deal.</div>
+      <div class="tags"><span class="tag tag-cost">$5–20K total</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">Consider equity / advisor role in Pure Hawaii</div>
+      <div class="check-desc">Post-exit founder seeking next venture. Hawaii property owner. Small stake turns him from seller into co-creator. Domain becomes a footnote.</div>
+      <div class="tags"><span class="tag tag-key">Wildcard</span></div>
+    </div>
+  </div>
+
+  <div class="check-item" onclick="toggle(this)">
+    <div class="checkbox"></div>
+    <div class="check-content">
+      <div class="check-title">If domain acquired — 301 redirect purehawaii.com → purehawaii.co</div>
+      <div class="check-desc">Pass full link authority. Update all brand assets, press, social bios. Close the loop.</div>
+      <div class="tags"><span class="tag tag-seo">SEO</span></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="logo">
+    Pure
+    <div class="dot">25<br>YRS</div>
+    Kauai
+  </div>
+  <p>
+    Prepared by RightNow Communications<br>
+    Confidential · For Partner Use Only · July 2026
+  </p>
+</div>
+
+<script>
+  const TOTAL = document.querySelectorAll('.check-item').length;
+
+  function toggle(el) {
+    el.classList.toggle('done');
+    el.querySelector('.checkbox').classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const done = document.querySelectorAll('.check-item.done').length;
+    const pct  = Math.round((done / TOTAL) * 100);
+    document.getElementById('fill').style.width = pct + '%';
+    document.getElementById('pct').textContent  = done + ' of ' + TOTAL + ' complete';
+  }
+
+  updateProgress();
+</script>
+</body>
+</html>
