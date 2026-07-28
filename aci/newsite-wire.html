@@ -1,0 +1,495 @@
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="icon" type="image/png" href="/favicon.png">
+<title>Austin Career Institute — Website Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14181f;
+    --steel: #5a636e;
+    --mute: #8a929c;
+    --line: #dcdfe3;
+    --line-soft: #ebedef;
+    --paper: #f4f5f6;
+    --card: #ffffff;
+    --hivis: #f5b301;
+    --hivis-bg: #fef3d6;
+    --hivis-ink: #7a5600;
+    --strike: #b03a2e;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 940px; margin: 0 auto; padding: 0 28px 96px; }
+
+  .masthead {
+    border-bottom: 3px solid var(--ink);
+    padding: 56px 0 22px;
+    margin-bottom: 8px;
+  }
+  .eyebrow {
+    font-family: "Oswald", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--hivis-ink);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .standfirst {
+    font-size: 18px;
+    color: var(--steel);
+    max-width: 62ch;
+    margin: 0;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    font-size: 13px;
+    color: var(--mute);
+    padding: 14px 0 0;
+    margin-bottom: 60px;
+  }
+  .meta span strong { color: var(--steel); font-weight: 500; }
+
+  section { margin-bottom: 72px; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    border-top: 1px solid var(--ink);
+    padding-top: 14px;
+    margin-bottom: 26px;
+  }
+  .sec-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--mute);
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+  h2 {
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 27px;
+    letter-spacing: 0.005em;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin: 38px 0 14px;
+  }
+
+  p { max-width: 68ch; }
+  p.lede { font-size: 17px; color: var(--steel); margin-top: 0; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 30px 32px;
+  }
+
+  pre.tree {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13.5px;
+    line-height: 1.85;
+    margin: 0;
+    white-space: pre;
+    overflow-x: auto;
+    color: var(--ink);
+  }
+  pre.tree .top { font-weight: 500; }
+  pre.tree .new {
+    background: var(--hivis-bg);
+    box-shadow: -3px 0 0 0 var(--hivis);
+    color: var(--hivis-ink);
+    font-weight: 500;
+  }
+  pre.tree .gone {
+    color: var(--strike);
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+  }
+  pre.tree .note { color: var(--mute); }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+    font-size: 13px;
+    color: var(--steel);
+    margin-top: 20px;
+  }
+  .legend i {
+    display: inline-block;
+    width: 11px; height: 11px;
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: -1px;
+    border: 1px solid var(--line);
+  }
+  .legend .k-old { background: #edeef0; }
+  .legend .k-new { background: var(--hivis-bg); border-color: var(--hivis); }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0 0; font-size: 15px; }
+  th {
+    text-align: left;
+    font-family: "Oswald", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--steel);
+    border-bottom: 1.5px solid var(--ink);
+    padding: 0 14px 9px 0;
+  }
+  td { border-bottom: 1px solid var(--line-soft); padding: 12px 14px 12px 0; vertical-align: top; }
+  td:last-child, th:last-child { padding-right: 0; }
+
+  ul.plain { padding-left: 20px; margin: 12px 0; max-width: 68ch; }
+  ul.plain li { margin-bottom: 8px; }
+
+  .flag {
+    border-left: 3px solid var(--hivis);
+    background: var(--hivis-bg);
+    padding: 18px 24px;
+    margin: 26px 0 0;
+    border-radius: 0;
+  }
+  .flag p { margin: 0; max-width: 64ch; font-size: 15px; color: var(--hivis-ink); }
+  .flag p + p { margin-top: 10px; }
+  .flag strong { font-weight: 600; }
+
+  .diagram { background: var(--card); border: 1px solid var(--line); border-radius: 3px; padding: 26px 24px 20px; }
+  .diagram svg { display: block; width: 100%; height: auto; }
+
+  .foot {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    font-size: 13px;
+    color: var(--mute);
+  }
+
+  @media (max-width: 620px) {
+    h1 { font-size: 34px; }
+    h2 { font-size: 22px; }
+    .wrap { padding: 0 18px 64px; }
+    .card { padding: 20px 18px; }
+    pre.tree { font-size: 12px; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    section { page-break-inside: avoid; }
+    .wrap { max-width: none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Website rebuild</p>
+    <h1>Austin Career Institute<br>Website Architecture</h1>
+    <p class="standfirst">What the website looks like today, what the new site will look like, and what has to be built to get there.</p>
+  </header>
+
+  <div class="meta">
+    <span><strong>Prepared for</strong> &nbsp;ACI leadership</span>
+    <span><strong>Prepared by</strong> &nbsp;RightNow Inc.</span>
+    <span><strong>Status</strong> &nbsp;For review</span>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">01</span><h2>Today vs. the new site</h2></div>
+    <p class="lede">The site is not getting dramatically bigger. It is getting reorganized around the questions people actually ask before they enroll.</p>
+
+    <div class="diagram">
+      <svg viewBox="0 0 860 512" role="img" aria-label="Comparison of website sections today versus the new site">
+        <text x="0" y="20" font-family="Oswald, sans-serif" font-size="14" font-weight="500" letter-spacing="1.4" fill="#5a636e">TODAY</text>
+        <text x="480" y="20" font-family="Oswald, sans-serif" font-size="14" font-weight="500" letter-spacing="1.4" fill="#5a636e">NEW SITE</text>
+
+        <g font-family="Inter, sans-serif" font-size="15">
+          <rect x="0" y="40" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="18" y="61" fill="#2b333d">Home</text>
+          <rect x="0" y="82" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="18" y="103" fill="#2b333d">Our story</text>
+          <rect x="0" y="124" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="18" y="145" fill="#2b333d">Programs</text>
+          <rect x="0" y="166" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="18" y="187" fill="#2b333d">Our students</text>
+          <rect x="0" y="208" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="18" y="229" fill="#2b333d">Contact</text>
+          <rect x="0" y="250" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="18" y="271" fill="#2b333d">Blog</text>
+          <rect x="0" y="292" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="18" y="313" fill="#2b333d">Ad landing pages</text>
+          <text x="362" y="313" text-anchor="end" fill="#8a929c" font-size="13">none</text>
+        </g>
+
+        <line x1="404" y1="271" x2="464" y2="271" stroke="#9aa3ad" stroke-width="1.5"/>
+        <path d="M458 265 L466 271 L458 277" fill="none" stroke="#9aa3ad" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <g font-family="Inter, sans-serif" font-size="15">
+          <rect x="480" y="40" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="498" y="61" fill="#2b333d">Home</text>
+          <rect x="480" y="82" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="498" y="103" fill="#2b333d">Programs</text>
+          <rect x="480" y="124" width="380" height="34" rx="3" fill="#fef3d6" stroke="#f5b301"/>
+          <text x="498" y="145" fill="#7a5600" font-weight="500">Admissions</text>
+          <rect x="480" y="166" width="380" height="34" rx="3" fill="#fef3d6" stroke="#f5b301"/>
+          <text x="498" y="187" fill="#7a5600" font-weight="500">Tuition planning</text>
+          <rect x="480" y="208" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="498" y="229" fill="#2b333d">Who we serve</text>
+          <rect x="480" y="250" width="380" height="34" rx="3" fill="#fef3d6" stroke="#f5b301"/>
+          <text x="498" y="271" fill="#7a5600" font-weight="500">Campuses</text>
+          <rect x="480" y="292" width="380" height="34" rx="3" fill="#fef3d6" stroke="#f5b301"/>
+          <text x="498" y="313" fill="#7a5600" font-weight="500">Career services</text>
+          <rect x="480" y="334" width="380" height="34" rx="3" fill="#fef3d6" stroke="#f5b301"/>
+          <text x="498" y="355" fill="#7a5600" font-weight="500">About</text>
+          <rect x="480" y="376" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="498" y="397" fill="#2b333d">Contact</text>
+          <rect x="480" y="418" width="380" height="34" rx="3" fill="#edeef0" stroke="#d2d6da"/>
+          <text x="498" y="439" fill="#2b333d">Blog</text>
+          <rect x="480" y="460" width="380" height="34" rx="3" fill="#fef3d6" stroke="#f5b301"/>
+          <text x="498" y="481" fill="#7a5600" font-weight="500">Ad landing pages</text>
+        </g>
+      </svg>
+      <div class="legend">
+        <span><i class="k-old"></i>Exists today</span>
+        <span><i class="k-new"></i>To be built</span>
+      </div>
+    </div>
+
+    <h3>Three things to take away</h3>
+    <ul class="plain">
+      <li><strong>Four questions have no home on the site right now.</strong> How to enroll, what it costs, when classes start, and which campus. Every competitor in the category answers all four.</li>
+      <li><strong>Nothing gets lost.</strong> The certification, employment, and financial aid detail currently spread across twelve separate pages moves onto the program pages and into one tuition section. Same information, fewer clicks.</li>
+      <li><strong>There are no ad landing pages today.</strong> Every dollar of advertising currently lands on a page built for browsing, with full navigation and dozens of ways to leave.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">02</span><h2>The site today</h2></div>
+    <p class="lede">Five sections. Most of the site sits under Programs, three levels deep. Four pages are live but reachable only by direct link.</p>
+
+    <div class="card">
+<pre class="tree"><span class="top">HOME</span>
+│
+├── <span class="top">OUR STORY</span>
+│   └── Blog
+│
+├── <span class="top">PROGRAMS</span>
+│   ├── Medical Assistant
+│   │   ├── Certification
+│   │   ├── Employment
+│   │   └── Financial Aid
+│   │
+│   ├── Electrical Tech
+│   │   ├── Solar Power
+│   │   ├── Certification
+│   │   ├── Employment
+│   │   └── Financial Aid
+│   │
+│   ├── HVAC Tech
+│   │   ├── Certification
+│   │   ├── Employment
+│   │   └── Financial Aid
+│   │
+│   ├── HVAC Español
+│   │
+│   └── Welding
+│       ├── Certification
+│       ├── Employment
+│       └── Financial Aid
+│
+├── <span class="top">OUR STUDENTS</span>
+│   ├── Veterans
+│   ├── Career Seekers
+│   └── Student Area
+│
+└── <span class="top">CONTACT</span>
+
+
+<span class="top">HEADER</span>
+Phone  │  Book a Tour  │  Apply Now
+
+<span class="top">FOOTER</span>
+Home  │  Blog  │  Apply
+Consumer Info  │  Terms  │  Privacy  │  Accessibility
+
+<span class="top">LIVE BUT NOT IN NAVIGATION</span>
+<span class="gone">Phlebotomy</span>  │  New Americans  │  Book a Tour  │  Application</pre>
+    </div>
+
+    <div class="flag">
+      <p><strong>Phlebotomy is still live and linked from the homepage.</strong> The program has been discontinued. The page and every reference to it come down with the rebuild.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">03</span><h2>The new site</h2></div>
+    <p class="lede">Ten sections, two levels deep. Highlighted items are new pages.</p>
+
+    <div class="card">
+<pre class="tree"><span class="top">HOME</span>
+│
+├── <span class="top">PROGRAMS</span>
+│   ├── HVAC
+│   ├── Electrical
+│   ├── Welding
+│   ├── Medical Assistant
+│   └── <span class="new">Compare Programs</span>
+│
+├── <span class="new top">ADMISSIONS</span>
+│   ├── <span class="new">How to Enroll</span>
+│   ├── <span class="new">Requirements</span>
+│   ├── <span class="new">Start Dates</span>
+│   ├── Book a Tour
+│   ├── <span class="new">Program Guide</span>
+│   └── Apply
+│
+├── <span class="new top">TUITION PLANNING</span>
+│   ├── <span class="new">Program Costs</span>
+│   ├── <span class="new">Scholarships &amp; Grants</span>
+│   ├── <span class="new">How to Apply for Aid</span>
+│   ├── <span class="new">Workforce Funding</span>
+│   └── <span class="new">Aid FAQ</span>
+│
+├── <span class="top">WHO WE SERVE</span>
+│   ├── <span class="new">High School Grads</span>
+│   ├── Career Changers
+│   ├── Veterans
+│   ├── New Americans
+│   └── HVAC Español
+│
+├── <span class="new top">CAMPUSES</span>
+│   ├── <span class="new">Cameron Road</span>
+│   └── <span class="new">East Austin</span>
+│
+├── <span class="new top">CAREER SERVICES</span>
+│   ├── <span class="new">Employer Partners</span>
+│   ├── <span class="new">Austin Trade Careers</span>
+│   └── Student Support
+│
+├── <span class="new top">ABOUT</span>
+│   ├── <span class="new">Accreditation</span>
+│   ├── <span class="new">Instructors</span>
+│   ├── <span class="new">Facilities</span>
+│   ├── <span class="new">Reviews &amp; Stories</span>
+│   ├── <span class="new">Careers at ACI</span>
+│   └── <span class="new">FAQ</span>
+│
+├── <span class="top">BLOG</span>
+│
+└── <span class="top">CONTACT</span>
+
+
+<span class="top">HEADER</span>
+Apply  │  Book a Tour  │  Call  │  Español
+
+<span class="top">FOOTER</span>
+Programs  │  Admissions  │  Tuition Planning  │  Campuses  │  Blog  │  Contact
+Student Area  │  FAQ  │  Consumer Info  │  Terms  │  Privacy  │  Accessibility
+Accreditation notice  │  Campus addresses  │  Social</pre>
+      <div class="legend">
+        <span><i class="k-old"></i>Exists today</span>
+        <span><i class="k-new"></i>To be built</span>
+      </div>
+    </div>
+
+    <h3>Four decisions worth naming</h3>
+    <table>
+      <tr><th style="width:30%">Decision</th><th>Why</th></tr>
+      <tr><td><strong>&ldquo;Tuition Planning,&rdquo; not &ldquo;Financial Aid&rdquo;</strong></td><td>Planning implies help is available. Aid implies you can&rsquo;t afford it. Softer entry to the single scariest topic on the site.</td></tr>
+      <tr><td><strong>Program Guide</strong></td><td>A downloadable guide gives someone a way to raise their hand without committing to a phone call. There is currently nothing between reading a page and handing over a phone number.</td></tr>
+      <tr><td><strong>Careers at ACI</strong></td><td>Two campuses and growing. Trade instructors are hard to hire, and a real careers page is a recruiting asset.</td></tr>
+      <tr><td><strong>Student Area moves to the footer</strong></td><td>It serves current students, not prospective ones. Keeping it in the main navigation splits the path for someone still deciding.</td></tr>
+    </table>
+
+    <div class="flag">
+      <p><strong>Austin Trade Careers needs compliance review before it is built.</strong> The owner has raised the idea of posting local trade jobs on the site. As proposed here, the page is editorial &mdash; what the Austin trade market looks like, using published third-party data &mdash; with no live job listings and no salary figures.</p>
+      <p>A live job board is a different product with different exposure: listing wages next to an enroll button can be read as an implied earnings or placement claim even when no claim is made. That version should not be scoped until ACI&rsquo;s compliance review has weighed in.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Ad landing pages</h2></div>
+    <p class="lede">These sit outside the website navigation on purpose. Someone arriving from an ad has already decided what they are interested in. The job of that page is one question and one form.</p>
+
+    <div class="card">
+<pre class="tree"><span class="top">AD LANDING PAGES</span>  <span class="note">— not in navigation</span>
+│
+├── <span class="new">HVAC</span>
+├── <span class="new">Electrical</span>
+├── <span class="new">Welding</span>
+└── <span class="new">Medical Assistant</span>
+
+<span class="note">Built from one master template so new versions can be
+launched without a developer.</span></pre>
+    </div>
+
+    <table>
+      <tr><th style="width:30%">Rule</th><th>Detail</th></tr>
+      <tr><td>Header</td><td>Logo and phone only. No navigation menu.</td></tr>
+      <tr><td>Footer</td><td>Legal only. No links back into the site.</td></tr>
+      <tr><td>Traffic</td><td>Advertising only &mdash; Google, Meta, TikTok.</td></tr>
+      <tr><td>Exit</td><td>The form is the only way forward.</td></tr>
+      <tr><td>Search</td><td>Hidden from search engines so they never compete with the program pages.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-num">05</span><h2>What has to happen</h2></div>
+
+    <table>
+      <tr><th style="width:22%">Move</th><th style="width:26%">What</th><th>Why</th></tr>
+      <tr><td><strong>Remove</strong></td><td>Phlebotomy page and all references</td><td>Program discontinued.</td></tr>
+      <tr><td><strong>Fold in</strong></td><td>12 program subpages</td><td>Certification, employment, and financial aid detail moves onto the program pages and into Tuition Planning.</td></tr>
+      <tr><td><strong>Promote</strong></td><td>New Americans, Book a Tour, Apply</td><td>Live today but reachable only by direct link.</td></tr>
+      <tr><td><strong>Build</strong></td><td>Admissions, Tuition Planning, Campuses, Career Services, About</td><td>The five sections that answer pre-enrollment questions.</td></tr>
+      <tr><td><strong>Build</strong></td><td>Four ad landing pages plus template</td><td>So advertising stops landing on browsing pages.</td></tr>
+      <tr><td><strong>Preserve</strong></td><td>Existing page addresses</td><td>Every retired page redirects to its replacement so search rankings and existing links carry over.</td></tr>
+    </table>
+
+    <h3>Open items</h3>
+    <ul class="plain">
+      <li><strong>Austin Trade Careers</strong> &mdash; needs compliance review before scope is set.</li>
+      <li><strong>Spanish</strong> &mdash; staying at the two pages that exist today. The address structure will be built so a fuller Spanish section is a content project later, not another rebuild.</li>
+      <li><strong>Content ownership</strong> &mdash; roughly 25 new pages need copy. Who writes and who approves needs a name against it before the build starts.</li>
+    </ul>
+  </section>
+
+  <p class="foot">Austin Career Institute &mdash; website architecture. Prepared by RightNow Inc.</p>
+
+</div>
