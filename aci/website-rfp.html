@@ -1,1 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RFP — Austin Career Institute Website Redevelopment</title>
+<style>
+  :root {
+    --amber: #B45309;
+    --dark: #1A1A1A;
+    --gray: #555555;
+    --line: #E5E0D8;
+    --bg-soft: #FAF8F5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Calibri, Arial, sans-serif;
+    color: var(--dark);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 32px 96px;
+    line-height: 1.55;
+    background: #fff;
+  }
+  h1.doctitle {
+    font-size: 34px;
+    letter-spacing: 0.5px;
+    margin: 0 0 4px;
+  }
+  h2.subtitle {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 24px;
+    color: var(--dark);
+  }
+  .meta {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 40px;
+    font-size: 14.5px;
+    color: var(--gray);
+  }
+  .meta div { margin: 4px 0; }
+  .meta b { color: var(--dark); }
+  .meta .hard {
+    color: var(--amber);
+    font-weight: 700;
+  }
+  h1 {
+    font-size: 22px;
+    color: var(--amber);
+    border-bottom: 2px solid var(--amber);
+    padding-bottom: 6px;
+    margin-top: 44px;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-size: 16.5px;
+    margin-top: 26px;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+  p { margin: 0 0 12px; font-size: 15px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; font-size: 15px; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0 20px;
+    font-size: 14.5px;
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #2B2B2B;
+    color: #fff;
+    font-weight: 600;
+  }
+  tr:nth-child(even) td { background: var(--bg-soft); }
+  .note {
+    font-style: italic;
+    color: var(--gray);
+    font-size: 14px;
+  }
+  .highlight-box {
+    background: var(--bg-soft);
+    border-left: 4px solid var(--amber);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 15px;
+  }
+  .payment-table td.amt {
+    font-weight: 700;
+    color: var(--amber);
+  }
+  strong { color: var(--dark); }
+  @media print {
+    body { padding: 0; }
+    h1 { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1 class="doctitle">REQUEST FOR PROPOSAL</h1>
+<h2 class="subtitle">Austin Career Institute — Website Redevelopment</h2>
+
+<div class="meta">
+  <div><b>Issued by:</b> RightNow Inc., on behalf of Austin Career Institute (ACI)</div>
+  <div><b>RFP Issue Date:</b> Monday, August 17, 2026</div>
+  <div><b>Vendor Questions Due:</b> Friday, August 21, 2026</div>
+  <div><b>Proposal Due Date:</b> Monday, August 31, 2026</div>
+  <div><b>Anticipated Award Date:</b> Tuesday, September 8, 2026</div>
+  <div><b>Anticipated Project Start:</b> Wednesday, September 9, 2026</div>
+  <div class="hard">Required Staging Launch: Tuesday, December 15, 2026 (hard deadline)</div>
+  <div><b>Submit proposals to:</b> david@rightnowinc.com, jim@austincareerinstitute.edu, shawn@austincareerinstitute.edu, rosha@austincareerinstitute.edu</div>
+</div>
+
+<h1>1. Background</h1>
+<p>Austin Career Institute (ACI) is a vocational trade school operating two campuses in Austin, Texas, offering accredited programs in HVAC-R, Electrical/Renewable Energy, Welding, and Medical Assistant training.</p>
+<p>ACI's marketing program has scaled from roughly 50 leads/month to approximately 1,500 leads/month over the past growth period, prompting a second campus and a full rebuild of the underlying marketing and operational infrastructure — including a new CRM (Portico Recruit / Portico EDU, replacing the outgoing CampusLogin system) and this website rebuild.</p>
+<p>This RFP is for the design, development, and launch of a new website to replace the current site at austincareerinstitute.edu. The CMS platform is open — vendors should propose the platform they recommend and justify the choice (see Section 3.1). The new site must integrate directly with the Portico EDU CRM via API and function as a conversion-focused lead generation platform — not a static brochure site.</p>
+
+<h1>2. Project Objectives</h1>
+<ul>
+  <li><strong>Primary:</strong> Generate qualified inbound leads (form submissions, calls) from prospective students across four program areas.</li>
+  <li><strong>Secondary:</strong> Preserve and grow organic search visibility during and after migration.</li>
+  <li><strong>Tertiary:</strong> Provide a cloneable landing page template the marketing team can use to self-serve new paid-media campaign variants without developer involvement.</li>
+  <li>Support a clean handoff from the outgoing CampusLogin CRM to Portico EDU with zero PII stored in the site's CMS.</li>
+</ul>
+
+<h1>3. Scope of Work</h1>
+
+<h2>3.1 Platform &amp; Infrastructure</h2>
+<ul>
+  <li><strong>CMS:</strong> Open — vendor proposes the platform (e.g., WordPress, a headless CMS, or other open/self-hostable option) best suited to the requirements in this RFP, with a brief rationale. Proposal must state the recommended platform explicitly.</li>
+  <li><strong>Ownership requirement:</strong> ACI must own the codebase, hosting account, domain, and all site assets outright — see Section 4. Closed, vendor-hosted SaaS site builders (e.g., Webflow, Squarespace, or similar platforms where the site cannot be exported and self-hosted) do not meet this requirement and should not be proposed.</li>
+  <li>Whatever platform is proposed, it must support: per-page SEO metadata, easy non-technical content editing by ACI staff, a cloneable landing page template, and clean API-based (not embed/iframe) form submission to Portico — see 3.4.</li>
+  <li><strong>CRM:</strong> Portico EDU — API integration only. Portico does not host or build the site.</li>
+  <li><strong>DNS/CDN:</strong> Cloudflare — full setup including SSL, caching rules, cache-bypass rules on form and thank-you pages, and canonical domain redirect.</li>
+  <li>Coordinate nameserver transfer and cutover timing from the current host; current host is decommissioned post-launch.</li>
+  <li>Portico API documentation will be provided by ACI/RightNow prior to form-build kickoff — vendor should flag this as a scheduling dependency in their proposal.</li>
+</ul>
+
+<h2>3.2 Site Architecture</h2>
+<p>Target navigation consolidates the current 17 program-related pages into a streamlined structure. Final content architecture will be finalized collaboratively during discovery; the structure below reflects current direction.</p>
+<table>
+  <tr><th>Section</th><th>Notes</th></tr>
+  <tr><td>Home</td><td>Primary conversion entry point</td></tr>
+  <tr><td>Admissions</td><td>New section — consolidates enrollment-process content</td></tr>
+  <tr><td>Tuition Planning</td><td>Renamed from "Financial Aid"</td></tr>
+  <tr><td>Programs (hub + 4 clusters)</td><td>HVAC, Electrical/Renewable Energy, Welding, Medical Assistant</td></tr>
+  <tr><td>Campuses</td><td>New section</td></tr>
+  <tr><td>Career Services</td><td>New section</td></tr>
+  <tr><td>About</td><td>New section — consolidates Our Story / Our Students</td></tr>
+  <tr><td>Veterans</td><td>Retained</td></tr>
+  <tr><td>Contact / Book a Tour / Apply Now</td><td>Primary conversion pages</td></tr>
+  <tr><td>Student Area</td><td>Retained</td></tr>
+</table>
+<p>Each program cluster includes a parent page plus sub-pages for Certification, Employment, and Tuition Planning. Electrical includes a Solar Power sub-page. HVAC includes a standalone Spanish-language page (out of scope for this phase — flagged for a future phase).</p>
+<ul>
+  <li><strong>Blog:</strong> full migration of existing posts, media, categories, tags, and authors. Maintain existing URL structure or implement a full 301 redirect map (provided by RightNow).</li>
+  <li><strong>Thank-you pages:</strong> one per conversion type (general inquiry, program inquiry, Book a Tour, Apply Now). Noindex/nofollow, no main navigation, GTM conversion event fires client-side.</li>
+</ul>
+
+<h2>3.3 Landing Page Templates</h2>
+<ul>
+  <li>One master, cloneable landing page template for paid media traffic (Google, Meta, TikTok), applied across four program variants.</li>
+  <li>No main navigation or footer navigation — header logo and phone number only.</li>
+  <li>Form above the fold on both desktop and mobile.</li>
+  <li>Same Portico API POST and hidden-field spec as site forms (see 3.4).</li>
+  <li>Noindex; one corresponding thank-you template.</li>
+  <li>Template must be usable by the marketing team to create new campaign variants without developer involvement.</li>
+</ul>
+
+<h2>3.4 Forms, Tracking &amp; CRM Integration</h2>
+<ul>
+  <li>Custom form build — no CampusLogin embeds, no iframe dependency.</li>
+  <li>Every form POSTs directly to the Portico API; the CMS is UI layer only — no PII stored in the CMS/site database under any circumstances (non-negotiable, see Section 4).</li>
+  <li>Hidden fields auto-populated from URL parameters on every form: gclid, utm_source, utm_medium, utm_campaign, utm_content, utm_term, landing_page_url.</li>
+  <li>Parameters persist through the full traffic chain: ad click → landing page → form → thank-you page.</li>
+  <li>Full GTM migration with Consent Mode v2; conversion trigger fires client-side on submission, before or simultaneous with the API POST.</li>
+  <li>Form success/error states handled in-UI — no page reload.</li>
+</ul>
+
+<h2>3.5 SEO &amp; Metadata Migration</h2>
+<ul>
+  <li>Maintain existing URL structure wherever possible; full 301 redirect map where URLs must change (RightNow provides the map, vendor implements).</li>
+  <li>Zero broken links or 404s at launch.</li>
+  <li>Migrate all existing metadata: title tags, meta descriptions, Open Graph, Twitter Card, canonical tags, robots directives, and existing schema markup.</li>
+  <li>SEO tooling appropriate to the proposed CMS (e.g., RankMath/Yoast if WordPress, or equivalent) must support per-page metadata on all post types and templates.</li>
+</ul>
+
+<h2>3.6 Accessibility &amp; Compliance</h2>
+<ul>
+  <li>WCAG 2.1 AA compliance built into the design and templates — no overlay/widget plugins as a substitute for compliant markup.</li>
+  <li>Content and claims are subject to Texas Workforce Commission (TWC) and U.S. Department of Education regulations governing vocational schools — vendor is not responsible for content compliance, but the CMS must support easy content edits by ACI's compliance-reviewing staff.</li>
+</ul>
+
+<h1>4. Hard Requirements (Non-Negotiable)</h1>
+<ul>
+  <li><strong>Full ownership:</strong> ACI owns the website outright — codebase, hosting account, domain, CMS installation/license, and all site assets (images, content, design files). Nothing developed under this contract may be vendor-owned, vendor-hosted-only, or reliant on a proprietary platform ACI cannot independently access, export, or migrate away from at any time.</li>
+  <li>Hosting is set up under an ACI/RightNow-controlled account from day one (or transferred to one at launch) — not a vendor's agency-level or reseller account. Vendor may recommend a host but does not retain administrative control post-launch.</li>
+  <li>All credentials (hosting, domain registrar, CMS admin, Cloudflare, repository) are handed over to ACI/RightNow at launch as a deliverable — see Section 5.</li>
+  <li>Full source code, including any custom theme/template or plugin development, is delivered to ACI/RightNow in a version-controlled repository (e.g., Git) that ACI owns.</li>
+  <li>No PII stored in the CMS/site database under any circumstances — no form entry logging, no admin inbox entries, no CMS-side email notifications. All lead data and notifications are handled by Portico.</li>
+  <li>Extension/plugin audit required before launch — vendor documents any plugin, app, or integration that collects, stores, or transmits user data, and confirms none violate the no-PII rule.</li>
+  <li>Mobile-first build.</li>
+  <li>No page reload on form submission.</li>
+  <li>All landing pages and thank-you pages set to noindex.</li>
+</ul>
+
+<h1>5. Deliverables</h1>
+<ul>
+  <li>Fully built, tested, and launched site meeting the scope above, on the vendor's proposed CMS.</li>
+  <li>Full ownership transfer: all hosting, domain registrar, CMS admin, Cloudflare, and repository credentials handed over to ACI/RightNow, with ACI/RightNow as the account owner of record — not the vendor.</li>
+  <li>Complete source code delivered in a Git repository owned by ACI/RightNow.</li>
+  <li>Cloneable landing page + thank-you page template set, with documentation for marketing-team self-service.</li>
+  <li>Completed 301 redirect implementation.</li>
+  <li>Plugin audit report (data collection/storage/transmission per plugin).</li>
+  <li>Documentation: CMS editing guide, form/CRM integration overview, Cloudflare configuration summary, and a punch list of any post-launch items.</li>
+  <li>30-day post-launch support window for bug fixes (vendor to confirm terms in proposal).</li>
+</ul>
+
+<h1>6. Timeline</h1>
+<p>Hard deadline: the site must be live and reviewable on staging by December 15, 2026. This is a firm target that ACI/RightNow are planning enrollment marketing around — vendor proposals should confirm feasibility against the schedule below or clearly state where it's unrealistic.</p>
+<table>
+  <tr><th>Phase</th><th>Dates</th><th>Notes</th></tr>
+  <tr><td>RFP issued</td><td>Mon, Aug 17</td><td>This document distributed to invited vendors</td></tr>
+  <tr><td>Vendor questions due</td><td>Fri, Aug 21</td><td>Written questions only</td></tr>
+  <tr><td>Answers circulated</td><td>Mon, Aug 24</td><td>Sent to all invited vendors</td></tr>
+  <tr><td>Proposals due</td><td>Mon, Aug 31</td><td>2 weeks from issue</td></tr>
+  <tr><td>Vendor evaluation / interviews</td><td>Sep 1 – 4</td><td>Scoring per Section 10</td></tr>
+  <tr><td>Vendor selected / contract signed</td><td>Tue, Sep 8</td><td></td></tr>
+  <tr><td>Project kickoff</td><td>Wed, Sep 9</td><td>Portico API docs handed off at kickoff</td></tr>
+  <tr><td>Discovery &amp; content architecture sign-off</td><td>Sep 9 – 19</td><td>2 weeks</td></tr>
+  <tr><td>Design (wireframes → UI)</td><td>Sep 22 – Oct 10</td><td>3 weeks</td></tr>
+  <tr><td>Development (build, CRM/API integration, templates)</td><td>Oct 13 – Nov 21</td><td>6 weeks</td></tr>
+  <tr><td>QA, content load, redirect implementation</td><td>Nov 24 – Dec 5</td><td>2 weeks</td></tr>
+  <tr><td>Buffer / fixes</td><td>Dec 8 – 12</td><td>1 week</td></tr>
+  <tr><td>Staging launch</td><td>Tue, Dec 15</td><td>Hard deadline</td></tr>
+</table>
+<p class="note">This is an aggressive compressed schedule (~13 weeks from kickoff to staging). Vendors should flag in their proposal if their standard process requires more time, and note any scope trade-offs (e.g., phased launch, reduced design-revision rounds) that would be needed to hit the date. Production launch date (staging → live) is not fixed here and will be scheduled after staging review.</p>
+
+<h1>7. Budget &amp; Pricing</h1>
+<p>Vendors should propose pricing as a fixed-fee project quote, itemized by phase (discovery/design, development, CRM/API integration, QA/launch), plus separate hourly or retainer rates for any post-launch work beyond the included support window. Include any assumptions or exclusions that affect price (e.g., number of design revision rounds, stock photography, copywriting).</p>
+<p class="note">[INSERT: Budget range, if disclosing one, or state "budget not disclosed — proposals evaluated on value"]</p>
+
+<h2>7.1 Payment Schedule</h2>
+<p>Payment is structured in three milestones, tied to concrete project checkpoints rather than calendar dates:</p>
+<div class="highlight-box">
+<table class="payment-table">
+  <tr><th>Milestone</th><th>Trigger</th><th>Payment</th></tr>
+  <tr><td>1. Project Start</td><td>Contract signed / kickoff</td><td class="amt">1/3 of total fixed fee</td></tr>
+  <tr><td>2. Design Approval</td><td>ACI/RightNow sign-off on final Figma designs</td><td class="amt">1/3 of total fixed fee</td></tr>
+  <tr><td>3. Final Payment</td><td>Due before staging → production launch</td><td class="amt">1/3 of total fixed fee</td></tr>
+</table>
+</div>
+<p class="note">Split shown as an even 1/3 default — vendors may propose an alternate split (e.g., weighted toward development) as long as the three trigger points (kickoff, Figma approval, pre-launch) are preserved. Final payment is withheld until the ownership handover items in Section 5 are complete — credentials, source code, and documentation delivered.</p>
+
+<h1>8. Vendor Qualifications Requested</h1>
+<ul>
+  <li>Company overview and relevant experience — particularly custom CMS builds with third-party CRM API integrations (not form-plugin/Zapier-style integrations).</li>
+  <li>2–3 relevant case studies or live sites, ideally in education, lead-gen, or regulated industries.</li>
+  <li>Named team members who will work on the project and their roles.</li>
+  <li>Experience with WCAG 2.1 AA implementation (not overlay tools).</li>
+  <li>Experience with Cloudflare configuration (DNS, caching, page rules).</li>
+  <li>References from at least two past clients.</li>
+  <li>State your proposed CMS platform and a brief rationale for why it fits this project's requirements.</li>
+  <li>Confirmation that your team can staff and deliver against the compressed timeline in Section 6, or a clear explanation of where it isn't feasible.</li>
+</ul>
+
+<h1>9. Proposal Submission Requirements</h1>
+<p>Proposals should include:</p>
+<ul>
+  <li>Company &amp; team background (see Section 8).</li>
+  <li>Proposed approach and methodology for the scope in Section 3.</li>
+  <li>Proposed timeline with phase breakdown.</li>
+  <li>Itemized pricing and payment schedule (see Section 7).</li>
+  <li>Any clarifying questions or assumptions about scope.</li>
+  <li>Proposed post-launch support/warranty terms.</li>
+</ul>
+<p>Submit proposals to david@rightnowinc.com, jim@austincareerinstitute.edu, shawn@austincareerinstitute.edu, and rosha@austincareerinstitute.edu by Monday, August 31, 2026. Questions may be submitted in writing to the same addresses by Friday, August 21, 2026; answers will be circulated to all invited vendors by Monday, August 24.</p>
+
+<h1>10. Evaluation Criteria</h1>
+<table>
+  <tr><th>Criterion</th><th>Weight</th></tr>
+  <tr><td>Relevant experience (CRM API integrations, education/lead-gen)</td><td>30%</td></tr>
+  <tr><td>References / past work quality</td><td>30%</td></tr>
+  <tr><td>Price</td><td>20%</td></tr>
+  <tr><td>Technical approach &amp; understanding of no-PII / tracking requirements</td><td>10%</td></tr>
+  <tr><td>Timeline feasibility</td><td>10%</td></tr>
+</table>
+
+</body>
+</html>
 
