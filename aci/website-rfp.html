@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
 <head>
 <meta charset="UTF-8">
 <title>RFP — Austin Career Institute Website Redevelopment</title>
@@ -11,6 +11,7 @@
     --gray: #555555;
     --line: #E5E0D8;
     --bg-soft: #FAF8F5;
+    --red: #B42318;
   }
   * { box-sizing: border-box; }
   body {
@@ -38,7 +39,7 @@
     border: 1px solid var(--line);
     border-radius: 6px;
     padding: 18px 22px;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
     font-size: 14.5px;
     color: var(--gray);
   }
@@ -48,6 +49,26 @@
     color: var(--amber);
     font-weight: 700;
   }
+  .respond-box {
+    border: 2px solid var(--amber);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 40px;
+    font-size: 14.5px;
+    background: #FFFBF5;
+  }
+  .respond-box h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    color: var(--amber);
+  }
+  .respond-box .ref {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 12px;
+  }
+  .respond-box ul { margin: 0; padding-left: 20px; }
+  .respond-box li { margin-bottom: 5px; }
   h1 {
     font-size: 22px;
     color: var(--amber);
@@ -55,6 +76,10 @@
     padding-bottom: 6px;
     margin-top: 44px;
     margin-bottom: 16px;
+  }
+  h1.internal {
+    color: var(--red);
+    border-bottom-color: var(--red);
   }
   h2 {
     font-size: 16.5px;
@@ -69,11 +94,11 @@
     border-collapse: collapse;
     width: 100%;
     margin: 12px 0 20px;
-    font-size: 14.5px;
+    font-size: 14px;
   }
   th, td {
     border: 1px solid var(--line);
-    padding: 8px 12px;
+    padding: 8px 10px;
     text-align: left;
     vertical-align: top;
   }
@@ -95,11 +120,30 @@
     margin: 16px 0;
     font-size: 15px;
   }
+  .internal-box {
+    background: #FFF5F4;
+    border: 1px solid #F3B7AE;
+    border-radius: 6px;
+    padding: 4px 22px;
+    margin-top: 16px;
+  }
+  .internal-box .tag {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin: 14px 0 10px;
+  }
   .payment-table td.amt {
     font-weight: 700;
     color: var(--amber);
   }
   strong { color: var(--dark); }
+  a { color: var(--amber); }
   @media print {
     body { padding: 0; }
     h1 { break-after: avoid; }
@@ -113,13 +157,28 @@
 
 <div class="meta">
   <div><b>Issued by:</b> RightNow Inc., on behalf of Austin Career Institute (ACI)</div>
-  <div><b>RFP Issue Date:</b> Monday, August 17, 2026</div>
-  <div><b>Vendor Questions Due:</b> Friday, August 21, 2026</div>
-  <div><b>Proposal Due Date:</b> Monday, August 31, 2026</div>
-  <div><b>Anticipated Award Date:</b> Tuesday, September 8, 2026</div>
-  <div><b>Anticipated Project Start:</b> Wednesday, September 9, 2026</div>
-  <div class="hard">Required Staging Launch: Tuesday, December 15, 2026 (hard deadline)</div>
+  <div><b>RFP Issue Date:</b> Wednesday, September 23, 2026</div>
+  <div><b>Vendor Questions Due:</b> Wednesday, October 7, 2026</div>
+  <div><b>Proposal Due Date:</b> Monday, October 12, 2026</div>
+  <div><b>Anticipated Award Date:</b> Monday, October 19, 2026</div>
+  <div><b>Anticipated Project Start:</b> Tuesday, October 20, 2026</div>
+  <div class="hard">Required Staging Launch: No later than Tuesday, December 15, 2026 (hard deadline)</div>
+  <div><b>Anticipated Production Launch:</b> Monday, January 4, 2027</div>
   <div><b>Submit proposals to:</b> david@rightnowinc.com, jim@austincareerinstitute.edu, shawn@austincareerinstitute.edu, rosha@austincareerinstitute.edu</div>
+  <div><b>Primary Point of Contact:</b> David Tucker</div>
+  <div><b>Direct:</b> 310-339-4698 (text/SMS preferred — available 7 days/week for fastest response)</div>
+</div>
+
+<div class="respond-box">
+  <h3>How to Respond</h3>
+  <div class="ref">Full requirements in Section 9</div>
+  <ul>
+    <li><strong>Submit proposals to:</strong> david@rightnowinc.com, jim@austincareerinstitute.edu, shawn@austincareerinstitute.edu, rosha@austincareerinstitute.edu</li>
+    <li><strong>Questions due:</strong> Wednesday, October 7, 2026</li>
+    <li><strong>Proposals due:</strong> Monday, October 12, 2026</li>
+    <li><strong>Primary contact:</strong> David Tucker — 310-339-4698 (text/SMS preferred, available 7 days/week)</li>
+    <li><strong>Must include:</strong> company/team background, approach &amp; methodology, phased timeline, itemized pricing + payment schedule (Section 7), stated scope assumptions, post-launch support terms</li>
+  </ul>
 </div>
 
 <h1>1. Background</h1>
@@ -149,12 +208,12 @@
 </ul>
 
 <h2>3.2 Site Architecture</h2>
-<p>Target navigation consolidates the current 17 program-related pages into a streamlined structure. Final content architecture will be finalized collaboratively during discovery; the structure below reflects current direction.</p>
+<p>Target navigation consolidates the current site's pages into a streamlined structure. Final content architecture will be finalized collaboratively during discovery; the structure below reflects current direction.</p>
 <table>
   <tr><th>Section</th><th>Notes</th></tr>
   <tr><td>Home</td><td>Primary conversion entry point</td></tr>
   <tr><td>Admissions</td><td>New section — consolidates enrollment-process content</td></tr>
-  <tr><td>Tuition Planning</td><td>Renamed from "Financial Aid"</td></tr>
+  <tr><td>Tuition Planning</td><td>Renamed from "Financial Aid." Standalone hub page — general FAFSA/financial aid process info. Program-specific job outlook and tuition numbers live on each program's Career &amp; Tuition Outlook page instead (see below).</td></tr>
   <tr><td>Programs (hub + 4 clusters)</td><td>HVAC, Electrical/Renewable Energy, Welding, Medical Assistant</td></tr>
   <tr><td>Campuses</td><td>New section</td></tr>
   <tr><td>Career Services</td><td>New section</td></tr>
@@ -163,10 +222,12 @@
   <tr><td>Contact / Book a Tour / Apply Now</td><td>Primary conversion pages</td></tr>
   <tr><td>Student Area</td><td>Retained</td></tr>
 </table>
-<p>Each program cluster includes a parent page plus sub-pages for Certification, Employment, and Tuition Planning. Electrical includes a Solar Power sub-page. HVAC includes a standalone Spanish-language page (out of scope for this phase — flagged for a future phase).</p>
+<p>Each program cluster includes a parent page plus sub-pages for <strong>Certification</strong> and <strong>Career &amp; Tuition Outlook</strong> — a single combined page presenting job/salary outlook and financial aid/tuition information together, rather than as separate Employment and Tuition Planning pages. Electrical includes a Solar Power sub-page. HVAC includes a standalone Spanish-language page (out of scope for this phase — flagged for a future phase).</p>
 <ul>
-  <li><strong>Blog:</strong> full migration of existing posts, media, categories, tags, and authors. Maintain existing URL structure or implement a full 301 redirect map (provided by RightNow).</li>
+  <li><strong>Blog:</strong> existing 114 posts will be audited by ACI/RightNow before migration begins; non-performing posts will be pruned and not migrated. URL structure changes from category-prefixed (<code>/blog/hvac/post-name/</code>) to flat (<code>/blog/post-name/</code>) — every migrated post requires an individual 301 redirect, not a pattern-based rule. RightNow will provide the vendor a final post list and the full redirect map — covering both migrated and pruned URLs — before blog migration work starts. Migrated posts retain full content, media, categories, tags, and authors.</li>
   <li><strong>Thank-you pages:</strong> one per conversion type (general inquiry, program inquiry, Book a Tour, Apply Now). Noindex/nofollow, no main navigation, GTM conversion event fires client-side.</li>
+  <li><strong>Compliance pages:</strong> Net Price Calculator, Consumer Information, Privacy Policy, Terms, and Accessibility Statement. Content is provided by ACI as-is (no rewrite) and carried over unchanged; vendor rebuilds each with new design to match the new site's templates and styling.</li>
+  <li><strong>Orphan pages:</strong> <code>/meet-our-team/</code> is retained and migrated. All other current orphan pages — <code>/new-americans/</code>, <code>/upskilling/</code>, <code>/infosheet/</code>, and the Spanish-language utility pages (chat, callback request, application, financial aid checklist) — are killed and 301 redirected to the closest relevant new page; none are rebuilt.</li>
 </ul>
 
 <h2>3.3 Landing Page Templates</h2>
@@ -183,16 +244,21 @@
 <ul>
   <li>Custom form build — no CampusLogin embeds, no iframe dependency.</li>
   <li>Every form POSTs directly to the Portico API; the CMS is UI layer only — no PII stored in the CMS/site database under any circumstances (non-negotiable, see Section 4).</li>
-  <li>Hidden fields auto-populated from URL parameters on every form: gclid, utm_source, utm_medium, utm_campaign, utm_content, utm_term, landing_page_url.</li>
+  <li><strong>API reference:</strong> The <a href="https://api.verityiq.com/help/inbound" target="_blank" rel="noopener">Verity Inbound API documentation</a> is provided as the closest available public reference for the Portico integration. The documentation is published under the name "Verity" — ACI will confirm with Portico whether this applies directly to our instance before vendor integration work begins.</li>
+  <li>Integration is server-side only. The system key and tenant ID must never appear in browser-side code, client-side JavaScript, or any public-facing document, including this RFP. ACI/RightNow will provide tenant-specific configuration and credentials directly and privately to the selected vendor.</li>
+  <li>Vendors must describe in their proposal: their secure server-side integration approach, field mapping methodology, campaign/lead routing logic, error handling, and their QA plan for verifying lead delivery before launch.</li>
+  <li>Hidden fields auto-populated from URL parameters on every form: gclid, utm_source, utm_medium, utm_campaign, utm_content, utm_term, landing_page_url. utm_source through utm_content map to the standard UTM fields in the CRM. gclid and landing_page_url will be sent as custom fields — Portico has confirmed this is supported. ACI/RightNow will provide the custom field tag names to the selected vendor during integration setup.</li>
   <li>Parameters persist through the full traffic chain: ad click → landing page → form → thank-you page.</li>
-  <li>Full GTM migration with Consent Mode v2; conversion trigger fires client-side on submission, before or simultaneous with the API POST.</li>
+  <li>Full GTM migration with Consent Mode v2 — container transferred as-is, with every existing tag re-verified firing correctly on the new site before launch, including Google Ads conversion tracking and enhanced conversions, GA4, Meta Pixel (base pixel only — Meta CAPI is out of scope for this phase), and TikTok Pixel. Vendor provides a tag-by-tag verification report as part of QA sign-off (Section 5.1).</li>
+  <li>Enhanced conversions specifically must continue functioning post-migration — this is active, in-use tracking infrastructure, not a nice-to-have.</li>
+  <li>Form success and the lead conversion event fire <strong>only after a successful CRM response</strong> — not before or simultaneous with the API POST.</li>
   <li>Form success/error states handled in-UI — no page reload.</li>
 </ul>
 
 <h2>3.5 SEO &amp; Metadata Migration</h2>
 <ul>
-  <li>Maintain existing URL structure wherever possible; full 301 redirect map where URLs must change (RightNow provides the map, vendor implements).</li>
-  <li>Zero broken links or 404s at launch.</li>
+  <li>Maintain existing URL structure wherever possible; full 301 redirect map where URLs must change (RightNow provides the map, vendor implements). This includes many-to-one redirects — e.g. the current per-program Employment and Financial Aid pages (8 URLs total) each collapse to one new Career &amp; Tuition Outlook page per program (Section 3.2), and the blog's URL flattening (Section 3.2) requires an individual redirect per migrated post, not a pattern rule.</li>
+  <li>No known broken internal links at launch, verified via crawl; the agreed 301 redirect map (Section 3.2) fully implemented and tested prior to launch.</li>
   <li>Migrate all existing metadata: title tags, meta descriptions, Open Graph, Twitter Card, canonical tags, robots directives, and existing schema markup.</li>
   <li>SEO tooling appropriate to the proposed CMS (e.g., RankMath/Yoast if WordPress, or equivalent) must support per-page metadata on all post types and templates.</li>
 </ul>
@@ -228,29 +294,37 @@
   <li>30-day post-launch support window for bug fixes (vendor to confirm terms in proposal).</li>
 </ul>
 
+<h2>5.1 Acceptance Criteria &amp; Support Window</h2>
+<ul>
+  <li><strong>Staging delivery:</strong> the site is considered "reviewable on staging" when all pages/templates in Section 3.2 are built, all forms successfully post test leads to the CRM per the QA plan in Section 3.4, and any remaining content/copy gaps are documented in a punch list — not necessarily 100% final copy/imagery.</li>
+  <li><strong>Production launch:</strong> occurs after ACI/RightNow staging review and sign-off, scheduled separately (see Section 6).</li>
+  <li><strong>Final acceptance:</strong> occurs when ACI/RightNow confirms the staging punch list is resolved on production. Final payment (Section 7.1) is tied to this milestone, not to staging delivery alone.</li>
+  <li><strong>30-day support window</strong> begins at final acceptance on production, not at staging delivery.</li>
+</ul>
+
 <h1>6. Timeline</h1>
-<p>Hard deadline: the site must be live and reviewable on staging by December 15, 2026. This is a firm target that ACI/RightNow are planning enrollment marketing around — vendor proposals should confirm feasibility against the schedule below or clearly state where it's unrealistic.</p>
+<p>Hard deadline: the site must be live and reviewable on staging no later than December 15, 2026. Production launch is targeted for January 4, 2027, after the holiday period. This is a firm target that ACI/RightNow are planning enrollment marketing around — vendor proposals should confirm feasibility against the schedule below or clearly state where it's unrealistic.</p>
 <table>
   <tr><th>Phase</th><th>Dates</th><th>Notes</th></tr>
-  <tr><td>RFP issued</td><td>Mon, Aug 17</td><td>This document distributed to invited vendors</td></tr>
-  <tr><td>Vendor questions due</td><td>Fri, Aug 21</td><td>Written questions only</td></tr>
-  <tr><td>Answers circulated</td><td>Mon, Aug 24</td><td>Sent to all invited vendors</td></tr>
-  <tr><td>Proposals due</td><td>Mon, Aug 31</td><td>2 weeks from issue</td></tr>
-  <tr><td>Vendor evaluation / interviews</td><td>Sep 1 – 4</td><td>Scoring per Section 10</td></tr>
-  <tr><td>Vendor selected / contract signed</td><td>Tue, Sep 8</td><td></td></tr>
-  <tr><td>Project kickoff</td><td>Wed, Sep 9</td><td>Portico API docs handed off at kickoff</td></tr>
-  <tr><td>Discovery &amp; content architecture sign-off</td><td>Sep 9 – 19</td><td>2 weeks</td></tr>
-  <tr><td>Design (wireframes → UI)</td><td>Sep 22 – Oct 10</td><td>3 weeks</td></tr>
-  <tr><td>Development (build, CRM/API integration, templates)</td><td>Oct 13 – Nov 21</td><td>6 weeks</td></tr>
-  <tr><td>QA, content load, redirect implementation</td><td>Nov 24 – Dec 5</td><td>2 weeks</td></tr>
-  <tr><td>Buffer / fixes</td><td>Dec 8 – 12</td><td>1 week</td></tr>
-  <tr><td>Staging launch</td><td>Tue, Dec 15</td><td>Hard deadline</td></tr>
+  <tr><td>RFP issued</td><td>Wed, Sep 23</td><td>This document distributed to invited vendors</td></tr>
+  <tr><td>Vendor questions due</td><td>Wed, Oct 7</td><td>Written questions only. Answers are not circulated — each vendor is answered directly, individually</td></tr>
+  <tr><td>Proposals due</td><td>Mon, Oct 12</td><td></td></tr>
+  <tr><td>Vendor evaluation / interviews</td><td>Oct 13 – 16</td><td>Scoring per Section 10</td></tr>
+  <tr><td>Vendor selected / decision made</td><td>Mon, Oct 19</td><td></td></tr>
+  <tr><td>Project kickoff</td><td>Tue, Oct 20</td><td>Portico API docs handed off at kickoff</td></tr>
+  <tr><td>Discovery &amp; content architecture sign-off</td><td>Oct 20 – 28</td><td>~1.5 weeks</td></tr>
+  <tr><td>Design (wireframes → UI)</td><td>Oct 29 – Nov 11</td><td>2 weeks</td></tr>
+  <tr><td>Development (build, CRM/API integration, templates)</td><td>Nov 12 – Dec 4</td><td>~3.5 weeks. Blog audit/final post list (Section 3.2) must land before this phase starts, or blog migration is priced blind</td></tr>
+  <tr><td>QA, content load, redirect implementation</td><td>Dec 5 – 11</td><td>1 week</td></tr>
+  <tr><td>Buffer / fixes</td><td>Dec 12 – 14</td><td></td></tr>
+  <tr><td>Staging launch</td><td>No later than Tue, Dec 15</td><td>Hard deadline</td></tr>
+  <tr><td>Production launch</td><td>Mon, Jan 4, 2027</td><td>After holiday freeze and final staging review. See Section 7.2 for the early-launch option</td></tr>
 </table>
-<p class="note">This is an aggressive compressed schedule (~13 weeks from kickoff to staging). Vendors should flag in their proposal if their standard process requires more time, and note any scope trade-offs (e.g., phased launch, reduced design-revision rounds) that would be needed to hit the date. Production launch date (staging → live) is not fixed here and will be scheduled after staging review.</p>
+<p class="note">This schedule now runs ~8 weeks from kickoff to staging, with development compressed to roughly 3.5 weeks for a full CRM-integrated, multi-template, WCAG-AA build. Vendors should be explicit in their proposal about what would need to be cut or phased to hit December 15 — see Section 10's timeline-feasibility criterion.</p>
 
 <h1>7. Budget &amp; Pricing</h1>
 <p>Vendors should propose pricing as a fixed-fee project quote, itemized by phase (discovery/design, development, CRM/API integration, QA/launch), plus separate hourly or retainer rates for any post-launch work beyond the included support window. Include any assumptions or exclusions that affect price (e.g., number of design revision rounds, stock photography, copywriting).</p>
-<p class="note">[INSERT: Budget range, if disclosing one, or state "budget not disclosed — proposals evaluated on value"]</p>
+<p>Budget not disclosed; proposals will be evaluated on value.</p>
 
 <h2>7.1 Payment Schedule</h2>
 <p>Payment is structured in three milestones, tied to concrete project checkpoints rather than calendar dates:</p>
@@ -259,10 +333,19 @@
   <tr><th>Milestone</th><th>Trigger</th><th>Payment</th></tr>
   <tr><td>1. Project Start</td><td>Contract signed / kickoff</td><td class="amt">1/3 of total fixed fee</td></tr>
   <tr><td>2. Design Approval</td><td>ACI/RightNow sign-off on final Figma designs</td><td class="amt">1/3 of total fixed fee</td></tr>
-  <tr><td>3. Final Payment</td><td>Due before staging → production launch</td><td class="amt">1/3 of total fixed fee</td></tr>
+  <tr><td>3. Final Payment</td><td>Due at final acceptance on production (see Section 5.1)</td><td class="amt">1/3 of total fixed fee</td></tr>
 </table>
 </div>
-<p class="note">Split shown as an even 1/3 default — vendors may propose an alternate split (e.g., weighted toward development) as long as the three trigger points (kickoff, Figma approval, pre-launch) are preserved. Final payment is withheld until the ownership handover items in Section 5 are complete — credentials, source code, and documentation delivered.</p>
+<p class="note">Split shown as an even 1/3 default — vendors may propose an alternate split (e.g., weighted toward development) as long as the three trigger points (kickoff, Figma approval, final acceptance) are preserved. Final payment is withheld until the ownership handover items in Section 5 are complete — credentials, source code, and documentation delivered.</p>
+
+<h2>7.2 Early Launch Bonus</h2>
+<p>This RFP's timeline in Section 6 is ACI/RightNow's required schedule and stands regardless of this section — nothing below changes the December 15 staging deadline or any other requirement in this RFP.</p>
+<p>As a gesture of good faith and shared interest in an early result, vendors are welcome to accelerate their own internal schedule — discovery, design, or development — ahead of the dates in Section 6, at their discretion and own risk. If a vendor's acceleration results in full production launch (new site live, replacing the current site) on or before December 4, 2026, ACI/RightNow will pay a 10% bonus on top of the vendor's total fixed fee.</p>
+<ul>
+  <li>Paid alongside final payment (Section 7.1), contingent on the same final acceptance criteria in Section 5.1 — production live, punch list resolved.</li>
+  <li>December 4 aligns with the Portico EDU go-live date (Section 11). Hitting it would make the interim CRM bridge in Section 11 unnecessary — vendors pursuing the bonus should note this in their proposal, since it affects whether the Section 11 bridge is worth bidding as a separate line item.</li>
+  <li>This is a stretch incentive, not an expectation, and proposals will not be scored or penalized based on whether they pursue it (see Section 10 — timeline feasibility is judged against Section 6, not this bonus).</li>
+</ul>
 
 <h1>8. Vendor Qualifications Requested</h1>
 <ul>
@@ -283,10 +366,15 @@
   <li>Proposed approach and methodology for the scope in Section 3.</li>
   <li>Proposed timeline with phase breakdown.</li>
   <li>Itemized pricing and payment schedule (see Section 7).</li>
-  <li>Any clarifying questions or assumptions about scope.</li>
+  <li>Stated assumptions on: page/blog inventory in scope, division of responsibility for copywriting and photography/imagery, number of included design revision rounds, and any dependencies on ACI/RightNow (content delivery timing, API docs, brand assets, etc.).</li>
+  <li>Optional post-launch maintenance retainer pricing — monthly or hourly rate for ongoing support, security updates, and minor content/dev requests beyond the 30-day included support window. Not required to submit a proposal; useful for comparison if offered.</li>
   <li>Proposed post-launch support/warranty terms.</li>
 </ul>
-<p>Submit proposals to david@rightnowinc.com, jim@austincareerinstitute.edu, shawn@austincareerinstitute.edu, and rosha@austincareerinstitute.edu by Monday, August 31, 2026. Questions may be submitted in writing to the same addresses by Friday, August 21, 2026; answers will be circulated to all invited vendors by Monday, August 24.</p>
+<p>Submit proposals to david@rightnowinc.com, jim@austincareerinstitute.edu, shawn@austincareerinstitute.edu, and rosha@austincareerinstitute.edu by Monday, October 12, 2026. Questions may be submitted in writing to the same addresses by Wednesday, October 7, 2026. Answers will be provided directly to the vendor who asked and will not be circulated to other invited vendors.</p>
+<p>For fastest response on time-sensitive questions, contact David Tucker directly at 310-339-4698. Text/SMS is the best channel and is monitored 7 days a week.</p>
+
+<h2>9.1 Reservation of Rights</h2>
+<p>ACI/RightNow reserve the right to close this RFP process early and award the contract before the stated deadlines in Section 6, if a proposal is received that clearly meets the requirements of this RFP and the evaluation criteria in Section 10. ACI/RightNow also reserve the right to reject any or all proposals, negotiate terms with any vendor, or modify this RFP's scope, timeline, or requirements at their discretion at any point before a contract is signed. Vendors are encouraged to respond promptly and directly to the requirements in this RFP.</p>
 
 <h1>10. Evaluation Criteria</h1>
 <table>
@@ -298,6 +386,14 @@
   <tr><td>Timeline feasibility</td><td>10%</td></tr>
 </table>
 
+<h1>11. Interim CRM Bridge (Current Site)</h1>
+<p>Portico EDU goes live on <strong>December 4, 2026</strong> — before the new site reaches staging (Dec 15) or production launch (Jan 4, 2027, or earlier under Section 7.2). Between Dec 4 and production launch, the forms on the <em>current</em> austincareerinstitute.edu site need to be swapped from the outgoing CampusLogin integration to POST to the new Portico API, as a temporary bridge. This is a separate, minimal-scope task from the full site rebuild — no redesign, no new pages, just repointing existing form submissions to the new CRM under the same no-PII and field-mapping rules as Section 3.4.</p>
+<ul>
+  <li><strong>Deadline:</strong> must be live and tested on the current site by December 4, 2026 — independent of the main project timeline in Section 6.</li>
+  <li><strong>Scope:</strong> swap existing form endpoints on the live site to POST to the Portico API; same no-PII rule and hidden-field spec as Section 3.4 (gclid, UTM parameters, landing_page_url).</li>
+  <li><strong>Optional, separately priced.</strong> Vendors may quote this interim swap as an add-on if they can deliver it ahead of the main project's kickoff; ACI/RightNow may also handle it internally or via a separate resource if the RFP timeline doesn't allow the selected vendor to hit the Dec 4 date. If a vendor is pursuing the Section 7.2 early-launch bonus, this bridge work may be unnecessary — see 7.2.</li>
+</ul>
+
+
 </body>
 </html>
-
