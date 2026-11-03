@@ -8,156 +8,126 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --amber:#FFBA4A; --olive:#3C4420; --lime:#90AF37; --lime-dk:#6B7A45;
-    --sage:#D2E1C3; --sage-lt:#EAF0DF; --slate:#354252; --stone:#A59678;
-    --cream:#FEFDFB; --warn:#FFF3D6; --warn-bdr:#FFBA4A;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #F4F0E8; font-family: 'DM Sans', sans-serif; color: var(--olive); min-height: 100vh; padding: 40px 24px 80px; }
-  .page { max-width: 1080px; margin: 0 auto; }
-
-  .header { display: flex; align-items: center; justify-content: space-between; padding: 24px 32px; background: var(--cream); border-radius: 16px; border: 1px solid var(--sage); margin-bottom: 24px; animation: fadeUp 0.4s ease both; }
-  .logo { font-family: 'Lora', serif; font-size: 24px; font-weight: 700; color: var(--olive); }
-  .logo em { color: var(--amber); font-style: normal; }
-  .header-meta { text-align: right; }
-  .header-meta p { font-size: 12px; color: var(--stone); line-height: 1.7; }
-  .header-meta strong { color: var(--olive); font-weight: 600; }
-
-  .sl { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); margin-bottom: 12px; }
-
-  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
-  .mc { background: var(--sage); border-radius: 10px; padding: 16px 18px; }
-  .mc .label { font-size: 11px; color: var(--lime-dk); margin-bottom: 4px; }
-  .mc .value { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; color: var(--olive); line-height: 1; }
-  .mc .sub { font-size: 10px; color: var(--stone); margin-top: 4px; }
-
-  hr { border: none; border-top: 1.5px solid var(--sage); margin: 28px 0; }
-
-  .pacing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-  .pacing-card { background: var(--cream); border: 1px solid var(--sage); border-radius: 12px; padding: 20px 22px; }
-  .pacing-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); margin-bottom: 10px; }
-  .pacing-nums { display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px; }
-  .pacing-current { font-family: 'Lora', serif; font-size: 40px; font-weight: 700; color: var(--olive); line-height: 1; }
-  .pacing-goal { font-size: 14px; color: var(--stone); }
-
-  .dual-track { margin-bottom: 16px; }
-  .track-row { margin-bottom: 14px; }
-  .track-row-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-  .track-name { font-size: 11px; font-weight: 600; color: var(--olive); }
-  .track-tag { font-size: 10px; color: var(--stone); }
-  .track { background: var(--sage-lt); border-radius: 99px; height: 8px; position: relative; overflow: hidden; margin-bottom: 4px; }
-  .track-fill { height: 8px; border-radius: 99px; position: absolute; top: 0; left: 0; }
-  .track-meta { display: flex; justify-content: space-between; font-size: 10px; color: var(--stone); }
-  .track-meta .ahead { color: var(--lime-dk); font-weight: 600; }
-
-  .pace-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
-  .pace-box { border-radius: 8px; padding: 10px 12px; }
-  .pace-box.good { background: var(--sage-lt); }
-  .pace-box.great { background: #EAF3DE; }
-  .pace-box p { font-size: 10px; color: var(--stone); margin-bottom: 3px; }
-  .pace-box strong { font-size: 14px; font-weight: 700; color: var(--olive); }
-  .pace-box.great strong { color: var(--lime-dk); }
-
-  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
-  .card { background: var(--cream); border: 1px solid var(--sage); border-radius: 12px; padding: 20px 22px; }
-  .card.winner { border: 2px solid var(--lime); }
-  .card.insight-sage { background: var(--sage); border-color: var(--lime); }
-  .card.insight-amber { background: var(--warn); border-color: var(--amber); }
-  .ch-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-  .ch-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-  .ch-name { font-size: 13px; font-weight: 600; color: var(--olive); }
-  .ch-sub { font-size: 10px; color: var(--stone); margin-bottom: 10px; }
-  .badge-winner { font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--lime); color: var(--cream); display: inline-block; margin-bottom: 10px; letter-spacing: 0.05em; }
-  .badge-watch { font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: 99px; background: var(--warn); color: #A57800; display: inline-block; margin-bottom: 10px; letter-spacing: 0.05em; border: 1px solid var(--amber); }
-  .row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-top: 1px solid var(--sage-lt); }
-  .row:first-of-type { border-top: none; padding-top: 0; }
-  .rl { font-size: 10px; color: var(--stone); }
-  .rv { font-size: 11px; font-weight: 600; color: var(--olive); }
-  .rv.green { color: var(--lime-dk); }
-  .rv.warn { color: #A57800; }
-  .conv-good { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--sage); color: var(--olive); }
-  .conv-mid  { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 99px; background: var(--warn); color: #A57800; }
-
-  .rank-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--sage-lt); }
-  .rank-row:first-of-type { border-top: none; padding-top: 0; }
-  .rank-num { font-family: 'Lora', serif; font-size: 20px; font-weight: 700; color: var(--sage); width: 22px; flex-shrink: 0; }
-  .rank-label { font-size: 13px; color: var(--olive); flex: 1; }
-  .rank-bar-wrap { flex: 2; background: var(--sage-lt); border-radius: 4px; height: 6px; overflow: hidden; }
-  .rank-bar { height: 6px; border-radius: 4px; }
-  .rank-val { font-size: 13px; font-weight: 600; min-width: 48px; text-align: right; }
-
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-  .chart-wrap { position: relative; width: 100%; }
-  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
-  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--stone); }
-  .legend-sq { width: 10px; height: 10px; border-radius: 2px; }
-  .insight-title { font-size: 12px; font-weight: 600; margin-bottom: 5px; }
-  .insight-body { font-size: 12px; line-height: 1.7; }
-
-  /* STATE TABLE */
-  .state-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .state-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-top: 1px solid var(--sage-lt); }
-  .state-row:first-of-type { border-top: none; }
-  .state-rank { font-size: 11px; color: var(--stone); width: 18px; }
-  .state-name { font-size: 12px; color: var(--olive); flex: 1; }
-  .state-bar-wrap { flex: 1.4; background: var(--sage-lt); border-radius: 4px; height: 6px; overflow: hidden; }
-  .state-bar { height: 6px; border-radius: 4px; background: var(--lime); }
-  .state-val { font-size: 12px; font-weight: 600; color: var(--olive); min-width: 26px; text-align: right; }
-
-
-  /* MONTHLY TABLE */
-  .mtable-wrap { overflow-x: auto; }
-  table.mtable { width: 100%; border-collapse: collapse; font-size: 11px; }
-  table.mtable th, table.mtable td { padding: 7px 10px; text-align: right; white-space: nowrap; }
-  table.mtable th { font-size: 9px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--stone); border-bottom: 1.5px solid var(--sage); }
-  table.mtable td { border-bottom: 1px solid var(--sage-lt); color: var(--olive); }
-  table.mtable td.mlabel, table.mtable th.mlabel { text-align: left; font-weight: 600; }
-  table.mtable tr.chan-meta td.mlabel { color: #C98A1E; }
-  table.mtable tr.chan-google td.mlabel { color: var(--slate); }
-  table.mtable tr.chan-organic td.mlabel { color: var(--lime-dk); }
-  table.mtable tr.month-head td { background: var(--sage-lt); font-family: 'Lora', serif; font-weight: 700; font-size: 12px; text-align: left; color: var(--olive); padding: 8px 10px; }
-  table.mtable td.cac-good { color: var(--lime-dk); font-weight: 600; }
-
-  /* OBSERVATIONS */
-  .obs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
-  .obs-card { background: var(--cream); border: 1px solid var(--sage); border-radius: 12px; padding: 18px 20px; }
-  .obs-card.flag { border-left: 3px solid var(--amber); }
-  .obs-card.positive { border-left: 3px solid var(--lime); }
-  .obs-card.neutral { border-left: 3px solid var(--stone); }
-  .obs-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
-  .obs-tag.tag-flag { color: #A57800; }
-  .obs-tag.tag-positive { color: var(--lime-dk); }
-  .obs-tag.tag-neutral { color: var(--stone); }
-  .obs-title { font-size: 12px; font-weight: 600; color: var(--olive); margin-bottom: 4px; line-height: 1.4; }
-  .obs-body { font-size: 11px; color: var(--stone); line-height: 1.65; }
-
-  .dash-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--sage); font-size: 11px; color: var(--stone); }
-  .dash-footer strong { color: var(--olive); }
-
-  section { animation: fadeUp 0.5s ease both; }
-  section:nth-child(2){animation-delay:.1s} section:nth-child(3){animation-delay:.2s}
-  section:nth-child(4){animation-delay:.3s} section:nth-child(5){animation-delay:.4s}
-  section:nth-child(6){animation-delay:.5s} section:nth-child(7){animation-delay:.6s}
-
-  @keyframes fadeUp { from {opacity:0;transform:translateY(16px);} to {opacity:1;transform:translateY(0);} }
-
-  @media (max-width: 768px) {
-    .metric-grid { grid-template-columns: repeat(2,1fr); }
-    .three-col, .pacing-grid, .two-col, .obs-grid, .state-grid { grid-template-columns: 1fr; }
-    .header { flex-direction: column; gap: 12px; }
-    .header-meta { text-align: left; }
-  }
+  :root{--amber:#FFBA4A;--olive:#3C4420;--lime:#90AF37;--lime-dk:#6B7A45;--sage:#D2E1C3;--sage-lt:#EAF0DF;--slate:#354252;--stone:#A59678;--cream:#FEFDFB;--warn:#FFF3D6;--warn-bdr:#FFBA4A;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:#F4F0E8;font-family:'DM Sans',sans-serif;color:var(--olive);min-height:100vh;padding:40px 24px 80px;}
+  .page{max-width:1080px;margin:0 auto;}
+  .header{display:flex;align-items:center;justify-content:space-between;padding:24px 32px;background:var(--cream);border-radius:16px;border:1px solid var(--sage);margin-bottom:24px;animation:fadeUp .4s ease both;}
+  .logo{font-family:'Lora',serif;font-size:24px;font-weight:700;color:var(--olive);}
+  .logo em{color:var(--amber);font-style:normal;}
+  .header-meta{text-align:right;}
+  .header-meta p{font-size:12px;color:var(--stone);line-height:1.7;}
+  .header-meta strong{color:var(--olive);font-weight:600;}
+  .sl{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:12px;}
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+  .mc{background:var(--sage);border-radius:10px;padding:16px 18px;}
+  .mc .label{font-size:11px;color:var(--lime-dk);margin-bottom:4px;}
+  .mc .value{font-family:'Lora',serif;font-size:26px;font-weight:700;color:var(--olive);line-height:1;}
+  .mc .sub{font-size:10px;color:var(--stone);margin-top:4px;}
+  hr{border:none;border-top:1.5px solid var(--sage);margin:28px 0;}
+  .pacing-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+  .pacing-card{background:var(--cream);border:1px solid var(--sage);border-radius:12px;padding:20px 22px;}
+  .pacing-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);margin-bottom:10px;}
+  .pacing-nums{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;}
+  .pacing-current{font-family:'Lora',serif;font-size:40px;font-weight:700;color:var(--olive);line-height:1;}
+  .pacing-goal{font-size:14px;color:var(--stone);}
+  .dual-track{margin-bottom:16px;}
+  .track-row{margin-bottom:14px;}
+  .track-row-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+  .track-name{font-size:11px;font-weight:600;color:var(--olive);}
+  .track-tag{font-size:10px;color:var(--stone);}
+  .track{background:var(--sage-lt);border-radius:99px;height:8px;position:relative;overflow:hidden;margin-bottom:4px;}
+  .track-fill{height:8px;border-radius:99px;position:absolute;top:0;left:0;}
+  .track-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--stone);}
+  .track-meta .ahead{color:var(--lime-dk);font-weight:600;}
+  .track-meta .behind{color:#A57800;font-weight:600;}
+  .pace-boxes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;}
+  .pace-box{border-radius:8px;padding:10px 12px;}
+  .pace-box.good{background:var(--sage-lt);}
+  .pace-box.great{background:#EAF3DE;}
+  .pace-box.warn{background:var(--warn);}
+  .pace-box p{font-size:10px;color:var(--stone);margin-bottom:3px;}
+  .pace-box strong{font-size:14px;font-weight:700;color:var(--olive);}
+  .pace-box.great strong{color:var(--lime-dk);}
+  .pace-box.warn strong{color:#A57800;}
+  .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+  .card{background:var(--cream);border:1px solid var(--sage);border-radius:12px;padding:20px 22px;}
+  .card.winner{border:2px solid var(--lime);}
+  .card.insight-sage{background:var(--sage);border-color:var(--lime);}
+  .card.insight-amber{background:var(--warn);border-color:var(--amber);}
+  .ch-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+  .ch-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .ch-name{font-size:13px;font-weight:600;color:var(--olive);}
+  .ch-sub{font-size:10px;color:var(--stone);margin-bottom:10px;}
+  .badge-winner{font-size:9px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--lime);color:var(--cream);display:inline-block;margin-bottom:10px;letter-spacing:.05em;}
+  .badge-watch{font-size:9px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--warn);color:#A57800;display:inline-block;margin-bottom:10px;letter-spacing:.05em;border:1px solid var(--amber);}
+  .badge-test{font-size:9px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--slate);color:var(--cream);display:inline-block;margin-bottom:10px;letter-spacing:.05em;}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-top:1px solid var(--sage-lt);}
+  .row:first-of-type{border-top:none;padding-top:0;}
+  .rl{font-size:10px;color:var(--stone);}
+  .rv{font-size:11px;font-weight:600;color:var(--olive);}
+  .rv.green{color:var(--lime-dk);}
+  .rv.warn{color:#A57800;}
+  .conv-good{font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--sage);color:var(--olive);}
+  .conv-mid{font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--warn);color:#A57800;}
+  .rank-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--sage-lt);}
+  .rank-row:first-of-type{border-top:none;padding-top:0;}
+  .rank-num{font-family:'Lora',serif;font-size:20px;font-weight:700;color:var(--sage);width:22px;flex-shrink:0;}
+  .rank-label{font-size:13px;color:var(--olive);flex:1;}
+  .rank-bar-wrap{flex:2;background:var(--sage-lt);border-radius:4px;height:6px;overflow:hidden;}
+  .rank-bar{height:6px;border-radius:4px;}
+  .rank-val{font-size:13px;font-weight:600;min-width:48px;text-align:right;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+  .chart-wrap{position:relative;width:100%;}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:10px;}
+  .legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--stone);}
+  .legend-sq{width:10px;height:10px;border-radius:2px;}
+  .insight-title{font-size:12px;font-weight:600;margin-bottom:5px;}
+  .insight-body{font-size:12px;line-height:1.7;}
+  .state-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .state-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--sage-lt);}
+  .state-row:first-of-type{border-top:none;}
+  .state-rank{font-size:11px;color:var(--stone);width:18px;}
+  .state-name{font-size:12px;color:var(--olive);flex:1;}
+  .state-bar-wrap{flex:1.4;background:var(--sage-lt);border-radius:4px;height:6px;overflow:hidden;}
+  .state-bar{height:6px;border-radius:4px;background:var(--lime);}
+  .state-val{font-size:12px;font-weight:600;color:var(--olive);min-width:26px;text-align:right;}
+  .mtable-wrap{overflow-x:auto;}
+  table.mtable{width:100%;border-collapse:collapse;font-size:11px;}
+  table.mtable th,table.mtable td{padding:7px 10px;text-align:right;white-space:nowrap;}
+  table.mtable th{font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--stone);border-bottom:1.5px solid var(--sage);}
+  table.mtable td{border-bottom:1px solid var(--sage-lt);color:var(--olive);}
+  table.mtable td.mlabel,table.mtable th.mlabel{text-align:left;font-weight:600;}
+  table.mtable tr.chan-meta td.mlabel{color:#C98A1E;}
+  table.mtable tr.chan-google td.mlabel{color:var(--slate);}
+  table.mtable tr.chan-organic td.mlabel{color:var(--lime-dk);}
+  table.mtable tr.month-head td{background:var(--sage-lt);font-family:'Lora',serif;font-weight:700;font-size:12px;text-align:left;color:var(--olive);padding:8px 10px;}
+  table.mtable td.cac-good{color:var(--lime-dk);font-weight:600;}
+  .obs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;}
+  .obs-card{background:var(--cream);border:1px solid var(--sage);border-radius:12px;padding:18px 20px;}
+  .obs-card.flag{border-left:3px solid var(--amber);}
+  .obs-card.positive{border-left:3px solid var(--lime);}
+  .obs-card.neutral{border-left:3px solid var(--stone);}
+  .obs-tag{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;}
+  .obs-tag.tag-flag{color:#A57800;}
+  .obs-tag.tag-positive{color:var(--lime-dk);}
+  .obs-tag.tag-neutral{color:var(--stone);}
+  .obs-title{font-size:12px;font-weight:600;color:var(--olive);margin-bottom:4px;line-height:1.4;}
+  .obs-body{font-size:11px;color:var(--stone);line-height:1.65;}
+  .dash-footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid var(--sage);font-size:11px;color:var(--stone);}
+  .dash-footer strong{color:var(--olive);}
+  section{animation:fadeUp .5s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  @media(max-width:768px){.metric-grid{grid-template-columns:repeat(2,1fr);}.three-col,.pacing-grid,.two-col,.obs-grid,.state-grid{grid-template-columns:1fr;}.header{flex-direction:column;gap:12px;}.header-meta{text-align:left;}}
 </style>
 </head>
 <body>
 <div class="page">
-
   <div class="header">
     <div class="logo">≡ <em>Tend</em></div>
     <div class="header-meta">
       <p><strong>Channel Performance Dashboard</strong></p>
-      <p>CY2026 · As of September 14, 2026 · Google live Feb 1 · Meta live Mar 1</p>
+      <p>CY2026 · As of November 3, 2026 · Google live Feb 1 · Meta live Mar 1</p>
     </div>
   </div>
 
@@ -165,10 +135,10 @@
   <section>
     <p class="sl">Year-to-date performance</p>
     <div class="metric-grid">
-      <div class="mc"><p class="label">Total registrations</p><p class="value">2,300</p><p class="sub">153.3% of 1,500 CY2026 goal ✓</p></div>
-      <div class="mc"><p class="label">Groups created</p><p class="value">106</p><p class="sub">70.7% of 150 CY2026 goal</p></div>
-      <div class="mc"><p class="label">Total spend</p><p class="value">$33,841</p><p class="sub">Meta + Google + Organic</p></div>
-      <div class="mc"><p class="label">Blended CAC</p><p class="value">$319.25</p><p class="sub">all channels · $14.71 CPL</p></div>
+      <div class="mc"><p class="label">Total registrations</p><p class="value">2,474</p><p class="sub">164.9% of 1,500 CY2026 goal ✓</p></div>
+      <div class="mc"><p class="label">Groups created</p><p class="value">108</p><p class="sub">72.0% of 150 CY2026 goal</p></div>
+      <div class="mc"><p class="label">Total spend</p><p class="value">$36,924</p><p class="sub">Meta + Google + Organic</p></div>
+      <div class="mc"><p class="label">Blended CAC</p><p class="value">$341.89</p><p class="sub">all channels · $14.92 CPL</p></div>
     </div>
   </section>
 
@@ -178,49 +148,46 @@
   <section>
     <p class="sl">Dual-path pacing — CY2026 (Dec 31) &amp; June 2027</p>
     <div class="pacing-grid">
-
       <div class="pacing-card">
         <p class="pacing-label">Registrations</p>
-        <div class="pacing-nums"><span class="pacing-current">2,300</span><span class="pacing-goal">current</span></div>
+        <div class="pacing-nums"><span class="pacing-current">2,474</span><span class="pacing-goal">current</span></div>
         <div class="dual-track">
           <div class="track-row">
             <div class="track-row-label"><span class="track-name">CY2026 goal — 1,500</span><span class="track-tag">Dec 31, 2026</span></div>
-            <div class="track"><div class="track-fill" style="width:100%; background:#90AF37;"></div></div>
-            <div class="track-meta"><span class="ahead">✓ Goal exceeded</span><span>153.3% complete</span></div>
+            <div class="track"><div class="track-fill" style="width:100%;background:#90AF37;"></div></div>
+            <div class="track-meta"><span class="ahead">✓ Goal exceeded</span><span>164.9% complete</span></div>
           </div>
           <div class="track-row" style="margin-bottom:0;">
             <div class="track-row-label"><span class="track-name">June 2027 goal — 2,500</span><span class="track-tag">Jun 30, 2027</span></div>
-            <div class="track"><div class="track-fill" style="width:92%; background:#FFBA4A;"></div></div>
-            <div class="track-meta"><span class="ahead">Ahead · proj. 3,267</span><span>92.0% complete</span></div>
+            <div class="track"><div class="track-fill" style="width:99%;background:#FFBA4A;"></div></div>
+            <div class="track-meta"><span class="ahead">Nearly there · proj. 4,408</span><span>99.0% complete</span></div>
           </div>
         </div>
         <div class="pace-boxes">
-          <div class="pace-box good"><p>Current monthly pace</p><strong>272 / mo</strong></div>
-          <div class="pace-box great"><p>CY2026 goal</p><strong>Reached ✓</strong></div>
+          <div class="pace-box good"><p>Current monthly pace</p><strong>245 / mo</strong></div>
+          <div class="pace-box great"><p>CY2026 goal</p><strong>Exceeded ✓</strong></div>
         </div>
       </div>
-
       <div class="pacing-card">
         <p class="pacing-label">Groups created</p>
-        <div class="pacing-nums"><span class="pacing-current">106</span><span class="pacing-goal">current</span></div>
+        <div class="pacing-nums"><span class="pacing-current">108</span><span class="pacing-goal">current</span></div>
         <div class="dual-track">
           <div class="track-row">
             <div class="track-row-label"><span class="track-name">CY2026 goal — 150</span><span class="track-tag">Dec 31, 2026</span></div>
-            <div class="track"><div class="track-fill" style="width:70.7%; background:#90AF37;"></div></div>
-            <div class="track-meta"><span class="ahead">on pace</span><span>70.7% complete</span></div>
+            <div class="track"><div class="track-fill" style="width:72%;background:#90AF37;"></div></div>
+            <div class="track-meta"><span class="behind">proj. 128 at current pace</span><span>72.0% complete</span></div>
           </div>
           <div class="track-row" style="margin-bottom:0;">
             <div class="track-row-label"><span class="track-name">June 2027 goal — 250</span><span class="track-tag">Jun 30, 2027</span></div>
-            <div class="track"><div class="track-fill" style="width:42.4%; background:#FFBA4A;"></div></div>
-            <div class="track-meta"><span class="ahead">On track · proj. 226</span><span>42.4% complete</span></div>
+            <div class="track"><div class="track-fill" style="width:43.2%;background:#FFBA4A;"></div></div>
+            <div class="track-meta"><span class="ahead">On track · proj. 192</span><span>43.2% complete</span></div>
           </div>
         </div>
         <div class="pace-boxes">
-          <div class="pace-box good"><p>Current monthly pace</p><strong>12.6 / mo</strong></div>
-          <div class="pace-box great"><p>Needed for CY2026</p><strong>12.4 / mo</strong></div>
+          <div class="pace-box good"><p>Current monthly pace</p><strong>10.7 / mo</strong></div>
+          <div class="pace-box warn"><p>Needed for CY2026</p><strong>22 / mo</strong></div>
         </div>
       </div>
-
     </div>
 
     <div class="two-col">
@@ -247,8 +214,8 @@
     </div>
 
     <div class="card insight-sage" style="margin-bottom:0;">
-      <p class="insight-title" style="color:var(--olive);">Registration goal exceeded at 153% — focus now shifts to activating groups</p>
-      <p class="insight-body" style="color:var(--olive);">At 2,300 registrations the program sits at 153% of the 1,500 CY2026 goal, carried by organic and Google even with Meta spend paused since August. Groups are at 106 (71% of goal) and tracking to ~151 by year end — right at target. With registration momentum secured, the highest-value work now is activating the large registered base into groups, including the 774-person webinar cohort. 80 international registrations (targeting misconfiguration) were identified and excluded across all forms.</p>
+      <p class="insight-title" style="color:var(--olive);">Registration goal exceeded at 165% — the next focus is converting the base into groups</p>
+      <p class="insight-body" style="color:var(--olive);">At 2,474 registrations the program is well past the 1,500 CY2026 goal, with Meta spend light since late summer and Google plus organic carrying volume. Groups sit at 108 (72% of goal). With registration secured, the opportunity now is activating the large registered base — the 817-person webinar cohort chief among them — into groups. 80 international registrations (targeting misconfiguration) were identified and excluded across all forms.</p>
     </div>
   </section>
 
@@ -258,74 +225,70 @@
   <section>
     <p class="sl">Channel performance</p>
     <div class="three-col">
-
       <div class="card">
         <div class="ch-head"><div class="ch-dot" style="background:#354252;"></div><span class="ch-name">Google ads</span></div>
-        <p class="ch-sub">Paid search · Search, PMax, Brand · Live Feb 1</p>
+        <p class="ch-sub">Paid search · Search, PMax · Live Feb 1</p>
         <div class="badge-watch">highest CAC</div>
-        <div class="row"><span class="rl">Spend</span><span class="rv">$8,766.13</span></div>
-        <div class="row"><span class="rl">Registrations</span><span class="rv">347</span></div>
-        <div class="row"><span class="rl">Groups created</span><span class="rv">20</span></div>
-        <div class="row"><span class="rl">Reg → group</span><span class="conv-mid">5.8%</span></div>
-        <div class="row"><span class="rl">CPL</span><span class="rv">$25.26</span></div>
-        <div class="row"><span class="rl">CAC</span><span class="rv warn">$438.31</span></div>
+        <div class="row"><span class="rl">Spend</span><span class="rv">$10,372.31</span></div>
+        <div class="row"><span class="rl">Registrations</span><span class="rv">442</span></div>
+        <div class="row"><span class="rl">Groups created</span><span class="rv">24</span></div>
+        <div class="row"><span class="rl">Reg → group</span><span class="conv-mid">5.4%</span></div>
+        <div class="row"><span class="rl">CPL</span><span class="rv">$23.47</span></div>
+        <div class="row"><span class="rl">CAC</span><span class="rv warn">$432.18</span></div>
       </div>
-
       <div class="card">
         <div class="ch-head"><div class="ch-dot" style="background:#FFBA4A;"></div><span class="ch-name">Meta ads</span></div>
-        <p class="ch-sub">Paid social · Cold + retargeting + webinar · Paused since Aug</p>
-        <div class="row"><span class="rl">Spend</span><span class="rv">$21,074.52</span></div>
-        <div class="row"><span class="rl">Registrations</span><span class="rv">1,613</span></div>
-        <div class="row"><span class="rl">Groups created</span><span class="rv">58</span></div>
-        <div class="row"><span class="rl">Reg → group</span><span class="conv-mid">3.6%*</span></div>
-        <div class="row"><span class="rl">CPL</span><span class="rv">$13.07</span></div>
-        <div class="row"><span class="rl">CAC</span><span class="rv">$363.35</span></div>
-        <p style="font-size:9px;color:var(--stone);margin-top:8px;line-height:1.5;">*Includes 774 webinar registrations. The August event has run, but this cohort has not yet created groups at scale — activating it is the focus of current reactivation work. See webinar breakout below.</p>
+        <p class="ch-sub">Paid social · Cold + retargeting + webinar</p>
+        <div class="row"><span class="rl">Spend</span><span class="rv">$22,051.79</span></div>
+        <div class="row"><span class="rl">Registrations</span><span class="rv">1,662</span></div>
+        <div class="row"><span class="rl">Groups created</span><span class="rv">59</span></div>
+        <div class="row"><span class="rl">Reg → group</span><span class="conv-mid">3.5%*</span></div>
+        <div class="row"><span class="rl">CPL</span><span class="rv">$13.27</span></div>
+        <div class="row"><span class="rl">CAC</span><span class="rv">$373.76</span></div>
+        <p style="font-size:9px;color:var(--stone);margin-top:8px;line-height:1.5;">*Includes the 817-person webinar cohort, which registered but has largely not yet created groups — the focus of current reactivation work. Excludes the Pastor Traffic prospecting test (shown below).</p>
       </div>
-
       <div class="card winner">
         <div class="ch-head"><div class="ch-dot" style="background:#90AF37;"></div><span class="ch-name">Organic / direct</span></div>
         <p class="ch-sub">SEO · email · word of mouth</p>
         <div class="badge-winner">lowest CAC</div>
-        <div class="row"><span class="rl">Spend</span><span class="rv">$4,000.00</span></div>
-        <div class="row"><span class="rl">Registrations</span><span class="rv">340</span></div>
-        <div class="row"><span class="rl">Groups created</span><span class="rv">21</span></div>
-        <div class="row"><span class="rl">Reg → group</span><span class="conv-good">6.2%</span></div>
-        <div class="row"><span class="rl">CPL</span><span class="rv">$11.76</span></div>
-        <div class="row"><span class="rl">CAC</span><span class="rv green">$190.48</span></div>
+        <div class="row"><span class="rl">Spend</span><span class="rv">$4,500.00</span></div>
+        <div class="row"><span class="rl">Registrations</span><span class="rv">370</span></div>
+        <div class="row"><span class="rl">Groups created</span><span class="rv">24</span></div>
+        <div class="row"><span class="rl">Reg → group</span><span class="conv-good">6.5%</span></div>
+        <div class="row"><span class="rl">CPL</span><span class="rv">$12.16</span></div>
+        <div class="row"><span class="rl">CAC</span><span class="rv green">$187.50</span></div>
       </div>
-
     </div>
 
     <div class="card" style="margin-bottom:20px;">
       <p class="sl" style="margin-bottom:14px;">CAC ranking</p>
-      <div class="rank-row"><span class="rank-num">1</span><span class="rank-label">Organic / direct</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:43%; background:#90AF37;"></div></div><span class="rank-val" style="color:#90AF37;">$190</span></div>
-      <div class="rank-row"><span class="rank-num">2</span><span class="rank-label">Meta ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:83%; background:#FFBA4A;"></div></div><span class="rank-val">$363</span></div>
-      <div class="rank-row"><span class="rank-num">3</span><span class="rank-label">Google ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:100%; background:#354252;"></div></div><span class="rank-val" style="color:#A57800;">$438</span></div>
+      <div class="rank-row"><span class="rank-num">1</span><span class="rank-label">Organic / direct</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:43%;background:#90AF37;"></div></div><span class="rank-val" style="color:#90AF37;">$188</span></div>
+      <div class="rank-row"><span class="rank-num">2</span><span class="rank-label">Meta ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:86%;background:#FFBA4A;"></div></div><span class="rank-val">$374</span></div>
+      <div class="rank-row"><span class="rank-num">3</span><span class="rank-label">Google ads</span><div class="rank-bar-wrap"><div class="rank-bar" style="width:100%;background:#354252;"></div></div><span class="rank-val" style="color:#A57800;">$432</span></div>
     </div>
 
     <div class="card insight-sage" style="margin-bottom:20px;">
-      <p class="insight-title" style="color:var(--olive);">Organic the clear efficiency leader — Google CAC climbing as spend outpaces groups</p>
-      <p class="insight-body" style="color:var(--olive);">Organic holds a $190 CAC, well ahead of Meta ($363) and Google ($438). Google CAC has risen as spend continued while group creation slowed — worth reviewing campaign mix and the budget-capped KWsearch. Meta CPL stays lowest at $13.07 (webinar volume), though its groups are still pending activation. Blended CAC at $319 with registration comfortably past goal.</p>
+      <p class="insight-title" style="color:var(--olive);">Organic the clear efficiency leader — paid CAC reflects the group-conversion slowdown</p>
+      <p class="insight-body" style="color:var(--olive);">Organic holds a $188 CAC, roughly half of Meta ($374) and Google ($432). Paid CAC is elevated because registrations continue while group creation has slowed — the denominator keeps growing faster than groups. Meta CPL stays lowest at $13.27. Converting the registered base to groups is the single biggest lever on blended CAC from here.</p>
     </div>
 
     <div class="two-col">
       <div class="card">
         <p class="sl" style="margin-bottom:10px;">Registrations by channel</p>
         <div class="chart-wrap" style="height:200px;"><canvas id="regPie"></canvas></div>
-        <div class="legend" style="margin-top:12px; margin-bottom:0;">
-          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 70.1%</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 14.8%</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Google 15.1%</div>
+        <div class="legend" style="margin-top:12px;margin-bottom:0;">
+          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 67.2%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Google 17.9%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 15.0%</div>
         </div>
       </div>
       <div class="card">
         <p class="sl" style="margin-bottom:10px;">Groups by channel</p>
         <div class="chart-wrap" style="height:200px;"><canvas id="grpPie"></canvas></div>
-        <div class="legend" style="margin-top:12px; margin-bottom:0;">
-          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 54.7%</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 19.8%</div>
-          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Google 18.9%</div>
+        <div class="legend" style="margin-top:12px;margin-bottom:0;">
+          <div class="legend-item"><div class="legend-sq" style="background:#FFBA4A;"></div>Meta 54.6%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Organic 22.2%</div>
+          <div class="legend-item"><div class="legend-sq" style="background:#354252;"></div>Google 22.2%</div>
         </div>
       </div>
     </div>
@@ -333,38 +296,32 @@
 
   <hr>
 
-  <!-- WEBINAR COHORT -->
+  <!-- PROSPECTING TESTS -->
   <section>
-    <p class="sl">Webinar campaign — cohort breakout</p>
+    <p class="sl">Prospecting tests — Q4 (kept out of core channel CAC)</p>
     <div class="three-col">
       <div class="card">
-        <div class="ch-head"><div class="ch-dot" style="background:#FFBA4A;"></div><span class="ch-name">Cold traffic</span></div>
-        <p class="ch-sub">Meta paid social · net-new audiences</p>
-        <div class="row"><span class="rl">Spend</span><span class="rv">$4,430.41</span></div>
-        <div class="row"><span class="rl">Registrations</span><span class="rv">601</span></div>
-        <div class="row"><span class="rl">CPL</span><span class="rv">$7.37</span></div>
-      </div>
-      <div class="card winner">
-        <div class="ch-head"><div class="ch-dot" style="background:#90AF37;"></div><span class="ch-name">Retargeting</span></div>
-        <p class="ch-sub">Meta paid social · unconverted pool</p>
-        <div class="badge-winner">lowest CPL</div>
-        <div class="row"><span class="rl">Spend</span><span class="rv">$1,029.20</span></div>
-        <div class="row"><span class="rl">Registrations</span><span class="rv">173</span></div>
-        <div class="row"><span class="rl">CPL</span><span class="rv green">$5.95</span></div>
+        <div class="ch-head"><div class="ch-dot" style="background:#354252;"></div><span class="ch-name">Pastor Traffic</span></div>
+        <p class="ch-sub">Meta · pastor-targeted prospecting · Oct–Nov</p>
+        <div class="badge-test">new audience test</div>
+        <div class="row"><span class="rl">Spend</span><span class="rv">$2,903.15</span></div>
+        <div class="row"><span class="rl">Landing page views</span><span class="rv">14,979</span></div>
+        <div class="row"><span class="rl">Cost / LPV</span><span class="rv green">$0.19</span></div>
+        <div class="row"><span class="rl">Registrations attributed</span><span class="rv">pending</span></div>
       </div>
       <div class="card">
-        <div class="ch-head"><div class="ch-dot" style="background:#354252;"></div><span class="ch-name">Cohort total</span></div>
-        <p class="ch-sub">Co-registered as Tend registrations</p>
-        <div class="row"><span class="rl">Spend</span><span class="rv">$5,459.61</span></div>
-        <div class="row"><span class="rl">Net-new regs</span><span class="rv">774</span></div>
-        <div class="row"><span class="rl">Blended CPL</span><span class="rv">$7.05</span></div>
-        <div class="row"><span class="rl">Groups to date</span><span class="rv">low</span></div>
+        <div class="ch-head"><div class="ch-dot" style="background:#FFBA4A;"></div><span class="ch-name">Re-Engagement</span></div>
+        <p class="ch-sub">Meta · registered-no-group retarget · Sept</p>
+        <div class="badge-test">reactivation test</div>
+        <div class="row"><span class="rl">Spend</span><span class="rv">$977.27</span></div>
+        <div class="row"><span class="rl">Landing page views</span><span class="rv">313</span></div>
+        <div class="row"><span class="rl">Cost / LPV</span><span class="rv">$3.12</span></div>
+        <div class="row"><span class="rl">Groups driven</span><span class="rv">minimal</span></div>
       </div>
-    </div>
-
-    <div class="card insight-sage" style="margin-bottom:0;">
-      <p class="insight-title" style="color:var(--olive);">774 net-new registrations from the webinar — activation is now the priority</p>
-      <p class="insight-body" style="color:var(--olive);">The webinar is a co-registration: every signup also registered for Tend, so all 774 count toward the program total (and are included in Meta above). At $7.05 blended CPL — retargeting the unconverted pool cheapest at $5.95 — this remains the most cost-efficient registration volume of the year. The August event has run; converting this warm, trained cohort into groups is the central goal of current reactivation work. 80 international registrations from a targeting misconfiguration were identified via the state field and excluded from all counts.</p>
+      <div class="card insight-amber">
+        <p class="insight-title" style="color:#8a6d1f;">Reading the tests</p>
+        <p class="insight-body" style="color:#8a6d1f;font-size:11px;">Pastor Traffic drove cheap traffic ($0.19/LPV) targeting the decision-maker persona — watch for registrations as the funnel matures. The Re-Engagement retarget drove landing-page views but few group starts, suggesting the conversion barrier is downstream of the click.</p>
+      </div>
     </div>
   </section>
 
@@ -377,22 +334,22 @@
       <div class="state-grid">
         <div>
           <div class="state-row"><span class="state-rank">1</span><span class="state-name">Texas</span><div class="state-bar-wrap"><div class="state-bar" style="width:100%"></div></div><span class="state-val">82</span></div>
-          <div class="state-row"><span class="state-rank">2</span><span class="state-name">California</span><div class="state-bar-wrap"><div class="state-bar" style="width:95%"></div></div><span class="state-val">78</span></div>
+          <div class="state-row"><span class="state-rank">2</span><span class="state-name">California</span><div class="state-bar-wrap"><div class="state-bar" style="width:96%"></div></div><span class="state-val">78</span></div>
           <div class="state-row"><span class="state-rank">3</span><span class="state-name">Florida</span><div class="state-bar-wrap"><div class="state-bar" style="width:78%"></div></div><span class="state-val">64</span></div>
-          <div class="state-row"><span class="state-rank">4</span><span class="state-name">Ohio</span><div class="state-bar-wrap"><div class="state-bar" style="width:76%"></div></div><span class="state-val">62</span></div>
-          <div class="state-row"><span class="state-rank">5</span><span class="state-name">Pennsylvania</span><div class="state-bar-wrap"><div class="state-bar" style="width:56%"></div></div><span class="state-val">46</span></div>
+          <div class="state-row"><span class="state-rank">4</span><span class="state-name">Ohio</span><div class="state-bar-wrap"><div class="state-bar" style="width:72%"></div></div><span class="state-val">59</span></div>
+          <div class="state-row"><span class="state-rank">5</span><span class="state-name">Pennsylvania</span><div class="state-bar-wrap"><div class="state-bar" style="width:55%"></div></div><span class="state-val">45</span></div>
           <div class="state-row"><span class="state-rank">6</span><span class="state-name">Indiana</span><div class="state-bar-wrap"><div class="state-bar" style="width:54%"></div></div><span class="state-val">44</span></div>
         </div>
         <div>
           <div class="state-row"><span class="state-rank">7</span><span class="state-name">Michigan</span><div class="state-bar-wrap"><div class="state-bar" style="width:51%"></div></div><span class="state-val">42</span></div>
           <div class="state-row"><span class="state-rank">8</span><span class="state-name">Tennessee</span><div class="state-bar-wrap"><div class="state-bar" style="width:50%"></div></div><span class="state-val">41</span></div>
-          <div class="state-row"><span class="state-rank">9</span><span class="state-name">Georgia</span><div class="state-bar-wrap"><div class="state-bar" style="width:49%"></div></div><span class="state-val">40</span></div>
-          <div class="state-row"><span class="state-rank">10</span><span class="state-name">North Carolina</span><div class="state-bar-wrap"><div class="state-bar" style="width:49%"></div></div><span class="state-val">40</span></div>
+          <div class="state-row"><span class="state-rank">9</span><span class="state-name">Georgia</span><div class="state-bar-wrap"><div class="state-bar" style="width:48%"></div></div><span class="state-val">39</span></div>
+          <div class="state-row"><span class="state-rank">10</span><span class="state-name">North Carolina</span><div class="state-bar-wrap"><div class="state-bar" style="width:44%"></div></div><span class="state-val">36</span></div>
           <div class="state-row"><span class="state-rank">11</span><span class="state-name">Illinois</span><div class="state-bar-wrap"><div class="state-bar" style="width:46%"></div></div><span class="state-val">38</span></div>
           <div class="state-row"><span class="state-rank">12</span><span class="state-name">New York</span><div class="state-bar-wrap"><div class="state-bar" style="width:38%"></div></div><span class="state-val">31</span></div>
         </div>
       </div>
-      <p style="font-size:10px;color:var(--stone);margin-top:14px;line-height:1.6;">Current as of Sept 14 (US registrations; abbreviations normalized, 80 international excluded). State field ~44% filled — directional for spotting concentration, not precise ranking.</p>
+      <p style="font-size:10px;color:var(--stone);margin-top:14px;line-height:1.6;">Reflects the Sept 14 data pull (Church State not included in the Oct/Nov exports). Directional for spotting concentration, not precise ranking.</p>
     </div>
   </section>
 
@@ -411,63 +368,10 @@
     </div>
     <div class="card">
       <div class="legend">
-        <div class="legend-item"><div class="legend-sq" style="background:#6B7A45;"></div>Groups created (by start date)</div>
+        <div class="legend-item"><div class="legend-sq" style="background:#6B7A45;"></div>Groups created (by entry date)</div>
       </div>
       <div class="chart-wrap" style="height:200px;"><canvas id="monthlyGrpChart"></canvas></div>
-      <p style="font-size:10px;color:var(--stone);margin-top:10px;line-height:1.6;">The webinar cohort (774 registrations) is shown separately above, not in this monthly history. Group formation slowed over summer — the current focus is reactivating the registered base (see observations). September is partial.</p>
-    </div>
-
-    <div class="card" style="margin-top:12px;">
-      <p class="sl" style="margin-bottom:10px;">Spend vs. output — efficiency over time</p>
-      <div class="legend">
-        <div class="legend-item"><div class="legend-sq" style="background:#A59678;"></div>Total spend</div>
-        <div class="legend-item"><div class="legend-sq" style="background:#90AF37;"></div>Registrations</div>
-        <div class="legend-item"><div class="legend-sq" style="background:#3C4420;"></div>Groups created</div>
-      </div>
-      <div class="chart-wrap" style="height:260px;"><canvas id="spendOutputChart"></canvas></div>
-      <p style="font-size:10px;color:var(--stone);margin-top:10px;line-height:1.6;">Blended CAC fell from $284 in March to $184 in June — its lowest point — as paid channels matured and organic compounded. Spend bars (left axis) against registration and group output (right axis). Trend shown through June, the last complete month; July is still in progress.</p>
-    </div>
-  </section>
-
-
-  <hr>
-
-  <!-- MONTHLY CHANNEL TABLE -->
-  <section>
-    <p class="sl">Monthly detail by channel</p>
-    <div class="card">
-      <div class="mtable-wrap">
-        <table class="mtable">
-          <thead>
-            <tr>
-              <th class="mlabel">Channel</th><th>Spend</th><th>Regs</th><th>Groups</th><th>CPL</th><th>CAC</th>
-            </tr>
-          </thead>
-          <tbody>
-      <tr class="month-head"><td colspan="6">Feb 2026</td></tr>
-      <tr class="chan-meta"><td class="mlabel">Meta</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-      <tr class="chan-google"><td class="mlabel">Google</td><td>$979</td><td>3</td><td>2</td><td>$326.33</td><td>$490</td></tr>
-      <tr class="chan-organic"><td class="mlabel">Organic</td><td>$500</td><td>54</td><td>5</td><td>$9.26</td><td class="cac-good">$100</td></tr>
-      <tr class="month-head"><td colspan="6">Mar 2026</td></tr>
-      <tr class="chan-meta"><td class="mlabel">Meta</td><td>$1,916</td><td>52</td><td>3</td><td>$36.85</td><td>$639</td></tr>
-      <tr class="chan-google"><td class="mlabel">Google</td><td>$993</td><td>45</td><td>3</td><td>$22.07</td><td>$331</td></tr>
-      <tr class="chan-organic"><td class="mlabel">Organic</td><td>$500</td><td>64</td><td>6</td><td>$7.81</td><td class="cac-good">$83</td></tr>
-      <tr class="month-head"><td colspan="6">Apr 2026</td></tr>
-      <tr class="chan-meta"><td class="mlabel">Meta</td><td>$3,045</td><td>216</td><td>11</td><td>$14.10</td><td>$277</td></tr>
-      <tr class="chan-google"><td class="mlabel">Google</td><td>$967</td><td>44</td><td>6</td><td>$21.98</td><td>$161</td></tr>
-      <tr class="chan-organic"><td class="mlabel">Organic</td><td>$500</td><td>36</td><td>2</td><td>$13.89</td><td>$250</td></tr>
-      <tr class="month-head"><td colspan="6">May 2026</td></tr>
-      <tr class="chan-meta"><td class="mlabel">Meta</td><td>$4,995</td><td>286</td><td>20</td><td>$17.47</td><td>$250</td></tr>
-      <tr class="chan-google"><td class="mlabel">Google</td><td>$1,878</td><td>48</td><td>2</td><td>$39.12</td><td>$939</td></tr>
-      <tr class="chan-organic"><td class="mlabel">Organic</td><td>$500</td><td>30</td><td>6</td><td>$16.67</td><td class="cac-good">$83</td></tr>
-      <tr class="month-head"><td colspan="6">Jun 2026</td></tr>
-      <tr class="chan-meta"><td class="mlabel">Meta</td><td>$4,185</td><td>225</td><td>22</td><td>$18.60</td><td>$190</td></tr>
-      <tr class="chan-google"><td class="mlabel">Google</td><td>$1,750</td><td>79</td><td>8</td><td>$22.15</td><td>$219</td></tr>
-      <tr class="chan-organic"><td class="mlabel">Organic</td><td>$500</td><td>54</td><td>5</td><td>$9.26</td><td class="cac-good">$100</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="font-size:10px;color:var(--stone);margin-top:12px;line-height:1.6;">Shown through June, the last complete month (July still in progress). Jan omitted (pre-launch, organic only). Monthly CAC fluctuates because group creation lags the registration and spend that drove it — a high single month reflects timing, not inefficiency. Trend direction is the reliable signal. Organic spend reflects retainer allocated evenly across active months.</p>
+      <p style="font-size:10px;color:var(--stone);margin-top:10px;line-height:1.6;">Group creation slowed sharply after June despite continued registration growth — the central reason the reactivation work is now the priority. The webinar cohort (817) is shown separately, not in this monthly history. November is partial.</p>
     </div>
   </section>
 
@@ -475,136 +379,61 @@
 
   <!-- OBSERVATIONS -->
   <section>
-    <p class="sl">Observations — September 14, 2026</p>
+    <p class="sl">Observations — November 3, 2026</p>
     <div class="obs-grid">
-
       <div class="obs-card positive">
         <p class="obs-tag tag-positive">✓ Milestone</p>
-        <p class="obs-title">Registration goal exceeded at 153% — and still climbing</p>
-        <p class="obs-body">2,300 registrations against a 1,500 target. Notably, registrations kept rising through late summer even with Meta paused since August — organic and Google carried the momentum. Registration is a solved problem.</p>
+        <p class="obs-title">Registration goal exceeded at 165%</p>
+        <p class="obs-body">2,474 registrations against a 1,500 target, projecting to ~196% by year end. Registration has decisively stopped being the constraint — the program has more interested people than it can currently activate.</p>
       </div>
-
-      <div class="obs-card positive">
-        <p class="obs-tag tag-positive">✓ Efficient</p>
-        <p class="obs-title">Webinar remains the cheapest volume of the year</p>
-        <p class="obs-body">774 net-new registrations at $7.05 blended CPL, retargeting cheapest at $5.95. The co-registration mechanic delivered a large, warm, low-cost pool — now the raw material for group activation.</p>
-      </div>
-
       <div class="obs-card positive">
         <p class="obs-tag tag-positive">✓ Steady</p>
-        <p class="obs-title">Organic is the clear efficiency leader</p>
-        <p class="obs-body">$190 CAC vs $363 Meta and $438 Google, at the strongest reg→group rate of the paid-comparable channels. With Meta paused, organic is doing quiet, compounding work.</p>
+        <p class="obs-title">Organic remains the efficiency leader</p>
+        <p class="obs-body">$188 CAC — roughly half of either paid channel — at the strongest reg→group rate (6.5%). With paid spend lighter, organic is doing quiet, compounding work on both volume and quality.</p>
       </div>
-
       <div class="obs-card neutral">
         <p class="obs-tag tag-neutral">→ Next focus</p>
-        <p class="obs-title">Group activation is now the primary lever</p>
-        <p class="obs-body">Groups sit at 106 (71% of goal), tracking to ~151 by year end — on target, but the gap between 2,300 registrations and 106 groups is the opportunity. The reactivation campaign is built to convert the registered base, webinar cohort first.</p>
+        <p class="obs-title">Group activation is the priority lever</p>
+        <p class="obs-body">Groups at 108 (72% of goal), pacing toward ~128 EOY. The gap between 2,474 registrations and 108 groups is the opportunity — the webinar cohort and the broader registered-not-started pool are the target of current reactivation work.</p>
       </div>
-
+      <div class="obs-card neutral">
+        <p class="obs-tag tag-neutral">→ Test</p>
+        <p class="obs-title">Pastor Traffic opened a new audience</p>
+        <p class="obs-body">A Q4 prospecting test reached the pastor/decision-maker persona at $0.19 per landing-page view — cheap top-of-funnel. Registrations and groups from this audience are still maturing; kept out of core CAC until attributable.</p>
+      </div>
       <div class="obs-card flag">
         <p class="obs-tag tag-flag">⚑ Watch</p>
-        <p class="obs-title">Google CAC rose to $438 — now the highest</p>
-        <p class="obs-body">Spend continued ($8,766) while group creation slowed, pushing CAC up. KWsearch — the efficient Search converter — remains budget-capped while weaker campaigns absorb spend. Reviewing the mix is the clearest efficiency lever.</p>
+        <p class="obs-title">Re-engagement retarget drove clicks, not groups</p>
+        <p class="obs-body">The registered-no-group retarget produced landing-page views but few group starts — a signal the conversion barrier sits downstream of the click (the group-creation flow itself), not in reach or awareness.</p>
       </div>
-
-      <div class="obs-card neutral">
-        <p class="obs-tag tag-neutral">→ Data hygiene</p>
-        <p class="obs-title">Registrations now span three forms — reconciled</p>
-        <p class="obs-body">Registration data arrived split across three intake forms. Figures here union and de-duplicate all three (main takes priority on overlaps), with 80 international registrations excluded. Reported totals are clean and US-only.</p>
+      <div class="obs-card flag">
+        <p class="obs-tag tag-flag">⚑ Watch</p>
+        <p class="obs-title">Google CAC highest at $432; KWsearch still capped</p>
+        <p class="obs-body">Solid traffic but a $23.47 CPL and slowed group conversion keep CAC high. KWsearch — the efficient Search converter — remains budget-limited at $19/day while spend flows to PerfMax. Uncapping it is the cleanest efficiency gain available.</p>
       </div>
-
     </div>
   </section>
 
   <div class="dash-footer">
     <p><strong>Tend</strong> · An initiative of Plant With Purpose · Channel Performance CY2026</p>
-    <p style="margin-top:4px;">Data as of September 14, 2026 · Prepared by RightNow Inc</p>
+    <p style="margin-top:4px;">Data as of November 3, 2026 · Prepared by RightNow Inc</p>
   </div>
-
 </div>
 <script>
-const gc='rgba(60,68,32,0.07)', tc='#A59678';
-const tip={ backgroundColor:'#3C4420', titleColor:'#D2E1C3', bodyColor:'#FEFDFB', padding:10, cornerRadius:6 };
-
-const barOpts=(labels,data,colors)=>({
-  type:'bar',
-  data:{labels,datasets:[{data,backgroundColor:colors,borderRadius:6,borderSkipped:false}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip}},
-    scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11,family:'DM Sans'}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:11,family:'DM Sans'}}}}}
-});
-
-new Chart(document.getElementById('regPacingChart'), barOpts(
-  ['Current','CY2026 Goal','June 2027 Goal','Proj. CY2026'],
-  [2300,1500,2500,3267],['#90AF37','#FFBA4A','#354252','#D2E1C3']));
-
-new Chart(document.getElementById('grpPacingChart'), barOpts(
-  ['Current','CY2026 Goal','June 2027 Goal','Proj. CY2026'],
-  [106,150,250,226],['#90AF37','#FFBA4A','#354252','#D2E1C3']));
-
-// Monthly registrations - stacked by channel
-new Chart(document.getElementById('monthlyRegChart'), {
-  type:'bar',
-  data:{ labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep*'],
-    datasets:[
-      { label:'Meta', data:[0,0,51,216,286,225,61,0,0], backgroundColor:'#FFBA4A', borderRadius:4, stack:'s' },
-      { label:'Google', data:[0,3,45,40,47,73,60,54,25], backgroundColor:'#354252', borderRadius:4, stack:'s' },
-      { label:'Organic', data:[32,53,61,34,28,53,53,21,3], backgroundColor:'#90AF37', borderRadius:4, stack:'s' }
-    ]},
-  options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{...tip}},
-    scales:{x:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:11}}},
-            y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:11}}}}}
-});
-
-// Monthly groups
-new Chart(document.getElementById('monthlyGrpChart'), {
-  type:'bar',
-  data:{ labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep*'],
-    datasets:[{ data:[0,7,12,19,28,35,3,0,2], backgroundColor:'#6B7A45', borderRadius:5, borderSkipped:false }]},
-  options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{...tip}},
-    scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},
-            y:{grid:{color:gc},ticks:{color:tc,font:{size:11}}}}}
-});
-
-const pieOpts=(labels,data,colors)=>({
-  type:'doughnut',
-  data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0}]},
-  options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
-    plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>{
-      const t=c.dataset.data.reduce((a,b)=>a+b,0);
-      return ` ${c.label}: ${Math.round(c.parsed/t*1000)/10}%`;
-    }}}}}
-});
-
-new Chart(document.getElementById('regPie'), pieOpts(['Meta','Organic / Direct','Google'],[1613,340,347],['#FFBA4A','#90AF37','#354252']));
-new Chart(document.getElementById('grpPie'), pieOpts(['Meta','Organic / Direct','Google'],[58,21,20],['#FFBA4A','#90AF37','#354252']));
-// Spend vs output dual-axis
-new Chart(document.getElementById('spendOutputChart'), {
-  data:{ labels:['Feb','Mar','Apr','May','Jun'],
-    datasets:[
-      { type:'bar', label:'Total spend', data:[1479,3409,4512,7373,6435],
-        backgroundColor:'#C9BBA3', borderRadius:5, borderSkipped:false, yAxisID:'y', order:3 },
-      { type:'line', label:'Registrations', data:[57,161,296,364,358],
-        borderColor:'#90AF37', backgroundColor:'#90AF37', borderWidth:2.5, tension:0.3,
-        pointRadius:3, pointBackgroundColor:'#90AF37', yAxisID:'y1', order:1 },
-      { type:'line', label:'Groups created', data:[7,12,19,28,35],
-        borderColor:'#3C4420', backgroundColor:'#3C4420', borderWidth:2.5, tension:0.3,
-        pointRadius:3, pointBackgroundColor:'#3C4420', yAxisID:'y1', order:2 }
-    ]},
-  options:{ responsive:true, maintainAspectRatio:false,
-    plugins:{ legend:{display:false},
-      tooltip:{...tip, callbacks:{ label: c => {
-        if(c.dataset.label==='Total spend') return ` Spend: $${c.parsed.y.toLocaleString()}`;
-        return ` ${c.dataset.label}: ${c.parsed.y}`;
-      }}}},
-    scales:{
-      x:{ grid:{color:gc}, ticks:{color:tc,font:{size:11}} },
-      y:{ position:'left', grid:{color:gc}, ticks:{color:tc,font:{size:10},callback:v=>'$'+v/1000+'k'}, title:{display:true,text:'Spend',color:tc,font:{size:10}} },
-      y1:{ position:'right', grid:{display:false}, ticks:{color:tc,font:{size:10}}, title:{display:true,text:'Regs / Groups',color:tc,font:{size:10}} }
-    }}
-});
+const gc='rgba(60,68,32,0.07)',tc='#A59678';
+const tip={backgroundColor:'#3C4420',titleColor:'#D2E1C3',bodyColor:'#FEFDFB',padding:10,cornerRadius:6};
+const barOpts=(labels,data,colors)=>({type:'bar',data:{labels,datasets:[{data,backgroundColor:colors,borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11,family:'DM Sans'}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:11,family:'DM Sans'}}}}}});
+new Chart(document.getElementById('regPacingChart'),barOpts(['Current','CY2026 Goal','June 2027 Goal','Proj. CY2026'],[2474,1500,2500,2941],['#90AF37','#FFBA4A','#354252','#D2E1C3']));
+new Chart(document.getElementById('grpPacingChart'),barOpts(['Current','CY2026 Goal','June 2027 Goal','Proj. CY2026'],[108,150,250,128],['#90AF37','#FFBA4A','#354252','#D2E1C3']));
+new Chart(document.getElementById('monthlyRegChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov*'],datasets:[
+ {label:'Meta',data:[0,0,52,216,286,225,61,0,2,3,0],backgroundColor:'#FFBA4A',borderRadius:4,stack:'s'},
+ {label:'Google',data:[0,3,45,44,48,79,66,57,52,44,4],backgroundColor:'#354252',borderRadius:4,stack:'s'},
+ {label:'Organic',data:[34,54,64,36,30,54,56,22,7,9,2],backgroundColor:'#90AF37',borderRadius:4,stack:'s'}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip}},scales:{x:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:11}}},y:{stacked:true,grid:{color:gc},ticks:{color:tc,font:{size:11}}}}}});
+new Chart(document.getElementById('monthlyGrpChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov*'],datasets:[{data:[0,7,12,19,28,35,3,0,3,1,0],backgroundColor:'#6B7A45',borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip}},scales:{x:{grid:{color:gc},ticks:{color:tc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:tc,font:{size:11}}}}}});
+const pieOpts=(labels,data,colors)=>({type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>{const t=c.dataset.data.reduce((a,b)=>a+b,0);return ` ${c.label}: ${Math.round(c.parsed/t*1000)/10}%`;}}}}}});
+new Chart(document.getElementById('regPie'),pieOpts(['Meta','Google','Organic / Direct'],[1662,442,370],['#FFBA4A','#354252','#90AF37']));
+new Chart(document.getElementById('grpPie'),pieOpts(['Meta','Organic / Direct','Google'],[59,24,24],['#FFBA4A','#90AF37','#354252']));
 </script>
 </body>
 </html>
